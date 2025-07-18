@@ -1,0 +1,47 @@
+# Nuxt.js
+.nuxt/
+.output/
+.cache/
+.nitro/
+dist/
+public/
+coverage/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+pnpm-lock.yaml
+
+# Environment
+.env
+.env.*.local
+.vscode/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+*.ipr
+.fleet/
+
+# Logs
+logs/
+*.log
+
+# Mac
+.DS_Store
+
+# Thumbnails
+._*
+.Spotlight-V100
+.Trashes
+
+# VS Code
+
+# Testing
+/coverage/
+
+# Misc
