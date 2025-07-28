@@ -1,0 +1,500 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2025-05-27 00:21-0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: zh\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:457
+msgid "Add callout text"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/structure/SectionBlock.tsx:67
+msgid "sectionBlock.headingPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:146
+msgid "scriptBlock.titlePlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:164
+msgid "scriptBlock.synopsisPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:187
+msgid "scriptBlock.addCharacterPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:196
+msgid "scriptBlock.addCharacterButton"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:220
+msgid "scriptBlock.removeCharacterAriaLabel"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:251
+msgid "scriptBlock.aPlotPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:268
+msgid "scriptBlock.bPlotPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:285
+msgid "scriptBlock.cPlotPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:303
+msgid "scriptBlock.stingerPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:46
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:135
+msgid "sceneBlock.timeOfDay.MORNING"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:47
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:136
+msgid "sceneBlock.timeOfDay.NOON"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:48
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:137
+msgid "sceneBlock.timeOfDay.AFTERNOON"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:49
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:138
+msgid "sceneBlock.timeOfDay.EVENING"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:50
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:139
+msgid "sceneBlock.timeOfDay.NIGHT"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:51
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:140
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:141
+msgid "sceneBlock.timeOfDay.OTHER"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:57
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:158
+msgid "sceneBlock.setting.INTERIOR"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:58
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:159
+msgid "sceneBlock.setting.EXTERIOR"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:59
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:160
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:161
+msgid "sceneBlock.setting.OTHER"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:65
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:178
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:181
+msgid "sceneBlock.transition.CUT_TO_SCENE"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:66
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:179
+msgid "sceneBlock.transition.CUT_BACK_TO_SCENE"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:67
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:180
+msgid "sceneBlock.transition.FADE_TO_SCENE"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:197
+msgid "sceneBlock.locationPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:215
+msgid "sceneBlock.descriptionPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/DialogueBlock.tsx:79
+msgid "dialogueBlock.characterNamePlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/DialogueBlock.tsx:89
+msgid "dialogueBlock.parentheticalPlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/DialogueBlock.tsx:100
+msgid "dialogueBlock.linePlaceholder"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/base/EditableText.tsx:875
+msgid "Enter URL:"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/base/BlockSlot.tsx:92
+#: src/components/document/base/BlockSlot.tsx:93
+msgid "block.displayNameFallback"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/base/BlockSlot.tsx:97
+#: src/components/document/base/BlockSlot.tsx:98
+msgid "block.parentDisplayNameFallback"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/base/BlockSlot.tsx:313
+msgid "blockSlot.ariaLabelEmptySlot"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/base/Block.tsx:219
+msgid "block.ariaLabelBlockType"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:378
+#~ msgid "calloutBlock.ariaLabel.changeVariant"
+#~ msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:397
+#~ msgid "calloutBlock.ariaLabel.selectVariant"
+#~ msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:451
+#~ msgid "calloutBlock.placeholder.addCalloutText"
+#~ msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:130
+#~ msgid "calloutBlock.variant.title"
+#~ msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:131
+#~ msgid "calloutBlock.variant.tooltip"
+#~ msgstr ""
+
+#. aria-label for button to change callout variant
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:390
+#~ msgid "calloutBlock.changeVariantButton.ariaLabel"
+#~ msgstr ""
+
+#. aria-label for selecting a specific callout variant
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:414
+#~ msgid "calloutBlock.selectVariantMenuItem.ariaLabel"
+#~ msgstr ""
+
+#. placeholder {0}: locale.toUpperCase()
+#: src/components/navigation/LanguageSwitcher.tsx:58
+msgid "{0}"
+msgstr ""
+
+#: src/components/document/SuggestionMenu.tsx:228
+msgid "{category} blocks"
+msgstr ""
+
+#: src/components/document/base/EditableSelect.tsx:268
+msgid "{option}"
+msgstr ""
+
+#: src/components/document/base/EditableSelect.tsx:213
+msgid "{placeholder}"
+msgstr ""
+
+#: src/components/base/Button.tsx:79
+#~ msgid "{text}"
+#~ msgstr ""
+
+#: src/components/document/base/EditableSelect.tsx:214
+msgid "{value}"
+msgstr ""
+
+#: src/app/[locale]/not-found.tsx:15
+msgid "404 - Page Not Found"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:244
+msgid "scriptBlock.aPlotLabel"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:313
+msgid "scriptBlock.act1Title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:331
+msgid "scriptBlock.act2Title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:349
+msgid "scriptBlock.act3Title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:261
+msgid "scriptBlock.bPlotLabel"
+msgstr ""
+
+#: src/components/document/SuggestionMenu.tsx:186
+msgid "Block Suggestions"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:278
+msgid "scriptBlock.cPlotLabel"
+msgstr ""
+
+#. Message when a block cannot be nested
+#. js-lingui-explicit-id
+#: src/components/document/base/BlockSlot.tsx:318
+msgid "blockSlot.cannotNestBlock"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:176
+msgid "scriptBlock.charactersSectionTitle"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:126
+msgid "calloutBlock.commentaryExternal.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:122
+msgid "calloutBlock.commentaryInternal.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:138
+msgid "calloutBlock.creatorExternal.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:134
+msgid "calloutBlock.creatorInternal.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:118
+msgid "calloutBlock.danger.title"
+msgstr ""
+
+#: src/components/document/base/Block.tsx:264
+msgid "Delete"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:208
+msgid "sceneBlock.descriptionLabel"
+msgstr ""
+
+#. Placeholder text for an empty block slot
+#. js-lingui-explicit-id
+#: src/components/document/base/BlockSlot.tsx:320
+msgid "blockSlot.emptySlotPlaceholder"
+msgstr ""
+
+#: src/components/document/base/Block.tsx:256
+msgid "Duplicate"
+msgstr ""
+
+#: src/app/[locale]/not-found.tsx:24
+msgid "Go to Homepage"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:130
+msgid "calloutBlock.ideation.title"
+msgstr ""
+
+#: src/components/document/base/Block.tsx:239
+msgid "Insert Block Above"
+msgstr ""
+
+#: src/components/document/base/Block.tsx:247
+msgid "Insert Block Below"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:191
+msgid "sceneBlock.locationLabel"
+msgstr ""
+
+#. Message when a block can be nested
+#. js-lingui-explicit-id
+#: src/components/document/base/BlockSlot.tsx:319
+msgid "blockSlot.nestBlock"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:206
+msgid "scriptBlock.noCharactersAdded"
+msgstr ""
+
+#: src/components/document/SuggestionMenu.tsx:284
+msgid "No results found."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:106
+msgid "calloutBlock.note.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:133
+msgid "scriptBlock.overviewSectionTitle"
+msgstr ""
+
+#: src/components/document/SuggestionMenu.tsx:210
+msgid "Place Block"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:238
+msgid "scriptBlock.plotsSectionTitle"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/SceneBlock.tsx:120
+msgid "sceneBlock.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:127
+msgid "scriptBlock.title"
+msgstr ""
+
+#: src/components/document/SuggestionMenu.tsx:298
+msgid "Search blocks..."
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:296
+msgid "scriptBlock.stingerSectionTitle"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:232
+msgid "scriptBlock.structureSectionTitle"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:157
+msgid "scriptBlock.synopsisLabel"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:115
+msgid "calloutBlock.warning.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:119
+msgid "calloutBlock.danger.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:123
+msgid "calloutBlock.commentaryInternal.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:111
+msgid "calloutBlock.tip.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:139
+msgid "calloutBlock.creatorExternal.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:135
+msgid "calloutBlock.creatorInternal.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:127
+msgid "calloutBlock.commentaryExternal.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:107
+msgid "calloutBlock.note.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:131
+msgid "calloutBlock.ideation.tooltip"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:110
+msgid "calloutBlock.tip.title"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/screenwriting/ScriptBlock.tsx:139
+msgid "scriptBlock.titleLabel"
+msgstr ""
+
+#. js-lingui-explicit-id
+#: src/components/document/blocks/text/CalloutBlock.tsx:114
+msgid "calloutBlock.warning.title"
+msgstr ""
+
+#: src/app/[locale]/not-found.tsx:18
+msgid "We're sorry, the page you requested could not be found."
+msgstr ""

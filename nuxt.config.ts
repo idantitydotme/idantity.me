@@ -1,17 +1,35 @@
 import { defineNuxtConfig  } from 'nuxt/config';
 import type { NuxtConfig } from 'nuxt/config';
+import { resolve } from 'path';
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-
+  alias: {
+    '#shared-types': resolve(__dirname, './types'),
+  },
   modules: [
     '@nuxt/eslint',
     '@nuxt/fonts',
-    '@nuxt/icon',
-    '@nuxt/image',
-    '@nuxtjs/tailwindcss',
+    'rimelight-web-framework',
   ],
+  icon: {
+    customCollections: [
+      {
+        prefix: 'app-icon',
+        dir: './app/assets/icons',
+        normalizeIconName: false,
+      },
+    ],
+    clientBundle: {
+      scan: true,
+      includeCustomCollections: true,
+    },
+    mode: 'svg',
+    size: '24px',
+    class: 'icon',
+  },
   runtimeConfig: {
     apiSecret: 'my-api-secret',
 
@@ -33,7 +51,12 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ["@/assets/css/main.css"],
+  css: ["./app/assets/css/main.css"],
+  vite: {
+    plugins: [
+      tailwindcss(),
+    ],
+  },
   fonts: {
     google: {
       families: {

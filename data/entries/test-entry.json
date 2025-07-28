@@ -1,0 +1,70 @@
+{
+  "id": "01JY4T2ZWDPH7PAV6A0D64G0AD",
+  "slug": "test-entry",
+  "type": "Character",
+  "title": "Test Entry",
+  "categories": [
+    "Default"
+  ],
+  "tags": [],
+  "properties": {
+    "name": "",
+    "title": "",
+    "aliases": [],
+    "flavourText": "",
+    "species": "",
+    "sex": "",
+    "pronouns": "",
+    "height": 0,
+    "weight": 0,
+    "dateOfBirth": "",
+    "dateOfDeath": "",
+    "placeOfBirth": "",
+    "placeOfDeath": "",
+    "formerAffiliations": [],
+    "currentAffiliations": [],
+    "equipment": [],
+    "pets": [],
+    "mounts": [],
+    "favouriteFood": ""
+  },
+  "blocks": [
+    {
+      "id": "01JZGF6XF78X4PGSWGFXNP76SD",
+      "type": "paragraph",
+      "attrs": {
+        "text": [
+          {
+            "type": "text",
+            "text": ""
+          }
+        ]
+      },
+      "slots": {}
+    },
+    {
+      "id": "01JZGTXWTD7PTYFN4HFMWMCYTT",
+      "type": "paragraph",
+      "attrs": {
+        "text": [
+          {
+            "type": "text",
+            "text": ""
+          }
+        ]
+      },
+      "slots": {}
+    },
+    {
+      "id": "01JZGH5CQ9TEAYD0K4D81F8H2N",
+      "type": "section",
+      "attrs": {
+        "title": ""
+      },
+      "slots": {
+        "default": []
+      }
+    }
+  ],
+  "lastModified": "2025-07-06T17:30:40.711Z"
+}
