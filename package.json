@@ -1,0 +1,32 @@
+{
+  "name": "idantity-me",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "prepare": "vp config",
+    "generate-types": "wrangler types"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^13.1.8",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.1.5",
+    "sharp": "^0.34.3",
+    "wrangler": "^4.81.1"
+  },
+  "devDependencies": {
+    "vite-plus": "catalog:"
+  },
+  "overrides": {
+    "vite": "^7"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@10.33.0"
+}
