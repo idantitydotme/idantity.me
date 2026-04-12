@@ -1,12 +1,41 @@
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
-import { defineConfig, fontProviders } from "astro/config"
+import { defineConfig, fontProviders, memoryCache } from "astro/config"
 
 import cloudflare from "@astrojs/cloudflare"
 
 export default defineConfig({
   experimental: {
-    rustCompiler: true
+    contentIntellisense: true,
+    rustCompiler: true,
+    queuedRendering: {
+      enabled: true,
+      contentCache: true
+    },
+    cache: {
+      provider: memoryCache()
+    },
+    routeRules: {
+      "/api/[...path]": {
+        swr: 600 // 10 minutes stale-while-revalidate
+      },
+      "/[...path]": {
+        maxAge: 300 // 5 minutes cache
+      }
+    },
+    clientPrerender: true,
+    svgo: {
+      plugins: [
+        "preset-default",
+        "removeXMLNS",
+        {
+          name: "removeXlink",
+          params: {
+            includeLegacy: true
+          }
+        }
+      ]
+    }
   },
 
   site: "https://example.com",
