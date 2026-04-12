@@ -20,13 +20,21 @@
     "wrangler": "^4.81.1"
   },
   "devDependencies": {
+    "@astrojs/check": "0.9.8",
+    "@astrojs/ts-plugin": "1.10.7",
+    "@e18e/eslint-plugin": "0.3.0",
+    "@unocss/eslint-plugin": "66.6.8",
+    "eslint-plugin-regexp": "3.1.0",
     "vite-plus": "catalog:"
-  },
-  "overrides": {
-    "vite": "^7"
   },
   "engines": {
     "node": ">=25.2.1"
   },
-  "packageManager": "pnpm@10.33.0"
+  "packageManager": "pnpm@10.33.0",
+  "pnpm": {
+    "overrides": {
+      "vite": "^7",
+      "yaml": "2.8.3"
+    }
+  }
 }
