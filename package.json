@@ -38,7 +38,6 @@
   "pnpm": {
     "overrides": {
       "defu": "6.1.6",
-      "esbuild": "0.25.0",
       "vite": "npm:@voidzero-dev/vite-plus-core@latest",
       "vitest": "npm:@voidzero-dev/vite-plus-test@latest",
       "yaml": "2.8.3"
