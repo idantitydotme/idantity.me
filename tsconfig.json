@@ -1,6 +1,12 @@
 {
   "extends": "astro/tsconfigs/strictest",
-  "include": [".astro/types.d.ts", "**/*", "./worker-configuration.d.ts"],
+  "include": [
+    ".astro/types.d.ts",
+    "**/*",
+    "./worker-configuration.d.ts",
+    "auto-imports.d.ts",
+    "components.d.ts"
+  ],
   "exclude": ["dist"],
   "compilerOptions": {
     "plugins": [
@@ -9,7 +15,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#build/ui": ["./node_modules/.nuxt-ui/ui"],
+      "#build/ui/*": ["./node_modules/.nuxt-ui/ui/*"]
     },
     "types": ["unplugin-icons/types/astro"],
     "jsx": "preserve"

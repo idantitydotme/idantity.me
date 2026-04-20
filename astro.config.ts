@@ -1,5 +1,7 @@
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
+import vue from "@astrojs/vue"
+import ui from "@nuxt/ui/vite"
 import { defineConfig, fontProviders, memoryCache } from "astro/config"
 
 import cloudflare from "@astrojs/cloudflare"
@@ -39,7 +41,12 @@ export default defineConfig({
   },
 
   site: "https://example.com",
-  integrations: [mdx(), sitemap()],
+
+  integrations: [mdx(), sitemap(), vue({ appEntrypoint: "/src/_app" })],
+
+  vite: {
+    plugins: [ui()]
+  },
 
   fonts: [
     {
