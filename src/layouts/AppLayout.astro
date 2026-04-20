@@ -1,8 +1,10 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import UAppWrapper from '../components/UAppWrapper.vue';
+import Head from '@rimelight/ui/components/Head.astro';
+import { SITE_TITLE } from '../consts';
+import '../styles/global.css';
+import { Font } from 'astro:assets';
 
 interface Props {
 	title: string;
@@ -14,15 +16,21 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<slot name="head" />
-	</head>
-	<body class="isolate">
-		<UAppWrapper client:load>
+	<Head title={title} description={description}>
+		<slot name="head" slot="head" />
+		<Font cssVariable="--font-atkinson" preload slot="head" />
+		<link rel="sitemap" href="/sitemap-index.xml" slot="head" />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title={SITE_TITLE}
+			href={new URL('rss.xml', Astro.site)}
+			slot="head"
+		/>
+		<body class="isolate">
 			<Header />
 			<slot />
 			<Footer />
-		</UAppWrapper>
-	</body>
+		</body>
+	</Head>
 </html>

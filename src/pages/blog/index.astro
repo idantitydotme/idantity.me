@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content';
 import AppLayout from '../../layouts/AppLayout.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-import UBlogPosts from '@nuxt/ui/components/BlogPosts.vue';
-import UBlogPost from '@nuxt/ui/components/BlogPost.vue';
+import BlogPosts from '@rimelight/ui/components/nuxt/BlogPosts.vue';
+import BlogPost from '@rimelight/ui/components/nuxt/BlogPost.vue';
 
 const posts = (await getCollection('blog')).toSorted(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -22,10 +22,10 @@ const posts = (await getCollection('blog')).toSorted(
 
 	<main>
 		<section class="blog-section">
-			<UBlogPosts client:load>
+			<BlogPosts client:load>
 				{
 					posts.map((post, index) => (
-						<UBlogPost
+						<BlogPost
 							client:load
 							title={post.data.title}
 							description={post.data.description}
@@ -42,7 +42,7 @@ const posts = (await getCollection('blog')).toSorted(
 						/>
 					))
 				}
-			</UBlogPosts>
+			</BlogPosts>
 		</section>
 	</main>
 </AppLayout>

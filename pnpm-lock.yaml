@@ -15,16 +15,16 @@ importers:
   .:
     dependencies:
       '@astrojs/cloudflare':
-        specifier: ^13.1.10
+        specifier: 13.1.10
         version: 13.1.10(@types/node@25.6.0)(astro@6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))(esbuild@0.27.7)(jiti@2.6.1)(typescript@5.9.3)(workerd@1.20260420.1)(wrangler@4.84.0)(yaml@2.8.3)
       '@astrojs/mdx':
-        specifier: ^5.0.3
+        specifier: 5.0.3
         version: 5.0.3(astro@6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))
       '@astrojs/rss':
-        specifier: ^4.0.18
+        specifier: 4.0.18
         version: 4.0.18
       '@astrojs/sitemap':
-        specifier: ^3.7.2
+        specifier: 3.7.2
         version: 3.7.2
       '@astrojs/vue':
         specifier: 6.0.1
@@ -33,13 +33,13 @@ importers:
         specifier: 4.6.1
         version: 4.6.1(@tiptap/extensions@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(embla-carousel@8.6.0)(magicast@0.5.2)(tailwindcss@4.2.2)(typescript@5.9.3)(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))(vue-router@5.0.4(@vue/compiler-sfc@3.5.32)(vue@3.5.32(typescript@5.9.3)))(vue@3.5.32(typescript@5.9.3))(yjs@13.6.30)(zod@4.3.6)
       '@rimelight/ui':
-        specifier: 0.0.6
-        version: 0.0.6(@vue/compiler-sfc@3.5.32)(astro@6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))
+        specifier: 0.0.7
+        version: 0.0.7(@nuxt/kit@4.4.2(magicast@0.5.2))(@tiptap/extensions@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(@types/node@25.6.0)(@vue/compiler-sfc@3.5.32)(astro@6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))(esbuild@0.27.7)(jiti@2.6.1)(magicast@0.5.2)(typescript@5.9.3)(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))(vue-router@5.0.4(@vue/compiler-sfc@3.5.32)(vue@3.5.32(typescript@5.9.3)))(vue@3.5.32(typescript@5.9.3))(yaml@2.8.3)(yjs@13.6.30)(zod@4.3.6)
       astro:
-        specifier: ^6.1.8
+        specifier: 6.1.8
         version: 6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
       sharp:
-        specifier: ^0.34.3
+        specifier: 0.34.5
         version: 0.34.5
       tailwindcss:
         specifier: 4.2.2
@@ -51,7 +51,7 @@ importers:
         specifier: 5.0.4
         version: 5.0.4(@vue/compiler-sfc@3.5.32)(vue@3.5.32(typescript@5.9.3))
       wrangler:
-        specifier: ^4.84.0
+        specifier: 4.84.0
         version: 4.84.0
     devDependencies:
       '@astrojs/check':
@@ -67,7 +67,7 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(eslint@10.2.0(jiti@2.6.1))(oxlint@1.60.0(oxlint-tsgolint@0.20.0))
       '@types/node':
-        specifier: ^25.6.0
+        specifier: 25.6.0
         version: 25.6.0
       '@unocss/eslint-plugin':
         specifier: 66.6.8
@@ -1538,8 +1538,8 @@ packages:
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
 
-  '@rimelight/ui@0.0.6':
-    resolution: {integrity: sha512-kVvPB0eMayPZ2o5fQDqle9kNo8Ggd4lDdEfYiBfxPv8dlMAkyIenqEELv3HkDwhkedtEkCkdwFYDARAoEY1MOg==}
+  '@rimelight/ui@0.0.7':
+    resolution: {integrity: sha512-WpuZro1xKzq4+6+lMshZoAhp8mbwtShmCW3S03SOx1uu86MUZBVULQWphQMxQviMzkCMlmWCRkG60jd7FMAKUg==}
     peerDependencies:
       astro: '>=6.0.0'
       vue: '>=3.4.0'
@@ -6370,22 +6370,91 @@ snapshots:
     dependencies:
       quansync: 1.0.0
 
-  '@rimelight/ui@0.0.6(@vue/compiler-sfc@3.5.32)(astro@6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))(vue@3.5.32(typescript@5.9.3))':
+  '@rimelight/ui@0.0.7(@nuxt/kit@4.4.2(magicast@0.5.2))(@tiptap/extensions@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(@types/node@25.6.0)(@vue/compiler-sfc@3.5.32)(astro@6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))(esbuild@0.27.7)(jiti@2.6.1)(magicast@0.5.2)(typescript@5.9.3)(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))(vue-router@5.0.4(@vue/compiler-sfc@3.5.32)(vue@3.5.32(typescript@5.9.3)))(vue@3.5.32(typescript@5.9.3))(yaml@2.8.3)(yjs@13.6.30)(zod@4.3.6)':
     dependencies:
+      '@astrojs/vue': 6.0.1(@nuxt/kit@4.4.2(magicast@0.5.2))(@types/node@25.6.0)(astro@6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))(esbuild@0.27.7)(jiti@2.6.1)(typescript@5.9.3)(vue@3.5.32(typescript@5.9.3))(yaml@2.8.3)
       '@iconify-json/lucide': 1.2.102
+      '@nuxt/ui': 4.6.1(@tiptap/extensions@3.22.4(@tiptap/core@3.22.4(@tiptap/pm@3.22.4))(@tiptap/pm@3.22.4))(@tiptap/y-tiptap@3.0.3(prosemirror-model@1.25.4)(prosemirror-state@1.4.4)(prosemirror-view@1.41.8)(y-protocols@1.0.7(yjs@13.6.30))(yjs@13.6.30))(embla-carousel@8.6.0)(magicast@0.5.2)(tailwindcss@4.2.2)(typescript@5.9.3)(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(yaml@2.8.3))(vue-router@5.0.4(@vue/compiler-sfc@3.5.32)(vue@3.5.32(typescript@5.9.3)))(vue@3.5.32(typescript@5.9.3))(yjs@13.6.30)(zod@4.3.6)
       astro: 6.1.8(@types/node@25.6.0)(jiti@2.6.1)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
       css-variants: 2.3.5
       defu: 6.1.6
       embla-carousel: 8.6.0
       tailwind-merge: 3.5.0
+      tailwindcss: 4.2.2
       unplugin-icons: 23.0.1(@vue/compiler-sfc@3.5.32)
     optionalDependencies:
       vue: 3.5.32(typescript@5.9.3)
     transitivePeerDependencies:
+      - '@arethetypeswrong/core'
+      - '@azure/app-configuration'
+      - '@azure/cosmos'
+      - '@azure/data-tables'
+      - '@azure/identity'
+      - '@azure/keyvault-secrets'
+      - '@azure/storage-blob'
+      - '@capacitor/preferences'
+      - '@deno/kv'
+      - '@emotion/is-prop-valid'
+      - '@inertiajs/vue3'
+      - '@netlify/blobs'
+      - '@nuxt/content'
+      - '@nuxt/kit'
+      - '@planetscale/database'
       - '@svgr/core'
       - '@svgx/core'
+      - '@tiptap/extensions'
+      - '@tiptap/y-tiptap'
+      - '@tsdown/css'
+      - '@tsdown/exe'
+      - '@types/node'
+      - '@upstash/redis'
+      - '@vercel/blob'
+      - '@vercel/functions'
+      - '@vercel/kv'
+      - '@vitejs/devtools'
       - '@vue/compiler-sfc'
+      - '@vue/composition-api'
+      - async-validator
+      - aws4fetch
+      - axios
+      - change-case
+      - db0
+      - drauu
+      - esbuild
+      - focus-trap
+      - idb-keyval
+      - ioredis
+      - jiti
+      - joi
+      - jwt-decode
+      - less
+      - magicast
+      - nprogress
+      - publint
+      - qrcode
+      - react
+      - react-dom
+      - sass
+      - sass-embedded
+      - sortablejs
+      - stylus
+      - sugarss
+      - superstruct
+      - supports-color
       - svelte
+      - terser
+      - tsx
+      - typescript
+      - universal-cookie
+      - unplugin-unused
+      - uploadthing
+      - valibot
+      - vite
+      - vue-router
+      - yaml
+      - yjs
+      - yup
+      - zod
 
   '@rolldown/pluginutils@1.0.0-rc.13': {}
 
