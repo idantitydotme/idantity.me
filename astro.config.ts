@@ -44,8 +44,16 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: "idantity.me"
+      title: "idantity.me",
+      sidebar: [
+        { label: "Home", link: "/docs/" },
+        {
+          label: "Documentation",
+          autogenerate: { directory: "docs" }
+        }
+      ]
     }),
+
     mdx(),
     sitemap(),
     ui()
