@@ -21,6 +21,7 @@
     "@rimelight/ui": "0.0.9",
     "astro": "6.1.8",
     "sharp": "0.34.5",
+    "starlight-image-zoom": "0.14.1",
     "tailwindcss": "4.2.2",
     "vue": "3.5.32",
     "vue-router": "5.0.4",

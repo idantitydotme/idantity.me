@@ -1,6 +1,7 @@
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
+import starlightImageZoom from "starlight-image-zoom"
 import { ui } from "@rimelight/ui"
 import { defineConfig, fontProviders, memoryCache } from "astro/config"
 
@@ -45,6 +46,7 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "idantity.me",
+      plugins: [starlightImageZoom()],
       sidebar: [
         { label: "Home", link: "/docs/" },
         {
