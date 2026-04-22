@@ -45,8 +45,27 @@ export default defineConfig({
 
   integrations: [
     starlight({
-      title: "idantity.me",
       plugins: [starlightImageZoom()],
+      prerender: false,
+      lastUpdated: true,
+      disable404Route: true,
+      locales: {
+        root: {
+          label: "English",
+          lang: "en"
+        },
+        pt: {
+          label: "Português",
+          lang: "pt-BR"
+        }
+      },
+      title: {
+        en: "Website Docs"
+      },
+      description: "Rimelight Entertainment Documentation",
+      social: [
+        { icon: "github", label: "GitHub", href: "https://github.com/Rimelight-Entertainment" }
+      ],
       sidebar: [
         { label: "Home", link: "/docs/" },
         {
