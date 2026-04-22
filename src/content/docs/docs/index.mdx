@@ -8,3 +8,62 @@ Welcome to the idantity.me documentation!
 - **[Project Structure](./structure)**: Overview of the codebase.
 - **[Deployment](./deployment)**: How the site is deployed.
 - **[Contributing](./contributing)**: How to help with the project.
+
+import { Steps } from "@astrojs/starlight/components"
+
+To use Rimelight UI in an Astro project, you need to install the package and its peer dependencies.
+
+## Prerequisites
+
+- **Astro**: Version 6.0.0 or higher.
+- **Vue**: Version 3.4.0 or higher (optional, but recommended).
+
+## Installation
+
+<Steps>
+
+    1. Install the package into your project:
+
+    ```bash
+    pnpm add @rimelight/ui
+    ```
+
+    2. Add the Rimelight UI Astro integration to your Astro configuration:
+
+    ```typescript
+    // astro.config.ts
+    import { ui } from "@rimelight/ui"
+    import { defineConfig } from "astro/config"
+
+    export default defineConfig({
+    integrations: [
+    ui({
+    // Optional: Provide UI overrides
+    ui: {
+    button: {
+    defaultVariants: { variant: "primary" }
+
+}
+}
+})
+]
+})
+
+````
+
+    3.  Create or modify your UnoCSS configuration to include the library's preset:
+
+    ```ts
+    // uno.config.ts
+    import { defineConfig } from "unocss"
+    import rimelightUiPreset from "@rimelight/ui/preset"
+
+    export default defineConfig({
+    presets: [
+    rimelightUiPreset()
+    ]
+
+})
+````
+
+</Steps>
