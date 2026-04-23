@@ -43,6 +43,7 @@ export default defineConfig({
   },
 
   site: "https://idantity.me",
+  output: "server",
 
   integrations: [
     starlight({
@@ -50,6 +51,7 @@ export default defineConfig({
         starlightImageZoom(),
         starlightAddons({ packageManagers: ["npm", "pnpm", "yarn", "bun"] })
       ],
+      prerender: false,
       lastUpdated: true,
       disable404Route: true,
       locales: {
