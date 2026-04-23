@@ -12,24 +12,23 @@
     "generate-types": "wrangler types"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "13.1.10",
-    "@astrojs/mdx": "5.0.3",
+    "@astrojs/cloudflare": "13.2.1",
     "@astrojs/rss": "4.0.18",
     "@astrojs/sitemap": "3.7.2",
-    "@astrojs/starlight": "0.38.3",
+    "@astrojs/starlight": "0.38.4",
     "@astrojs/vue": "6.0.1",
-    "@rimelight/ui": "0.0.15",
-    "astro": "6.1.8",
+    "@rimelight/ui": "0.0.16",
+    "astro": "6.1.9",
     "sharp": "0.34.5",
     "starlight-image-zoom": "0.14.1",
     "tailwindcss": "4.2.2",
-    "vue": "3.5.32",
+    "vue": "3.5.33",
     "vue-router": "5.0.4",
-    "wrangler": "4.84.0"
+    "wrangler": "4.84.1"
   },
   "devDependencies": {
     "@astrojs/check": "0.9.8",
-    "@astrojs/compiler-rs": "0.1.8",
+    "@astrojs/compiler-rs": "0.1.9",
     "@astrojs/ts-plugin": "1.10.7",
     "@e18e/eslint-plugin": "0.3.0",
     "@types/node": "25.6.0",
