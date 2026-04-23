@@ -17,7 +17,7 @@
     "@astrojs/sitemap": "3.7.2",
     "@astrojs/starlight": "0.38.4",
     "@astrojs/vue": "6.0.1",
-    "@rimelight/ui": "0.0.16",
+    "@rimelight/ui": "0.0.17",
     "astro": "6.1.9",
     "sharp": "0.34.5",
     "starlight-image-zoom": "0.14.1",
