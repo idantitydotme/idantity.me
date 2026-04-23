@@ -1,4 +1,4 @@
 import { sequence } from "astro:middleware"
 import { sri, security } from "@rimelight/ui/middleware"
 
-export const onRequest = sequence(sri, security)
+export const onRequest = sequence(security, sri)
