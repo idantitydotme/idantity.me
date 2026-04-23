@@ -1,8 +1,8 @@
-import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
 import starlightImageZoom from "starlight-image-zoom"
 import { ui } from "@rimelight/ui/integrations"
+import { sri } from "@rimelight/ui/integrations"
 import { starlightAddons } from "@rimelight/ui/plugins"
 import { defineConfig, fontProviders, memoryCache } from "astro/config"
 
@@ -78,9 +78,9 @@ export default defineConfig({
       ]
     }),
 
-    mdx(),
     sitemap(),
-    ui()
+    ui(),
+    sri()
   ],
 
   fonts: [
