@@ -141,5 +141,9 @@ export default defineConfig({
         resources: ["'self'"]
       }
     }
+  },
+
+  markdown: {
+    syntaxHighlight: "prism"
   }
 })
