@@ -43,72 +43,7 @@ export default defineConfig({
   },
 
   site: "https://idantity.me",
-  base: "/",
-  trailingSlash: "never",
   output: "server",
-
-  integrations: [
-    starlight({
-      customCss: ["./src/styles/starlight.css"],
-      plugins: [starlightImageZoom(), starlightAddons()],
-      prerender: false,
-      lastUpdated: true,
-      disable404Route: true,
-      locales: {
-        root: {
-          label: "English",
-          lang: "en"
-        },
-        pt: {
-          label: "Português",
-          lang: "pt-BR"
-        }
-      },
-      title: {
-        en: "Website Docs"
-      },
-      description: "Rimelight Entertainment Documentation",
-      social: [
-        { icon: "github", label: "GitHub", href: "https://github.com/Rimelight-Entertainment" }
-      ],
-      sidebar: [
-        { label: "Home", link: "/docs/" },
-        {
-          label: "Documentation",
-          autogenerate: { directory: "docs" }
-        }
-      ]
-    }),
-
-    sitemap(),
-    ui(),
-    sri()
-  ],
-
-  fonts: [
-    {
-      provider: fontProviders.local(),
-      name: "Atkinson",
-      cssVariable: "--font-atkinson",
-      fallbacks: ["sans-serif"],
-      options: {
-        variants: [
-          {
-            src: ["./src/assets/fonts/atkinson-regular.woff"],
-            weight: 400,
-            style: "normal",
-            display: "swap"
-          },
-          {
-            src: ["./src/assets/fonts/atkinson-bold.woff"],
-            weight: 700,
-            style: "normal",
-            display: "swap"
-          }
-        ]
-      }
-    }
-  ],
 
   adapter: cloudflare(),
 
@@ -146,7 +81,69 @@ export default defineConfig({
     }
   },
 
+  i18n: {
+    locales: ["en", "pt-br"],
+    defaultLocale: "en",
+    routing: {
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true
+    }
+  },
+
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Atkinson",
+      cssVariable: "--font-atkinson",
+      fallbacks: ["sans-serif"],
+      options: {
+        variants: [
+          {
+            src: ["./src/assets/fonts/atkinson-regular.woff"],
+            weight: 400,
+            style: "normal",
+            display: "swap"
+          },
+          {
+            src: ["./src/assets/fonts/atkinson-bold.woff"],
+            weight: 700,
+            style: "normal",
+            display: "swap"
+          }
+        ]
+      }
+    }
+  ],
+
   markdown: {
     syntaxHighlight: "prism"
-  }
+  },
+
+  integrations: [
+    starlight({
+      customCss: ["./src/styles/starlight.css"],
+      plugins: [starlightImageZoom(), starlightAddons()],
+      prerender: false,
+      lastUpdated: true,
+      disable404Route: true,
+      title: {
+        en: "Website Docs"
+      },
+      description: "Rimelight Entertainment Documentation",
+      social: [
+        { icon: "github", label: "GitHub", href: "https://github.com/Rimelight-Entertainment" }
+      ],
+      sidebar: [
+        { label: "Home", link: "/docs/" },
+        {
+          label: "Documentation",
+          autogenerate: { directory: "docs" }
+        }
+      ]
+    }),
+
+    sitemap(),
+    ui(),
+    sri()
+  ]
 })
