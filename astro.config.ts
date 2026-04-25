@@ -44,6 +44,9 @@ export default defineConfig({
 
   site: "https://idantity.me",
   output: "server",
+  prefetch: {
+    prefetchAll: true
+  },
 
   adapter: cloudflare(),
 
