@@ -84,10 +84,7 @@ export default defineConfig({
   i18n: {
     locales: ["en", "pt-br"],
     defaultLocale: "en",
-    routing: {
-      prefixDefaultLocale: true,
-      redirectToDefaultLocale: true
-    }
+    routing: "manual"
   },
 
   fonts: [
