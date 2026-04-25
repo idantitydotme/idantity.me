@@ -16,18 +16,18 @@ const { title, description } = Astro.props;
 
 <!doctype html>
 <html lang={Astro.currentLocale || 'en'}>
-	<!--<Head title={title} description={description}>-->
-	<!--	<slot name="head" slot="head" />-->
-	<!--	<Font cssVariable="&#45;&#45;font-atkinson" preload slot="head" />-->
-	<!--	<link rel="sitemap" href="/sitemap-index.xml" slot="head" />-->
-	<!--	<link-->
-	<!--		rel="alternate"-->
-	<!--		type="application/rss+xml"-->
-	<!--		title={SITE_TITLE}-->
-	<!--		href={new URL('rss.xml', Astro.site)}-->
-	<!--		slot="head"-->
-	<!--	/>-->
-	<!--</Head>-->
+	<Head title={title} description={description}>
+		<slot name="head" slot="head" />
+		<Font cssVariable="--font-atkinson" preload slot="head" />
+		<link rel="sitemap" href="/sitemap-index.xml" slot="head" />
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title={SITE_TITLE}
+			href={new URL('rss.xml', Astro.site)}
+			slot="head"
+		/>
+	</Head>
 	<body class="isolate">
 		<AppHeader />
 		<slot />
