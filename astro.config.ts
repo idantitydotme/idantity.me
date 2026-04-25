@@ -88,7 +88,8 @@ export default defineConfig({
     locales: ["en", "pt-br"],
     defaultLocale: "en",
     routing: {
-      prefixDefaultLocale: true
+      prefixDefaultLocale: true,
+      redirectToDefaultLocale: true
     }
   },
 
@@ -125,7 +126,8 @@ export default defineConfig({
     starlight({
       customCss: ["./src/styles/starlight.css"],
       plugins: [starlightImageZoom(), starlightAddons()],
-      prerender: false,
+      //TODO Temporarily true while issue gets resolved: https://github.com/withastro/starlight/issues/3859
+      // prerender: false,
       lastUpdated: true,
       disable404Route: true,
       title: {
