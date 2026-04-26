@@ -18,7 +18,9 @@ const { title, description } = Astro.props;
 <html lang={Astro.currentLocale || 'en'}>
 	<Head title={title} description={description}>
 		<slot name="head" slot="head" />
-		<Font cssVariable="--font-atkinson" preload slot="head" />
+		<Font cssVariable="--font-sans" preload={true} slot="head" />
+		<Font cssVariable="--font-serif" preload={true} slot="head" />
+		<Font cssVariable="--font-mono" preload={true} slot="head" />
 		<link rel="sitemap" href="/sitemap-index.xml" slot="head" />
 		<link
 			rel="alternate"
