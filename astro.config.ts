@@ -1,6 +1,5 @@
 import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
-import starlightImageZoom from "starlight-image-zoom"
 import { ui } from "@rimelight/ui/integrations"
 import { sri } from "@rimelight/ui/integrations"
 import { starlightAddons } from "@rimelight/ui/plugins"
@@ -130,7 +129,7 @@ export default defineConfig({
     }),
     starlight({
       customCss: ["./src/styles/starlight.css"],
-      plugins: [starlightImageZoom(), starlightAddons()],
+      plugins: [starlightAddons()],
       //TODO Temporarily true while issue gets resolved: https://github.com/withastro/starlight/issues/3859
       // prerender: false,
       lastUpdated: true,
