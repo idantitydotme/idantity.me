@@ -9,6 +9,16 @@ const docs = defineCollection({
   schema: docsSchema()
 })
 
+const legal = defineCollection({
+  loader: glob({ base: "./src/content/legal", pattern: "**/*.{md,mdx}" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional()
+  })
+})
+
 const blog = defineCollection({
   loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   schema: ({ image }) =>
@@ -23,5 +33,6 @@ const blog = defineCollection({
 
 export const collections = {
   blog,
-  docs
+  docs,
+  legal
 }
