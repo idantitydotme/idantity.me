@@ -43,11 +43,11 @@ export default defineConfig({
   },
 
   site: "https://idantity.me",
-  output: "server",
   prefetch: {
     prefetchAll: true
   },
 
+  output: "server",
   adapter: cloudflare(),
 
   security: {
