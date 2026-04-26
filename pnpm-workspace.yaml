@@ -1,3 +1,6 @@
+minimumReleaseAge: 4320 # Minutes = 3 Days
+minimumReleaseAgeExclude:
+  - "@rimelight/*"
 peerDependencyRules:
   allowAny:
     - vite

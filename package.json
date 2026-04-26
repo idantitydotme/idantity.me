@@ -2,6 +2,22 @@
   "name": "idantity-dot-me",
   "version": "0.0.1",
   "private": true,
+  "description": "Acessing me.",
+  "keywords": [
+    "astro",
+    "typescript"
+  ],
+  "bugs": {
+    "url": "https://github.com/idantitydotme/idantity.me/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Daniel Marchi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idantitydotme/idantity.me.git"
+  },
   "type": "module",
   "scripts": {
     "prepare": "vp config",
