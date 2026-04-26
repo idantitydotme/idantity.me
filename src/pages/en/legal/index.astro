@@ -1,0 +1,64 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const legalDocs = (await getCollection('legal')).toSorted(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const currentLocale = Astro.currentLocale ?? 'en';
+---
+
+<AppLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<style slot="head">
+		main {
+			width: 720px;
+		}
+		.legal-section {
+			padding: 2rem 0;
+		}
+		.legal-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		.legal-item {
+			padding: 1rem 0;
+			border-bottom: 1px solid rgb(var(--gray-light));
+		}
+		.legal-item h3 {
+			margin: 0 0 0.5rem 0;
+		}
+		.legal-item p {
+			margin: 0 0 0.5rem 0;
+			color: rgb(var(--gray));
+		}
+		.legal-item a {
+			color: var(--accent);
+			text-decoration: none;
+		}
+		.legal-item a:hover {
+			text-decoration: underline;
+		}
+		.date {
+			font-size: 0.875rem;
+			color: rgb(var(--gray));
+		}
+	</style>
+
+	<main>
+		<section class="legal-section">
+			<h1>Legal</h1>
+			<ul class="legal-list">
+				{legalDocs.map((doc) => (
+					<li class="legal-item">
+						<h3><a href={getRelativeLocaleUrl(currentLocale, `/legal/${doc.id}/`)}>{doc.data.title}</a></h3>
+						<p>{doc.data.description}</p>
+						<span class="date">Last updated: {doc.data.pubDate.toLocaleDateString()}</span>
+					</li>
+				))}
+			</ul>
+		</section>
+	</main>
+</AppLayout>

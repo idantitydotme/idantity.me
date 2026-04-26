@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import { getEntry, render } from 'astro:content';
+import AppLayout from '@/layouts/AppLayout.astro';
+import FormattedDate from '@/components/FormattedDate.astro';
+
+const { slug } = Astro.params;
+const post = await getEntry('legal', slug);
+
+if (!post) {
+	return Astro.redirect('/404');
+}
+
+const { Content } = await render(post);
+const { title, description, pubDate, updatedDate } = post.data;
+---
+
+<AppLayout title={title} description={description}>
+	<style slot="head">
+		main {
+			width: calc(100% - 2em);
+			max-width: 100%;
+			margin: 0;
+		}
+		.prose {
+			width: 720px;
+			max-width: calc(100% - 2em);
+			margin: auto;
+			padding: 1em;
+			color: rgb(var(--gray-dark));
+		}
+		.title {
+			margin-bottom: 1em;
+			padding: 1em 0;
+			text-align: center;
+			line-height: 1;
+		}
+		.title h1 {
+			margin: 0 0 0.5em 0;
+		}
+		.date {
+			margin-bottom: 0.5em;
+			color: rgb(var(--gray));
+		}
+		.last-updated-on {
+			font-style: italic;
+		}
+	</style>
+
+	<main>
+		<article>
+			<div class="prose">
+				<div class="title">
+					<div class="date">
+						<FormattedDate date={pubDate} />
+						{
+							updatedDate && (
+								<div class="last-updated-on">
+									Last updated on <FormattedDate date={updatedDate} />
+								</div>
+							)
+						}
+					</div>
+					<h1>{title}</h1>
+					<hr />
+				</div>
+				<Content />
+			</div>
+		</article>
+	</main>
+</AppLayout>
