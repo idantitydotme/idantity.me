@@ -4,9 +4,12 @@ import { getCollection } from 'astro:content';
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import { BlogPosts, BlogPost } from '@rimelight/ui/nuxt';
 
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
 const posts = (await getCollection('blog')).toSorted(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const currentLocale = Astro.currentLocale ?? 'en';
 ---
 
 <AppLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
@@ -30,7 +33,7 @@ const posts = (await getCollection('blog')).toSorted(
 							description={post.data.description}
 							date={post.data.pubDate}
 							image={post.data.heroImage}
-							to={`/blog/${post.id}/`}
+							to={getRelativeLocaleUrl(currentLocale, `/blog/${post.id}/`)}
 							variant="ghost"
 							ui={index === 0 ? {
 								root: 'col-span-full flex flex-col items-center text-center gap-6 mb-8',
