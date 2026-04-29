@@ -1,5 +1,9 @@
 minimumReleaseAge: 4320 # Minutes = 3 Days
 minimumReleaseAgeExclude:
+  - astro
+  - "@astrojs/cloudflare"
+  - "@astrojs/check"
+  - "@astrojs/language-server"
   - "@rimelight/*"
 peerDependencyRules:
   allowAny:

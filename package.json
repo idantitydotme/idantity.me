@@ -28,13 +28,13 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "13.2.1",
+    "@astrojs/cloudflare": "13.2.2",
     "@astrojs/rss": "4.0.18",
     "@astrojs/sitemap": "3.7.2",
     "@astrojs/starlight": "0.38.4",
     "@astrojs/vue": "6.0.1",
-    "@rimelight/ui": "0.0.20",
-    "astro": "6.1.9",
+    "@rimelight/ui": "0.0.21",
+    "astro": "6.1.10",
     "sharp": "0.34.5",
     "tailwindcss": "4.2.4",
     "vue": "3.5.33",
@@ -42,7 +42,7 @@
     "wrangler": "4.85.0"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.8",
+    "@astrojs/check": "0.9.9",
     "@astrojs/compiler-rs": "0.1.10",
     "@astrojs/ts-plugin": "1.10.7",
     "@e18e/eslint-plugin": "0.3.0",
