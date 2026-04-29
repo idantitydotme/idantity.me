@@ -5,6 +5,7 @@ import AppLayout from '@/layouts/AppLayout.astro';
 import FormattedDate from '@/components/FormattedDate.astro';
 
 const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/404');
 const post = await getEntry('blog', slug);
 
 if (!post) {
