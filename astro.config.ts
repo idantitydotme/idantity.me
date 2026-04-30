@@ -3,14 +3,13 @@ import starlight from "@astrojs/starlight"
 import { ui } from "@rimelight/ui/integrations"
 import { sri } from "@rimelight/ui/integrations"
 import { starlightAddons } from "@rimelight/ui/plugins"
-import { defineConfig, fontProviders, memoryCache } from "astro/config"
+import { defineConfig, fontProviders, memoryCache, svgoOptimizer } from "astro/config"
 
 import cloudflare from "@astrojs/cloudflare"
 
 export default defineConfig({
   experimental: {
     contentIntellisense: true,
-    rustCompiler: true,
     queuedRendering: {
       enabled: true,
       contentCache: true
@@ -27,18 +26,7 @@ export default defineConfig({
       }
     },
     clientPrerender: true,
-    svgo: {
-      plugins: [
-        "preset-default",
-        "removeXMLNS",
-        {
-          name: "removeXlink",
-          params: {
-            includeLegacy: true
-          }
-        }
-      ]
-    }
+    svgOptimizer: svgoOptimizer()
   },
 
   site: "https://idantity.me",
