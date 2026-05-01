@@ -26,7 +26,18 @@ export default defineConfig({
       }
     },
     clientPrerender: true,
-    svgOptimizer: svgoOptimizer()
+    svgOptimizer: svgoOptimizer({
+      plugins: [
+        "preset-default",
+        "removeXMLNS",
+        {
+          name: "removeXlink",
+          params: {
+            includeLegacy: true
+          }
+        }
+      ]
+    })
   },
 
   site: "https://idantity.me",
