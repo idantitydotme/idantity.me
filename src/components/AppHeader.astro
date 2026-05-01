@@ -1,17 +1,13 @@
 ---
 import RLAHeader from "@rimelight/ui/components/astro/RLAHeader.astro";
-import { SITE_TITLE } from '../consts';
+import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
 import HeaderLink from './HeaderLink.astro';
 import { getRelativeLocaleUrl } from "astro:i18n";
 ---
 
-<RLAHeader contain={true} fixed={true} stackIndex={0} class="bg-white/90 backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
+<RLAHeader contain={true} fixed={true} stackIndex={0} class="bg-white/90 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
 	<div slot="left">
-		<h2 class="m-0 text-base font-bold">
-			<a href={getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/')} class="text-inherit no-underline">
-				{SITE_TITLE}
-			</a>
-		</h2>
+		<RLALogo variant="logomark" class="bg-blue-500 h-12 w-12" />
 	</div>
 	<nav slot="center" class="flex items-center gap-2">
 		<HeaderLink href={getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/')}>Home</HeaderLink>
