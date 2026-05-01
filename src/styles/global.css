@@ -1,5 +1,19 @@
 @import "@rimelight/ui/styles/index.css";
 
+:root {
+  --color-primary-50: #ffffff;
+  --color-primary-100: #cce0f7;
+  --color-primary-200: #99c1ef;
+  --color-primary-300: #66a2e7;
+  --color-primary-400: #3383df;
+  --color-primary-500: #0064d7;
+  --color-primary-600: #0050ac;
+  --color-primary-700: #003c81;
+  --color-primary-800: #002856;
+  --color-primary-900: #00142b;
+  --color-primary-950: #000000;
+}
+
 /*
   The CSS in this style tag is based off of Bear Blog's default CSS.
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
