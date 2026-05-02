@@ -11,7 +11,7 @@ const items: NavigationMenuItem[] = [
   {
     label: 'Home',
     to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/'),
-    active: pathname === getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/').replace(/\/+$/, '') || '/'
+    active: pathname === getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/').replace(/\/+$/, '')
   },
   {
     label: 'Blog',
