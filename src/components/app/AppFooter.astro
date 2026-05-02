@@ -1,10 +1,10 @@
 ---
 import RLAFooter from "@rimelight/ui/components/astro/RLAFooter.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
-import { Button, FooterColumns } from "@rimelight/ui/nuxt";
+import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
+import { FooterColumns } from "@rimelight/ui/nuxt";
 import ThemeToggle from "@rimelight/ui/components/ThemeToggle.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-const today = new Date();
 
 const columns = [
   {
@@ -36,7 +36,7 @@ const columns = [
   <div slot="left" class="flex flex-col items-center gap-xs lg:items-start">
     <RLALogo variant="logotype" class="h-6 w-auto" />
     <p class="text-sm text-white">Accessing me.</p>
-    <span class="text-sm text-white"> © {today.getFullYear()} idantity.me </span>
+    <span class="text-sm text-white">© {new Date().getFullYear()} idantity.me</span>
   </div>
   <div slot="center">
     <FooterColumns client:load columns={columns} ui={{
@@ -48,45 +48,41 @@ const columns = [
   <div slot="right" class="flex flex-col gap-sm lg:items-end">
     <ThemeToggle size="sm" />
     <div class="flex flex-row gap-sm lg:items-end">
-      <Button client:load
-        class="text-white hover:text-primary-100"
-        color="neutral"
-        icon="mdi:instagram"
-        size="xl"
-        to="https://www.instagram.com/idantity.me"
-        variant="ghost"
+      <RLAButton
+          size="xl"
+          color="neutral"
+          variant="ghost"
+          leadingIcon="i-logos-instagram-icon?mask text-white hover:text-primary-500"
+          size="xl"
+          href="https://www.instagram.com/idantity.me"
       />
-      <Button client:load
-        class="text-white hover:text-primary-100"
-        color="neutral"
-        icon="ic:baseline-discord"
-        size="xl"
-        to="https://discord.com/users/682049695173836979"
-        variant="ghost"
+      <RLAButton
+          size="xl"
+          color="neutral"
+          variant="ghost"
+          leadingIcon="i-logos-discord-icon?mask text-white hover:text-primary-500"
+          href="https://discord.com/users/682049695173836979"
       />
-      <Button client:load
-        class="text-white hover:text-primary-100"
-        color="neutral"
-        icon="mdi:spotify"
-        size="xl"
-        to="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222"
-        variant="ghost"
+      <RLAButton
+          size="xl"
+          color="neutral"
+          variant="ghost"
+          leadingIcon="i-logos-spotify-icon?mask text-white hover:text-primary-500"
+          href="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222"
       />
-      <Button client:load
-        class="text-white hover:text-primary-100"
-        color="neutral"
-        icon="mdi:github"
-        size="xl"
-        to="https://www.github.com/idantitydotme"
-        variant="ghost"
+      <RLAButton
+          size="xl"
+          color="neutral"
+          variant="ghost"
+          leadingIcon="i-logos-github-icon?mask text-white hover:text-primary-500"
+          href="https://www.github.com/idantitydotme"
       />
-      <Button client:load
-        class="text-white hover:text-primary-100"
-        color="neutral"
-        icon="mdi:linkedin"
-        size="xl"
-        to="https://www.linkedin.com/daniel-marchi"
-        variant="ghost"
+      <RLAButton
+          size="xl"
+          color="neutral"
+          variant="ghost"
+          leadingIcon="i-logos-linkedin-icon?mask text-white hover:text-primary-500"
+          href="https://www.linkedin.com/daniel-marchi"
       />
     </div>
   </div>
