@@ -1,10 +1,10 @@
 ---
 import Head from '@rimelight/ui/components/Head.astro';
-import AppHeader from '../components/AppHeader.astro';
-import AppFooter from '../components/AppFooter.astro';
+import AppHeader from '@/components/app/AppHeader.astro';
+import AppFooter from '@/components/app/AppFooter.astro';
 import RLAScrollToTop from "@rimelight/ui/components/astro/RLAScrollToTop.astro"
-import { SITE_TITLE } from '../consts';
-import '../styles/global.css';
+import { SITE_TITLE } from '@/consts';
+import '@/styles/global.css';
 import { Font } from 'astro:assets';
 
 interface Props {

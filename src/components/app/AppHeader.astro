@@ -1,21 +1,58 @@
 ---
 import RLAHeader from "@rimelight/ui/components/astro/RLAHeader.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
-import HeaderLink from './HeaderLink.astro';
+import type { NavigationMenuItem } from "@rimelight/ui/nuxt/types"
+import { NavigationMenu } from "@rimelight/ui/nuxt"
 import { getRelativeLocaleUrl } from "astro:i18n";
+
+const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+
+const items: NavigationMenuItem[] = [
+  {
+    label: 'Home',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/'),
+    active: pathname === getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/').replace(/\/+$/, '') || '/'
+  },
+  {
+    label: 'Blog',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/blog'),
+    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/blog').replace(/\/+$/, ''))
+  },
+  {
+    label: 'Docs',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/docs'),
+    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/docs').replace(/\/+$/, ''))
+  },
+  {
+    label: 'About',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about'),
+    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about').replace(/\/+$/, ''))
+  },
+  {
+    label: 'Legal',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/legal'),
+    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/legal').replace(/\/+$/, ''))
+  }
+];
 ---
 
-<RLAHeader contain={true} fixed={true} stackIndex={0} class="bg-white/90 shadow-[0_2px_8px_rgba(0,0,0,0.05)]">
-	<div slot="left">
-		<RLALogo variant="logomark" class="bg-blue-500 h-12 w-12" />
+<RLAHeader fixed={true} stackIndex={0} class="bg-black">
+	<div slot="left" class="flex flex-row items-center gap-md">
+		<RLALogo variant="logomark" class=" h-6 w-auto" />
+		<NavigationMenu
+			client:load
+			items={items}
+			variant="link"
+			ui={{
+				link: [
+					'text-white transition-colors duration-200',
+					'hover:text-primary-400',
+					'data-[state=open]:text-primary-400',
+					'aria-[current]:text-primary-400'
+				]
+			}}
+		/>
 	</div>
-	<nav slot="center" class="flex items-center gap-2">
-		<HeaderLink href={getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/')}>Home</HeaderLink>
-		<HeaderLink href={getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/blog')}>Blog</HeaderLink>
-		<HeaderLink href={getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/docs')}>Docs</HeaderLink>
-		<HeaderLink href={getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about')}>About</HeaderLink>
-		<HeaderLink href={getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/legal')}>Legal</HeaderLink>
-	</nav>
 	<div slot="right" class="social-links flex gap-2 max-md:hidden">
 		<a href="https://m.webtoo.ls/@astro" target="_blank" class="text-black">
 			<span class="sr-only">Follow Astro on Mastodon</span>
@@ -46,16 +83,3 @@ import { getRelativeLocaleUrl } from "astro:i18n";
 		</a>
 	</div>
 </RLAHeader>
-
-<style>
-	:global(nav a) {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
-		text-decoration: none;
-	}
-	:global(nav a.active) {
-		text-decoration: none;
-		border-bottom-color: var(--accent);
-	}
-</style>
