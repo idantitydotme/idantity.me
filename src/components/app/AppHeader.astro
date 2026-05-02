@@ -9,29 +9,29 @@ const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/'),
-    active: pathname === getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/').replace(/\/+$/, '')
+    label: 'me.projects',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/projects'),
+    active: pathname === getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/projects').replace(/\/+$/, '')
   },
   {
-    label: 'Blog',
+    label: 'me.music',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/music'),
+    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/music').replace(/\/+$/, ''))
+  },
+  {
+    label: 'me.blog',
     to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/blog'),
     active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/blog').replace(/\/+$/, ''))
   },
   {
-    label: 'Docs',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/docs'),
-    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/docs').replace(/\/+$/, ''))
+    label: 'me.services',
+    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/services'),
+    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/services').replace(/\/+$/, ''))
   },
   {
-    label: 'About',
+    label: 'me.about',
     to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about'),
     active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about').replace(/\/+$/, ''))
-  },
-  {
-    label: 'Legal',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/legal'),
-    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/legal').replace(/\/+$/, ''))
   }
 ];
 ---

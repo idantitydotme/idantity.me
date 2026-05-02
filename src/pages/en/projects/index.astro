@@ -1,0 +1,50 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { getCollection } from 'astro:content';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { BlogPosts, BlogPost } from '@rimelight/ui/nuxt';
+
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+const projects = (await getCollection('projects')).toSorted(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const currentLocale = Astro.currentLocale ?? 'en';
+---
+
+<AppLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+    <style slot="head">
+        main {
+            width: 960px;
+        }
+        .projects-section {
+            padding: 2rem 0;
+        }
+    </style>
+
+    <main>
+        <section class="projects-section">
+            <BlogPosts client:load>
+                {
+                    projects.map((project, index) => (
+                            <BlogPost
+                                    client:load
+                                    title={project.data.title}
+                                    description={project.data.description}
+                                    date={project.data.pubDate}
+                                    image={project.data.heroImage}
+                                    to={getRelativeLocaleUrl(currentLocale, `/projects/${project.id}/`)}
+                                    variant="ghost"
+                                    ui={index === 0 ? {
+                                        root: 'col-span-full flex flex-col items-center text-center gap-6 mb-8',
+                                        header: 'w-full aspect-[21/9]',
+                                        title: 'text-4xl lg:text-6xl font-bold',
+                                        description: 'text-xl max-w-2xl mx-auto'
+                                    } : {}}
+                            />
+                    ))
+                }
+            </BlogPosts>
+        </section>
+    </main>
+</AppLayout>
