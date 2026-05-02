@@ -32,7 +32,12 @@ const items: NavigationMenuItem[] = [
     label: 'me.about',
     to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about'),
     active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about').replace(/\/+$/, ''))
-  }
+  },
+{
+	label: 'me.resume',
+	to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/resume'),
+	active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about').replace(/\/+$/, ''))
+}
 ];
 ---
 
