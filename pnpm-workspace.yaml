@@ -5,6 +5,7 @@ minimumReleaseAgeExclude:
   - "@astrojs/cloudflare"
   - "@astrojs/check"
   - "@astrojs/language-server"
+  - "@astrojs/starlight"
   - "@astrojs/vue"
   - "@rimelight/*"
 peerDependencyRules:
