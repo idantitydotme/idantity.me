@@ -7,7 +7,7 @@ export const auth = defineMiddleware(async (context, next) => {
   const isProtected = protectedRoutes.some((path) => context.url.pathname.startsWith(path))
 
   const isAuthed = await betterAuth.api.getSession({
-    headers: context.request.headers
+    headers: Object.fromEntries(context.request.headers.entries())
   })
 
   context.locals.user = isAuthed?.user ?? null
