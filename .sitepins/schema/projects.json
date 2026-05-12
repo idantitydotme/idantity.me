@@ -8,7 +8,7 @@
       "name": "type",
       "label": "Type",
       "type": "string",
-      "value": "",
+      "value": [],
       "isIgnored": false,
       "isRequired": true,
       "defaultValue": "",
