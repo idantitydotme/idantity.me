@@ -4,11 +4,7 @@ import { db } from "@/db"
 import { admin as adminPlugin, organization as organizationPlugin } from "better-auth/plugins"
 import { ac, owner, admin, member, user } from "@/auth/permissions"
 
-let auth: ReturnType<typeof betterAuth> | null = null
-
-export function createAuth() {
-  if (auth) return auth
-  auth = betterAuth({
+export const auth = betterAuth({
   database: drizzleAdapter(db, {
     provider: "pg"
   }),
@@ -121,5 +117,3 @@ export function createAuth() {
     }
   }
 })
-  return auth
-}
