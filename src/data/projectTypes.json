@@ -1,0 +1,30 @@
+{
+  "website": {
+    "translations": {
+      "en": "Website",
+      "pt": "Site"
+    },
+    "icon": "i-lucide-globe"
+  },
+  "game": {
+    "translations": {
+      "en": "Game",
+      "pt": "Jogo"
+    },
+    "icon": "i-lucide-globe"
+  },
+  "tool": {
+    "translations": {
+      "en": "Tool",
+      "pt": "Ferramenta"
+    },
+    "icon": "i-lucide-globe"
+  },
+  "other": {
+    "translations": {
+      "en": "Other",
+      "pt": "Outro"
+    },
+    "icon": "i-lucide-globe"
+  }
+}

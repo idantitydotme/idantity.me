@@ -1,5 +1,5 @@
-import { defineCollection } from "astro:content"
-import { glob } from "astro/loaders"
+import { defineCollection, reference } from "astro:content"
+import { glob, file } from "astro/loaders"
 import { z } from "astro/zod"
 import { docsLoader } from "@astrojs/starlight/loaders"
 import { docsSchema } from "@astrojs/starlight/schema"
@@ -31,10 +31,19 @@ const blog = defineCollection({
     })
 })
 
+const projectTypes = defineCollection({
+  loader: file("src/data/projectTypes.json"),
+  schema: z.object({
+    translations: z.record(z.string(), z.string()),
+    icon: z.string()
+  })
+})
+
 const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: "**/*.{md,mdx}" }),
   schema: ({ image }) =>
     z.object({
+      type: reference("projectTypes"),
       title: z.string(),
       description: z.string(),
       pubDate: z.coerce.date(),
@@ -47,5 +56,6 @@ export const collections = {
   docs,
   legal,
   blog,
+  projectTypes,
   projects
 }
