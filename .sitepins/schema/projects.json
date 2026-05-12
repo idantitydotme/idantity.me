@@ -11,10 +11,7 @@
       "value": [],
       "isIgnored": false,
       "isRequired": true,
-      "defaultValue": "",
-      "isDropdown": true,
-      "referenceType": "file",
-      "referencePath": "src/data/projectTypes.json"
+      "defaultValue": ""
     },
     {
       "name": "title",
