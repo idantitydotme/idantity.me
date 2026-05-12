@@ -2,7 +2,7 @@ import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
 import { ui } from "@rimelight/ui/integrations"
 import { sri } from "@rimelight/ui/integrations"
-// import { starlightAddons } from "@rimelight/ui/plugins"
+import { starlightAddons } from "@rimelight/ui/plugins"
 import { defineConfig, fontProviders, memoryCache, svgoOptimizer } from "astro/config"
 
 import cloudflare from "@astrojs/cloudflare"
@@ -128,7 +128,7 @@ export default defineConfig({
     }),
     starlight({
       customCss: ["./src/styles/starlight.css"],
-      // plugins: [starlightAddons()],
+      plugins: [starlightAddons()],
       //TODO Temporarily true while issue gets resolved: https://github.com/withastro/starlight/issues/3859
       // prerender: false,
       lastUpdated: true,
