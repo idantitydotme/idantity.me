@@ -1,19 +1,18 @@
 import { auth as betterAuth } from "@/auth/auth"
 import { defineMiddleware } from "astro:middleware"
 
+const DOCS_PATTERN = /^\/[^/]+\/docs\//
+
 export const auth = defineMiddleware(async (context, next) => {
   const protectedRoutes = ["/internal"]
 
   const isProtected = protectedRoutes.some((path) => context.url.pathname.startsWith(path))
 
   let isAuthed = null
-  try {
+  if (!DOCS_PATTERN.test(context.url.pathname)) {
     isAuthed = await betterAuth.api.getSession({
       headers: context.request.headers
     })
-  } catch {
-    // `getSession` throws runtime errors in Starlight routes with Cloudflare Workers
-    // Auth will be unavailable but not crash the page
   }
 
   context.locals.user = isAuthed?.user ?? null
