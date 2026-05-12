@@ -1,4 +1,4 @@
-import { auth as betterAuth } from "@/auth/auth"
+//import { auth as betterAuth } from "@/auth/auth"
 import { defineMiddleware } from "astro:middleware"
 
 export const auth = defineMiddleware(async (context, next) => {
