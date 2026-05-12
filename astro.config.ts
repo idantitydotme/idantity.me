@@ -144,7 +144,7 @@ export default defineConfig({
         { label: "Home", link: "/docs/" },
         {
           label: "Documentation",
-          autogenerate: { directory: "docs" }
+          items: [{ autogenerate: { directory: "docs" } }]
         }
       ]
     }),
