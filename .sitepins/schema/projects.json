@@ -33,10 +33,11 @@
     {
       "name": "pubDate",
       "label": "PubDate",
-      "type": "string",
-      "value": "",
+      "type": "Date",
+      "value": "2026-05-12",
       "isIgnored": false,
-      "defaultValue": ""
+      "defaultValue": "",
+      "alwaysUseCurrentDate": true
     },
     {
       "name": "heroImage",
