@@ -1,0 +1,53 @@
+{
+  "file": "src/content/projects/idantity-dot-me.mdx",
+  "name": "projects",
+  "fileType": "mdx",
+  "fmType": "yaml",
+  "template": [
+    {
+      "name": "type",
+      "label": "Type",
+      "type": "string",
+      "value": "",
+      "isIgnored": false,
+      "isRequired": true,
+      "defaultValue": "",
+      "isDropdown": true,
+      "referenceType": "file",
+      "referencePath": "src/data/projectTypes.json"
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "string",
+      "value": "",
+      "isIgnored": false,
+      "isRequired": true,
+      "defaultValue": ""
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "type": "string",
+      "value": "",
+      "isIgnored": false,
+      "defaultValue": ""
+    },
+    {
+      "name": "pubDate",
+      "label": "PubDate",
+      "type": "string",
+      "value": "",
+      "isIgnored": false,
+      "defaultValue": ""
+    },
+    {
+      "name": "heroImage",
+      "label": "HeroImage",
+      "type": "media",
+      "value": "",
+      "isIgnored": false,
+      "defaultValue": ""
+    }
+  ]
+}
