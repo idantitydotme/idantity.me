@@ -1,7 +1,7 @@
-import { auth as betterAuth } from "@/auth/auth"
 import { defineMiddleware } from "astro:middleware"
 
 export const auth = defineMiddleware(async (context, next) => {
+  const { auth: betterAuth } = await import("@/auth/auth")
   const protectedRoutes = ["/internal"]
 
   const isProtected = protectedRoutes.some((path) => context.url.pathname.startsWith(path))
