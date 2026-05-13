@@ -1,22 +1,18 @@
-import { auth as betterAuth } from "@/auth/auth"
 import { defineMiddleware } from "astro:middleware"
 
-const DOCS_PATTERN = /^\/[^/]+\/docs\//
+const IGNORED_ROUTES = ["/docs/"]
+const PROTECTED_ROUTES = ["/internal"]
 
-export const auth = defineMiddleware(async (context, next) => {
-  const protectedRoutes = ["/internal"]
+export const onRequest = defineMiddleware(async (context, next) => {
+  const isIgnored = IGNORED_ROUTES.some((path) => context.url.pathname.includes(path))
+  const isProtected = PROTECTED_ROUTES.some((path) => context.url.pathname.startsWith(path))
 
-  const isProtected = protectedRoutes.some((path) => context.url.pathname.startsWith(path))
-
-  let isAuthed = null
-  if (!DOCS_PATTERN.test(context.url.pathname)) {
-    isAuthed = await betterAuth.api.getSession({
-      headers: context.request.headers
-    })
+  if (!isIgnored) {
+    const { auth } = await import("@/auth/auth")
+    const session = await auth.api.getSession({ headers: context.request.headers })
+    context.locals.user = session?.user ?? null
+    context.locals.session = session?.session ?? null
   }
-
-  context.locals.user = isAuthed?.user ?? null
-  context.locals.session = isAuthed?.session ?? null
 
   if (isProtected && !context.locals.session) {
     return context.redirect("/auth/sign-in")
