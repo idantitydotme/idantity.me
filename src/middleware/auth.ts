@@ -3,7 +3,7 @@ import { defineMiddleware } from "astro:middleware"
 const IGNORED_ROUTES = ["/docs/"]
 const PROTECTED_ROUTES = ["/internal"]
 
-export const onRequest = defineMiddleware(async (context, next) => {
+export const auth = defineMiddleware(async (context, next) => {
   const isIgnored = IGNORED_ROUTES.some((path) => context.url.pathname.includes(path))
   const isProtected = PROTECTED_ROUTES.some((path) => context.url.pathname.startsWith(path))
 
