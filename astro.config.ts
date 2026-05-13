@@ -1,3 +1,4 @@
+import { visualizer } from "rollup-plugin-visualizer"
 import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
 import { ui } from "@rimelight/ui/integrations"
@@ -38,6 +39,15 @@ export default defineConfig({
         }
       ]
     })
+  },
+
+  vite: {
+    plugins: [
+      visualizer({
+        emitFile: true,
+        filename: "stats.html"
+      })
+    ]
   },
 
   site: "https://idantity.me",
