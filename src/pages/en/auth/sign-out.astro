@@ -1,0 +1,31 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro'
+import { actions } from 'astro:actions'
+import Form from '@/components/Form.astro'
+
+const result = Astro.getActionResult(actions.signOut)
+
+if (result && !result.error && result.data.cookies.length > 0) {
+  Astro.response.headers.append('Location', '/')
+  Astro.response.status = 302
+
+  for (const cookie of result.data.cookies) {
+    Astro.response.headers.append('Set-Cookie', cookie)
+  }
+
+  return new Response(null, Astro.response)
+}
+---
+
+<AppLayout title="Sign out" description="Sign out of your account">
+  <Form method="POST" action={actions.signOut} error={result?.error}>
+    <p>Are you sure you want to sign out?</p>
+    <button>Sign out</button>
+  </Form>
+</AppLayout>
+
+<style>
+  p {
+    color: var(--sl-color-white);
+  }
+</style>

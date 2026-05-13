@@ -1,0 +1,24 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro'
+import { actions, isInputError } from 'astro:actions'
+import Form from '@/components/Form.astro'
+import Input from '@/components/Input.astro'
+
+const result = Astro.getActionResult(actions.signUp)
+
+if (result && !result.error) {
+  return Astro.redirect(`/sign-in?new`)
+}
+
+const inputErrors = isInputError(result?.error) ? result.error.fields : {}
+---
+
+<AppLayout title="Sign up" description="Create a new account">
+  <Form method="POST" action={actions.signUp} error={result?.error}>
+    <Input errors={inputErrors.firstName} name="firstName" label="First name" required />
+    <Input errors={inputErrors.lastName} name="lastName" label="Last name" required />
+    <Input errors={inputErrors.email} name="email" label="E-mail" required type="email" />
+    <Input errors={inputErrors.password} name="password" label="Password" required type="password" />
+    <button>Sign up</button>
+  </Form>
+</AppLayout>
