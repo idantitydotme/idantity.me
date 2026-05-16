@@ -74,20 +74,5 @@
   "engines": {
     "node": ">=25.2.1"
   },
-  "packageManager": "pnpm@10.33.0",
-  "pnpm": {
-    "overrides": {
-      "defu": "6.1.6",
-      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
-      "vitest": "npm:@voidzero-dev/vite-plus-test@latest",
-      "yaml": "2.8.3"
-    },
-    "onlyBuiltDependencies": [
-      "better-sqlite3",
-      "esbuild",
-      "sharp",
-      "vue-demi",
-      "workerd"
-    ]
-  }
+  "packageManager": "pnpm@11.1.2"
 }
