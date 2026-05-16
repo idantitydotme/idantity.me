@@ -6,6 +6,7 @@ import RLAPlaceholder from "@rimelight/ui/components/astro/RLAPlaceholder.astro"
 import { FooterColumns } from "@rimelight/ui/nuxt";
 import ThemeToggle from "@rimelight/ui/components/ThemeToggle.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
+import LanguagePicker from "./LanguagePicker.astro";
 
 const columns = [
   {
@@ -49,6 +50,7 @@ const columns = [
   </div>
   <div slot="right" class="flex flex-col gap-sm lg:items-end">
     <ThemeToggle size="sm" />
+    <LanguagePicker />
     <div class="flex flex-row gap-sm lg:items-end">
       <RLAButton
           size="xl"

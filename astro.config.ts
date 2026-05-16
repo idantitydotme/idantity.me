@@ -1,4 +1,5 @@
 import { visualizer } from "rollup-plugin-visualizer"
+import nanostoresI18n from "astro-nanostores-i18n"
 import sitemap from "@astrojs/sitemap"
 import starlight from "@astrojs/starlight"
 import { ui } from "@rimelight/ui/integrations"
@@ -93,7 +94,7 @@ export default defineConfig({
   },
 
   i18n: {
-    locales: ["en", "pt"],
+    locales: ["en", "pt", "es"],
     defaultLocale: "en",
     routing: {
       prefixDefaultLocale: true,
@@ -127,12 +128,17 @@ export default defineConfig({
   },
 
   integrations: [
+    nanostoresI18n({
+      translationLoader: "./src/i18n/loader.ts",
+      addMiddleware: true
+    }),
     sitemap({
       i18n: {
         defaultLocale: "en",
         locales: {
           en: "en-US",
-          pt: "pt-BR"
+          pt: "pt-BR",
+          es: "es-ES"
         }
       }
     }),
