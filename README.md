@@ -41,6 +41,10 @@ The `src/content/` directory contains "collections" of related Markdown and MDX 
 
 Any static assets, like images, can be placed in the `public/` directory.
 
+### Internationalization (i18n)
+
+Translations are handled through [Nanostores i18n](https://github.com/nanostores/i18n).
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
