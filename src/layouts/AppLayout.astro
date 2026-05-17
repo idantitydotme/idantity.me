@@ -3,7 +3,7 @@ import Head from '@rimelight/ui/components/Head.astro';
 import AppHeader from '@/components/app/AppHeader.astro';
 import AppFooter from '@/components/app/AppFooter.astro';
 import RLAScrollToTop from "@rimelight/ui/components/astro/RLAScrollToTop.astro"
-import { SITE_TITLE } from '@/consts';
+import { siteConfig } from '@/site.config';
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
 
@@ -13,23 +13,22 @@ interface Props {
 }
 
 const { title, description } = Astro.props;
+
+const localeMap: Record<string, string> = {
+	en: 'en_US',
+	pt: 'pt_BR',
+	es: 'es_ES',
+};
+const ogLocale = localeMap[Astro.currentLocale || 'en'] || 'en_US';
 ---
 
 <!doctype html>
 <html lang={Astro.currentLocale || 'en'}>
-	<Head title={title} description={description}>
+	<Head title={title} description={description} config={siteConfig} ogLocale={ogLocale} rssFeed={{ href: '/rss.xml', title: siteConfig.name }}>
 		<slot name="head" slot="head" />
 		<Font cssVariable="--font-sans" preload={true} slot="head" />
 		<Font cssVariable="--font-serif" preload={true} slot="head" />
 		<Font cssVariable="--font-mono" preload={true} slot="head" />
-		<link rel="sitemap" href="/sitemap-index.xml" slot="head" />
-		<link
-			rel="alternate"
-			type="application/rss+xml"
-			title={SITE_TITLE}
-			href={new URL('rss.xml', Astro.site)}
-			slot="head"
-		/>
 	</Head>
 	<body class="isolate">
 		<AppHeader />

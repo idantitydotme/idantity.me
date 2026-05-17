@@ -1,9 +1,9 @@
 ---
 import AppLayout from "@/layouts/AppLayout.astro";
 
-import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { siteConfig } from '@/site.config';
 ---
 
-<AppLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<AppLayout title={siteConfig.name} description={siteConfig.description}>
 
 </AppLayout>

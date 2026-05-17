@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import AppLayout from '@/layouts/AppLayout.astro';
-import AboutHeroImage from '@/assets/placeholder.webp';
 import FormattedDate from '@/components/FormattedDate.astro';
 ---
 
@@ -46,7 +45,7 @@ import FormattedDate from '@/components/FormattedDate.astro';
 	<main>
 		<article>
 			<div class="hero-image">
-				<Image width={1020} height={510} src={AboutHeroImage} alt="" />
+				<Image width={1020} height={510} src="/assets/placeholder.webp" alt="" />
 			</div>
 			<div class="prose">
 				<div class="title">

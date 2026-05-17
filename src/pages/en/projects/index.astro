@@ -1,7 +1,7 @@
 ---
 import AppLayout from '@/layouts/AppLayout.astro';
 import { getCollection } from 'astro:content';
-import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import { siteConfig } from '@/site.config';
 import { BlogPosts, BlogPost } from '@rimelight/ui/nuxt';
 
 import { getRelativeLocaleUrl } from 'astro:i18n';
@@ -12,7 +12,7 @@ const projects = (await getCollection('projects')).toSorted(
 const currentLocale = Astro.currentLocale ?? 'en';
 ---
 
-<AppLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<AppLayout title={siteConfig.name} description={siteConfig.description}>
     <style slot="head">
         main {
             width: 960px;
