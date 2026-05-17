@@ -1,7 +1,6 @@
 import { ActionError, defineAction, type ActionErrorCode } from "astro:actions"
 import { z } from "astro/zod"
 import { APIError } from "better-auth/api"
-import { auth } from "@/auth/auth"
 
 export const server = {
   signUp: defineAction({
@@ -14,6 +13,7 @@ export const server = {
     }),
     handler: async (input) => {
       try {
+        const { auth } = await import("@/auth/auth")
         await auth.api.signUpEmail({
           body: {
             name: `${input.firstName} ${input.lastName}`,
@@ -36,6 +36,7 @@ export const server = {
     }),
     handler: async (input, ctx) => {
       try {
+        const { auth } = await import("@/auth/auth")
         const response = await auth.api.signInEmail({
           body: {
             email: input.email,
@@ -54,6 +55,7 @@ export const server = {
     accept: "form",
     handler: async (_input, ctx) => {
       try {
+        const { auth } = await import("@/auth/auth")
         const response = await auth.api.signOut({
           headers: ctx.request.headers,
           asResponse: true
