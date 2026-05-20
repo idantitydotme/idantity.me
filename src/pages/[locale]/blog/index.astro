@@ -1,0 +1,88 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+import { siteConfig } from '@/site.config';
+import { getCollection } from 'astro:content';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { useI18nAsync } from 'astro-nanostores-i18n:runtime';
+import RLASection from "@rimelight/ui/components/astro/RLASection.astro"
+import { Image } from 'astro:assets';
+
+const posts = (await getCollection('blog')).toSorted(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const groupedPosts = posts.reduce<Record<string, typeof posts>>((acc, post) => {
+	const type = post.data.type;
+	if (!acc[type]) acc[type] = [];
+	acc[type].push(post);
+	return acc;
+}, {});
+
+const categoryOrder = ['development-log', 'company-news', 'other'] as const;
+
+const currentLocale = Astro.currentLocale ?? 'en';
+
+const messages = await useI18nAsync('blog', {
+	categories: {
+		'development-log': 'Development Log',
+		'company-news': 'Company News',
+		'other': 'Other'
+	}
+});
+---
+
+<AppLayout title={siteConfig.name} description={siteConfig.description}>
+	<main>
+		{categoryOrder.map((category) => {
+			const categoryPosts = groupedPosts[category];
+			if (!categoryPosts || categoryPosts.length === 0) return null;
+			return (
+				<RLASection title={messages.categories[category]}>
+					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						{
+							categoryPosts.map((post) => (
+								<a
+									href={getRelativeLocaleUrl(currentLocale, `/blog/${post.id}/`)}
+									class="flex flex-col group overflow-hidden"
+								>
+									{/* Image Header Area */}
+									<div class="w-full aspect-video overflow-hidden  relative flex items-center justify-center">
+										{post.data.heroImage ? (
+                                  <Image
+												src={post.data.heroImage}
+												alt={post.data.title}
+												class="w-full h-full object-cover group-hover:scale-102 transition duration-300"
+											/>
+										) : (
+											<div class="absolute inset-0 flex items-center justify-center text-xl">
+												{post.data.title}
+											</div>
+										)}
+									</div>
+
+									<div class="flex flex-col p-6 flex-1">
+										<p>
+											{new Date(post.data.pubDate).toLocaleDateString(currentLocale, {
+												year: 'numeric',
+												month: 'short',
+												day: 'numeric'
+											})}
+										</p>
+
+										<h3>
+											{post.data.title}
+										</h3>
+
+										<p>
+											{post.data.description}
+										</p>
+									</div>
+								</a>
+							))
+						}
+					</div>
+				</RLASection>
+			);
+		})}
+	</main>
+</AppLayout>
