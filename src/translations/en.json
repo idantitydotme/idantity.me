@@ -1,1 +1,56 @@
-{}
+{
+  "home": {
+    "hero": {
+      "title": "We are Rimelight Entertainment",
+      "description": "We are creators of Grand Tale.",
+      "joinUs": "Join Us",
+      "learnMore": "Learn More"
+    },
+    "company": {
+      "title": "Pushing the boundaries of {interactive}",
+      "description": "Founded in 2023, Rimelight Entertainment is independent and player-focused. We don't just create games; we create living, breathing worlds that respect your time and intelligence.",
+      "stats": {
+        "titles": "Titles in Development",
+        "creators": "Global Creators"
+      }
+    },
+    "projects": {
+      "title": "Our Projects",
+      "tags": {
+        "franchise": "Franchise",
+        "fantasy": "Fantasy",
+        "social": "Social"
+      },
+      "content": {
+        "grandTale": {
+          "description": "A high-fantasy social life-sim game which hosts sub-games of multiple genres."
+        }
+      },
+      "actions": {
+        "discover": "Discover"
+      }
+    },
+    "news": {
+      "title": "Latest News",
+      "description": "Read our latest news, posts, and project updates.",
+      "actions": {
+        "viewAll": "View All News"
+      }
+    },
+    "cta": {
+      "title": "Ready to play?",
+      "description": "Join us and let's tell our story together.",
+      "actions": {
+        "createAccount": "Create Account",
+        "exploreCareers": "Explore Careers"
+      }
+    }
+  },
+  "blog": {
+    "categories": {
+      "company-news": "Company News",
+      "development-log": "Development Log",
+      "other": "Other"
+    }
+  }
+}

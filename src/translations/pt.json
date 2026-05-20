@@ -1,1 +1,56 @@
-{}
+{
+  "home": {
+    "hero": {
+      "title": "Nós somos a Rimelight Entertainment",
+      "description": "Nós somos os criadores de Grand Tale.",
+      "joinUs": "Junte-se a Nós",
+      "learnMore": "Saiba Mais"
+    },
+    "company": {
+      "title": "Superando os limites do {interactive}",
+      "description": "Fundada em 2023, a Rimelight Entertainment é independente e focada nos jogadores. Nós não apenas criamos jogos; criamos mundos vivos e pulsantes que respeitam seu tempo e inteligência.",
+      "stats": {
+        "titles": "Títulos em Desenvolvimento",
+        "creators": "Criadores Globais"
+      }
+    },
+    "projects": {
+      "title": "Nossos Projetos",
+      "tags": {
+        "franchise": "Franquia",
+        "fantasy": "Fantasia",
+        "social": "Social"
+      },
+      "content": {
+        "grandTale": {
+          "description": "Um jogo social de simulação de vida em alta fantasia que abriga sub-jogos de múltiplos gêneros."
+        }
+      },
+      "actions": {
+        "discover": "Descobrir"
+      }
+    },
+    "news": {
+      "title": "Últimas Notícias",
+      "description": "Leia nossas últimas notícias, artigos e atualizações de projetos.",
+      "actions": {
+        "viewAll": "Ver Todas as Notícias"
+      }
+    },
+    "cta": {
+      "title": "Pronto para jogar?",
+      "description": "Junte-se a nós e vamos contar nossa história juntos.",
+      "actions": {
+        "createAccount": "Criar Conta",
+        "exploreCareers": "Explorar Carreiras"
+      }
+    }
+  },
+  "blog": {
+    "categories": {
+      "company-news": "Notícias da Empresa",
+      "development-log": "Registro de Desenvolvimento",
+      "other": "Outro"
+    }
+  }
+}
