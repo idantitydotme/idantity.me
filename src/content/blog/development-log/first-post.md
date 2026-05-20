@@ -1,8 +1,8 @@
 ---
-type: "development-logs"
-title: "Third Post"
+type: "development-log"
+title: "First Post"
 description: "Lorem ipsum dolor sit amet"
-pubDate: "Jul 29 2024"
+pubDate: "Jul 01 2024"
 heroImage: "../../../assets/placeholder.webp"
 ---
 
