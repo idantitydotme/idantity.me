@@ -1,56 +1,83 @@
 {
   "home": {
-    "hero": {
-      "title": "Nós somos a Rimelight Entertainment",
-      "description": "Nós somos os criadores de Grand Tale.",
-      "joinUs": "Junte-se a Nós",
-      "learnMore": "Saiba Mais"
-    },
-    "company": {
-      "title": "Superando os limites do {interactive}",
-      "description": "Fundada em 2023, a Rimelight Entertainment é independente e focada nos jogadores. Nós não apenas criamos jogos; criamos mundos vivos e pulsantes que respeitam seu tempo e inteligência.",
-      "stats": {
-        "titles": "Títulos em Desenvolvimento",
-        "creators": "Criadores Globais"
-      }
-    },
-    "projects": {
-      "title": "Nossos Projetos",
-      "tags": {
-        "franchise": "Franquia",
-        "fantasy": "Fantasia",
-        "social": "Social"
-      },
-      "content": {
-        "grandTale": {
-          "description": "Um jogo social de simulação de vida em alta fantasia que abriga sub-jogos de múltiplos gêneros."
-        }
-      },
-      "actions": {
-        "discover": "Descobrir"
-      }
-    },
-    "news": {
-      "title": "Últimas Notícias",
-      "description": "Leia nossas últimas notícias, artigos e atualizações de projetos.",
-      "actions": {
-        "viewAll": "Ver Todas as Notícias"
-      }
-    },
-    "cta": {
-      "title": "Pronto para jogar?",
-      "description": "Junte-se a nós e vamos contar nossa história juntos.",
-      "actions": {
-        "createAccount": "Criar Conta",
-        "exploreCareers": "Explorar Carreiras"
-      }
-    }
+    "heroTitle": "Nós somos a Rimelight Entertainment",
+    "heroDescription": "Nós somos os criadores de Grand Tale.",
+    "heroJoinUs": "Junte-se a Nós",
+    "heroLearnMore": "Saiba Mais",
+    "companyTitle": "Superando os limites do {interactive}",
+    "companyDescription": "Fundada em 2023, a Rimelight Entertainment é independente e focada nos jogadores. Nós não apenas criamos jogos; criamos mundos vivos e pulsantes que respeitam seu tempo e inteligência.",
+    "companyStatsTitles": "Títulos em Desenvolvimento",
+    "companyStatsCreators": "Criadores Globais",
+    "projectsTitle": "Nossos Projetos",
+    "projectsTagsFranchise": "Franquia",
+    "projectsTagsFantasy": "Fantasia",
+    "projectsTagsSocial": "Social",
+    "projectsContentGrandTaleDescription": "Um jogo social de simulação de vida em alta fantasia que abriga sub-jogos de múltiplos gêneros.",
+    "projectsActionsDiscover": "Descobrir",
+    "newsTitle": "Últimas Notícias",
+    "newsDescription": "Leia nossas últimas notícias, artigos e atualizações de projetos.",
+    "newsActionsViewAll": "Ver Todas as Notícias",
+    "ctaTitle": "Pronto para jogar?",
+    "ctaDescription": "Junte-se a nós e vamos contar nossa história juntos.",
+    "ctaActionsCreateAccount": "Criar Conta",
+    "ctaActionsExploreCareers": "Explorar Carreiras"
   },
   "blog": {
-    "categories": {
-      "company-news": "Notícias da Empresa",
-      "development-log": "Registro de Desenvolvimento",
-      "other": "Outro"
-    }
+    "categoriesCompanyNews": "Notícias da Empresa",
+    "categoriesDevelopmentLog": "Registro de Desenvolvimento",
+    "categoriesOther": "Outro",
+    "lastUpdatedOn": "Última atualização em"
+  },
+  "about": {
+    "title": "Sobre",
+    "description": "Sobre idantity.me",
+    "heading": "Sobre Mim"
+  },
+  "errors": {
+    "notFound": "Página Não Encontrada",
+    "notFoundDesc": "A página que você procura não existe.",
+    "serverError": "Erro do Servidor",
+    "unknownError": "Erro desconhecido",
+    "goHome": "Ir para o Início"
+  },
+  "legal": {
+    "title": "Legal",
+    "heading": "Legal",
+    "lastUpdated": "Última atualização:",
+    "lastUpdatedOn": "Última atualização em"
+  },
+  "branding": {
+    "title": "Marca",
+    "description": "Diretrizes de Marca da idantity.me"
+  },
+  "auth": {
+    "authSignInTitle": "Entrar",
+    "authSignInDescription": "Entre na sua conta",
+    "authSignInNewUserMessage": "Sua conta foi criada. Por favor, faça login.",
+    "authSignInEmail": "E-mail",
+    "authSignInPassword": "Senha",
+    "authSignInButton": "Entrar",
+    "authSignUpTitle": "Cadastrar",
+    "authSignUpDescription": "Criar uma nova conta",
+    "authSignUpFirstName": "Nome",
+    "authSignUpLastName": "Sobrenome",
+    "authSignUpEmail": "E-mail",
+    "authSignUpPassword": "Senha",
+    "authSignUpButton": "Cadastrar",
+    "authSignOutTitle": "Sair",
+    "authSignOutDescription": "Sair da sua conta",
+    "authSignOutConfirmMessage": "Tem certeza que deseja sair?",
+    "authSignOutButton": "Sair"
+  },
+  "projectsPage": {
+    "title": "Projetos",
+    "description": "Explore nossos projetos",
+    "lastUpdatedOn": "Última atualização em"
+  },
+  "assets": {
+    "title": "Gerenciador de Ativos",
+    "heading": "Ativos",
+    "description": "Um ambiente de teste dedicado para o novo sistema simplificado de gerenciamento de ativos.",
+    "devNotes": "Notas de Desenvolvimento"
   }
 }

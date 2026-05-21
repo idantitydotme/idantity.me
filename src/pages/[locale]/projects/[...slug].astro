@@ -3,6 +3,11 @@ import { Image } from 'astro:assets';
 import { getEntry, render } from 'astro:content';
 import AppLayout from '@/layouts/AppLayout.astro';
 import FormattedDate from '@/components/FormattedDate.astro';
+import { useI18n, currentLocale } from 'astro-nanostores-i18n:runtime';
+
+const activeLocale = Astro.currentLocale ?? 'en';
+currentLocale.set(activeLocale);
+const messages = useI18n('projectsPage', { title: 'Projects', description: 'Browse our projects', lastUpdatedOn: 'Last updated on' });
 
 const { slug } = Astro.params;
 if (!slug) return Astro.redirect('/404');
@@ -69,7 +74,7 @@ const { title, description, pubDate, updatedDate, heroImage } = project.data;
 						{
 							updatedDate && (
 								<div class="last-updated-on">
-									Last updated on <FormattedDate date={updatedDate} />
+									{messages.lastUpdatedOn} <FormattedDate date={updatedDate} />
 								</div>
 							)
 						}

@@ -3,6 +3,29 @@ import AppLayout from '@/layouts/AppLayout.astro'
 import { actions, isInputError } from 'astro:actions'
 import Form from '@/components/Form.astro'
 import Input from '@/components/Input.astro'
+import { useI18n, currentLocale } from 'astro-nanostores-i18n:runtime'
+
+const activeLocale = Astro.currentLocale ?? 'en'
+currentLocale.set(activeLocale)
+const messages = useI18n('auth', {
+  authSignInTitle: 'Sign in',
+  authSignInDescription: 'Sign in to your account',
+  authSignInNewUserMessage: 'Your account has been created. Please sign in.',
+  authSignInEmail: 'E-mail',
+  authSignInPassword: 'Password',
+  authSignInButton: 'Sign in',
+  authSignUpTitle: 'Sign up',
+  authSignUpDescription: 'Create a new account',
+  authSignUpFirstName: 'First name',
+  authSignUpLastName: 'Last name',
+  authSignUpEmail: 'E-mail',
+  authSignUpPassword: 'Password',
+  authSignUpButton: 'Sign up',
+  authSignOutTitle: 'Sign out',
+  authSignOutDescription: 'Sign out of your account',
+  authSignOutConfirmMessage: 'Are you sure you want to sign out?',
+  authSignOutButton: 'Sign out'
+})
 
 const result = Astro.getActionResult(actions.signUp)
 
@@ -13,12 +36,12 @@ if (result && !result.error) {
 const inputErrors = isInputError(result?.error) ? result.error.fields : {}
 ---
 
-<AppLayout title="Sign up" description="Create a new account">
+<AppLayout title={messages.authSignUpTitle} description={messages.authSignUpDescription}>
   <Form method="POST" action={actions.signUp} error={result?.error}>
-    <Input errors={inputErrors.firstName} name="firstName" label="First name" required />
-    <Input errors={inputErrors.lastName} name="lastName" label="Last name" required />
-    <Input errors={inputErrors.email} name="email" label="E-mail" required type="email" />
-    <Input errors={inputErrors.password} name="password" label="Password" required type="password" />
-    <button>Sign up</button>
+    <Input errors={inputErrors.firstName} name="firstName" label={messages.authSignUpFirstName} required />
+    <Input errors={inputErrors.lastName} name="lastName" label={messages.authSignUpLastName} required />
+    <Input errors={inputErrors.email} name="email" label={messages.authSignUpEmail} required type="email" />
+    <Input errors={inputErrors.password} name="password" label={messages.authSignUpPassword} required type="password" />
+    <button>{messages.authSignUpButton}</button>
   </Form>
 </AppLayout>
