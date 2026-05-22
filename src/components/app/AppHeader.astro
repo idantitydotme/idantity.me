@@ -1,42 +1,55 @@
 ---
 import RLAHeader from "@rimelight/ui/components/astro/RLAHeader.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
-import type { NavigationMenuItem } from "@rimelight/ui/nuxt/types"
+import type { NavigationMenuItem } from "@rimelight/ui/types"
 import { NavigationMenu } from "@rimelight/ui/nuxt"
 import { getRelativeLocaleUrl } from "astro:i18n";
+import { useI18n, currentLocale as localeStore } from "astro-nanostores-i18n:runtime";
+
+const activeLocale = Astro.currentLocale ?? "en";
+localeStore.set(activeLocale);
 
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
+const messages = useI18n("app_header", {
+	"links_projects_label": "Projects",
+	"links_music_label": "Music",
+	"links_blog_label": "Blog",
+	"links_services_label": "Services",
+	"links_about_label": "About",
+	"links_resume_label": "Resume"
+});
+
 const items: NavigationMenuItem[] = [
   {
-    label: 'me.projects',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/projects'),
-    active: pathname === getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/projects').replace(/\/+$/, '')
+    label: messages["links_projects_label"],
+    to: getRelativeLocaleUrl(activeLocale, '/projects'),
+    active: pathname === getRelativeLocaleUrl(activeLocale, '/projects').replace(/\/+$/, '')
   },
   {
-    label: 'me.music',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/music'),
-    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/music').replace(/\/+$/, ''))
+    label: messages["links_music_label"],
+    to: getRelativeLocaleUrl(activeLocale, '/music'),
+    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/music').replace(/\/+$/, ''))
   },
   {
-    label: 'me.blog',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/blog'),
-    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/blog').replace(/\/+$/, ''))
+    label: messages["links_blog_label"],
+    to: getRelativeLocaleUrl(activeLocale, '/blog'),
+    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/blog').replace(/\/+$/, ''))
   },
   {
-    label: 'me.services',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/services'),
-    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/services').replace(/\/+$/, ''))
+    label: messages["links_services_label"],
+    to: getRelativeLocaleUrl(activeLocale, '/services'),
+    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/services').replace(/\/+$/, ''))
   },
   {
-    label: 'me.about',
-    to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about'),
-    active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about').replace(/\/+$/, ''))
+    label: messages["links_about_label"],
+    to: getRelativeLocaleUrl(activeLocale, '/about'),
+    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/about').replace(/\/+$/, ''))
   },
 {
-	label: 'me.resume',
-	to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/resume'),
-	active: pathname.startsWith(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/about').replace(/\/+$/, ''))
+	label: messages["links_resume_label"],
+	to: getRelativeLocaleUrl(activeLocale, '/resume'),
+	active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/resume').replace(/\/+$/, ''))
 }
 ];
 ---

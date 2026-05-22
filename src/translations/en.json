@@ -1,83 +1,10 @@
 {
-  "home": {
-    "heroTitle": "We are Rimelight Entertainment",
-    "heroDescription": "We are creators of Grand Tale.",
-    "heroJoinUs": "Join Us",
-    "heroLearnMore": "Learn More",
-    "companyTitle": "Pushing the boundaries of {interactive}",
-    "companyDescription": "Founded in 2023, Rimelight Entertainment is independent and player-focused. We don't just create games; we create living, breathing worlds that respect your time and intelligence.",
-    "companyStatsTitles": "Titles in Development",
-    "companyStatsCreators": "Global Creators",
-    "projectsTitle": "Our Projects",
-    "projectsTagsFranchise": "Franchise",
-    "projectsTagsFantasy": "Fantasy",
-    "projectsTagsSocial": "Social",
-    "projectsContentGrandTaleDescription": "A high-fantasy social life-sim game which hosts sub-games of multiple genres.",
-    "projectsActionsDiscover": "Discover",
-    "newsTitle": "Latest News",
-    "newsDescription": "Read our latest news, posts, and project updates.",
-    "newsActionsViewAll": "View All News",
-    "ctaTitle": "Ready to play?",
-    "ctaDescription": "Join us and let's tell our story together.",
-    "ctaActionsCreateAccount": "Create Account",
-    "ctaActionsExploreCareers": "Explore Careers"
-  },
-  "blog": {
-    "categoriesCompanyNews": "Company News",
-    "categoriesDevelopmentLog": "Development Log",
-    "categoriesOther": "Other",
-    "lastUpdatedOn": "Last updated on"
-  },
-  "about": {
-    "title": "About",
-    "description": "About idantity.me",
-    "heading": "About Me"
-  },
-  "errors": {
-    "notFound": "Page Not Found",
-    "notFoundDesc": "The page you are looking for does not exist.",
-    "serverError": "Server Error",
-    "unknownError": "Unknown error",
-    "goHome": "Go Home"
-  },
-  "legal": {
-    "title": "Legal",
-    "heading": "Legal",
-    "lastUpdated": "Last updated:",
-    "lastUpdatedOn": "Last updated on"
-  },
-  "branding": {
-    "title": "Branding",
-    "description": "idantity.me Branding Guidelines"
-  },
-  "auth": {
-    "authSignInTitle": "Sign in",
-    "authSignInDescription": "Sign in to your account",
-    "authSignInNewUserMessage": "Your account has been created. Please sign in.",
-    "authSignInEmail": "E-mail",
-    "authSignInPassword": "Password",
-    "authSignInButton": "Sign in",
-    "authSignUpTitle": "Sign up",
-    "authSignUpDescription": "Create a new account",
-    "authSignUpFirstName": "First name",
-    "authSignUpLastName": "Last name",
-    "authSignUpEmail": "E-mail",
-    "authSignUpPassword": "Password",
-    "authSignUpButton": "Sign up",
-    "authSignOutTitle": "Sign out",
-    "authSignOutDescription": "Sign out of your account",
-    "authSignOutConfirmMessage": "Are you sure you want to sign out?",
-    "authSignOutButton": "Sign out"
-  },
-  "projectsPage": {
-    "title": "Projects",
-    "description": "Browse our projects",
-    "lastUpdatedOn": "Last updated on"
-  },
-  "assets": {
-    "title": "Asset Manager",
-    "heading": "Assets",
-    "description": "A dedicated test environment for the new simplified asset management system.",
-    "devNotes": "Development Notes"
+  "app_header": {
+    "links_projects_label": "Projects",
+    "links_music_label": "Music",
+    "links_blog_label": "Blog",
+    "links_services_label": "Services",
+    "links_about_label": "About",
+    "links_resume_label": "Resume"
   }
 }
