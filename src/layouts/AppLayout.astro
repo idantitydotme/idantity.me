@@ -1,18 +1,19 @@
 ---
-import Head from '@rimelight/ui/components/Head.astro';
+import RLAHead from '@rimelight/ui/components/astro/RLAHead.astro';
 import AppHeader from '@/components/app/AppHeader.astro';
+import RLAMain from "@rimelight/ui/components/astro/RLAMain.astro"
 import AppFooter from '@/components/app/AppFooter.astro';
 import RLAScrollToTop from "@rimelight/ui/components/astro/RLAScrollToTop.astro"
 import { siteConfig } from '@/site.config';
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
 
-interface Props {
+interface AppLayoutProps {
 	title: string;
 	description: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description } = Astro.props as AppLayoutProps;
 
 const localeMap: Record<string, string> = {
 	en: 'en_US',
@@ -24,15 +25,17 @@ const ogLocale = localeMap[Astro.currentLocale || 'en'] || 'en_US';
 
 <!doctype html>
 <html lang={Astro.currentLocale || 'en'}>
-	<Head title={title} description={description} config={siteConfig} ogLocale={ogLocale} rssFeed={{ href: '/rss.xml', title: siteConfig.name }}>
+	<RLAHead title={title} description={description} config={siteConfig} ogLocale={ogLocale} rssFeed={{ href: '/rss.xml', title: siteConfig.name }}>
 		<slot name="head" slot="head" />
 		<Font cssVariable="--font-sans" preload={true} slot="head" />
 		<Font cssVariable="--font-serif" preload={true} slot="head" />
 		<Font cssVariable="--font-mono" preload={true} slot="head" />
-	</Head>
+	</RLAHead>
 	<body class="isolate">
 		<AppHeader />
-		<slot />
+		<RLAMain>
+			<slot />
+		</RLAMain>
 		<AppFooter />
 		<RLAScrollToTop showProgress={true} />
 	</body>
