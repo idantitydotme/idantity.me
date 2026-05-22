@@ -22,41 +22,6 @@ const messages = useI18n('errors', {
 ---
 
 <AppLayout title={messages.serverError} description={messages.serverError}>
-  <style slot="head">
-    .error-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 60vh;
-      text-align: center;
-      padding: 2rem;
-    }
-    .error-code {
-      font-size: 6rem;
-      font-weight: 900;
-      color: var(--accent);
-      margin: 0;
-      line-height: 1;
-    }
-    .error-title {
-      font-size: 1.5rem;
-      margin: 1rem 0 0.5rem;
-    }
-    .error-desc {
-      color: rgb(var(--gray));
-      margin-bottom: 2rem;
-    }
-    .error-link {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .error-link:hover {
-      text-decoration: underline;
-    }
-  </style>
-
   <div class="error-container">
     <p class="error-code">500</p>
     <h1 class="error-title">{messages.serverError}</h1>

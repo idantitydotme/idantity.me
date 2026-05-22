@@ -52,12 +52,3 @@ const isNewUser = new URL(Astro.request.url).searchParams.has('new')
     <button>{messages.authSignInButton}</button>
   </Form>
 </AppLayout>
-
-<style>
-  p {
-    background-color: var(--sl-color-green-low);
-    border: 1px solid var(--sl-color-green);
-    color: var(--sl-color-white);
-    padding: 0.5rem 1rem;
-  }
-</style>

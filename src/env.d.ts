@@ -6,3 +6,15 @@ declare namespace App {
         session: import("better-auth").Session | null;
     }
 }
+
+declare module "cloudflare:workers" {
+    interface Env {
+        BLOB: any;
+    }
+}
+
+declare module "cloudflare:workers" {
+    interface Env {
+        BLOB: any;
+    }
+}

@@ -37,7 +37,6 @@ const categoryLabels: Record<string, string> = {
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-	<main>
 		{categoryOrder.map((category) => {
 			const categoryPosts = groupedPosts[category];
 			if (!categoryPosts || categoryPosts.length === 0) return null;
@@ -89,5 +88,4 @@ const categoryLabels: Record<string, string> = {
 				</RLASection>
 			);
 		})}
-	</main>
 </AppLayout>

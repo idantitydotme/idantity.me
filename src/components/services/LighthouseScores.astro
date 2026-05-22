@@ -1,0 +1,204 @@
+---
+/**
+ * LighthouseScores.astro
+ * A callout component displaying perfect Lighthouse scores
+ * Designed to match the authentic Lighthouse report aesthetic
+ */
+export interface LighthouseScore {
+  label: string;
+  value: number;
+}
+
+export interface LighthouseScoresProps {
+  performance?: number;
+  accessibility?: number;
+  bestPractices?: number;
+  seo?: number;
+}
+
+const {
+  performance = 100,
+  accessibility = 100,
+  bestPractices = 100,
+  seo = 100,
+} = Astro.props;
+
+const scores = [
+  { label: 'Performance', value: performance },
+  { label: 'Accessibility', value: accessibility },
+  { label: 'Best Practices', value: bestPractices },
+  { label: 'SEO', value: seo },
+];
+---
+
+<div class="lighthouse-container">
+  <!-- Header -->
+  <div class="mb-4xl text-center">
+    <h3 class="font-heading text-foreground text-3xl font-bold md:text-4xl">
+      Lighthouse Report
+    </h3>
+  </div>
+
+  <!-- Scores Grid -->
+  <div
+    class="lighthouse-scores mx-auto grid max-w-2xl grid-cols-2 gap-4xl sm:grid-cols-4"
+    role="list"
+    aria-label="Lighthouse scores"
+  >
+    {
+      scores.map((score) => {
+        const radius = 54;
+        const circumference = 2 * Math.PI * radius;
+        const offset = circumference - (score.value / 100) * circumference;
+        const color = score.value >= 90 ? "#0cce6b" : score.value >= 50 ? "#ffa400" : "#ff4e42";
+
+        return (
+          <div
+            class="lighthouse-score group flex flex-col items-center"
+            role="listitem"
+          >
+            <div class="relative">
+              <svg
+                class="lighthouse-gauge"
+                width="120"
+                height="120"
+                viewBox="0 0 120 120"
+                aria-hidden="true"
+                style="width: 96px; height: 96px;"
+              >
+                <style>
+                  @media (min-width: 640px) {
+                    .lighthouse-gauge {
+                      width: 112px !important;
+                      height: 112px !important;
+                    }
+                  }
+                  @media (min-width: 768px) {
+                    .lighthouse-gauge {
+                      width: 144px !important;
+                      height: 144px !important;
+                    }
+                  }
+                </style>
+                <circle
+                  cx="60"
+                  cy="60"
+                  r={radius}
+                  fill="none"
+                  stroke="#e0e0e0"
+                  stroke-width="8"
+                />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r={radius}
+                  fill="none"
+                  stroke={color}
+                  stroke-width="8"
+                  stroke-linecap="round"
+                  stroke-dasharray={circumference}
+                  stroke-dashoffset={offset}
+                  class="lighthouse-progress"
+                  transform="rotate(-90 60 60)"
+                  style={`--target-offset: ${offset}`}
+                />
+                <text
+                  x="60"
+                  y="60"
+                  text-anchor="middle"
+                  dominant-baseline="central"
+                  class="lighthouse-number font-semibold font-sans"
+                  fill={color}
+                  style="font-size: 2rem;"
+                >
+                  {score.value}
+                </text>
+              </svg>
+            </div>
+
+            <span class="text-muted-foreground mt-2xl text-center text-sm font-medium">
+              {score.label}
+            </span>
+          </div>
+        );
+      })
+    }
+  </div>
+
+  <!-- Footer note -->
+  <p class="text-muted-foreground/60 mt-4xl text-center text-xs italic">
+    *Results represent the starting template. Changes to styling and features may affect final results.
+  </p>
+</div>
+
+<style>
+  /* Entrance animations */
+  .lighthouse-score {
+    animation: score-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .lighthouse-progress {
+    animation: progress-fill 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Staggered delays via nth-child to avoid inline style attributes */
+  .lighthouse-score:nth-child(1) { animation-delay: 100ms; }
+  .lighthouse-score:nth-child(2) { animation-delay: 180ms; }
+  .lighthouse-score:nth-child(3) { animation-delay: 260ms; }
+  .lighthouse-score:nth-child(4) { animation-delay: 340ms; }
+
+  .lighthouse-progress:nth-child(1) { animation-delay: 200ms; }
+  .lighthouse-progress:nth-child(2) { animation-delay: 280ms; }
+  .lighthouse-progress:nth-child(3) { animation-delay: 360ms; }
+  .lighthouse-progress:nth-child(4) { animation-delay: 440ms; }
+
+  @keyframes score-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.9) translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes progress-fill {
+    from {
+      stroke-dashoffset: 339.292; /* Approximate circumference */
+    }
+    to {
+      stroke-dashoffset: var(--target-offset, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lighthouse-score,
+    .lighthouse-progress {
+      animation: none;
+    }
+
+    .lighthouse-progress {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>
+
+<script>
+  // Run animations immediately
+  const initLighthouse = () => {
+    const scoresContainer = document.querySelector('.lighthouse-scores');
+    if (scoresContainer) {
+      const elements = scoresContainer.querySelectorAll<HTMLElement>('.lighthouse-score, .lighthouse-progress');
+      elements.forEach((el) => {
+        el.style.animationPlayState = 'running';
+      });
+    }
+  };
+
+  // Run on initial load
+  initLighthouse();
+
+  // Run on View Transitions navigate
+  document.addEventListener('astro:after-swap', initLighthouse);
+</script>

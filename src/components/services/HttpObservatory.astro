@@ -1,0 +1,103 @@
+---
+/**
+ * HttpObservatory.astro
+ * A callout component displaying an HTTP Observatory score
+ * Designed to match the authentic Mozilla Observatory report aesthetic
+ */
+export interface HttpObservatoryProps {
+  grade?: string;
+  score?: number;
+  testsPassed?: number;
+  totalTests?: number;
+}
+
+type Props = HttpObservatoryProps;
+
+const {
+  grade = "A+",
+  score = 145,
+  testsPassed = 10,
+  totalTests = 10,
+} = Astro.props;
+---
+
+<div class="http-obs-container mt-6xl px-2xs sm:px-0">
+  <!-- Header -->
+  <div class="mb-4xl text-center">
+    <h3 class="font-heading text-foreground text-3xl font-bold md:text-4xl">
+      HTTP Observatory
+    </h3>
+  </div>
+
+  <div
+    class="mx-auto max-w-4xl overflow-hidden rounded-xl border border-border bg-[#181a1b] p-6xl text-white shadow-xl sm:p-4xl"
+  >
+    <div
+      class="flex flex-col items-center gap-4xl sm:flex-row sm:items-start sm:justify-between"
+    >
+      <!-- Grade & Stats -->
+      <div class="flex flex-col items-center gap-4xl sm:flex-row sm:items-center">
+        <!-- Grade Box -->
+        <div
+          class="flex size-6xl shrink-0 items-center p-lg justify-center rounded-lg border-2 border-[#1eac4e] bg-[#1eac4e]/20 text-5xl font-bold text-[#1eac4e] sm:size-5xl sm:text-6xl"
+          aria-label={`Grade ${grade}`}
+        >
+          {grade}
+        </div>
+
+        <!-- Stats -->
+        <div class="flex flex-col gap-2xs text-center sm:text-left">
+          <a
+            href="https://developer.mozilla.org/en-US/observatory/analyze?host=danielmarchi.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm font-semibold text-[#4fa9ff] hover:underline sm:text-base"
+          >
+            Run the scan.
+          </a>
+
+          <div class="flex flex-col gap-2xs font-medium text-gray-200">
+            <p>
+              <span
+                class="text-white decoration-white/40 underline-offset-4 hover:underline"
+                >Score</span
+              >:
+              <span class="text-white">{score} / 100</span>
+            </p>
+            <p>
+              <span
+                class="text-white decoration-white/40 underline-offset-4 hover:underline"
+                >Tests Passed</span
+              >:
+              <span class="text-white">{testsPassed} / {totalTests}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .http-obs-container {
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.4s;
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .http-obs-container {
+      animation: none;
+    }
+  }
+</style>

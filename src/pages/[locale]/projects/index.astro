@@ -13,16 +13,6 @@ const currentLocale = Astro.currentLocale ?? 'en';
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-    <style slot="head">
-        main {
-            width: 960px;
-        }
-        .projects-section {
-            padding: 2rem 0;
-        }
-    </style>
-
-    <main>
         <section class="projects-section">
             <BlogPosts client:load>
                 {
@@ -46,5 +36,4 @@ const currentLocale = Astro.currentLocale ?? 'en';
                 }
             </BlogPosts>
         </section>
-    </main>
 </AppLayout>
