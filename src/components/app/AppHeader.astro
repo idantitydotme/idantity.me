@@ -4,23 +4,22 @@ import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
 import { NavigationMenu } from "@rimelight/ui/nuxt"
 import type { NavigationMenuItem } from "@rimelight/ui/types"
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { useI18n, currentLocale as localeStore } from "astro-nanostores-i18n:runtime";
+import { useI18n } from "astro-nanostores-i18n:runtime";
 
 const activeLocale = Astro.currentLocale ?? "en";
-localeStore.set(activeLocale);
 
 const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
 
 const messages = useI18n("app_header", {
-	"links_projects_label": "Projects",
-	"links_music_label": "Music",
-	"links_blog_label": "Blog",
-	"links_services_label": "Services",
-	"links_about_label": "About",
-	"links_resume_label": "Resume"
+	"links_projects_label": "me.projects",
+	"links_music_label": "me.music",
+	"links_blog_label": "me.blog",
+	"links_about_label": "me.about",
+	"links_services_label": "me.services",
+	"links_resume_label": "me.resume"
 });
 
-const items: NavigationMenuItem[] = [
+const leftItems: NavigationMenuItem[] = [
   {
     label: messages["links_projects_label"],
     to: getRelativeLocaleUrl(activeLocale, '/projects'),
@@ -36,22 +35,25 @@ const items: NavigationMenuItem[] = [
     to: getRelativeLocaleUrl(activeLocale, '/blog'),
     active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/blog').replace(/\/+$/, ''))
   },
-  {
-    label: messages["links_services_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/services'),
-    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/services').replace(/\/+$/, ''))
-  },
-  {
-    label: messages["links_about_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/about'),
-    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/about').replace(/\/+$/, ''))
-  },
+	{
+		label: messages["links_about_label"],
+		to: getRelativeLocaleUrl(activeLocale, '/about'),
+		active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/about').replace(/\/+$/, ''))
+	}
+];
+
+const rightItems: NavigationMenuItem[] = [
+{
+	label: messages["links_services_label"],
+		to: getRelativeLocaleUrl(activeLocale, '/services'),
+	active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/services').replace(/\/+$/, ''))
+},
 {
 	label: messages["links_resume_label"],
-	to: getRelativeLocaleUrl(activeLocale, '/resume'),
+		to: getRelativeLocaleUrl(activeLocale, '/resume'),
 	active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/resume').replace(/\/+$/, ''))
 }
-];
+]
 ---
 
 <RLAHeader fixed={true} stackIndex={0} class="bg-black">
@@ -59,7 +61,22 @@ const items: NavigationMenuItem[] = [
 		<RLALogo variant="logomark" class="h-10 w-auto" />
 		<NavigationMenu
 			client:load
-			items={items}
+			items={leftItems}
+			variant="link"
+			ui={{
+				link: [
+					'text-white transition-colors duration-200',
+					'hover:text-primary-400',
+					'data-[state=open]:text-primary-400',
+					'aria-[current]:text-primary-400'
+				]
+			}}
+		/>
+	</div>
+	<div slot="right" class="flex flex-row items-center gap-md">
+		<NavigationMenu
+			client:load
+			items={rightItems}
 			variant="link"
 			ui={{
 				link: [

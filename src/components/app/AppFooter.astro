@@ -2,41 +2,74 @@
 import RLAFooter from "@rimelight/ui/components/astro/RLAFooter.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
 import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
-import RLAPlaceholder from "@rimelight/ui/components/astro/RLAPlaceholder.astro";
+import type { ButtonProps } from "@rimelight/ui/types";
 import { FooterColumns } from "@rimelight/ui/nuxt";
 import ThemeToggle from "@rimelight/ui/components/ThemeToggle.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
 import LanguagePicker from "./LanguagePicker.astro";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { useI18n } from "astro-nanostores-i18n:runtime";
+
+const activeLocale = Astro.currentLocale ?? "en";
+
+const messages = useI18n("app_footer", {
+  "links_resources_label": "Resources",
+  "links_resources_branding": "Branding",
+  "links_legal_label": "Legal",
+  "links_legal_privacy-policy": "Privacy Policy",
+  "links_legal_other_documents": "Other Documents",
+});
 
 const columns = [
   {
-    label: 'Resources',
+    label: messages["links_resources_label"],
     children: [
       {
-        label: 'Branding',
-        to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', "/branding")
+        label: messages["links_resources_branding"],
+        to: getRelativeLocaleUrl(activeLocale, "/branding")
       }
     ]
   },
   {
-    label: 'Legal',
+    label: messages["links_legal_label"],
     children: [
       {
-        label: 'Privacy Policy',
-        to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', "/legal/privacy-policy")
+        label: messages["links_legal_privacy-policy"],
+        to: getRelativeLocaleUrl(activeLocale, "/legal/privacy-policy")
       },
       {
-        label: 'Other Documents',
-        to: getRelativeLocaleUrl(Astro.currentLocale ?? 'en', "/legal")
+        label: messages["links_legal_other_documents"],
+        to: getRelativeLocaleUrl(activeLocale, "/legal")
       }
     ]
+  }
+];
+
+const socials: ButtonProps[] = [
+  {
+    leadingIcon: "i-logos-instagram-icon?mask text-white hover:text-primary-500",
+    href: "https://www.instagram.com/idantity.me"
+  },
+  {
+    leadingIcon: "i-logos-discord-icon?mask text-white hover:text-primary-500",
+    href: "https://discord.com/users/682049695173836979"
+  },
+  {
+    leadingIcon: "i-logos-spotify-icon?mask text-white hover:text-primary-500",
+    href: "https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222"
+  },
+  {
+    leadingIcon: "i-logos-github-icon?mask text-white hover:text-primary-500",
+    href: "https://www.github.com/idantitydotme"
+  },
+  {
+    leadingIcon: "i-logos-linkedin-icon?mask text-white hover:text-primary-500",
+    href: "https://www.linkedin.com/daniel-marchi"
   }
 ];
 ---
 
 <RLAFooter contain={false} class="bg-black z-50">
   <div slot="left" class="flex flex-col items-center gap-xs lg:items-start">
-    <RLAPlaceholder class="h-24 w-full bg-white" />
     <RLALogo variant="logotype" class="h-6 w-auto" />
     <p class="text-sm text-white">Accessing me.</p>
     <span class="text-sm text-white">© {new Date().getFullYear()} idantity.me</span>
@@ -52,42 +85,14 @@ const columns = [
     <ThemeToggle size="sm" />
     <LanguagePicker />
     <div class="flex flex-row gap-sm lg:items-end">
-      <RLAButton
-          size="xl"
-          color="neutral"
-          variant="ghost"
-          leadingIcon="i-logos-instagram-icon?mask text-white hover:text-primary-500"
-          size="xl"
-          href="https://www.instagram.com/idantity.me"
-      />
-      <RLAButton
-          size="xl"
-          color="neutral"
-          variant="ghost"
-          leadingIcon="i-logos-discord-icon?mask text-white hover:text-primary-500"
-          href="https://discord.com/users/682049695173836979"
-      />
-      <RLAButton
-          size="xl"
-          color="neutral"
-          variant="ghost"
-          leadingIcon="i-logos-spotify-icon?mask text-white hover:text-primary-500"
-          href="https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222"
-      />
-      <RLAButton
-          size="xl"
-          color="neutral"
-          variant="ghost"
-          leadingIcon="i-logos-github-icon?mask text-white hover:text-primary-500"
-          href="https://www.github.com/idantitydotme"
-      />
-      <RLAButton
-          size="xl"
-          color="neutral"
-          variant="ghost"
-          leadingIcon="i-logos-linkedin-icon?mask text-white hover:text-primary-500"
-          href="https://www.linkedin.com/daniel-marchi"
-      />
+      {socials.map((social) => (
+          <RLAButton
+              size="xl"
+              color="neutral"
+              variant="ghost"
+              {...social}
+          />
+      ))}
     </div>
   </div>
 </RLAFooter>
