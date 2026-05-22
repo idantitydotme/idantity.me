@@ -5,7 +5,7 @@ import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
 import type { ButtonProps } from "@rimelight/ui/types";
 import { FooterColumns } from "@rimelight/ui/nuxt";
 import ThemeToggle from "@rimelight/ui/components/ThemeToggle.astro";
-import LanguagePicker from "./LanguagePicker.astro";
+import RLALocaleSelector from "@rimelight/ui/components/astro/RLALocaleSelector.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { useI18n } from "astro-nanostores-i18n:runtime";
 
@@ -66,6 +66,12 @@ const socials: ButtonProps[] = [
     href: "https://www.linkedin.com/daniel-marchi"
   }
 ];
+
+const targetLanguages = [
+  { code: 'en', label: 'English' },
+  { code: 'es', label: 'Español' },
+  { code: 'pt', label: "Português" }
+];
 ---
 
 <RLAFooter contain={false} class="bg-black z-50">
@@ -83,7 +89,7 @@ const socials: ButtonProps[] = [
   </div>
   <div slot="right" class="flex flex-col gap-sm lg:items-end">
     <ThemeToggle size="sm" />
-    <LanguagePicker />
+    <RLALocaleSelector locales={targetLanguages} />
     <div class="flex flex-row gap-sm lg:items-end">
       {socials.map((social) => (
           <RLAButton
