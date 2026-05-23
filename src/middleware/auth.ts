@@ -32,5 +32,9 @@ export const auth = defineMiddleware(async (context, next) => {
     return context.redirect("/auth/sign-in")
   }
 
+  if (context.url.pathname.includes("/construction") && context.locals.session) {
+    return context.redirect("/")
+  }
+
   return next()
 })
