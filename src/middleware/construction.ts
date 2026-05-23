@@ -4,7 +4,8 @@ const CONSTRUCTION_SKIP_SEGMENTS = ["/construction", "/auth", "/api/auth"]
 const LOCALES = ["en", "pt", "es"]
 
 export const construction = defineMiddleware(async (context, next) => {
-  const constructionMode = import.meta.env.CONSTRUCTION_MODE === "true"
+  const constructionMode =
+    (import.meta.env.CONSTRUCTION_MODE ?? process.env.CONSTRUCTION_MODE) === "true"
   if (!constructionMode) {
     return next()
   }
