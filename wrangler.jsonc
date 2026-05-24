@@ -31,5 +31,8 @@
       "binding": "BLOB",
       "bucket_name": "idantity-dot-me"
     }
-  ]
+  ],
+  "vars": {
+    "CONSTRUCTION_MODE": "true"
+  }
 }
