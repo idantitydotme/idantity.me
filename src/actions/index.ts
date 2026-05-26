@@ -23,6 +23,7 @@ export const server = {
             password: input.password
           }
         })
+        return { success: true }
       } catch (error) {
         return throwActionAuthError("BAD_REQUEST", error)
       }

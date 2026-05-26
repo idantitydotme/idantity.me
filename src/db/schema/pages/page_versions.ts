@@ -1,11 +1,18 @@
 import { relations } from "drizzle-orm"
 import { jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core"
-import {
-  type Block,
-  type Localized,
-  type PageType,
-  type RegisterPageTypes
-} from "rimelight-components/types"
+// Commented out to prevent breaking compilation until ported from older package
+// import {
+//   type Block,
+//   type Localized,
+//   type PageType,
+//   type RegisterPageTypes
+// } from "rimelight-components/types"
+
+type Block = any
+type Localized<_T = string> = any
+type PageType = any
+type RegisterPageTypes = any
+
 import { pages } from "./pages"
 
 export type PageVersionStatus = "pending" | "approved" | "rejected"
@@ -20,7 +27,7 @@ export const pageVersions = pgTable("page_versions", {
   type: text("type").$type<PageType>().notNull(),
   title: jsonb("title").$type<Localized>().notNull(),
   description: jsonb("description").$type<Localized>(),
-  tags: jsonb("tags").$type<Localized<string>[]>().default([]).notNull(),
+  tags: jsonb("tags").$type<Localized[]>().default([]).notNull(),
   authorIds: jsonb("author_ids").$type<string[]>().default([]),
   content: jsonb("content")
     .$type<{

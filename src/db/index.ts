@@ -5,4 +5,4 @@ import * as schema from "@/db/schema"
 export * from "@/db/schema"
 export { schema }
 
-export const db = drizzle(neon(process.env.DATABASE_URL!), { schema })
+export const db = drizzle(neon(process.env.DATABASE_URL), { schema })
