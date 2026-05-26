@@ -5,7 +5,7 @@ import TableOfContents from "@rimelight/ui/components/TableOfContents.astro";
 import RLASurround from "@/components/docs/RLASurround.astro";
 import RLABadge from "@rimelight/ui/components/astro/RLABadge.astro";
 import { getDocsSidebar, getSurroundItems } from "@rimelight/ui/utils";
-import type { ResolvedSidebarItem, ResolvedScope } from "@rimelight/ui/utils";
+import type { ResolvedSidebarItem } from "@rimelight/ui/utils";
 import { getCollection } from "astro:content";
 import docsConfig from "@/config/docs.config";
 import type { TableOfContentsConfig } from "@rimelight/ui/components/TableOfContents.astro";
@@ -55,7 +55,7 @@ function normalizeBadge(badge: any) {
 
 interface Props {
   title: string;
-  description?: string;
+  description?: string | undefined;
   headings?: { depth: number; slug: string; text: string }[];
   /** Per-page TOC override (from frontmatter) */
   tableOfContents?: false | TableOfContentsConfig;
@@ -63,7 +63,7 @@ interface Props {
   prevOverride?: SurroundOverride;
   nextOverride?: SurroundOverride;
   /** GitHub edit URL for this page (false = hide, string = full URL) */
-  editUrl?: string | false;
+  editUrl?: string | false | undefined;
 }
 
 const { title, description = "", headings = [], tableOfContents: tocOverride, prevOverride, nextOverride, editUrl } = Astro.props;
@@ -303,7 +303,7 @@ const tocHeadings = hasToc
       <article class="markdown-content prose max-w-none prose-base dark:prose-invert">
         <slot />
       </article>
-      <RLASurround prev={prev} next={next} prevOverride={prevOverride} nextOverride={nextOverride} />
+      <RLASurround prev={prev as any} next={next as any} prevOverride={prevOverride as any} nextOverride={nextOverride as any} />
 
       {/* Edit link */}
       {resolvedEditUrl && (
@@ -324,7 +324,7 @@ const tocHeadings = hasToc
     {/* TOC right column — xl+ only */}
     {hasToc && (
       <div class="hidden xl:block w-[240px] shrink-0 sticky top-[calc(var(--rl-total-header-height,64px)+2rem)] max-h-[calc(100vh-var(--rl-total-header-height,64px)-4rem)] overflow-y-auto pl-4">
-        <TableOfContents headings={headings} tableOfContents={resolvedToc !== false ? resolvedToc : false} />
+        <TableOfContents headings={headings} tableOfContents={resolvedToc as any} />
       </div>
     )}
 

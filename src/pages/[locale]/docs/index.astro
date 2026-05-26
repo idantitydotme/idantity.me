@@ -20,9 +20,9 @@ const { title, description, tableOfContents, prev, next, editUrl } = entry.data;
   title={title}
   description={description}
   headings={headings}
-  tableOfContents={tableOfContents}
-  prevOverride={prev}
-  nextOverride={next}
+  tableOfContents={tableOfContents as any}
+  prevOverride={prev as any}
+  nextOverride={next as any}
   editUrl={editUrl}
 >
   <Content />

@@ -18,3 +18,5 @@ declare module "cloudflare:workers" {
         BLOB: any;
     }
 }
+declare module "turndown";
+declare module "turndown-plugin-gfm";

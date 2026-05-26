@@ -6,7 +6,7 @@ interface Props {
   class?: string;
 }
 
-const { component, slots = [], props = {}, class: className } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
 <div class={`component-showcase border border-border rounded-xl overflow-hidden bg-background text-foreground ${className}`}>
