@@ -3,7 +3,7 @@ import RLAFooter from "@rimelight/ui/components/astro/RLAFooter.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
 import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
 import type { ButtonProps } from "@rimelight/ui/types";
-import { FooterColumns } from "@rimelight/ui/nuxt";
+import RLALinkGroup from "@rimelight/ui/components/astro/RLALinkGroup.astro";
 import RLAThemeSelector from "@rimelight/ui/components/astro/RLAThemeSelector.astro";
 import RLALocaleSelector from "@rimelight/ui/components/astro/RLALocaleSelector.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
@@ -16,7 +16,7 @@ const messages = useI18n("app_footer", {
   "links_resources_branding": "Branding",
   "links_legal_label": "Legal",
   "links_legal_privacy-policy": "Privacy Policy",
-  "links_legal_other_documents": "Other Documents",
+  "links_legal_other-documents": "Other Documents"
 });
 
 const columns = [
@@ -37,7 +37,7 @@ const columns = [
         to: getRelativeLocaleUrl(activeLocale, "/legal/privacy-policy")
       },
       {
-        label: messages["links_legal_other_documents"],
+        label: messages["links_legal_other-documents"],
         to: getRelativeLocaleUrl(activeLocale, "/legal")
       }
     ]
@@ -80,17 +80,19 @@ const targetLanguages = [
     <p class="text-sm text-white">Accessing me.</p>
     <span class="text-sm text-white">© {new Date().getFullYear()} idantity.me</span>
   </div>
-  <div slot="center">
-    <FooterColumns client:load columns={columns} ui={{
-      label: 'text-white',
-      item: 'text-white',
-      link: 'text-white'
-    }} />
+  <div slot="center" class="flex gap-12">
+    {columns.map(column => (
+      <RLALinkGroup 
+        title={column.label} 
+        links={column.children.map(child => ({ label: child.label, href: child.to }))}
+        theme="flat"
+      />
+    ))}
   </div>
   <div slot="right" class="flex flex-col gap-sm lg:items-end">
     <RLAThemeSelector />
     <RLALocaleSelector locales={targetLanguages} />
-    <div class="flex flex-row gap-sm lg:items-end">
+    <div class="flex flex-row flex-wrap gap-sm lg:items-end">
       {socials.map((social) => (
           <RLAButton
               size="xl"
