@@ -1,25 +1,25 @@
 {
   "name": "idantity-dot-me",
-  "description": "Acessing me.",
-  "homepage": "https://idantity.me",
-  "author": {
-    "name": "Daniel Marchi"
-  },
   "version": "0.0.1",
   "private": true,
-  "type": "module",
-  "license": "MIT",
+  "description": "Acessing me.",
   "keywords": [
     "astro",
     "typescript"
   ],
+  "homepage": "https://idantity.me",
+  "bugs": {
+    "url": "https://github.com/idantitydotme/idantity.me/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Daniel Marchi"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/idantitydotme/idantity.me.git"
   },
-  "bugs": {
-    "url": "https://github.com/idantitydotme/idantity.me/issues"
-  },
+  "type": "module",
   "scripts": {
     "prepare": "vp config",
     "generate-types": "wrangler types",

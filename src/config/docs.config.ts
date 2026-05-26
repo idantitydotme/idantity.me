@@ -1,8 +1,9 @@
-import { defineDocsConfig } from "@rimelight/ui/utils";
+import { defineDocsConfig } from "@rimelight/ui/utils"
 
 export default defineDocsConfig({
   editLink: {
-    baseUrl: "https://github.com/rimelight/rimelight/edit/main/packages/playground/src/content/docs/"
+    baseUrl:
+      "https://github.com/rimelight/rimelight/edit/main/packages/playground/src/content/docs/"
   },
   sidebar: [
     {
@@ -38,4 +39,4 @@ export default defineDocsConfig({
       ]
     }
   ]
-});
+})
