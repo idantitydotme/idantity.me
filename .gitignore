@@ -78,6 +78,3 @@ worker-configuration.d.ts
 *.local
 *.tsbuildinfo
 
-# Nuxt UI
-auto-imports.d.ts
-components.d.ts
