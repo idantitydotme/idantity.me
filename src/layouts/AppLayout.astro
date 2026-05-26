@@ -38,5 +38,143 @@ const ogLocale = localeMap[Astro.currentLocale || 'en'] || 'en_US';
 		</RLAMain>
 		<AppFooter />
 		<RLAScrollToTop showProgress={true} />
+		<script is:inline data-astro-rerun>
+			(function() {
+				'use strict';
+				// Disconnect previous observer on re-run (client-side nav)
+				if (window.__rlHeaderObserver) window.__rlHeaderObserver.disconnect();
+
+				// Initialize global stack singleton (only once)
+				if (!window.RLHeaderStack) {
+					window.RLHeaderStack = {
+						layers: [],
+						register: function(id, order, naturalHeight, isVisible, el) {
+							var layer = this.layers.find(function(l) { return l.id === id; });
+							if (!layer) {
+								layer = { id: id, order: order, naturalHeight: naturalHeight, isVisible: isVisible, el: el };
+								this.layers.push(layer);
+								this.layers.sort(function(a, b) { return a.order - b.order; });
+							} else {
+								layer.naturalHeight = naturalHeight;
+								layer.isVisible = isVisible;
+								layer.el = el;
+							}
+							this.update();
+						},
+						unregister: function(id) {
+							this.layers = this.layers.filter(function(l) { return l.id !== id; });
+							this.update();
+						},
+						update: function() {
+							var currentTop = 0;
+							for (var i = 0; i < this.layers.length; i++) {
+								var layer = this.layers[i];
+								if (layer.el) {
+									var topPx = layer.isVisible ? currentTop + 'px' : '-' + layer.naturalHeight + 'px';
+									layer.el.style.top = topPx;
+									layer.el.style.opacity = layer.isVisible ? '1' : '0';
+									layer.el.style.pointerEvents = layer.isVisible ? 'auto' : 'none';
+									layer.el.style.setProperty('--rl-header-bottom', 'calc(' + topPx + ' + ' + layer.naturalHeight + 'px)');
+								}
+								if (layer.isVisible) currentTop += layer.naturalHeight;
+							}
+							if (currentTop > 0) {
+								document.documentElement.style.setProperty('--rl-total-header-height', currentTop + 'px');
+							}
+						}
+					};
+				}
+				var RL = window.RLHeaderStack;
+				// Clear stale layers from previous navigation
+				RL.layers = [];
+
+				function getHeight(el) {
+					if (!el) return 64;
+					var h = el.offsetHeight;
+					return h > 0 ? h : 64;
+				}
+
+				function initHeader(header) {
+					if (header.__rlManaged) return;
+					header.__rlManaged = true;
+
+					var id = header.id;
+					var stackIndex = parseInt(header.getAttribute('data-stack-index') || '0', 10);
+					var hideOnScroll = header.getAttribute('data-hide-on-scroll') === 'true';
+					var contentEl = header.querySelector('[data-header-content]');
+					var naturalHeight = getHeight(contentEl);
+					var isVisible = true;
+
+					RL.register(id, stackIndex, naturalHeight, isVisible, header);
+
+					if (typeof ResizeObserver !== 'undefined' && contentEl) {
+						new ResizeObserver(function(entries) {
+							var h = entries[0] && entries[0].contentRect.height;
+							if (h && h > 0) {
+								naturalHeight = h;
+								RL.update();
+							}
+						}).observe(contentEl);
+					}
+
+					if (hideOnScroll) {
+						var lastScrollY = window.scrollY;
+						window.addEventListener('scroll', function() {
+							var current = window.scrollY;
+							var diff = current - lastScrollY;
+							if (Math.abs(diff) >= 10) {
+								var newVisible = current <= 50 ? true : diff <= 0;
+								if (newVisible !== isVisible) {
+									isVisible = newVisible;
+									RL.register(id, stackIndex, naturalHeight, isVisible, header);
+								}
+								lastScrollY = current;
+							}
+						}, { passive: true });
+					}
+
+					(function retry() {
+						var h = getHeight(contentEl);
+						if (h !== naturalHeight) {
+							naturalHeight = h;
+							RL.update();
+						}
+						if (h > 0 && h !== 64 && contentEl && contentEl.offsetHeight > 0) return;
+						requestAnimationFrame(retry);
+					})();
+				}
+
+				// Init all existing headers
+				var headers = document.querySelectorAll("[data-rla-header='true']");
+				for (var i = 0; i < headers.length; i++) initHeader(headers[i]);
+
+				// Watch for new headers (client-side nav) and removals
+				window.__rlHeaderObserver = new MutationObserver(function(mutations) {
+					for (var i = 0; i < mutations.length; i++) {
+						var added = mutations[i].addedNodes;
+						for (var j = 0; j < added.length; j++) {
+							var node = added[j];
+							if (node.nodeType !== 1) continue;
+							if (node.matches && node.matches("[data-rla-header='true']")) initHeader(node);
+							if (node.querySelectorAll) {
+								var nested = node.querySelectorAll("[data-rla-header='true']");
+								for (var k = 0; k < nested.length; k++) initHeader(nested[k]);
+							}
+						}
+						var removed = mutations[i].removedNodes;
+						for (var j = 0; j < removed.length; j++) {
+							var node = removed[j];
+							if (node.nodeType !== 1) continue;
+							if (node.matches && node.matches("[data-rla-header='true']")) RL.unregister(node.id);
+							if (node.querySelectorAll) {
+								var nested = node.querySelectorAll("[data-rla-header='true']");
+								for (var k = 0; k < nested.length; k++) RL.unregister(nested[k].id);
+							}
+						}
+					}
+				});
+				window.__rlHeaderObserver.observe(document.body, { childList: true, subtree: true });
+			})();
+		</script>
 	</body>
 </html>

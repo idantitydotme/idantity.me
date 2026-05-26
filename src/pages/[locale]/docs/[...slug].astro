@@ -1,0 +1,35 @@
+---
+import { getEntry, render } from "astro:content";
+import DocsLayout from "@/layouts/DocsLayout.astro";
+import { currentLocale } from "astro-nanostores-i18n:runtime";
+
+const activeLocale = Astro.currentLocale ?? "en";
+currentLocale.set(activeLocale);
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect(`/${activeLocale}/404`);
+}
+
+const entry = await getEntry("docs", slug);
+
+if (!entry) {
+  return Astro.redirect(`/${activeLocale}/404`);
+}
+
+const { Content, headings } = await render(entry);
+const { title, description, tableOfContents, prev, next, editUrl } = entry.data;
+---
+
+<DocsLayout
+  title={title}
+  description={description}
+  headings={headings}
+  tableOfContents={tableOfContents}
+  prevOverride={prev}
+  nextOverride={next}
+  editUrl={editUrl}
+>
+  <Content />
+</DocsLayout>

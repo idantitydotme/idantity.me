@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/AppLayout.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '@/site.config';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { useI18nAsync, currentLocale } from 'astro-nanostores-i18n:runtime';
+import { useI18nAsync, currentLocale } from "astro-nanostores-i18n:runtime";
 
 const legalDocs = (await getCollection('legal')).toSorted(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -11,11 +11,10 @@ const legalDocs = (await getCollection('legal')).toSorted(
 const activeLocale = Astro.currentLocale ?? 'en';
 currentLocale.set(activeLocale);
 
-const messages = await useI18nAsync('legal', {
-  title: 'Legal',
-  heading: 'Legal',
-  lastUpdated: 'Last updated:',
-  lastUpdatedOn: 'Last updated on'
+const messages = await useI18nAsync("legal", {
+    title: "Legal",
+    heading: "Legal",
+    lastUpdated: "Last updated:",
 });
 ---
 

@@ -1,0 +1,371 @@
+---
+import AppLayout from "./AppLayout.astro";
+import RLASidebar from "@rimelight/ui/components/astro/RLASidebar.astro";
+import TableOfContents from "@rimelight/ui/components/TableOfContents.astro";
+import RLASurround from "@/components/docs/RLASurround.astro";
+import RLABadge from "@rimelight/ui/components/astro/RLABadge.astro";
+import { getDocsSidebar, getSurroundItems } from "@rimelight/ui/utils";
+import type { ResolvedSidebarItem, ResolvedScope } from "@rimelight/ui/utils";
+import { getCollection } from "astro:content";
+import docsConfig from "@/config/docs.config";
+import type { TableOfContentsConfig } from "@rimelight/ui/components/TableOfContents.astro";
+import type { SurroundOverride } from "@/components/docs/RLASurround.astro";
+
+function normalizeBadge(badge: any) {
+  if (!badge) return null
+  if (typeof badge === "string") {
+    return {
+      text: badge,
+      color: "primary",
+      variant: "soft" as const,
+      class: ""
+    }
+  }
+  
+  let color = badge.color || "primary"
+  let variant = badge.variant || "soft"
+  
+  if (badge.variant) {
+    const v = badge.variant.toLowerCase()
+    if (v === "tip" || v === "success") {
+      color = "success"
+      variant = "soft"
+    } else if (v === "caution" || v === "warning") {
+      color = "warning"
+      variant = "soft"
+    } else if (v === "danger") {
+      color = "danger"
+      variant = "soft"
+    } else if (v === "note") {
+      color = "primary"
+      variant = "soft"
+    } else if (v === "default") {
+      color = "primary"
+      variant = "soft"
+    }
+  }
+  
+  return {
+    text: badge.text || "",
+    color,
+    variant: variant as "solid" | "outline" | "soft",
+    class: badge.class || ""
+  }
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  headings?: { depth: number; slug: string; text: string }[];
+  /** Per-page TOC override (from frontmatter) */
+  tableOfContents?: false | TableOfContentsConfig;
+  /** Frontmatter prev/next surround overrides */
+  prevOverride?: SurroundOverride;
+  nextOverride?: SurroundOverride;
+  /** GitHub edit URL for this page (false = hide, string = full URL) */
+  editUrl?: string | false;
+}
+
+const { title, description = "", headings = [], tableOfContents: tocOverride, prevOverride, nextOverride, editUrl } = Astro.props;
+
+const locale = Astro.currentLocale ?? "en";
+const currentPath = Astro.url.pathname;
+
+const { items: sidebarItems, scopes, activeScope } = await getDocsSidebar(
+  docsConfig,
+  locale,
+  currentPath,
+  getCollection
+);
+const { prev, next } = getSurroundItems(sidebarItems, currentPath);
+
+// Resolve TOC config: per-page overrides site default
+const globalToc = docsConfig.tableOfContents ?? { minHeadingLevel: 2, maxHeadingLevel: 3 };
+const resolvedToc = tocOverride !== undefined ? tocOverride : globalToc;
+
+// Resolve edit URL: per-page > config base > disabled
+const resolvedEditUrl = (() => {
+  if (editUrl === false) return null;
+  if (typeof editUrl === "string") return editUrl;
+  if (docsConfig.editLink?.baseUrl) {
+    // Derive file path from currentPath: strip /{locale}/docs/ prefix
+    const rel = currentPath.replace(/^\/[^/]+\/docs\//, "").replace(/\/$/, "");
+    const filePath = rel ? `${rel}.md` : "index.md";
+    return docsConfig.editLink.baseUrl.replace(/\/$/, "") + "/" + filePath;
+  }
+  return null;
+})();
+
+const hasToc = resolvedToc !== false && headings.length > 0;
+const tocHeadings = hasToc
+  ? headings.filter(h => {
+      const cfg = resolvedToc as TableOfContentsConfig;
+      return h.depth >= (cfg.minHeadingLevel ?? 2) && h.depth <= (cfg.maxHeadingLevel ?? 3);
+    })
+  : [];
+---
+
+<AppLayout title={title} description={description}>
+
+  {/*
+    ── Sticky mobile bars ─────────────────────────────────────────────────────
+    A single sticky container, pinned below the app header.
+    Children are hidden at appropriate breakpoints via CSS, so when hidden
+    they collapse to zero height — no JS, no stack interference.
+    ──────────────────────────────────────────────────────────────────────────
+  */}
+  <div
+    class="sticky z-30 bg-background/95 backdrop-blur-sm"
+    style="top: var(--rl-total-header-height, 64px)"
+  >
+    {/* ── Docs nav bar: scopes + sidebar items — hidden on lg+ ── */}
+    <details id="docs-nav-details" class="lg:hidden border-b border-border docs-mobile-bar">
+      <summary class="flex items-center justify-between gap-3 px-4 h-10 text-sm font-medium text-foreground cursor-pointer select-none hover:bg-muted/40 transition-colors list-none">
+        <span class="flex items-center gap-2 min-w-0">
+          <span class:list={[
+            activeScope?.id === "tests" ? "i-lucide-terminal" : "i-lucide-book-open",
+            "size-4 text-primary shrink-0"
+          ]} />
+          <span class="font-semibold shrink-0">{activeScope?.label ?? "Navigation"}</span>
+          <span class="text-muted-foreground font-normal truncate hidden sm:inline">— {title}</span>
+        </span>
+        <span class="docs-nav-chevron i-lucide-chevron-down size-4 text-muted-foreground shrink-0 transition-transform duration-200" />
+      </summary>
+      <div class="border-t border-border/50 bg-background max-h-[60vh] overflow-y-auto">
+        {/* Scopes — vertical */}
+        <div class="flex flex-col gap-1 p-3 border-b border-border/50">
+          <span class="text-[10px] text-muted-foreground font-bold uppercase tracking-wider px-1 mb-1">Scopes</span>
+          {scopes.map(scope => {
+            const active = scope.active ?? false;
+            return (
+              <a
+                href={scope.href}
+                class:list={[
+                  "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-md transition-all duration-200 no-underline",
+                  active
+                    ? "bg-primary text-primary-foreground shadow-sm"
+                    : "text-foreground hover:bg-muted hover:text-primary"
+                ]}
+                data-docs-nav-link
+              >
+                <span class:list={[
+                  scope.id === "overview" ? "i-lucide-book-open" : "i-lucide-terminal",
+                  "size-3.5"
+                ]} />
+                {scope.label}
+              </a>
+            );
+          })}
+        </div>
+        {/* Nav items — preserve groups */}
+        <ul class="flex flex-col gap-0.5 p-3">
+          {sidebarItems.map((item: ResolvedSidebarItem) => (
+            <li>
+              {item.children && item.children.length > 0 ? (
+                <div>
+                  <span class="block px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-muted-foreground mt-2 first:mt-0">
+                    {item.label}
+                  </span>
+                  <ul class="flex flex-col gap-0.5 ml-2">
+                    {item.children.map((child: ResolvedSidebarItem) => (
+                      <li>
+                        <a
+                          href={child.href ?? "#"}
+                          class:list={[
+                            "flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors no-underline",
+                            child.active
+                              ? "bg-primary/10 text-primary font-medium"
+                              : "text-foreground hover:bg-muted"
+                          ]}
+                          data-docs-nav-link
+                        >
+                          <span class="truncate">{child.label}</span>
+                          {(() => {
+                            const b = normalizeBadge(child.badge);
+                            return b && (
+                              <RLABadge
+                                variant={b.variant}
+                                color={b.color}
+                                size="xs"
+                                class={"select-none " + b.class}
+                              >
+                                {b.text}
+                              </RLABadge>
+                            );
+                          })()}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : (
+                <a
+                  href={item.href ?? "#"}
+                  class:list={[
+                    "flex items-center justify-between px-3 py-1.5 text-sm rounded-md transition-colors no-underline",
+                    item.active
+                      ? "bg-primary/10 text-primary font-medium"
+                      : "text-foreground hover:bg-muted"
+                  ]}
+                  data-docs-nav-link
+                >
+                  <span class="truncate">{item.label}</span>
+                  {(() => {
+                    const b = normalizeBadge(item.badge);
+                    return b && (
+                      <RLABadge
+                        variant={b.variant}
+                        color={b.color}
+                        size="xs"
+                        class={"select-none " + b.class}
+                      >
+                        {b.text}
+                      </RLABadge>
+                    );
+                  })()}
+                </a>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </details>
+
+    {/* ── TOC bar — hidden on xl+ ── */}
+    {hasToc && (
+      <details id="docs-toc-details" class="xl:hidden border-b border-border docs-mobile-bar">
+        <summary class="flex items-center justify-between gap-3 px-4 h-10 text-sm font-medium text-foreground cursor-pointer select-none hover:bg-muted/40 transition-colors list-none">
+          <span class="flex items-center gap-2">
+            <span class="i-lucide-list size-4 text-primary shrink-0" />
+            <span>On this page</span>
+          </span>
+          <span class="docs-toc-chevron i-lucide-chevron-down size-4 text-muted-foreground shrink-0 transition-transform duration-200" />
+        </summary>
+        <div class="px-4 py-3 max-h-[50vh] overflow-y-auto border-t border-border/50 bg-background">
+          <ul class="flex flex-col gap-0.5">
+            {tocHeadings.map(heading => (
+              <li class:list={[heading.depth === 3 && "pl-4"]}>
+                <a
+                  href={`#${heading.slug}`}
+                  class:list={[
+                    "toc-link block py-1.5 text-sm transition-colors hover:text-primary no-underline",
+                    heading.depth === 2 ? "text-foreground font-medium" : "text-muted-foreground"
+                  ]}
+                  data-toc-bar-link
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </details>
+    )}
+  </div>
+
+  {/* ── Main docs layout ── */}
+  <div class="docs-container max-w-[1400px] mx-auto px-4 lg:px-8 py-8 flex flex-col lg:flex-row gap-8 items-start relative min-h-[calc(100vh-200px)]">
+
+    {/* Sidebar column — lg+ only */}
+    <div class="docs-sidebar-wrapper hidden lg:block w-[280px] shrink-0 sticky top-[calc(var(--rl-total-header-height,64px)+2rem)] max-h-[calc(100vh-var(--rl-total-header-height,64px)-4rem)] overflow-y-auto border-r border-border pr-0">
+      <div class="flex flex-col gap-1 mb-4 border-b border-border pb-4 px-2">
+        <span class="text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-1.5 px-1">Scopes</span>
+        {scopes.map(scope => {
+          const active = scope.active ?? false;
+          return (
+            <a
+              href={scope.href}
+              class:list={[
+                "flex items-center gap-2 px-3 py-2 text-xs font-semibold rounded-md transition-all duration-200 no-underline",
+                active
+                  ? "bg-primary text-primary-foreground shadow-sm"
+                  : "text-foreground hover:bg-muted hover:text-primary"
+              ]}
+            >
+              <span class:list={[
+                scope.id === "overview" ? "i-lucide-book-open" : "i-lucide-terminal",
+                "size-4"
+              ]} />
+              {scope.label}
+            </a>
+          );
+        })}
+      </div>
+      <RLASidebar items={sidebarItems} collapsible="none" class="docs-nav-sidebar" />
+    </div>
+
+    {/* Main content */}
+    <main class="docs-content flex-1 min-w-0 w-full py-2">
+      <div class="border-b border-border pb-4 mb-6">
+        <h1 class="text-3xl font-extrabold text-foreground tracking-tight">{title}</h1>
+        {description && <p class="mt-2 text-base text-muted-foreground">{description}</p>}
+      </div>
+      <article class="markdown-content prose max-w-none prose-base dark:prose-invert">
+        <slot />
+      </article>
+      <RLASurround prev={prev} next={next} prevOverride={prevOverride} nextOverride={nextOverride} />
+
+      {/* Edit link */}
+      {resolvedEditUrl && (
+        <div class="mt-6 pt-4 border-t border-border">
+          <a
+            href={resolvedEditUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors no-underline"
+          >
+            <span class="i-lucide-pencil size-3" />
+            Edit this page on GitHub
+          </a>
+        </div>
+      )}
+    </main>
+
+    {/* TOC right column — xl+ only */}
+    {hasToc && (
+      <div class="hidden xl:block w-[240px] shrink-0 sticky top-[calc(var(--rl-total-header-height,64px)+2rem)] max-h-[calc(100vh-var(--rl-total-header-height,64px)-4rem)] overflow-y-auto pl-4">
+        <TableOfContents headings={headings} tableOfContents={resolvedToc !== false ? resolvedToc : false} />
+      </div>
+    )}
+
+  </div>
+</AppLayout>
+
+<script>
+  function initDocsBars() {
+    const pairs = [
+      { detailsId: 'docs-nav-details', chevronClass: '.docs-nav-chevron', linkAttr: '[data-docs-nav-link]' },
+      { detailsId: 'docs-toc-details', chevronClass: '.docs-toc-chevron', linkAttr: '[data-toc-bar-link]' },
+    ];
+
+    for (const { detailsId, chevronClass, linkAttr } of pairs) {
+      const details = document.getElementById(detailsId) as HTMLDetailsElement | null;
+      if (!details) continue;
+      const chevron = details.querySelector(chevronClass) as HTMLElement | null;
+
+      details.addEventListener('toggle', () => {
+        if (chevron) chevron.style.transform = details.open ? 'rotate(180deg)' : '';
+      });
+      details.querySelectorAll(linkAttr).forEach(link => {
+        link.addEventListener('click', () => { details.open = false; });
+      });
+    }
+  }
+
+  initDocsBars();
+  document.addEventListener('astro:after-swap', initDocsBars);
+</script>
+
+<style is:global>
+  /* ── Docs sidebar: flush, full-width, no chrome ── */
+  .docs-nav-sidebar {
+    width: 100% !important;
+    height: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .docs-nav-sidebar [data-slot="header"] { display: none !important; }
+  .docs-nav-sidebar [data-slot="footer"] { display: none !important; }
+  .docs-nav-sidebar [data-slot="content"] { padding-top: 0 !important; }
+</style>

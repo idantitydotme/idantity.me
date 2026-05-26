@@ -1,0 +1,67 @@
+---
+export interface SurroundItem {
+  label: string;
+  href: string;
+}
+
+// Frontmatter can be: false (hide), string (label override), or { label?, link? }
+export type SurroundOverride = false | string | { label?: string; link?: string };
+
+export interface Props {
+  prev?: SurroundItem | null;
+  next?: SurroundItem | null;
+  /** Frontmatter override for prev */
+  prevOverride?: SurroundOverride;
+  /** Frontmatter override for next */
+  nextOverride?: SurroundOverride;
+}
+
+const { prev, next, prevOverride, nextOverride } = Astro.props;
+
+function resolveItem(
+  auto: SurroundItem | null | undefined,
+  override: SurroundOverride | undefined
+): SurroundItem | null {
+  if (override === false) return null;
+  if (override === undefined) return auto ?? null;
+  if (typeof override === "string") {
+    // Label override only — keep auto href
+    return auto ? { label: override, href: auto.href } : null;
+  }
+  // Object: can override label, link, or both
+  if (!auto && !override.link) return null;
+  return {
+    label: override.label ?? auto?.label ?? "",
+    href: override.link ?? auto?.href ?? "#"
+  };
+}
+
+const resolvedPrev = resolveItem(prev, prevOverride);
+const resolvedNext = resolveItem(next, nextOverride);
+---
+
+{(resolvedPrev || resolvedNext) && (
+  <div class="mt-12 pt-6 border-t border-border flex justify-between gap-4">
+    {resolvedPrev ? (
+      <a href={resolvedPrev.href} class="flex flex-col gap-1 text-left group no-underline max-w-[45%]">
+        <span class="text-xs text-muted-foreground font-medium flex items-center gap-1 group-hover:text-primary transition-colors">
+          <span class="i-lucide-arrow-left size-3" /> Previous
+        </span>
+        <span class="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+          {resolvedPrev.label}
+        </span>
+      </a>
+    ) : <div />}
+
+    {resolvedNext ? (
+      <a href={resolvedNext.href} class="flex flex-col gap-1 text-right group no-underline max-w-[45%]">
+        <span class="text-xs text-muted-foreground font-medium flex items-center justify-end gap-1 group-hover:text-primary transition-colors">
+          Next <span class="i-lucide-arrow-right size-3" />
+        </span>
+        <span class="text-sm font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+          {resolvedNext.label}
+        </span>
+      </a>
+    ) : <div />}
+  </div>
+)}
