@@ -1,11 +1,12 @@
 ---
 import AppLayout from '@/layouts/AppLayout.astro';
-import { siteConfig } from '@/site.config';
 import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import { useI18n, currentLocale } from 'astro-nanostores-i18n:runtime';
+import { siteConfig } from '@/site.config';
+import { useI18nAsync } from 'astro-nanostores-i18n:runtime';
 import RLAPageSection from "@rimelight/ui/components/astro/RLAPageSection.astro"
-import { Image } from 'astro:assets';
+import RLABlogPosts from "@rimelight/ui/components/astro/RLABlogPosts.astro"
+import RLABlogPost from "@rimelight/ui/components/astro/RLABlogPost.astro"
 
 const posts = (await getCollection('blog')).toSorted(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -18,22 +19,17 @@ const groupedPosts = posts.reduce<Record<string, typeof posts>>((acc, post) => {
 	return acc;
 }, {});
 
-const categoryOrder = ['development-log', 'company-news', 'other'] as const;
+const categoryOrder = ["development-log", "personal-stories", "other"] as const;
 
-const activeLocale = Astro.currentLocale ?? 'en';
-currentLocale.set(activeLocale);
+const currentLocale = Astro.currentLocale ?? 'en';
 
-const messages = useI18n('blog', {
-	categoriesCompanyNews: 'Company News',
-	categoriesDevelopmentLog: 'Development Log',
-	categoriesOther: 'Other'
+const messages = await useI18nAsync('blog', {
+	categories: {
+  "development-log": "Development Log",
+  "personal-stories": "Personal Stories",
+  "other": "Other"
+} as any
 });
-
-const categoryLabels: Record<string, string> = {
-	'development-log': messages.categoriesDevelopmentLog,
-	'company-news': messages.categoriesCompanyNews,
-	'other': messages.categoriesOther
-};
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
@@ -41,50 +37,21 @@ const categoryLabels: Record<string, string> = {
 			const categoryPosts = groupedPosts[category];
 			if (!categoryPosts || categoryPosts.length === 0) return null;
 			return (
-				<RLAPageSection title={categoryLabels[category]}>
-					<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<RLAPageSection title={(messages.categories as unknown as Record<string, string>)[category]}>
+					<RLABlogPosts class="grid md:grid-cols-2 lg:grid-cols-3 gap-md">
 						{
 							categoryPosts.map((post) => (
-								<a
-									href={getRelativeLocaleUrl(activeLocale, `/blog/${post.id}/`)}
-									class="flex flex-col group overflow-hidden"
-								>
-									{/* Image Header Area */}
-									<div class="w-full aspect-video overflow-hidden  relative flex items-center justify-center">
-										{post.data.heroImage ? (
-                                          <Image
-												src={post.data.heroImage}
-												alt={post.data.title}
-												class="w-full h-full object-cover group-hover:scale-102 transition duration-300"
-											/>
-										) : (
-											<div class="absolute inset-0 flex items-center justify-center text-xl">
-												{post.data.title}
-											</div>
-										)}
-									</div>
-
-									<div class="flex flex-col p-6 flex-1">
-										<p>
-											{new Date(post.data.pubDate).toLocaleDateString(activeLocale, {
-												year: 'numeric',
-												month: 'short',
-												day: 'numeric'
-											})}
-										</p>
-
-										<h3>
-											{post.data.title}
-										</h3>
-
-										<p>
-											{post.data.description}
-										</p>
-									</div>
-								</a>
+								<RLABlogPost
+									variant="ghost"
+									image={post.data.heroImage}
+									date={post.data.pubDate}
+									title={post.data.title}
+									description={post.data.description}
+									to={getRelativeLocaleUrl(currentLocale, `/blog/${post.id}/`)}
+								/>
 							))
 						}
-					</div>
+					</RLABlogPosts>
 				</RLAPageSection>
 			);
 		})}

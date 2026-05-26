@@ -2,77 +2,109 @@
 import AppLayout from "@/layouts/AppLayout.astro";
 import { siteConfig } from "@/site.config";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { getCollection } from "astro:content";
-
 import { useI18n, currentLocale } from "astro-nanostores-i18n:runtime";
+import { getCollection } from "astro:content";
+import RLAPageSection from "@rimelight/ui/components/astro/RLAPageSection.astro";
+import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
+import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
+import RLABlogPosts from "@rimelight/ui/components/astro/RLABlogPosts.astro";
+import RLABlogPost from "@rimelight/ui/components/astro/RLABlogPost.astro";
 
 const activeLocale = Astro.currentLocale ?? "en";
 currentLocale.set(activeLocale);
 
-const messages = useI18n("home", {
-  heroTitle: "We are Rimelight Entertainment",
-  heroDescription: "We are creators of Grand Tale.",
-  heroJoinUs: "Join Us",
-  heroLearnMore: "Learn More",
-  companyTitle: "Pushing the boundaries of {interactive}",
-  companyDescription: "Founded in 2023, Rimelight Entertainment is independent and player-focused. We don't just create games; we create living, breathing worlds that respect your time and intelligence.",
-  companyStatsTitles: "Titles in Development",
-  companyStatsCreators: "Global Creators",
-  projectsTitle: "Our Projects",
-  projectsTagsFranchise: "Franchise",
-  projectsTagsFantasy: "Fantasy",
-  projectsTagsSocial: "Social",
-  projectsContentGrandTaleDescription: "A high-fantasy social life-sim game which hosts sub-games of multiple genres.",
-  projectsActionsDiscover: "Discover",
-  newsTitle: "Latest News",
-  newsDescription: "Read our latest news, posts, and project updates.",
-  newsActionsViewAll: "View All News",
-  ctaTitle: "Ready to play?",
-  ctaDescription: "Join us and let's tell our story together.",
-  ctaActionsCreateAccount: "Create Account",
-  ctaActionsExploreCareers: "Explore Careers"
+const messages = useI18n("playground", {
+    heroTitle: "Welcome to the Rimelight Entertainment",
+    heroDesc: "Look around, test, and play with some of our interactive technologies.",
+    heroLink: "Explore Now",
+    postsTitle: "Latest Posts",
+    postsDesc: "Read the latest updates to our projects.",
+    viewAllPosts: "View All Posts",
+    ctaTitle: "Wish to join us?",
+    ctaDesc: "Explore our latest projects and get in touch.",
+    ctaStart: "Get Started",
+    ctaContribute: "Join Us",
 });
 
 const latestPosts = (await getCollection("blog"))
-    .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    .slice(0, 3);
+  .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
 
 const heroLinks = [
-  {
-    label: messages.heroJoinUs,
-    href: getRelativeLocaleUrl(activeLocale, "/auth/sign-up"),
-    color: "blurple" as const,
-    variant: "solid" as const,
-    class: "px-8 py-3 rounded-md font-bold transition-all duration-300 transform hover:scale-[1.03]"
-  },
-  {
-    label: messages.heroLearnMore,
-    href: getRelativeLocaleUrl(activeLocale, "/company/about"),
-    color: "neutral" as const,
-    variant: "outline" as const,
-    trailingIcon: "i-lucide-arrow-right",
-    class: "text-white ring-white bg-transparent hover:bg-white hover:text-black px-8 py-3 rounded-md font-bold transition-all duration-300 transform hover:scale-[1.03]"
-  }
+    {
+        label: messages.heroLink,
+        href: getRelativeLocaleUrl(activeLocale, "/blog"),
+        color: "primary",
+        variant: "solid",
+    }
 ];
 
 const ctaLinks = [
-  {
-    label: messages.ctaActionsCreateAccount,
-    href: getRelativeLocaleUrl(activeLocale, "/auth/sign-up"),
-    color: "blurple" as const,
-    variant: "solid" as const,
-    class: "px-8 py-3 rounded-md font-bold transition-all duration-300 transform hover:scale-[1.03]"
-  },
-  {
-    label: messages.ctaActionsExploreCareers,
-    href: getRelativeLocaleUrl(activeLocale, "/company/careers"),
-    color: "neutral" as const,
-    variant: "outline" as const,
-    class: "text-white ring-white bg-transparent hover:bg-white hover:text-black px-8 py-3 rounded-md font-bold transition-all duration-300 transform hover:scale-[1.03]"
-  }
+    {
+        label: messages.ctaStart,
+        href: getRelativeLocaleUrl(activeLocale, "/blog"),
+        color: "primary",
+        variant: "solid"
+    },
+    {
+        label: messages.ctaContribute,
+        href: getRelativeLocaleUrl(activeLocale, "/"),
+        color: "primary",
+        variant: "outline",
+        trailingIcon: "i-lucide-arrow-right"
+    }
 ];
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
+    <RLAPageSection
+            variant="hero"
+            reverse={true}
+            title={messages.heroTitle}
+            description={messages.heroDesc}
+            links={heroLinks}
+    >
+        <RLALogo class="pointer-events-none h-64 w-auto" variant="logomark" />
+    </RLAPageSection>
 
+    <RLAPageSection
+            orientation="vertical"
+            title={messages.postsTitle}
+            description={messages.postsDesc}
+    >
+        <div slot="body" class="flex flex-col gap-xl">
+            <RLABlogPosts class="grid md:grid-cols-2 lg:grid-cols-3 gap-md">
+                {
+                    latestPosts.map((post) => (
+                        <RLABlogPost
+                            variant="ghost"
+                            image={post.data.heroImage}
+                            date={post.data.pubDate}
+                            title={post.data.title}
+                            description={post.data.description}
+                            to={getRelativeLocaleUrl(activeLocale, `/blog/${post.id}/`)}
+                        />
+                    ))
+                }
+            </RLABlogPosts>
+
+            {latestPosts.length > 0 && (
+                    <RLAButton
+                            label={messages.viewAllPosts}
+                            href={getRelativeLocaleUrl(activeLocale, "/blog")}
+                            color="primary"
+                            variant="link"
+                            trailingIcon="i-lucide-arrow-right"
+                    />
+            )}
+        </div>
+    </RLAPageSection>
+
+    <RLAPageSection
+            variant="cta"
+            ctaVariant="solid"
+            title={messages.ctaTitle}
+            description={messages.ctaDesc}
+            links={ctaLinks}
+    />
 </AppLayout>
