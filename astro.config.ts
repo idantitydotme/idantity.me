@@ -4,14 +4,11 @@ import en from "./src/translations/en.json"
 import es from "./src/translations/es.json"
 import pt from "./src/translations/pt.json"
 import sitemap from "@astrojs/sitemap"
-import starlight from "@astrojs/starlight"
+import mdx from "@astrojs/mdx"
 import { ui } from "@rimelight/ui/integrations"
 import { sri } from "@rimelight/ui/integrations"
-import { starlightAddons } from "@rimelight/ui/plugins"
-import lunaria from "@lunariajs/starlight"
-import { defineConfig, fontProviders, memoryCache, svgoOptimizer } from "astro/config"
-
 import cloudflare from "@astrojs/cloudflare"
+import { defineConfig, fontProviders, memoryCache, svgoOptimizer } from "astro/config"
 
 export default defineConfig({
   experimental: {
@@ -151,28 +148,8 @@ export default defineConfig({
         }
       }
     }),
-    starlight({
-      customCss: ["./src/styles/starlight.css"],
-      plugins: [starlightAddons(), lunaria({ route: "/i18n" })],
-      //TODO Temporarily true while issue gets resolved: https://github.com/withastro/starlight/issues/3859
-      // prerender: false,
-      lastUpdated: true,
-      disable404Route: true,
-      title: {
-        en: "Website Docs"
-      },
-      description: "Rimelight Entertainment Documentation",
-      social: [
-        { icon: "github", label: "GitHub", href: "https://github.com/Rimelight-Entertainment" }
-      ],
-      sidebar: [
-        { label: "Home", link: "/docs/" },
-        {
-          label: "Documentation",
-          items: [{ autogenerate: { directory: "docs" } }]
-        }
-      ]
-    }),
+
+    mdx(),
 
     ui({
       logos: {
