@@ -2,18 +2,6 @@
 .DS_Store
 Thumbs.db
 
-# IDE Settings
-.vscode/
-.idea/
-.zed/
-*.iml
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-*.swp
-
 # Dependencies
 node_modules/
 
@@ -21,31 +9,12 @@ node_modules/
 .astro/
 
 # Environment Variables
-.env
-.env.*
+*.env
+*.env.*
 !.env.example
-
-# LLM Agent Configurations
-AGENTS.md
-.agent/
-.agents/
-CLAUDE.md
-.claude/
-GEMINI.md
-.gemini/
-ANTIGRAVITY.md
-.antigravity/
-CURSOR.md
-.cursor/
-.cursorrules
-.qwen/
 
 # Outputs
 dist/
-.output/
-.data/
-.nitro/
-.build-*/
 
 # Drizzle
 server/db/drizzle/*.json
@@ -77,4 +46,3 @@ worker-configuration.d.ts
 # Misc
 *.local
 *.tsbuildinfo
-
