@@ -11,8 +11,8 @@ export const auth = defineMiddleware(async (context, next) => {
     context.locals.user = null
     context.locals.session = null
   } else {
-    const { auth } = await import("@/auth/auth")
-    const isAuthed = await auth.api.getSession({ headers: context.request.headers })
+    const betterAuth = (await import("@/auth/auth")).auth
+    const isAuthed = await betterAuth.api.getSession({ headers: context.request.headers })
     context.locals.user = isAuthed?.user ?? null
     context.locals.session = isAuthed?.session ?? null
   }
