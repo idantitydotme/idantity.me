@@ -1,13 +1,21 @@
 minimumReleaseAge: 4320 # Minutes = 3 Days
 minimumReleaseAgeExclude:
   - "@rimelight/*"
-  - astro
-  - "@astrojs/cloudflare"
-  - "@astrojs/check"
-  - "@astrojs/language-server"
-  - "@astrojs/starlight"
-  - "@astrojs/vue"
-  - "@rimelight/*"
+  - "astro"
+  - "@astrojs/*"
+saveExact: true
+packageImportMethod: copy
+strictSsl: true
+overrides:
+  vite-plus: latest
+  vite: "npm:@voidzero-dev/vite-plus-core@latest"
+  vitest: "npm:@voidzero-dev/vite-plus-test@latest"
+  # Dependencies failing pnpm audit
+  fast-uri: "3.1.2"
+  fast-xml-builder: "4.4.1"
+  devalue: "5.8.1"
+  brace-expansion: "5.0.6"
+  ws@8: "8.20.1"
 peerDependencyRules:
   allowAny:
     - vite
@@ -15,14 +23,6 @@ peerDependencyRules:
   allowedVersions:
     vite: "*"
     vitest: "*"
-saveExact: true
-packageImportMethod: copy
-strictSsl: true
-overrides:
-  defu: "6.1.6"
-  vite: "npm:@voidzero-dev/vite-plus-core@latest"
-  vitest: "npm:@voidzero-dev/vite-plus-test@latest"
-  yaml: "2.8.3"
 allowBuilds:
   better-sqlite3: true
   esbuild: true

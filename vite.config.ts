@@ -1,4 +1,4 @@
-import { defineConfig } from "vite-plus"
+import { defineConfig } from "vite-plus";
 
 export default defineConfig({
   staged: {
@@ -11,7 +11,12 @@ export default defineConfig({
       typeAware: true,
       typeCheck: true
     },
-    jsPlugins: ["@e18e/eslint-plugin", "eslint-plugin-regexp", "@unocss/eslint-plugin"],
+    jsPlugins: [
+      { name: "vite-plus", specifier: "vite-plus/oxlint-plugin" },
+      { name: "@e18e/eslint-plugin", specifier: "@e18e/eslint-plugin" },
+      { name: "eslint-plugin-regexp", specifier: "eslint-plugin-regexp" },
+      { name: "@unocss/eslint-plugin", specifier: "@unocss/eslint-plugin" }
+    ],
     categories: {
       correctness: "error",
       suspicious: "warn",
@@ -19,6 +24,7 @@ export default defineConfig({
     },
     rules: {
       // General
+      "vite-plus/prefer-vite-plus-imports": "error",
       "no-console": "off",
       "no-restricted-globals": "error",
       "typescript/consistent-type-imports": "error",
@@ -89,7 +95,7 @@ export default defineConfig({
     }
   },
   fmt: {
-    ignorePatterns: ["dist/**", "**/env.d.ts"],
+    ignorePatterns: ["**/worker-configuration.d.ts", "**/env.d.ts"],
     jsdoc: {
       bracketSpacing: true,
       commentLineStrategy: "multiline"
@@ -121,4 +127,4 @@ export default defineConfig({
       }
     }
   }
-})
+});
