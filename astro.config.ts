@@ -74,9 +74,9 @@ export default defineConfig({
         "default-src 'none'",
         "img-src 'self' https://cdn.idantity.me https://i3.ytimg.com https://www.youtube.com https://www.youtube-nocookie.com",
         "font-src 'self'",
-        "connect-src 'self'",
+        "connect-src 'self' https://cloudflareinsights.com",
         "frame-ancestors 'none'",
-        "frame-src https://www.youtube.com https://www.youtube-nocookie.com https://challenges.cloudflare.com",
+        "frame-src https://www.youtube.com https://www.youtube-nocookie.com",
         "upgrade-insecure-requests",
         "base-uri 'self'",
         "form-action 'self'"
@@ -85,6 +85,7 @@ export default defineConfig({
         resources: [
           "'self'",
           "https://challenges.cloudflare.com",
+          "https://static.cloudflareinsights.com",
           "https://betterlytics.io/analytics.js"
         ]
       },
