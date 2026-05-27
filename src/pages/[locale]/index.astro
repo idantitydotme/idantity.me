@@ -7,8 +7,8 @@ import { getCollection } from "astro:content";
 import RLAPageSection from "@rimelight/ui/components/astro/RLAPageSection.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
 import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
-import RLABlogPosts from "@rimelight/ui/components/astro/RLABlogPosts.astro";
-import RLABlogPost from "@rimelight/ui/components/astro/RLABlogPost.astro";
+import RLAGrid from "@rimelight/ui/components/astro/RLAGrid.astro";
+import RLAPost from "@rimelight/ui/components/astro/RLAPost.astro";
 
 const activeLocale = Astro.currentLocale ?? "en";
 currentLocale.set(activeLocale);
@@ -73,10 +73,10 @@ const ctaLinks = [
             description={messages.postsDesc}
     >
         <div slot="body" class="flex flex-col gap-xl">
-            <RLABlogPosts class="grid md:grid-cols-2 lg:grid-cols-3 gap-md">
+            <RLAGrid>
                 {
                     latestPosts.map((post) => (
-                        <RLABlogPost
+                        <RLAPost
                             variant="ghost"
                             image={post.data.heroImage}
                             date={post.data.pubDate}
@@ -86,7 +86,7 @@ const ctaLinks = [
                         />
                     ))
                 }
-            </RLABlogPosts>
+            </RLAGrid>
 
             {latestPosts.length > 0 && (
                     <RLAButton
