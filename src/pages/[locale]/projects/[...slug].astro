@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { getEntry, render } from 'astro:content';
 import AppLayout from '@/layouts/AppLayout.astro';
-import FormattedDate from '@/components/FormattedDate.astro';
+import RLADate from '@rimelight/ui/components/astro/RLADate.astro';
 import { useI18n, currentLocale } from 'astro-nanostores-i18n:runtime';
 
 const activeLocale = Astro.currentLocale ?? 'en';
@@ -29,11 +29,11 @@ const { title, description, pubDate, updatedDate, heroImage } = project.data;
 			<div class="prose">
 				<div class="title">
 					<div class="date">
-						<FormattedDate date={pubDate} />
+						<RLADate date={pubDate} />
 						{
 							updatedDate && (
 								<div class="last-updated-on">
-									{messages.lastUpdatedOn} <FormattedDate date={updatedDate} />
+									{messages.lastUpdatedOn} <RLADate date={updatedDate} />
 								</div>
 							)
 						}

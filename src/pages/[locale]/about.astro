@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import AppLayout from '@/layouts/AppLayout.astro';
 import AboutHeroImage from '@/assets/placeholder.webp';
-import FormattedDate from '@/components/FormattedDate.astro';
+import RLADate from '@rimelight/ui/components/astro/RLADate.astro';
 import { useI18n, currentLocale } from 'astro-nanostores-i18n:runtime';
 
 const activeLocale = Astro.currentLocale ?? 'en';
@@ -23,7 +23,7 @@ const messages = useI18n('about', {
 			<div class="prose">
 				<div class="title">
 					<div class="date">
-						<FormattedDate date={new Date('August 08 2021')} />
+						<RLADate date={new Date('August 08 2021')} />
 					</div>
 					<h1>{messages.heading}</h1>
 					<hr />
