@@ -1,81 +1,164 @@
 ---
 import RLAHeader from "@rimelight/ui/components/astro/RLAHeader.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
-import RLANavigationMenu from "@rimelight/ui/components/astro/RLANavigationMenu.astro";
-import type { NavigationMenuItem } from "@rimelight/ui/types";
+import RLANavigationMenu from "@rimelight/ui/components/astro/RLANavigationMenu.astro"
+import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
+import RLASlideover from "@rimelight/ui/components/astro/RLASlideover.astro";
+import type { NavigationMenuItem, ButtonProps } from "@rimelight/ui/types";
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { useI18n } from "astro-nanostores-i18n:runtime";
 
 const activeLocale = Astro.currentLocale ?? "en";
 
-const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
-
 const messages = useI18n("app_header", {
-	"links_projects_label": "me.projects",
-	"links_music_label": "me.music",
-	"links_blog_label": "me.blog",
-	"links_about_label": "me.about",
-	"links_services_label": "me.services",
-	"links_resume_label": "me.resume"
+	"left-links_projects_label": "me.projects",
+	"left-links_music_label": "me.music",
+	"left-links_blog_label": "me.blog",
+	"left-links_about_label": "me.about",
+	"right-links_services_label": "me.services",
+	"right-links_resume_label": "me.resume",
+  "socials_instagram_label": "Instagram",
+  "socials_github_label": "GitHub"
 });
 
-const leftItems: NavigationMenuItem[] = [
+const leftLinks: NavigationMenuItem[] = [
   {
-    label: messages["links_projects_label"],
+    label: messages["left-links_projects_label"],
     to: getRelativeLocaleUrl(activeLocale, '/projects'),
-    active: pathname === getRelativeLocaleUrl(activeLocale, '/projects').replace(/\/+$/, '')
   },
   {
-    label: messages["links_music_label"],
+    label: messages["left-links_music_label"],
     to: getRelativeLocaleUrl(activeLocale, '/music'),
-    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/music').replace(/\/+$/, ''))
   },
   {
-    label: messages["links_blog_label"],
+    label: messages["left-links_blog_label"],
     to: getRelativeLocaleUrl(activeLocale, '/blog'),
-    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/blog').replace(/\/+$/, ''))
   },
 	{
-		label: messages["links_about_label"],
+		label: messages["left-links_about_label"],
 		to: getRelativeLocaleUrl(activeLocale, '/about'),
-		active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/about').replace(/\/+$/, ''))
 	}
 ];
 
-const rightItems: NavigationMenuItem[] = [
+const rightLinks: NavigationMenuItem[] = [
   {
-    label: messages["links_services_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/services'),
-    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/services').replace(/\/+$/, ''))
+    label: messages["right-links_services_label"],
+    to: getRelativeLocaleUrl(activeLocale, '/projects'),
   },
   {
-    label: messages["links_resume_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/resume'),
-    active: pathname.startsWith(getRelativeLocaleUrl(activeLocale, '/resume').replace(/\/+$/, ''))
+    label: messages["right-links_resume_label"],
+    to: getRelativeLocaleUrl(activeLocale, '/music'),
+  }
+];
+
+const socials: ButtonProps[] = [
+  {
+    variant: "ghost",
+    leadingIcon: "i-logos-instagram-icon?mask text-[var(--rl-text)] group-hover:text-[var(--rl-text-hover)]",
+    label: messages["socials_instagram_label"],
+    to: "https://instagram.com/idantity.me"
+  },
+  {
+    variant: "ghost",
+    leadingIcon: "i-logos-github-icon?mask text-[var(--rl-text)] group-hover:text-[var(--rl-text-hover)]",
+    label: messages["socials_github_label"],
+    to: "https://github.com/idantitydotme"
   }
 ];
 ---
 
-<RLAHeader fixed={true} stackIndex={0} class="bg-black">
-	<div slot="left" class="flex flex-row items-center gap-md">
-		<RLALogo variant="logomark" class="h-10 w-auto" mode="white" />
-		<RLANavigationMenu
-			items={leftItems}
-			variant="link"
-			theme="flat"
-			ui={{
-				link: 'text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400'
-			}}
-		/>
-	</div>
-	<div slot="right" class="flex flex-row items-center gap-md">
-		<RLANavigationMenu
-			items={rightItems}
-			variant="link"
-			theme="flat"
-			ui={{
-				link: 'text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400'
-			}}
-		/>
+<RLAHeader
+  contain={false}
+  fixed={true}
+  class="bg-black"
+>
+  <div slot="left" class="flex items-center gap-md">
+    <div class="hidden md:flex flex-row gap-md">
+      <RLALogo
+        variant="logomark"
+        class="h-10 w-auto"
+        mode="white"
+      />
+      <RLANavigationMenu
+        items={leftLinks}
+        variant="link"
+        theme="flat"
+        ui={{
+          link: 'text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400'
+        }}
+      />
+    </div>
+
+    <div class="block md:hidden">
+      <RLASlideover side="left" title="Menu">
+        <RLAButton
+          slot="trigger"
+          color="neutral"
+          variant="ghost"
+          rounded={true}
+          leadingIcon="i-lucide-menu"
+          class="!text-white"
+          theme="dark"
+          aria-label="Open Menu"
+        />
+
+        <RLANavigationMenu
+          items={leftLinks}
+          orientation="vertical"
+          variant="link"
+          ui={{
+            link: "text-black dark:text-white flex justify-start items-center w-full text-left py-2 text-lg transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400"
+          }}
+        />
+      </RLASlideover>
+    </div>
+  </div>
+
+  <div slot="center" class="flex items-center gap-md">
+    <div class="block md:hidden">
+      <RLALogo
+        variant="logomark"
+        class="h-10 w-auto"
+        mode="white"
+      />
+    </div>
+  </div>
+
+  <div slot="right" class="flex items-center gap-md">
+
+    <div class="hidden md:flex flex-row gap-md">
+      <RLANavigationMenu
+        items={rightLinks}
+        variant="link"
+        theme="flat"
+        ui={{
+          link: 'text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400'
+        }}
+      />
+      {socials.map((buttonProps) => (
+        <RLAButton {...buttonProps} />
+      ))}
+    </div>
+
+    <div class="block md:hidden">
+      <RLASlideover side="right" title="Actions">
+        <RLAButton
+          slot="trigger"
+          color="neutral"
+          variant="ghost"
+          rounded={true}
+          leadingIcon="i-lucide-ellipsis-vertical"
+          class="!text-white"
+          theme="dark"
+          aria-label="Open Actions"
+        />
+
+        <div class="flex flex-col gap-md">
+          {socials.map((buttonProps) => (
+            <RLAButton {...buttonProps} block={true} />
+          ))}
+        </div>
+      </RLASlideover>
+    </div>
 	</div>
 </RLAHeader>
