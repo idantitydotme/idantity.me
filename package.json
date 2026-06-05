@@ -71,7 +71,7 @@
     "tsx": "4.22.4",
     "typescript": "6.0.3",
     "unocss": "66.7.0",
-    "vite-plus": "0.1.24"
+    "vite-plus": "latest"
   },
   "engines": {
     "node": ">=25.2.1"
