@@ -12,10 +12,13 @@ overrides:
   vitest: "npm:@voidzero-dev/vite-plus-test@latest"
   # Dependencies failing pnpm audit
   fast-uri: "3.1.2"
-  fast-xml-parser: "4.4.1"
+  fast-xml-parser: "5.8.0"
   devalue: "5.8.1"
   brace-expansion: "5.0.6"
   ws@8: "8.20.1"
+  esbuild: "0.28.0"
+  yaml: "2.8.3"
+  "@astrojs/mdx": "5.0.6"
 peerDependencyRules:
   allowAny:
     - vite
