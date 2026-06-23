@@ -1,7 +1,7 @@
 import { defineMiddleware } from "astro:middleware"
 
 const CONSTRUCTION_SKIP_SEGMENTS = ["/construction", "/auth", "/api/auth"]
-const LOCALES = ["en", "pt", "es"]
+const LOCALES = ["en", "pt"]
 
 export const construction = defineMiddleware(async (context, next) => {
   const constructionMode =
