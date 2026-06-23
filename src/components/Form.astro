@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'astro/types'
 import { isInputError, type ActionError } from 'astro:actions'
 
 interface Props extends HTMLAttributes<'form'> {
-  error?: ActionError
+  error?: ActionError | undefined
 }
 
 const { error, ...props } = Astro.props

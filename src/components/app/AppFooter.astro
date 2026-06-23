@@ -7,11 +7,11 @@ import RLALinkGroup from "@rimelight/ui/components/astro/RLALinkGroup.astro";
 import RLAThemeSelector from "@rimelight/ui/components/astro/RLAThemeSelector.astro";
 import RLALocaleSelector from "@rimelight/ui/components/astro/RLALocaleSelector.astro";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { useI18n } from "astro-nanostores-i18n:runtime";
+import { useI18n } from "@rimelight/i18n";
 
 const activeLocale = Astro.currentLocale ?? "en";
 
-const messages = useI18n("app_footer", {
+const messages = useI18n(Astro, "app_footer", {
   "links_resources_label": "Resources",
   "links_resources_branding": "Branding",
   "links_legal_label": "Legal",

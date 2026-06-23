@@ -1,0 +1,130 @@
+---
+import RLACard from "@rimelight/ui/components/astro/RLACard.astro"
+import RLAFormField from "@rimelight/ui/components/astro/RLAFormField.astro"
+import RLAInput from "@rimelight/ui/components/astro/RLAInput.astro"
+import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro"
+import RLACheckbox from "@rimelight/ui/components/astro/RLACheckbox.astro"
+
+const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
+---
+
+{allowAuth ? (
+  <RLACard class="bg-black text-left">
+    <form id="sign-in-form" class="flex flex-col gap-4">
+      <p id="error-message" class="text-red-500 text-sm hidden"></p>
+
+      <div class="flex flex-col gap-4">
+        <RLAFormField
+          label="E-mail"
+          required
+          ui={{
+            label: 'text-white',
+            description: 'text-neutral-500'
+          }}
+        >
+          <RLAInput
+            id="email-input"
+            type="email"
+            name="email"
+            placeholder="your@email.com"
+            class="w-full text-white"
+            required
+          />
+        </RLAFormField>
+
+        <RLAFormField
+          label="Password"
+          required
+          ui={{
+            label: 'text-white',
+            description: 'text-neutral-500'
+          }}
+        >
+          <RLAInput
+            id="password-input"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            class="w-full text-white"
+            required
+          />
+        </RLAFormField>
+
+        <RLACheckbox
+          id="remember-me-checkbox"
+          name="rememberMe"
+          label="Remember me"
+          checked
+          ui={{
+            label: 'text-white',
+            indicator: 'data-[state=checked]:bg-primary-500 data-[state=checked]:text-white'
+          }}
+        />
+
+        <RLAButton
+          id="submit-button"
+          type="submit"
+          color="primary"
+          variant="solid"
+          block
+          class="text-white bg-primary-500 hover:bg-primary-600 w-full"
+        >
+          Sign In
+        </RLAButton>
+      </div>
+    </form>
+  </RLACard>
+) : (
+  <p class="text-neutral-400">Please return at a later stage.</p>
+)}
+
+<script>
+  function getRedirectParam() {
+    const params = new URLSearchParams(window.location.search)
+    return params.get("redirect") || "/"
+  }
+
+  const form = document.getElementById("sign-in-form")
+  const emailInput = document.getElementById("email-input") as HTMLInputElement | null
+  const passwordInput = document.getElementById("password-input") as HTMLInputElement | null
+  const rememberCheckbox = document.getElementById("remember-me-checkbox") as HTMLInputElement | null
+  const errorMessage = document.getElementById("error-message")
+  const submitButton = document.getElementById("submit-button")
+
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault()
+      if (!emailInput || !passwordInput || !submitButton || !errorMessage) return
+
+      // Set loading state
+      submitButton.setAttribute("disabled", "true")
+      submitButton.textContent = "Signing In..."
+      errorMessage.classList.add("hidden")
+      errorMessage.textContent = ""
+
+      try {
+        const { authClient } = await import("@/auth/auth-client")
+        const { error: signInError } = await authClient.signIn.email({
+          email: emailInput.value,
+          password: passwordInput.value,
+          rememberMe: rememberCheckbox ? rememberCheckbox.checked : true
+        })
+
+        if (signInError) {
+          errorMessage.textContent = signInError.message || "Something went wrong"
+          errorMessage.classList.remove("hidden")
+          submitButton.removeAttribute("disabled")
+          submitButton.textContent = "Sign In"
+          return
+        }
+
+        window.location.href = getRedirectParam()
+      } catch (err: any) {
+        errorMessage.textContent = err?.message || "An unexpected error occurred."
+        errorMessage.classList.remove("hidden")
+        submitButton.removeAttribute("disabled")
+        submitButton.textContent = "Sign In"
+      }
+    })
+  }
+</script>

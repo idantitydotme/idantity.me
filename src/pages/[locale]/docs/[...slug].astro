@@ -11,9 +11,10 @@ const allDocs = await getCollection("docs");
 const versions = getDocsVersions(allDocs, activeLocale);
 const { activeVersion, contentPath, includeVersionInUrl } = parseDocsSlug(slug, versions);
 
-if (includeVersionInUrl && (!slug || !slug.split("/")[0].startsWith("v"))) {
-  const targetPath = `/${activeLocale}/docs/${activeVersion}/${contentPath === "index" ? "" : contentPath}`;
-  return Astro.redirect(targetPath);
+const slugStr = slug ?? "";
+const firstPart = slugStr.split("/")[0] ?? "";
+if (includeVersionInUrl && (!slugStr || !firstPart.startsWith("v"))) {
+  return Astro.redirect(`/${activeLocale}/docs/${activeVersion}/${contentPath === "index" ? "" : contentPath}`);
 }
 
 const entryKey = contentPath === "index"

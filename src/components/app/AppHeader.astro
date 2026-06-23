@@ -6,11 +6,11 @@ import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
 import RLASlideover from "@rimelight/ui/components/astro/RLASlideover.astro";
 import type { NavigationMenuItem, ButtonProps } from "@rimelight/ui/types";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import { useI18n } from "astro-nanostores-i18n:runtime";
+import { useI18n } from "@rimelight/i18n";
 
 const activeLocale = Astro.currentLocale ?? "en";
 
-const messages = useI18n("app_header", {
+const messages = useI18n(Astro, "app_header", {
 	"left-links_projects_label": "me.projects",
 	"left-links_music_label": "me.music",
 	"left-links_blog_label": "me.blog",

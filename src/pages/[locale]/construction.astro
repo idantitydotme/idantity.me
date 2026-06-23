@@ -2,13 +2,11 @@
 import ConstructionLayout from '@/layouts/ConstructionLayout.astro'
 import RLALogo from '@rimelight/ui/components/astro/RLALogo.astro'
 import RLALocaleSelector from "@rimelight/ui/components/astro/RLALocaleSelector.astro";
-import ConstructionSignIn from '@/components/auth/ConstructionSignIn.vue'
-import { useI18n, currentLocale } from 'astro-nanostores-i18n:runtime'
+import ConstructionSignIn from '@/components/auth/ConstructionSignIn.astro'
+import { useI18n } from "@rimelight/i18n"
 
-const activeLocale = Astro.currentLocale ?? 'en'
-currentLocale.set(activeLocale)
 
-const messages = useI18n('construction', {
+const messages = useI18n(Astro, 'construction', {
   constructionTitle: 'Under Construction',
   constructionHeading: 'THIS WEBSITE IS CURRENTLY IN CONSTRUCTION',
   constructionDescription: 'Please sign in if you have access.',
@@ -33,7 +31,7 @@ const targetLanguages = [
         <p class="m-0 text-neutral-400">{messages.constructionDescription}</p>
       </div>
 
-      <ConstructionSignIn client:load />
+      <ConstructionSignIn />
 
       <div class="flex flex-col items-center gap-2 text-xs text-neutral-500">
         <span>&copy; {new Date().getFullYear()} Rimelight Entertainment</span>

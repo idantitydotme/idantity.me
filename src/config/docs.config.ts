@@ -15,12 +15,6 @@ export default defineDocsConfig({
         {
           label: "Home",
           href: "/{locale}/docs/"
-        },
-        {
-          label: "Getting Started",
-          autogenerate: {
-            directory: ""
-          }
         }
       ]
     },
@@ -32,9 +26,7 @@ export default defineDocsConfig({
       items: [
         {
           label: "Testing Suite",
-          autogenerate: {
-            directory: "tests/"
-          }
+          href: "/{locale}/docs/tests/keyboard/"
         }
       ]
     }
