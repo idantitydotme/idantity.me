@@ -5,7 +5,25 @@ import RLAInput from "@rimelight/ui/components/astro/RLAInput.astro"
 import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro"
 import RLACheckbox from "@rimelight/ui/components/astro/RLACheckbox.astro"
 
-const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
+interface Props {
+  allowAuth?: boolean
+  emailLabel?: string
+  emailPlaceholder?: string
+  passwordLabel?: string
+  passwordPlaceholder?: string
+  rememberMeLabel?: string
+  signInButtonLabel?: string
+}
+
+const {
+  allowAuth = true,
+  emailLabel = "E-mail",
+  emailPlaceholder = "your@email.com",
+  passwordLabel = "Password",
+  passwordPlaceholder = "••••••••",
+  rememberMeLabel = "Remember me",
+  signInButtonLabel = "Sign In"
+} = Astro.props
 ---
 
 {allowAuth ? (
@@ -15,7 +33,7 @@ const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
 
       <div class="flex flex-col gap-4">
         <RLAFormField
-          label="E-mail"
+          label={emailLabel}
           required
           ui={{
             label: 'text-white',
@@ -26,14 +44,14 @@ const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
             id="email-input"
             type="email"
             name="email"
-            placeholder="your@email.com"
+            placeholder={emailPlaceholder}
             class="w-full text-white"
             required
           />
         </RLAFormField>
 
         <RLAFormField
-          label="Password"
+          label={passwordLabel}
           required
           ui={{
             label: 'text-white',
@@ -44,7 +62,7 @@ const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
             id="password-input"
             type="password"
             name="password"
-            placeholder="••••••••"
+            placeholder={passwordPlaceholder}
             class="w-full text-white"
             required
           />
@@ -53,7 +71,7 @@ const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
         <RLACheckbox
           id="remember-me-checkbox"
           name="rememberMe"
-          label="Remember me"
+          label={rememberMeLabel}
           checked
           ui={{
             label: 'text-white',
@@ -68,8 +86,9 @@ const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
           variant="solid"
           block
           class="text-white bg-primary-500 hover:bg-primary-600 w-full"
+          data-label={signInButtonLabel}
         >
-          Sign In
+          {signInButtonLabel}
         </RLAButton>
       </div>
     </form>
@@ -114,7 +133,7 @@ const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
           errorMessage.textContent = signInError.message || "Something went wrong"
           errorMessage.classList.remove("hidden")
           submitButton.removeAttribute("disabled")
-          submitButton.textContent = "Sign In"
+          submitButton.textContent = submitButton.getAttribute("data-label") || "Sign In"
           return
         }
 
@@ -123,7 +142,7 @@ const { allowAuth = true } = Astro.props as { allowAuth?: boolean }
         errorMessage.textContent = err?.message || "An unexpected error occurred."
         errorMessage.classList.remove("hidden")
         submitButton.removeAttribute("disabled")
-        submitButton.textContent = "Sign In"
+        submitButton.textContent = submitButton.getAttribute("data-label") || "Sign In"
       }
     })
   }

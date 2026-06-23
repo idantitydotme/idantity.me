@@ -6,5 +6,17 @@
     "links_services_label": "Services",
     "links_about_label": "About",
     "links_resume_label": "Resume"
+  },
+  "page_construction": {
+    "meta_title": "Under Construction",
+    "meta_description": "This website is under construction.",
+    "title": "THIS WEBSITE IS UNDER CONSTRUCTION",
+    "description": "If you have access, please sign in.",
+    "form_email_label": "E-mail",
+    "form_email_placeholder": "your@email.com",
+    "form_password_label": "Password",
+    "form_password_placeholder": "••••••••",
+    "form_remember_me_label": "Remember me",
+    "form_sign_in_button": "Sign In"
   }
 }

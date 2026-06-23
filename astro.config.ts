@@ -1,5 +1,4 @@
 import en from "./src/translations/en.json"
-import es from "./src/translations/es.json"
 import pt from "./src/translations/pt.json"
 import sitemap from "@astrojs/sitemap"
 import mdx from "@astrojs/mdx"
@@ -82,7 +81,7 @@ export default defineConfig({
 
   integrations: [
     rimelightI18n({
-      translations: { en, es, pt },
+      translations: { en, pt },
       kvBinding: "idantity-dot-me_translations"
     }),
     sitemap({
@@ -90,8 +89,7 @@ export default defineConfig({
         defaultLocale: "en",
         locales: {
           en: "en-US",
-          pt: "pt-BR",
-          es: "es-ES"
+          pt: "pt-BR"
         }
       }
     }),

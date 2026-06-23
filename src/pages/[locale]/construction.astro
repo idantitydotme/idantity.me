@@ -1,41 +1,52 @@
 ---
+import { useI18n } from "@rimelight/i18n"
 import ConstructionLayout from '@/layouts/ConstructionLayout.astro'
+import ConstructionSignIn from '@/components/auth/ConstructionSignIn.astro'
 import RLALogo from '@rimelight/ui/components/astro/RLALogo.astro'
 import RLALocaleSelector from "@rimelight/ui/components/astro/RLALocaleSelector.astro";
-import ConstructionSignIn from '@/components/auth/ConstructionSignIn.astro'
-import { useI18n } from "@rimelight/i18n"
 
-
-const messages = useI18n(Astro, 'construction', {
-  constructionTitle: 'Under Construction',
-  constructionHeading: 'THIS WEBSITE IS CURRENTLY IN CONSTRUCTION',
-  constructionDescription: 'Please sign in if you have access.',
-  constructionSignIn: 'Sign In',
+const messages = useI18n(Astro, 'page_construction', {
+  "meta_title": "Under Construction",
+  "meta_description": "This website is under construction.",
+  "title": "THIS WEBSITE IS UNDER CONSTRUCTION",
+  "description": "If you have access, please sign in.",
+  "form_email_label": "E-mail",
+  "form_email_placeholder": "your@email.com",
+  "form_password_label": "Password",
+  "form_password_placeholder": "••••••••",
+  "form_remember_me_label": "Remember me",
+  "form_sign_in_button": "Sign In"
 })
 
 const targetLanguages = [
   { code: 'en', label: 'English' },
-  { code: 'es', label: 'Español' },
   { code: 'pt', label: 'Português' },
 ]
 ---
 
-<ConstructionLayout title={messages.constructionTitle} description={messages.constructionDescription}>
+<ConstructionLayout title={messages.meta_title} description={messages.meta_description}>
   <div class="flex min-h-screen flex-col items-center justify-center bg-black px-4 py-12">
     <div class="z-10 w-full max-w-md space-y-8 text-center">
       <div class="flex flex-col items-center gap-4">
         <RLALogo class="h-12 w-auto text-white" variant="logomark" mode="white" />
         <h1 class="m-0 text-3xl font-bold text-white sm:text-4xl">
-          {messages.constructionHeading}
+          {messages.title}
         </h1>
-        <p class="m-0 text-neutral-400">{messages.constructionDescription}</p>
+        <p class="m-0 text-neutral-400">{messages.description}</p>
       </div>
 
-      <ConstructionSignIn />
+      <ConstructionSignIn
+        emailLabel={messages.form_email_label}
+        emailPlaceholder={messages.form_email_placeholder}
+        passwordLabel={messages.form_password_label}
+        passwordPlaceholder={messages.form_password_placeholder}
+        rememberMeLabel={messages.form_remember_me_label}
+        signInButtonLabel={messages.form_sign_in_button}
+      />
 
       <div class="flex flex-col items-center gap-2 text-xs text-neutral-500">
-        <span>&copy; {new Date().getFullYear()} Rimelight Entertainment</span>
         <RLALocaleSelector locales={targetLanguages} />
+        <span>&copy; {new Date().getFullYear()} idantity.me</span>
       </div>
     </div>
   </div>
