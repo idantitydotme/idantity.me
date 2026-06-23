@@ -1,8 +1,7 @@
 ---
 import AppLayout from "@/layouts/AppLayout.astro";
-import { siteConfig } from "@/site.config";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { useI18n, currentLocale } from "astro-nanostores-i18n:runtime";
+import { siteConfig } from "@/config/site.config";
+import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
 import { getCollection } from "astro:content";
 import RLAPageSection from "@rimelight/ui/components/astro/RLAPageSection.astro";
 import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
@@ -10,10 +9,7 @@ import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
 import RLAGrid from "@rimelight/ui/components/astro/RLAGrid.astro";
 import RLAPost from "@rimelight/ui/components/astro/RLAPost.astro";
 
-const activeLocale = Astro.currentLocale ?? "en";
-currentLocale.set(activeLocale);
-
-const messages = useI18n("playground", {
+const messages = useI18n(Astro, "playground", {
     heroTitle: "Welcome to the Rimelight Entertainment",
     heroDesc: "Look around, test, and play with some of our interactive technologies.",
     heroLink: "Explore Now",
@@ -33,7 +29,7 @@ const latestPosts = (await getCollection("blog"))
 const heroLinks = [
     {
         label: messages.heroLink,
-        href: getRelativeLocaleUrl(activeLocale, "/blog"),
+        href: getRelativeLocaleUrl("/blog"),
         color: "primary",
         variant: "solid",
     }
@@ -42,13 +38,13 @@ const heroLinks = [
 const ctaLinks = [
     {
         label: messages.ctaStart,
-        href: getRelativeLocaleUrl(activeLocale, "/blog"),
+        href: getRelativeLocaleUrl("/blog"),
         color: "primary",
         variant: "solid"
     },
     {
         label: messages.ctaContribute,
-        href: getRelativeLocaleUrl(activeLocale, "/"),
+        href: getRelativeLocaleUrl("/"),
         color: "primary",
         variant: "outline",
         trailingIcon: "i-lucide-arrow-right"
@@ -82,7 +78,7 @@ const ctaLinks = [
                             date={post.data.pubDate}
                             title={post.data.title}
                             description={post.data.description}
-                            to={getRelativeLocaleUrl(activeLocale, `/blog/${post.id}/`)}
+                            to={getRelativeLocaleUrl(`/blog/${post.id}/`)}
                         />
                     ))
                 }
@@ -91,7 +87,7 @@ const ctaLinks = [
             {latestPosts.length > 0 && (
                     <RLAButton
                             label={messages.viewAllPosts}
-                            href={getRelativeLocaleUrl(activeLocale, "/blog")}
+                            href={getRelativeLocaleUrl("/blog")}
                             color="primary"
                             variant="link"
                             trailingIcon="i-lucide-arrow-right"

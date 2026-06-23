@@ -1,15 +1,18 @@
 ---
 import AppLayout from "./AppLayout.astro";
 import RLASidebar from "@rimelight/ui/components/astro/RLASidebar.astro";
-import TableOfContents from "@rimelight/ui/components/TableOfContents.astro";
-import RLASurround from "@/components/docs/RLASurround.astro";
+import RLATableOfContents from "@rimelight/ui/components/astro/RLATableOfContents.astro";
+import RLASurround from "@rimelight/ui/components/astro/RLASurround.astro";
+import RLACopyMarkdown from "@rimelight/ui/components/astro/RLACopyMarkdown.astro";
+import RLAShare from "@rimelight/ui/components/astro/RLAShare.astro";
 import RLABadge from "@rimelight/ui/components/astro/RLABadge.astro";
+import RLAContainer from "@rimelight/ui/components/astro/RLAContainer.astro";
+import RLASelect from "@rimelight/ui/components/astro/RLASelect.astro";
 import { getDocsSidebar, getSurroundItems } from "@rimelight/ui/utils";
 import type { ResolvedSidebarItem } from "@rimelight/ui/utils";
-import { getCollection } from "astro:content";
 import docsConfig from "@/config/docs.config";
-import type { TableOfContentsConfig } from "@rimelight/ui/components/TableOfContents.astro";
-import type { SurroundOverride } from "@/components/docs/RLASurround.astro";
+import type { TableOfContentsConfig } from "@rimelight/ui/types";
+
 
 function normalizeBadge(badge: any) {
   if (!badge) return null
@@ -58,15 +61,31 @@ interface Props {
   description?: string | undefined;
   headings?: { depth: number; slug: string; text: string }[];
   /** Per-page TOC override (from frontmatter) */
-  tableOfContents?: false | TableOfContentsConfig;
-  /** Frontmatter prev/next surround overrides */
-  prevOverride?: SurroundOverride;
-  nextOverride?: SurroundOverride;
+  tableOfContents?: false | TableOfContentsConfig | undefined;
   /** GitHub edit URL for this page (false = hide, string = full URL) */
   editUrl?: string | false | undefined;
+  /** Override the prev/next surround navigation */
+  prevOverride?: { label: string; href: string } | null | undefined;
+  nextOverride?: { label: string; href: string } | null | undefined;
+  rawMarkdown?: string | undefined;
+  activeVersion?: string | undefined;
+  versions?: string[] | undefined;
+  includeVersionInUrl?: boolean | undefined;
 }
 
-const { title, description = "", headings = [], tableOfContents: tocOverride, prevOverride, nextOverride, editUrl } = Astro.props;
+const {
+  title,
+  description = "",
+  headings = [],
+  tableOfContents: tocOverride,
+  editUrl,
+  prevOverride = null,
+  nextOverride = null,
+  rawMarkdown,
+  activeVersion,
+  versions = [],
+  includeVersionInUrl = false
+} = Astro.props;
 
 const locale = Astro.currentLocale ?? "en";
 const currentPath = Astro.url.pathname;
@@ -75,9 +94,12 @@ const { items: sidebarItems, scopes, activeScope } = await getDocsSidebar(
   docsConfig,
   locale,
   currentPath,
-  getCollection
+  activeVersion,
+  includeVersionInUrl
 );
-const { prev, next } = getSurroundItems(sidebarItems, currentPath);
+const surround = getSurroundItems(sidebarItems, currentPath);
+const prev = prevOverride ?? surround.prev;
+const next = nextOverride ?? surround.next;
 
 // Resolve TOC config: per-page overrides site default
 const globalToc = docsConfig.tableOfContents ?? { minHeadingLevel: 2, maxHeadingLevel: 3 };
@@ -88,10 +110,16 @@ const resolvedEditUrl = (() => {
   if (editUrl === false) return null;
   if (typeof editUrl === "string") return editUrl;
   if (docsConfig.editLink?.baseUrl) {
-    // Derive file path from currentPath: strip /{locale}/docs/ prefix
-    const rel = currentPath.replace(/^\/[^/]+\/docs\//, "").replace(/\/$/, "");
-    const filePath = rel ? `${rel}.md` : "index.md";
-    return docsConfig.editLink.baseUrl.replace(/\/$/, "") + "/" + filePath;
+    const cleanPath = currentPath
+      .replace(new RegExp(`^/${locale}/docs(/|$)`), "")
+      .replace(new RegExp(`^/${locale}/company/docs(/|$)`), "")
+      .replace(activeVersion ? new RegExp(`^${activeVersion}(/|$)`) : "", "")
+      .replace(/\/$/, "");
+    const normalizedSlug = cleanPath ? `${cleanPath}.md` : "index.md";
+    const relPath = activeVersion
+      ? `${activeVersion}/${locale}/${normalizedSlug}`
+      : `${locale}/${normalizedSlug}`;
+    return docsConfig.editLink.baseUrl.replace(/\/$/, "") + "/" + relPath;
   }
   return null;
 })();
@@ -103,6 +131,10 @@ const tocHeadings = hasToc
       return h.depth >= (cfg.minHeadingLevel ?? 2) && h.depth <= (cfg.maxHeadingLevel ?? 3);
     })
   : [];
+const getVersionHomeUrl = (v: string) => {
+  const isCompany = currentPath.includes("/company/docs");
+  return isCompany ? `/${locale}/company/docs/${v}/` : `/${locale}/docs/${v}/`;
+};
 ---
 
 <AppLayout title={title} description={description}>
@@ -132,6 +164,24 @@ const tocHeadings = hasToc
         <span class="docs-nav-chevron i-lucide-chevron-down size-4 text-muted-foreground shrink-0 transition-transform duration-200" />
       </summary>
       <div class="border-t border-border/50 bg-background max-h-[60vh] overflow-y-auto">
+        {versions.length > 1 && (
+          <div class="flex flex-col gap-1 p-3 border-b border-border/50">
+            <span class="text-[10px] text-muted-foreground font-bold uppercase tracking-wider px-1 mb-1">Version</span>
+            <rla-version-selector class="block w-full">
+              <RLASelect
+                items={versions.map(v => ({ label: v, value: getVersionHomeUrl(v) }))}
+                value={getVersionHomeUrl(activeVersion || "")}
+                size="sm"
+                ui={{
+                  root: "!w-full !block",
+                  trigger: "flex items-center justify-between !w-full bg-background border border-border rounded-md px-3 py-1.5 text-sm font-medium text-foreground",
+                  content: "!min-w-0 !w-full !bg-[var(--popover)] !border-[var(--border)] !text-[var(--popover-foreground)]",
+                  item: "!text-[var(--foreground)] hover:!bg-[var(--accent)] hover:!text-[var(--accent-foreground)]"
+                }}
+              />
+            </rla-version-selector>
+          </div>
+        )}
         {/* Scopes — vertical */}
         <div class="flex flex-col gap-1 p-3 border-b border-border/50">
           <span class="text-[10px] text-muted-foreground font-bold uppercase tracking-wider px-1 mb-1">Scopes</span>
@@ -264,10 +314,28 @@ const tocHeadings = hasToc
   </div>
 
   {/* ── Main docs layout ── */}
-  <div class="docs-container max-w-[1400px] mx-auto px-4 lg:px-8 py-8 flex flex-col lg:flex-row gap-8 items-start relative min-h-[calc(100vh-200px)]">
+  <RLAContainer class="py-8 flex flex-col lg:flex-row gap-8 items-start relative min-h-[calc(100vh-200px)]">
 
     {/* Sidebar column — lg+ only */}
     <div class="docs-sidebar-wrapper hidden lg:block w-[280px] shrink-0 sticky top-[calc(var(--rl-total-header-height,64px)+2rem)] max-h-[calc(100vh-var(--rl-total-header-height,64px)-4rem)] overflow-y-auto border-r border-border pr-0">
+      {versions.length > 1 && (
+        <div class="mb-4 px-2">
+          <label class="block text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-1.5 px-1">Version</label>
+          <rla-version-selector class="block w-full">
+            <RLASelect
+              items={versions.map(v => ({ label: v, value: getVersionHomeUrl(v) }))}
+              value={getVersionHomeUrl(activeVersion || "")}
+              size="sm"
+              ui={{
+                root: "!w-full !block",
+                trigger: "flex items-center justify-between !w-full bg-background border border-border rounded-md px-3 py-1.5 text-sm font-medium text-foreground",
+                content: "!min-w-0 !w-full !bg-[var(--popover)] !border-[var(--border)] !text-[var(--popover-foreground)]",
+                item: "!text-[var(--foreground)] hover:!bg-[var(--accent)] hover:!text-[var(--accent-foreground)]"
+              }}
+            />
+          </rla-version-selector>
+        </div>
+      )}
       <div class="flex flex-col gap-1 mb-4 border-b border-border pb-4 px-2">
         <span class="text-[10px] text-muted-foreground font-bold uppercase tracking-wider mb-1.5 px-1">Scopes</span>
         {scopes.map(scope => {
@@ -299,11 +367,15 @@ const tocHeadings = hasToc
       <div class="border-b border-border pb-4 mb-6">
         <h1 class="text-3xl font-extrabold text-foreground tracking-tight">{title}</h1>
         {description && <p class="mt-2 text-base text-muted-foreground">{description}</p>}
+        <div class="flex gap-2 items-center justify-end my-4">
+          {rawMarkdown && <RLACopyMarkdown raw={rawMarkdown} />}
+          <RLAShare />
+        </div>
       </div>
       <article class="markdown-content prose max-w-none prose-base dark:prose-invert">
         <slot />
       </article>
-      <RLASurround prev={prev as any} next={next as any} prevOverride={prevOverride as any} nextOverride={nextOverride as any} />
+      <RLASurround prev={prev ?? null} next={next ?? null} />
 
       {/* Edit link */}
       {resolvedEditUrl && (
@@ -324,11 +396,11 @@ const tocHeadings = hasToc
     {/* TOC right column — xl+ only */}
     {hasToc && (
       <div class="hidden xl:block w-[240px] shrink-0 sticky top-[calc(var(--rl-total-header-height,64px)+2rem)] max-h-[calc(100vh-var(--rl-total-header-height,64px)-4rem)] overflow-y-auto pl-4">
-        <TableOfContents headings={headings} tableOfContents={resolvedToc as any} />
+        <RLATableOfContents headings={headings} tableOfContents={resolvedToc as any} />
       </div>
     )}
 
-  </div>
+  </RLAContainer>
 </AppLayout>
 
 <script>
@@ -354,6 +426,23 @@ const tocHeadings = hasToc
 
   initDocsBars();
   document.addEventListener('astro:after-swap', initDocsBars);
+
+  class RLAVersionSelector extends HTMLElement {
+    connectedCallback() {
+      const hiddenInput = this.querySelector('[data-select-hidden-input]') as HTMLInputElement | null;
+      if (!hiddenInput) return;
+      hiddenInput.addEventListener('change', (event) => {
+        const target = event.target as HTMLInputElement;
+        const targetUrl = target.value;
+        if (targetUrl) {
+          window.location.href = targetUrl;
+        }
+      });
+    }
+  }
+  if (!customElements.get('rla-version-selector')) {
+    customElements.define('rla-version-selector', RLAVersionSelector);
+  }
 </script>
 
 <style is:global>

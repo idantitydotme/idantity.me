@@ -1,5 +1,4 @@
 import { visualizer } from "rollup-plugin-visualizer"
-import nanostoresI18n from "astro-nanostores-i18n"
 import en from "./src/translations/en.json"
 import es from "./src/translations/es.json"
 import pt from "./src/translations/pt.json"
@@ -8,26 +7,12 @@ import mdx from "@astrojs/mdx"
 import { ui, sri } from "@rimelight/ui/integrations"
 import { defineSecurity } from "@rimelight/ui/config"
 import cloudflare from "@astrojs/cloudflare"
+import { rimelightI18n } from "@rimelight/i18n/integration"
 import { defineConfig, fontProviders, memoryCache, svgoOptimizer } from "astro/config"
 
 export default defineConfig({
   experimental: {
     contentIntellisense: true,
-    queuedRendering: {
-      enabled: true,
-      contentCache: true
-    },
-    cache: {
-      provider: memoryCache()
-    },
-    routeRules: {
-      "/api/[...path]": {
-        swr: 600 // 10 minutes stale-while-revalidate
-      },
-      "/[...path]": {
-        maxAge: 300 // 5 minutes cache
-      }
-    },
     clientPrerender: true,
     svgOptimizer: svgoOptimizer({
       plugins: [
@@ -59,6 +44,17 @@ export default defineConfig({
 
   output: "server",
   adapter: cloudflare(),
+  cache: {
+    provider: memoryCache()
+  },
+  routeRules: {
+    "/api/[...path]": {
+      swr: 600 // 10 minutes stale-while-revalidate
+    },
+    "/[...path]": {
+      maxAge: 300 // 5 minutes cache
+    }
+  },
 
   security: defineSecurity({
     domain: "idantity.me"
@@ -99,14 +95,9 @@ export default defineConfig({
   },
 
   integrations: [
-    nanostoresI18n({
-      translationLoader: "./src/i18n/loader.ts",
-      addMiddleware: true,
-      translations: {
-        "en": en,
-        "es": es,
-        "pt-br": pt
-      }
+    rimelightI18n({
+      translations: { en, es, pt },
+      kvBinding: "idantity-dot-me_translations"
     }),
     sitemap({
       i18n: {

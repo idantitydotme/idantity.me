@@ -1,15 +1,6 @@
-import type { TranslationLoader, ComponentsJSON } from "@nanostores/i18n"
+import { createTranslationLoader } from "@rimelight/i18n"
+import en from "../translations/en.json"
+import es from "../translations/es.json"
+import pt from "../translations/pt.json"
 
-const translationModules = import.meta.glob<{ default: ComponentsJSON }>("../translations/*.json", {
-  eager: true
-})
-
-const loader: TranslationLoader = async (locale, _components) => {
-  const key = Object.keys(translationModules).find((k) => k.includes(`/${locale}.json`))
-  if (!key) return {}
-  const mod = translationModules[key]
-  if (!mod) return {}
-  return mod.default
-}
-
-export default loader
+export default createTranslationLoader({ en, es, pt })

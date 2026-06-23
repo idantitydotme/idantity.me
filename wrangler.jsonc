@@ -26,6 +26,12 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  "kv_namespaces": [
+    {
+      "binding": "idantity-dot-me_translations",
+      "id": "8c09f90741704096bd1dcdf2abadc974"
+    }
+  ],
   "r2_buckets": [
     {
       "binding": "BLOB",
