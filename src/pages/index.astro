@@ -1,3 +1,45 @@
 ---
 /** i18n Redirection Page */
+
+
+type Octa = {
+  brain: number
+}
+
+const octavian: Octa = {
+  brain: 0
+}
+
+if (octavian.brain === 0) {
+  console.log("doo doo brain")
+}
+
+type User = {
+  name: string,
+  age?: number | string | Date
+}
+
+const user: User = {
+  name: 'John',
+  age: 12
+}
+
+function printAge(user: User): void {
+  if (typeof user.age === 'number') {
+    console.log(user.age.toFixed(2))
+  } else if (typeof user.age === 'string') {
+    console.log(user.age.length)
+  } else {
+    console.log(user.age?.getFullYear())
+  }
+}
+
+printAge(user)
+
+console.log("Server")
 ---
+
+
+<script>
+  console.log("Client")
+</script>
