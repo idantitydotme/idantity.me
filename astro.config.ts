@@ -1,4 +1,3 @@
-import { visualizer } from "rollup-plugin-visualizer"
 import en from "./src/translations/en.json"
 import es from "./src/translations/es.json"
 import pt from "./src/translations/pt.json"
@@ -26,15 +25,6 @@ export default defineConfig({
         }
       ]
     })
-  },
-
-  vite: {
-    plugins: [
-      visualizer({
-        emitFile: true,
-        filename: "stats.html"
-      })
-    ]
   },
 
   site: "https://idantity.me",
@@ -89,10 +79,6 @@ export default defineConfig({
       fallbacks: ["monospace"]
     }
   ],
-
-  markdown: {
-    syntaxHighlight: "prism"
-  },
 
   integrations: [
     rimelightI18n({
