@@ -1,29 +1,26 @@
-import { defineMiddleware } from "astro:middleware"
+import { getFetchState } from "astro/hono"
 
 const CONSTRUCTION_SKIP_SEGMENTS = ["/construction", "/auth", "/api/auth"]
 const LOCALES = ["en", "pt"]
 
-export const construction = defineMiddleware(async (context, next) => {
+export const construction = async (c: any, next: any) => {
   const constructionMode =
     (import.meta.env.CONSTRUCTION_MODE ?? process.env.CONSTRUCTION_MODE) === "true"
   if (!constructionMode) {
     return next()
   }
 
-  const isSkippedPath = CONSTRUCTION_SKIP_SEGMENTS.some((path) =>
-    context.url.pathname.includes(path)
-  )
+  const isSkippedPath = CONSTRUCTION_SKIP_SEGMENTS.some((path) => c.req.path.includes(path))
   if (isSkippedPath) {
     return next()
   }
 
-  const { auth } = await import("@/auth/auth")
-  const session = await auth.api.getSession({ headers: context.request.headers })
-  if (session) {
+  const state = getFetchState(c)
+  if (state.locals.session) {
     return next()
   }
 
-  const localePrefix = LOCALES.find((loc) => context.url.pathname.startsWith(`/${loc}/`)) ?? "en"
-  const redirectTo = encodeURIComponent(context.url.pathname + context.url.search)
-  return context.redirect(`/${localePrefix}/construction?redirect=${redirectTo}`)
-})
+  const localePrefix = LOCALES.find((loc) => c.req.path.startsWith(`/${loc}/`)) ?? "en"
+  const redirectTo = encodeURIComponent(c.req.path + new URL(c.req.url).search)
+  return c.redirect(`/${localePrefix}/construction?redirect=${redirectTo}`)
+}
