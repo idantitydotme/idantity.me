@@ -45,6 +45,6 @@
     }
   ],
   "vars": {
-    "CONSTRUCTION_MODE": "true"
+    "CONSTRUCTION_MODE": "false"
   }
 }
