@@ -1,8 +1,243 @@
 ---
 import AppLayout from "@/layouts/AppLayout.astro";
-import { siteConfig } from '@/config/site.config';
+import RLAContainer from "@rimelight/ui/components/container/RLAContainer.astro"
+import RLAPage from "@rimelight/ui/components/page/RLAPage.astro"
+import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
+import RLALink from "@rimelight/ui/components/link/RLALink.astro"
+import RLAButton from "@rimelight/ui/components/button/RLAButton.astro"
+import type { ButtonProps } from "@rimelight/ui/components/button/button.ts"
+import RLAIcon from "@rimelight/ui/components/icon/RLAIcon.astro"
+import RLAProgress from "@rimelight/ui/components/progress/RLAProgress.astro"
+import Project_01_Image from "@/assets/images/placeholder.webp"
+import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro";
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
+
+// Unprecise but good enough for this use case to avoid adding a date library or larger function.
+const age = Math.floor((new Date() - new Date(1997, 3, 30)) / (365.25 * 24 * 60 * 60 * 1000));
+
+const socials = [
+  {
+    size: "sm",
+    variant: "ghost",
+    leadingIcon: "i-logos-linkedin-icon?mask text-white hover:text-primary-500",
+    href: "https://linkedin.com/daniel-marchi"
+  },
+  {
+    size: "sm",
+    variant: "ghost",
+    leadingIcon: "i-logos-github-icon?mask text-white hover:text-primary-500",
+    href: "https://github.com/idantitydotme"
+  }
+]
+
+const languages = [
+  {
+    name: "Portuguese",
+    score: 100
+  },
+  {
+    name: "English",
+    score: 100
+  },
+  {
+    name: "Spanish",
+    score: 25
+  },
+  {
+    name: "Romanian",
+    score: 5
+  }
+]
+
+const getProficiency = (score: number): string => {
+  if (score <= 25) return 'Basic'
+  if (score <= 50) return 'Intermediate'
+  if (score <= 75) return 'Advanced'
+  return 'Fluent'
+}
+
+const heroLinks: ButtonProps[] = [
+  {
+    label: "Hire Me",
+    href: "/contact",
+  },
+  {
+    variant: "outline",
+    label: "Download PDF",
+    href: "/",
+    icon: "i-lucide-download"
+  }
+]
+
+const experiences = [
+  {
+    period: "2024 - Present",
+    role: "Junior Web Developer",
+    company: "Tech Startup",
+    companyUrl: "https://...",
+    location: "Auckland, New Zealand",
+    workType: "On site",
+    summary: "Developing and maintaining web applications using JavaScript, HTML, and CSS.",
+    responsibilities: [
+      "Collaborating with the team to implement new features and fix bugs",
+      "Working with senior developers on code reviews"
+    ],
+    technologies: ["React", "Tailwind", "GitHub"]
+  }
+]
+
+const projects = [
+  {
+    imageSrc: Project_01_Image,
+    name: "Lumen Studio Website",
+    period: "2025",
+    description: "Built a polished portfolio experience with accessible UI, motion-led interactions, and reusable components.",
+    solution: "Designed a modular component system with Astro and Tailwind CSS, ensuring consistent brand experience across all breakpoints.",
+    impact: "Achieved sub-1s page load metrics and 95+ Lighthouse scores through optimized asset delivery and lazy loading strategies.",
+    technologies: {
+      categories: [
+        {
+          name: "FRONTEND",
+          items: ["TypeScript", "Astro", "Tailwind CSS", "Responsive Design"]
+        },
+        {
+          name: "PERFORMANCE",
+          items: ["Asset Optimization", "Lazy Loading", "Image CDN"]
+        }
+      ]
+    },
+    keyPoints: []
+  }
+]
 ---
 
-<AppLayout title={siteConfig.name} description={siteConfig.description}>
+<AppLayout title="me.resume" description="My professional portfolio.">
+  <RLAContainer>
+    <RLAPage>
+      <div class="flex flex-row gap-xl">
+        <!-- Left Sidebar -->
+        <div class="flex flex-col gap-sm items-center py-16">
+          <RLAImage
+            src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
+            alt="Daniel Marchi"
+            height="96"
+            width="96"
+            class="rounded-full"
+          />
 
+          <h3 class="text-4xl">Daniel Marchi</h3>
+          <span class="text-lg">Software Developer</span>
+          <span>Gender: Male</span>
+          <span>Pronouns: He/Him</span>
+          <span>Nationality: Brazilian</span>
+          <span>Age: {age} Years Old</span>
+          <p>Lorem ipsum</p>
+
+          <div class="flex flex-row align-middle">
+            <RLALink leadingIcon="i-lucide-map-pin" label="Curitiba, Brazil" href="https://en.wikipedia.org/wiki/Curitiba"/>
+          </div>
+
+          <div class="flex flex-row gap-sm">
+            {
+              socials.map((social) => (
+                <RLAButton
+                  size={social.size}
+                  variant={social.variant}
+                  leadingIcon={social.leadingIcon}
+                  href={social.href}
+                />
+              ))
+            }
+          </div>
+
+          <div class="w-full">
+            <ul class="flex flex-col gap-xs">
+              {languages.map((language) => (
+                <li class="flex flex-col gap-5xs">
+                  <div class="flex flex-row justify-between items-center">
+                    <span>{language.name}</span>
+                    <span class="text-xs">{getProficiency(language.score)}</span>
+                  </div>
+                  <RLAProgress size="sm" value={language.score}/>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+
+        <!-- Page Body -->
+        <div class="flex flex-col gap-md">
+          <RLAPageSection
+            variant="hero"
+            orientation="horizontal"
+            title="me.resume"
+            links={heroLinks}
+          />
+
+          <div class="flex flex-col gap-md">
+            <h2 class="text-3xl font-bold">Experience</h2>
+            <RLATimeline />
+          </div>
+
+          <h2 class="text-3xl font-bold">Projects</h2>
+          <div class="flex flex-col gap-xl">
+            {
+              projects.map((project) => (
+                <div>
+                  <div class="mb-2">
+                    <h3 class="text-2xl">{project.name}</h3>
+                    <span class="text-sm text-muted">{project.period}</span>
+                  </div>
+
+                  <div class="relative w-full aspect-[21/9] overflow-hidden rounded-lg">
+                    <RLAImage
+                      src={project.imageSrc}
+                      alt={project.name}
+                      class="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                  <p>{project.description}</p>
+
+                  <div>
+                    <h4 class="text-sm font-semibold text-primary-500">SOLUTION</h4>
+                    <p>{project.solution}</p>
+                  </div>
+
+                  <div>
+                    <h4 class="text-sm font-semibold text-primary-500">IMPACT</h4>
+                    <p>{project.impact}</p>
+                  </div>
+
+                  <div>
+                    <h4 class="text-sm font-semibold text-primary-500 mb-2">TECHNOLOGIES / TOOLS</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                      {
+                        project.technologies.categories.map((category) => (
+                          <div>
+                            <h5 class="text-xs font-medium mb-2">{category.name}</h5>
+                            <ul class="space-y-1">
+                              {
+                                category.items.map((tech) => (
+                                  <li class="text-sm">{tech}</li>
+                                ))
+                              }
+                            </ul>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class="flex flex-col gap-md">
+            <h2 class="text-3xl font-bold">Certifications</h2>
+          </div>
+        </div>
+      </div>
+    </RLAPage>
+  </RLAContainer>
 </AppLayout>

@@ -5,54 +5,103 @@ import { getRelativeLocaleUrl } from 'astro:i18n';
 import { siteConfig } from "@/config/site.config";
 import { useI18nAsync } from "@rimelight/i18n";
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
+import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro"
 import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro"
 import RLAPost from "@rimelight/ui/components/post/RLAPost.astro"
 
-const posts = (await getCollection('blog')).toSorted(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const activeLocale = Astro.currentLocale ?? "en";
+
+const posts = (await getCollection('blog'))
+  .filter((post) => post.id.startsWith(`${activeLocale}/`))
+  .toSorted(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  );
 
 const groupedPosts = posts.reduce<Record<string, typeof posts>>((acc, post) => {
-	const type = post.data.type;
-	if (!acc[type]) acc[type] = [];
-	acc[type].push(post);
-	return acc;
+  const type = post.data.type;
+  if (!acc[type]) acc[type] = [];
+  acc[type].push(post);
+  return acc;
 }, {});
 
-const categoryOrder = ["development-log", "personal-stories", "other"] as const;
+const categoryOrder = ["development-log", "other"] as const;
 
-const currentLocale = Astro.currentLocale ?? 'en';
+const badgeColorMap: Record<string, string> = {
+  "development-log": "info",
+  "other": "success",
+};
 
 const messages = await useI18nAsync(Astro, 'blog', {
-	categories: {
-  "development-log": "Development Log",
-  "personal-stories": "Personal Stories",
-  "other": "Other"
-} as any
-});
+  title: "me.blog",
+  description: "Articles, development logs, and more.",
+  categories: {
+    "development-log": "Development Log",
+    "other": "Other"
+  } as any
+} as any);
+
+const tabsItems = [
+  { label: "All", value: "all" },
+  ...categoryOrder
+    .filter((cat) => groupedPosts[cat]?.length)
+    .map((cat) => ({
+      label: (messages.categories as unknown as Record<string, string>)[cat],
+      value: cat
+    }))
+];
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-		{categoryOrder.map((category) => {
-			const categoryPosts = groupedPosts[category];
-			if (!categoryPosts || categoryPosts.length === 0) return null;
-			return (
-				<RLAPageSection title={(messages.categories as unknown as Record<string, string>)[category]}>
-					<RLAGrid>
-						{
-							categoryPosts.map((post) => (
-								<RLAPost
-									variant="ghost"
-									image={post.data.heroImage}
-									date={post.data.pubDate}
-									title={post.data.title}
-									description={post.data.description}
-									to={getRelativeLocaleUrl(currentLocale, `/blog/${post.id}/`)}
-								/>
-							))
-						}
-					</RLAGrid>
-				</RLAPageSection>
-			);
-		})}
+  <RLAPageSection
+    variant="hero"
+    title={messages.title}
+    description={messages.description}
+  >
+    <RLATabs items={tabsItems} variant="underline">
+      <div role="tabpanel" data-value="all" class="hidden">
+        <RLAGrid cols={4}>
+          {posts.map((post, index) => (
+            <RLAPost
+              variant="ghost"
+              orientation={index === 0 ? "horizontal" : "vertical"}
+              class={index === 0 ? "col-span-full mb-6" : ""}
+              image={post.data.heroImage}
+              date={post.data.pubDate}
+              title={post.data.title}
+              description={post.data.description}
+              to={getRelativeLocaleUrl(`/blog/${post.id.replace(`${activeLocale}/`, "")}/`)}
+              badge={(messages.categories as unknown as Record<string, string>)[post.data.type]}
+              badgeColor={badgeColorMap[post.data.type] || "primary"}
+            />
+          ))}
+        </RLAGrid>
+      </div>
+      {categoryOrder.map((category) => {
+        const categoryPosts = groupedPosts[category];
+        if (!categoryPosts || categoryPosts.length === 0) return null;
+        return (
+          <div role="tabpanel" data-value={category} class="hidden">
+            <RLAGrid cols={4}>
+              {
+                categoryPosts.map((post, index) => (
+                  <RLAPost
+                    variant="ghost"
+                    orientation={index === 0 ? "horizontal" : "vertical"}
+                    class={index === 0 ? "col-span-full mb-6" : ""}
+                    image={post.data.heroImage}
+                    date={post.data.pubDate}
+                    title={post.data.title}
+                    description={post.data.description}
+                    to={getRelativeLocaleUrl(`/blog/${post.id.replace(`${activeLocale}/`, "")}/`)}
+                    badge={(messages.categories as unknown as Record<string, string>)[category]}
+                    badgeColor={badgeColorMap[category] || "primary"}
+                  />
+                ))
+              }
+            </RLAGrid>
+          </div>
+        );
+      })}
+    </RLATabs>
+  </RLAPageSection>
 </AppLayout>

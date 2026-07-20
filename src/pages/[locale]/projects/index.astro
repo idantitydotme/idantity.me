@@ -1,37 +1,40 @@
 ---
-import AppLayout from '@/layouts/AppLayout.astro';
-import { getCollection } from 'astro:content';
-import { siteConfig } from '@/config/site.config';
-import RLAGrid from '@rimelight/ui/components/grid/RLAGrid.astro';
-import RLAPost from '@rimelight/ui/components/post/RLAPost.astro';
-import { getRelativeLocaleUrl } from '@rimelight/i18n';
+import AppLayout from "@/layouts/AppLayout.astro";
+import { getCollection } from "astro:content";
+import { siteConfig } from "@/config/site.config";
+import RLASection from "rimelight/ui/components/section/RLASection.astro"
+import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro";
+import RLAPost from "@rimelight/ui/components/post/RLAPost.astro";
+import { getRelativeLocaleUrl } from "@rimelight/i18n";
 
-const projects = (await getCollection('projects')).toSorted(
+const projects = (await getCollection("projects")).toSorted(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-        <section class="projects-section">
-            <RLAGrid>
-                {
-                    projects.map((project, index) => (
-                        <RLAPost
-                                title={project.data.title}
-                                description={project.data.description}
-                                date={project.data.pubDate}
-                                image={project.data.heroImage}
-                                to={getRelativeLocaleUrl(`/projects/${project.id}/`)}
-                                variant="ghost"
-                                ui={index === 0 ? {
-                                    root: 'col-span-full flex flex-col items-center text-center gap-6 mb-8',
-                                    header: 'w-full aspect-[21/9]',
-                                    title: 'text-4xl lg:text-6xl font-bold',
-                                    description: 'text-xl max-w-2xl mx-auto'
-                                } : {}}
-                        />
-                    ))
-                }
-            </RLAGrid>
-        </section>
+  <RLASection
+    title="me.projects"
+  >
+    <RLAGrid>
+      {
+        projects.map((project, index) => (
+          <RLAPost
+            title={project.data.title}
+            description={project.data.description}
+            date={project.data.pubDate}
+            image={project.data.heroImage}
+            to={getRelativeLocaleUrl(`/projects/${project.id}/`)}
+            variant="ghost"
+            ui={index === 0 ? {
+                root: "col-span-full flex flex-col items-center text-center gap-6 mb-8",
+                header: "w-full aspect-[21/9]",
+                title: "text-4xl lg:text-6xl font-bold",
+                description: "text-xl max-w-2xl mx-auto"
+            } : {}}
+          />
+        ))
+      }
+    </RLAGrid>
+  </RLASection>
 </AppLayout>

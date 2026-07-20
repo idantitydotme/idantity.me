@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import AppLayout from '@/layouts/AppLayout.astro';
+import AboutHeroImage from '@/assets/images/placeholder.webp';
+import RLADate from '@rimelight/ui/components/date/RLADate.astro';
+import { useI18n } from '@rimelight/i18n';
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
+import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
+
+const messages = useI18n(Astro, 'about', {
+  title: 'About',
+  description: 'About idantity.me',
+  heading: 'About Me'
+});
+---
+
+<AppLayout title={messages.title} description={messages.description}>
+	<RLAPageSection
+    variant="hero"
+    title="About Me"
+    orientation="horizontal"
+  >
+    <RLAImage src={AboutHeroImage} alt="Daniel Marchi" />
+  </RLAPageSection>
+
+  <RLAPageSection
+    title="Behind the name"
+    orientation="horizontal"
+    reverse
+  >
+    <RLAImage src={AboutHeroImage} alt="Daniel Marchi" />
+    <slot name="description">
+      <p>In many programming languages, <a href="https://en.wikipedia.org/wiki/Property_(programming)#Dot_notation">"dot notation"</a> is the concept of using dots ('.') as a way to access internal properties or functionality of an entity.
+        symbolizes struggles I've had throughout the years with self identity, and in accessing emotions and</p>
+    </slot>
+  </RLAPageSection>
+
+  <RLAPageSection
+    title="Pets"
+    description="Who keeps me company throughout my day."
+    orientation="horizontal"
+  >
+    <RLAImage src={AboutHeroImage} alt="Daniel Marchi" />
+
+    <slot name="footer">
+      <p>I've had cats my entire life, and currently live with two beautiful .</p>
+      <p> </p>
+    </slot>
+  </RLAPageSection>
+</AppLayout>

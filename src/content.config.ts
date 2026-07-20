@@ -25,46 +25,6 @@ const blog = defineCollection({
     })
 })
 
-const docs = defineCollection({
-  loader: glob({
-    base: "./src/content/docs",
-    pattern: "**/*.{md,mdx}",
-    generateId: ({ entry }) =>
-      entry
-        .replace(/\/?index\.(md|mdx)$/, "")
-        .replace(/\.(md|mdx)$/, "")
-        .replace(/\/$/, "")
-  }),
-  schema: z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    editUrl: z.union([z.url(), z.literal(false)]).optional(),
-    tableOfContents: z
-      .union([
-        z.object({
-          minHeadingLevel: z.number().optional(),
-          maxHeadingLevel: z.number().optional()
-        }),
-        z.literal(false)
-      ])
-      .optional(),
-    prev: z
-      .object({
-        label: z.string(),
-        href: z.string()
-      })
-      .nullable()
-      .optional(),
-    next: z
-      .object({
-        label: z.string(),
-        href: z.string()
-      })
-      .nullable()
-      .optional()
-  })
-})
-
 const projects = defineCollection({
   loader: glob({ base: "./src/content/projects", pattern: "**/*.{md,mdx}" }),
   schema: ({ image }) =>
@@ -81,6 +41,5 @@ const projects = defineCollection({
 export const collections = {
   legal,
   blog,
-  docs,
   projects
 }

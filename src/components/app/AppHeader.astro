@@ -43,26 +43,24 @@ const leftLinks: NavigationMenuItem[] = [
 const rightLinks: NavigationMenuItem[] = [
   {
     label: messages["right-links_services_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/projects'),
+    to: getRelativeLocaleUrl(activeLocale, '/services'),
   },
   {
     label: messages["right-links_resume_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/music'),
+    to: getRelativeLocaleUrl(activeLocale, '/resume'),
   }
 ];
 
 const socials: ButtonProps[] = [
   {
     variant: "ghost",
-    leadingIcon: "i-logos-instagram-icon?mask text-[var(--rl-text)] group-hover:text-[var(--rl-text-hover)]",
-    label: messages["socials_instagram_label"],
-    to: "https://instagram.com/idantity.me"
+    leadingIcon: "i-logos-instagram-icon?mask text-white group-hover:text-primary-500",
+    href: "https://instagram.com/idantity.me"
   },
   {
     variant: "ghost",
-    leadingIcon: "i-logos-github-icon?mask text-[var(--rl-text)] group-hover:text-[var(--rl-text-hover)]",
-    label: messages["socials_github_label"],
-    to: "https://github.com/idantitydotme"
+    leadingIcon: "i-logos-github-icon?mask text-white group-hover:text-primary-500",
+    href: "https://github.com/idantitydotme"
   }
 ];
 ---
