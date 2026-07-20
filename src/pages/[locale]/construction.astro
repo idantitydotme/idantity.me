@@ -2,8 +2,8 @@
 import { useI18nAsync } from "@rimelight/i18n"
 import ConstructionLayout from '@/layouts/ConstructionLayout.astro'
 import ConstructionSignIn from '@/components/auth/ConstructionSignIn.astro'
-import RLALogo from '@rimelight/ui/components/astro/RLALogo.astro'
-import RLALocaleSelector from "@rimelight/ui/components/astro/RLALocaleSelector.astro";
+import RLALogo from '@rimelight/ui/components/logo/RLALogo.astro'
+import RLALocaleSelector from "@rimelight/ui/components/locale-selector/RLALocaleSelector.astro";
 
 const constructionAuth = (import.meta.env.CONSTRUCTION_AUTH ?? process.env.CONSTRUCTION_AUTH) === "true"
 

@@ -2,16 +2,19 @@ import en from "./src/translations/en.json"
 import pt from "./src/translations/pt.json"
 import sitemap from "@astrojs/sitemap"
 import mdx from "@astrojs/mdx"
-import { ui, sri } from "@rimelight/ui/integrations"
-import { defineSecurity } from "@rimelight/ui/config"
+import { ui } from "@rimelight/ui"
+import { sri } from "@rimelight/security"
+import { defineSecurity } from "@rimelight/security/config"
 import cloudflare from "@astrojs/cloudflare"
 import { rimelightI18n } from "@rimelight/i18n/integration"
-import { defineConfig, fontProviders, memoryCache, svgoOptimizer } from "astro/config"
+import { defineConfig, fontProviders, svgoOptimizer } from "astro/config"
+import { cacheCloudflare } from "@astrojs/cloudflare/cache"
 
 export default defineConfig({
   experimental: {
     contentIntellisense: true,
     clientPrerender: true,
+    collectionStorage: "chunked",
     svgOptimizer: svgoOptimizer({
       plugins: [
         "preset-default",
@@ -26,6 +29,12 @@ export default defineConfig({
     })
   },
 
+  vite: {
+    define: {
+      "import.meta.env.BUILD_TIME": JSON.stringify(new Date().toISOString())
+    }
+  },
+
   site: "https://idantity.me",
   prefetch: {
     prefetchAll: true
@@ -34,7 +43,10 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare(),
   cache: {
-    provider: memoryCache()
+    provider: cacheCloudflare()
+  },
+  image: {
+    domains: ["idantity.me", "cdn.idantity.me"]
   },
   routeRules: {
     "/api/[...path]": {
@@ -50,7 +62,7 @@ export default defineConfig({
   }),
 
   i18n: {
-    locales: ["en", "pt", "es"],
+    locales: ["en", "pt"],
     defaultLocale: "en",
     routing: {
       prefixDefaultLocale: true,

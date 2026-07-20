@@ -1,8 +1,8 @@
-import { security as astroSecurity } from "@rimelight/ui/middleware"
+import { security as astroSecurity } from "@rimelight/security/middleware"
 import { getFetchState } from "astro/hono"
 
 export const security = async (c: any, next: any) => {
-  const context = {
+  const context: any = {
     request: c.req.raw,
     url: new URL(c.req.url),
     redirect: (path: string, status?: number) => {
@@ -10,7 +10,7 @@ export const security = async (c: any, next: any) => {
     },
     locals: getFetchState(c).locals
   }
-  const response = await astroSecurity(context as any, async () => {
+  const response = await astroSecurity(context, async () => {
     await next()
     return c.res
   })

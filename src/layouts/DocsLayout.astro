@@ -1,17 +1,17 @@
 ---
 import AppLayout from "./AppLayout.astro";
-import RLASidebar from "@rimelight/ui/components/astro/RLASidebar.astro";
-import RLATableOfContents from "@rimelight/ui/components/astro/RLATableOfContents.astro";
-import RLASurround from "@rimelight/ui/components/astro/RLASurround.astro";
-import RLACopyMarkdown from "@rimelight/ui/components/astro/RLACopyMarkdown.astro";
-import RLAShare from "@rimelight/ui/components/astro/RLAShare.astro";
-import RLABadge from "@rimelight/ui/components/astro/RLABadge.astro";
-import RLAContainer from "@rimelight/ui/components/astro/RLAContainer.astro";
-import RLASelect from "@rimelight/ui/components/astro/RLASelect.astro";
-import { getDocsSidebar, getSurroundItems } from "@rimelight/ui/utils";
-import type { ResolvedSidebarItem } from "@rimelight/ui/utils";
+import RLASidebar from "@rimelight/ui/components/sidebar/RLASidebar.astro";
+import RLATableOfContents from "@rimelight/ui/components/table-of-contents/RLATableOfContents.astro";
+import RLASurround from "@rimelight/ui/components/surround/RLASurround.astro";
+import RLACopyMarkdown from "@rimelight/ui/components/copy-markdown/RLACopyMarkdown.astro";
+import RLAShare from "@rimelight/ui/components/share/RLAShare.astro";
+import RLABadge from "@rimelight/ui/components/badge/RLABadge.astro";
+import RLAContainer from "@rimelight/ui/components/container/RLAContainer.astro";
+import RLASelect from "@rimelight/ui/components/select/RLASelect.astro";
+import { getDocsSidebar, getSurroundItems } from "@rimelight/docs";
+import type { ResolvedSidebarItem } from "@rimelight/docs";
 import docsConfig from "@/config/docs.config";
-import type { TableOfContentsConfig } from "@rimelight/ui/types";
+import type { TableOfContentsConfig } from "@rimelight/docs";
 
 
 function normalizeBadge(badge: any) {

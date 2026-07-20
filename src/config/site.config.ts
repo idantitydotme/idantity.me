@@ -1,4 +1,4 @@
-import type { SiteConfig } from "@rimelight/ui/config"
+import type { SiteConfig } from "@rimelight/ui/config/site.config.ts"
 
 export const siteConfig: SiteConfig = {
   id: "idantity.me",

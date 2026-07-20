@@ -4,9 +4,9 @@ import { getCollection } from 'astro:content';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { siteConfig } from "@/config/site.config";
 import { useI18nAsync } from "@rimelight/i18n";
-import RLAPageSection from "@rimelight/ui/components/astro/RLAPageSection.astro"
-import RLAGrid from "@rimelight/ui/components/astro/RLAGrid.astro"
-import RLAPost from "@rimelight/ui/components/astro/RLAPost.astro"
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
+import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro"
+import RLAPost from "@rimelight/ui/components/post/RLAPost.astro"
 
 const posts = (await getCollection('blog')).toSorted(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -23,7 +23,7 @@ const categoryOrder = ["development-log", "personal-stories", "other"] as const;
 
 const currentLocale = Astro.currentLocale ?? 'en';
 
-const messages = await useI18nAsync('blog', {
+const messages = await useI18nAsync(Astro, 'blog', {
 	categories: {
   "development-log": "Development Log",
   "personal-stories": "Personal Stories",

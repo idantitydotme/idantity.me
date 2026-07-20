@@ -35,5 +35,5 @@ export const ratelimit = async (c: any, next: any) => {
     console.error("[Rate Limit Error]", error)
   }
 
-  await next()
+  return await next()
 }

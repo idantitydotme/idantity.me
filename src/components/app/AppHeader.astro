@@ -1,12 +1,12 @@
 ---
-import RLAHeader from "@rimelight/ui/components/astro/RLAHeader.astro";
-import RLALogo from "@rimelight/ui/components/astro/RLALogo.astro";
-import RLANavigationMenu from "@rimelight/ui/components/astro/RLANavigationMenu.astro"
-import RLAButton from "@rimelight/ui/components/astro/RLAButton.astro";
-import RLASlideover from "@rimelight/ui/components/astro/RLASlideover.astro";
-import type { NavigationMenuItem, ButtonProps } from "@rimelight/ui/types";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { useI18n } from "@rimelight/i18n";
+import RLAHeader from "@rimelight/ui/components/header/RLAHeader.astro";
+import RLALogo from "@rimelight/ui/components/logo/RLALogo.astro";
+import RLANavigationMenu from "@rimelight/ui/components/navigation-menu/RLANavigationMenu.astro"
+import RLAButton from "@rimelight/ui/components/button/RLAButton.astro";
+import RLASlideover from "@rimelight/ui/components/slideover/RLASlideover.astro";
+import type { NavigationMenuItem } from "@rimelight/ui/components/navigation-menu/navigation-menu.ts";
+import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
+import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
 
 const activeLocale = Astro.currentLocale ?? "en";
 

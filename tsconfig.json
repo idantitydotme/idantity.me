@@ -11,6 +11,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "jsx": "preserve"
+    "allowArbitraryExtensions": true,
+    "exactOptionalPropertyTypes": false
   }
 }

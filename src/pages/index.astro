@@ -24,13 +24,13 @@ const user: User = {
   age: 12
 }
 
-function printAge(user: User): void {
-  if (typeof user.age === 'number') {
-    console.log(user.age.toFixed(2))
-  } else if (typeof user.age === 'string') {
-    console.log(user.age.length)
+function printAge(u: User): void {
+  if (typeof u.age === 'number') {
+    console.log(u.age.toFixed(2))
+  } else if (typeof u.age === 'string') {
+    console.log(u.age.length)
   } else {
-    console.log(user.age?.getFullYear())
+    console.log(u.age?.getFullYear())
   }
 }
 
