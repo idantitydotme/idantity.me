@@ -11,89 +11,217 @@ import RLAProgress from "@rimelight/ui/components/progress/RLAProgress.astro"
 import Project_01_Image from "@/assets/images/placeholder.webp"
 import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro";
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
+import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
 
 // Unprecise but good enough for this use case to avoid adding a date library or larger function.
-const age = Math.floor((new Date() - new Date(1997, 3, 30)) / (365.25 * 24 * 60 * 60 * 1000));
+const age = Math.floor((Date.now() - new Date(1997, 3, 30).getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+
+// Availability state presets: 'available' | 'busy' | 'looking'
+const availabilityStatus: 'available' | 'busy' | 'looking' = 'available';
+
+const messages = useI18n(Astro, "resume", {
+  meta_title: "idantity.me | me.portfolio",
+  meta_description: "My professional portfolio and resume.",
+  sidebar_name: "Daniel Marchi",
+  sidebar_title: "Software Developer",
+  sidebar_location: "Curitiba, Brazil",
+  sidebar_availability_available: "Available for Hire",
+  sidebar_availability_busy: "Busy / Unavailable",
+  sidebar_availability_looking: "Open to Opportunities",
+  about_heading: "About Me",
+  about_gender_label: "Gender",
+  about_gender_value: "Male",
+  about_pronouns_label: "Pronouns",
+  about_pronouns_value: "He / Him",
+  about_nationality_label: "Nationality",
+  about_nationality_value: "Brazilian",
+  about_age_label: "Age",
+  about_age_value: "Years Old",
+  languages_heading: "Languages",
+  lang_portuguese: "Portuguese",
+  lang_english: "English",
+  lang_spanish: "Spanish",
+  lang_romanian: "Romanian",
+  level_fluent: "Fluent",
+  level_intermediate: "Intermediate",
+  level_basic: "Basic",
+  hero_title: "Hey! I'm Daniel Marchi",
+  hero_description: "I'm a Web and Game Developer specializing in large-scale Live-Service titles.",
+  hero_action_hire: "Hire Me",
+  hero_action_downloadCv: "Download CV",
+  skills_heading: "Skills",
+  skills_webDev: "Web Development",
+  skills_gameDev: "Game Development",
+  skills_design: "Design Philosophies",
+  tech_heading: "Technologies & Tools",
+  tech_cat_languages: "Languages & Frameworks",
+  tech_cat_environment: "Development Environment",
+  tech_cat_build: "Build & Package",
+  tech_cat_deployment: "Deployment",
+  tech_cat_data: "Data Management",
+  tech_cat_auth: "Authentication",
+  tech_cat_project: "Project Management",
+  tech_group_gameDev: "Game Development",
+  tech_group_shared: "Shared Technologies",
+  education_heading: "Education",
+  edu_degree_0: "Technologist of Digital Games",
+  edu_school_0: "PUCPR - Pontifícia Universidade Católica do Paraná",
+  edu_period_0: "2020 - 2022",
+  edu_degree_1: "Bachelor of Music",
+  edu_school_1: "UFPR - Universidade Federal do Paraná",
+  edu_period_1: "2018 - 2022",
+  experience_heading: "Experience",
+  exp_role_0: "Junior Game Programmer",
+  exp_company_0: "Compass.UOL",
+  exp_period_0: "Nov 2022 - Mar 2023",
+  exp_bullet_0_0: "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine.",
+  exp_bullet_0_1: "Elaborating high-fidelity interface mockups.",
+  exp_bullet_0_2: "Project documentation and comparative analytical breakdowns for stakeholders.",
+  exp_role_1: "Trainee Game Programmer",
+  exp_company_1: "Compass.UOL",
+  exp_period_1: "Jul 2021 - Oct 2021",
+  exp_bullet_1_0: "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine.",
+  exp_role_2: "Intern Game Programmer",
+  exp_company_2: "Compass.UOL",
+  exp_period_2: "Feb 2021 - Jun 2021",
+  exp_bullet_2_0: "Training exercises and problem solving activities in Unreal Engine.",
+  projects_heading: "Projects",
+  projects_solution_label: "SOLUTION",
+  projects_impact_label: "IMPACT",
+  projects_techs_label: "TECHNOLOGIES / TOOLS",
+  project_lumen_name: "Lumen Studio Website",
+  project_lumen_description: "Built a polished portfolio experience with accessible UI, motion-led interactions, and reusable components.",
+  project_lumen_solution: "Designed a modular component system with Astro and Tailwind CSS, ensuring consistent brand experience across all breakpoints.",
+  project_lumen_impact: "Achieved sub-1s page load metrics and 95+ Lighthouse scores through optimized asset delivery and lazy loading strategies."
+});
+
+const availabilityConfig = {
+  available: {
+    labelKey: "sidebar_availability_available" as const,
+    colorClass: "bg-emerald-500",
+    textClass: "text-emerald-400 border-emerald-950/35 bg-emerald-950/10 hover:bg-emerald-950/20",
+    ping: true
+  },
+  busy: {
+    labelKey: "sidebar_availability_busy" as const,
+    colorClass: "bg-red-500",
+    textClass: "text-red-400 border-red-950/35 bg-red-950/10 hover:bg-red-950/20",
+    ping: false
+  },
+  looking: {
+    labelKey: "sidebar_availability_looking" as const,
+    colorClass: "bg-amber-500",
+    textClass: "text-amber-400 border-amber-950/35 bg-amber-950/10 hover:bg-amber-950/20",
+    ping: true
+  }
+};
+
+const currentAvailability = availabilityConfig[availabilityStatus];
 
 const socials = [
   {
     size: "sm",
-    variant: "ghost",
+    variant: "ghost" as const,
     leadingIcon: "i-logos-linkedin-icon?mask text-white hover:text-primary-500",
     href: "https://linkedin.com/daniel-marchi"
   },
   {
     size: "sm",
-    variant: "ghost",
+    variant: "ghost" as const,
     leadingIcon: "i-logos-github-icon?mask text-white hover:text-primary-500",
     href: "https://github.com/idantitydotme"
   }
-]
+];
 
 const languages = [
   {
-    name: "Portuguese",
+    nameKey: "lang_portuguese" as const,
+    levelKey: "level_fluent" as const,
     score: 100
   },
   {
-    name: "English",
+    nameKey: "lang_english" as const,
+    levelKey: "level_fluent" as const,
     score: 100
   },
   {
-    name: "Spanish",
+    nameKey: "lang_spanish" as const,
+    levelKey: "level_intermediate" as const,
+    score: 50
+  },
+  {
+    nameKey: "lang_romanian" as const,
+    levelKey: "level_basic" as const,
     score: 25
-  },
-  {
-    name: "Romanian",
-    score: 5
   }
-]
-
-const getProficiency = (score: number): string => {
-  if (score <= 25) return 'Basic'
-  if (score <= 50) return 'Intermediate'
-  if (score <= 75) return 'Advanced'
-  return 'Fluent'
-}
+];
 
 const heroLinks: ButtonProps[] = [
   {
-    label: "Hire Me",
-    href: "/contact",
+    label: messages.hero_action_hire,
+    href: getRelativeLocaleUrl("/contact"),
   },
   {
     variant: "outline",
-    label: "Download PDF",
-    href: "/",
+    label: messages.hero_action_downloadCv,
+    href: "https://cdn.idantity.me/Documents/Daniel_Marchi_CV.pdf",
     icon: "i-lucide-download"
   }
-]
+];
 
 const experiences = [
   {
-    period: "2024 - Present",
-    role: "Junior Web Developer",
-    company: "Tech Startup",
-    companyUrl: "https://...",
-    location: "Auckland, New Zealand",
-    workType: "On site",
-    summary: "Developing and maintaining web applications using JavaScript, HTML, and CSS.",
-    responsibilities: [
-      "Collaborating with the team to implement new features and fix bugs",
-      "Working with senior developers on code reviews"
-    ],
-    technologies: ["React", "Tailwind", "GitHub"]
+    role: messages.exp_role_0,
+    company: messages.exp_company_0,
+    companyUrl: "https://compass.uol",
+    period: messages.exp_period_0,
+    bullets: [
+      messages.exp_bullet_0_0,
+      messages.exp_bullet_0_1,
+      messages.exp_bullet_0_2
+    ]
+  },
+  {
+    role: messages.exp_role_1,
+    company: messages.exp_company_1,
+    companyUrl: "https://compass.uol",
+    period: messages.exp_period_1,
+    bullets: [
+      messages.exp_bullet_1_0
+    ]
+  },
+  {
+    role: messages.exp_role_2,
+    company: messages.exp_company_2,
+    companyUrl: "https://compass.uol",
+    period: messages.exp_period_2,
+    bullets: [
+      messages.exp_bullet_2_0
+    ]
   }
-]
+];
+
+const education = [
+  {
+    degree: messages.edu_degree_0,
+    school: messages.edu_school_0,
+    period: messages.edu_period_0
+  },
+  {
+    degree: messages.edu_degree_1,
+    school: messages.edu_school_1,
+    period: messages.edu_period_1
+  }
+];
 
 const projects = [
   {
     imageSrc: Project_01_Image,
-    name: "Lumen Studio Website",
+    name: messages.project_lumen_name,
     period: "2025",
-    description: "Built a polished portfolio experience with accessible UI, motion-led interactions, and reusable components.",
-    solution: "Designed a modular component system with Astro and Tailwind CSS, ensuring consistent brand experience across all breakpoints.",
-    impact: "Achieved sub-1s page load metrics and 95+ Lighthouse scores through optimized asset delivery and lazy loading strategies.",
+    description: messages.project_lumen_description,
+    solution: messages.project_lumen_solution,
+    impact: messages.project_lumen_impact,
     technologies: {
       categories: [
         {
@@ -105,58 +233,105 @@ const projects = [
           items: ["Asset Optimization", "Lazy Loading", "Image CDN"]
         }
       ]
-    },
-    keyPoints: []
+    }
   }
-]
+];
 ---
 
-<AppLayout title="me.resume" description="My professional portfolio.">
+<AppLayout title={messages.meta_title} description={messages.meta_description}>
   <RLAContainer>
     <RLAPage>
-      <div class="flex flex-row gap-xl">
+      <div class="flex flex-col md:flex-row gap-xl">
         <!-- Left Sidebar -->
-        <div class="flex flex-col gap-sm items-center py-16">
+        <div class="flex flex-col gap-md items-center py-8 md:py-16 w-full md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-neutral-900 md:pr-8">
           <RLAImage
             src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
             alt="Daniel Marchi"
-            height="96"
-            width="96"
-            class="rounded-full"
+            height="128"
+            width="128"
+            class="rounded-full border border-neutral-800 shadow-xl"
           />
 
-          <h3 class="text-4xl">Daniel Marchi</h3>
-          <span class="text-lg">Software Developer</span>
-          <span>Gender: Male</span>
-          <span>Pronouns: He/Him</span>
-          <span>Nationality: Brazilian</span>
-          <span>Age: {age} Years Old</span>
-          <p>Lorem ipsum</p>
-
-          <div class="flex flex-row align-middle">
-            <RLALink leadingIcon="i-lucide-map-pin" label="Curitiba, Brazil" href="https://en.wikipedia.org/wiki/Curitiba"/>
+          <div class="text-center mt-2">
+            <h3 class="text-3xl font-extrabold text-white tracking-tight">{messages.sidebar_name}</h3>
+            <p class="text-md text-neutral-400 font-medium mt-1">{messages.sidebar_title}</p>
           </div>
 
-          <div class="flex flex-row gap-sm">
-            {
-              socials.map((social) => (
-                <RLAButton
-                  size={social.size}
-                  variant={social.variant}
-                  leadingIcon={social.leadingIcon}
-                  href={social.href}
+          <!-- Availability Status Indicator -->
+          <a
+            href={getRelativeLocaleUrl("/contact")}
+            class={`flex flex-row items-center gap-3 px-4 py-2.5 mt-2 rounded-xl border transition-all duration-300 w-full justify-center ${currentAvailability.textClass}`}
+          >
+            <span class="relative flex size-2.5">
+              {currentAvailability.ping && (
+                <span class={`absolute inline-flex size-full animate-ping rounded-full opacity-75 ${currentAvailability.colorClass}`} />
+              )}
+              <span class={`relative inline-flex size-2.5 rounded-full ${currentAvailability.colorClass}`} />
+            </span>
+            <span class="text-xs font-semibold uppercase tracking-wider">{messages[currentAvailability.labelKey]}</span>
+          </a>
+
+          <!-- Socials -->
+          <div class="flex flex-row gap-sm mt-1 justify-center w-full">
+            {socials.map((social) => (
+              <RLAButton
+                size={social.size}
+                variant={social.variant}
+                leadingIcon={social.leadingIcon}
+                href={social.href}
+              />
+            ))}
+          </div>
+
+          <!-- About Details Section -->
+          <div class="w-full mt-6">
+            <div class="flex items-center gap-2 mb-2">
+              <RLAIcon name="i-lucide-user" class="text-neutral-400 text-sm" />
+              <h5 class="text-xs font-semibold text-neutral-300 uppercase tracking-wider">{messages.about_heading}</h5>
+            </div>
+            <hr class="border-neutral-800/80 mb-3" />
+            <ul class="space-y-2 text-sm text-neutral-300">
+              <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
+                <span class="text-neutral-500 font-medium">{messages.about_gender_label}</span>
+                <span class="text-white font-medium">{messages.about_gender_value}</span>
+              </li>
+              <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
+                <span class="text-neutral-500 font-medium">{messages.about_pronouns_label}</span>
+                <span class="text-white font-medium">{messages.about_pronouns_value}</span>
+              </li>
+              <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
+                <span class="text-neutral-500 font-medium">{messages.about_nationality_label}</span>
+                <span class="text-white font-medium">{messages.about_nationality_value}</span>
+              </li>
+              <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
+                <span class="text-neutral-500 font-medium">{messages.about_age_label}</span>
+                <span class="text-white font-medium">{age} {messages.about_age_value}</span>
+              </li>
+              <li class="flex justify-between items-center pb-1.5">
+                <span class="text-neutral-500 font-medium">Location</span>
+                <RLALink
+                  leadingIcon="i-lucide-map-pin"
+                  label={messages.sidebar_location}
+                  href="https://en.wikipedia.org/wiki/Curitiba"
+                  class="text-xs hover:text-primary-400 font-medium"
                 />
-              ))
-            }
+              </li>
+            </ul>
           </div>
 
-          <div class="w-full">
-            <ul class="flex flex-col gap-xs">
+          <!-- Languages Section -->
+          <div class="w-full mt-6">
+            <div class="flex items-center gap-2 mb-2">
+              <RLAIcon name="i-lucide-languages" class="text-neutral-400 text-sm" />
+              <h5 class="text-xs font-semibold text-neutral-300 uppercase tracking-wider">{messages.languages_heading}</h5>
+            </div>
+            <hr class="border-neutral-800/80 mb-3" />
+            <ul class="flex flex-col gap-sm">
               {languages.map((language) => (
-                <li class="flex flex-col gap-5xs">
-                  <div class="flex flex-row justify-between items-center">
-                    <span>{language.name}</span>
-                    <span class="text-xs">{getProficiency(language.score)}</span>
+                <li class="flex flex-col gap-xs">
+                  <div class="flex flex-row justify-between items-center text-sm text-neutral-300">
+                    <span class="font-medium">{messages[language.nameKey]}</span>
+                    <span class="text-xs text-neutral-500 font-medium">{messages[language.levelKey]}</span>
                   </div>
                   <RLAProgress size="sm" value={language.score}/>
                 </li>
@@ -167,74 +342,327 @@ const projects = [
 
 
         <!-- Page Body -->
-        <div class="flex flex-col gap-md">
+        <div class="flex flex-col gap-xl flex-1 py-8 md:py-16">
           <RLAPageSection
             variant="hero"
             orientation="horizontal"
-            title="me.resume"
+            title={messages.hero_title}
+            description={messages.hero_description}
             links={heroLinks}
           />
 
+          <!-- Skills Section -->
           <div class="flex flex-col gap-md">
-            <h2 class="text-3xl font-bold">Experience</h2>
-            <RLATimeline />
+            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">{messages.skills_heading}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+              <div class="p-lg bg-neutral-950/40 border border-neutral-900 rounded-2xl">
+                <div class="flex items-center gap-sm mb-sm text-primary-500">
+                  <RLAIcon name="i-lucide-code-2" size="lg" />
+                  <h4 class="text-lg font-bold text-white">{messages.skills_webDev}</h4>
+                </div>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                  Building fast, responsive, and secure web applications using modern standard architectures, framework integration, and performance optimization techniques.
+                </p>
+              </div>
+              <div class="p-lg bg-neutral-950/40 border border-neutral-900 rounded-2xl">
+                <div class="flex items-center gap-sm mb-sm text-primary-500">
+                  <RLAIcon name="i-lucide-gamepad-2" size="lg" />
+                  <h4 class="text-lg font-bold text-white">{messages.skills_gameDev}</h4>
+                </div>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                  Developing real-time virtual experiences, game logic, and gameplay loops in game engines with standard clean coding practices and performant structures.
+                </p>
+              </div>
+              <div class="p-lg bg-neutral-950/40 border border-neutral-900 rounded-2xl">
+                <div class="flex items-center gap-sm mb-sm text-primary-500">
+                  <RLAIcon name="i-lucide-palette" size="lg" />
+                  <h4 class="text-lg font-bold text-white">{messages.skills_design}</h4>
+                </div>
+                <p class="text-sm text-neutral-400 leading-relaxed">
+                  Focusing on accessible user experiences, interface detail, smooth interactive feedback loops, and visually consistent modular systems.
+                </p>
+              </div>
+            </div>
           </div>
 
-          <h2 class="text-3xl font-bold">Projects</h2>
-          <div class="flex flex-col gap-xl">
-            {
-              projects.map((project) => (
-                <div>
-                  <div class="mb-2">
-                    <h3 class="text-2xl">{project.name}</h3>
-                    <span class="text-sm text-muted">{project.period}</span>
-                  </div>
+          <!-- Technologies Grid Section -->
+          <div class="flex flex-col gap-md">
+            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">{messages.tech_heading}</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_languages}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-typescript-icon" href="https://www.typescriptlang.org/" class="justify-start text-sm">
+                      TypeScript
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-vue" href="https://vuejs.org/" class="justify-start text-sm">
+                      Vue
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-nuxt-icon" href="https://nuxt.com/" class="justify-start text-sm">
+                      Nuxt
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-tailwindcss-icon" href="https://tailwindcss.com/" class="justify-start text-sm">
+                      Tailwind CSS
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
 
-                  <div class="relative w-full aspect-[21/9] overflow-hidden rounded-lg">
-                    <RLAImage
-                      src={project.imageSrc}
-                      alt={project.name}
-                      class="absolute inset-0 w-full h-full object-cover"
-                    />
-                  </div>
-                  <p>{project.description}</p>
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_environment}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-webstorm" href="https://www.jetbrains.com/webstorm/" class="justify-start text-sm">
+                      WebStorm
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
 
-                  <div>
-                    <h4 class="text-sm font-semibold text-primary-500">SOLUTION</h4>
-                    <p>{project.solution}</p>
-                  </div>
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_build}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-vitejs" href="https://vite.dev/" class="justify-start text-sm">
+                      Vite
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-bun" href="https://bun.sh/" class="justify-start text-sm">
+                      Bun
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-vscode-icons-file-type-oxc" href="https://oxc.rs/" class="justify-start text-sm">
+                      Oxc
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
 
-                  <div>
-                    <h4 class="text-sm font-semibold text-primary-500">IMPACT</h4>
-                    <p>{project.impact}</p>
-                  </div>
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_deployment}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-cloudflare-icon" href="https://cloudflare.com/" class="justify-start text-sm">
+                      Cloudflare
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-                  <div>
-                    <h4 class="text-sm font-semibold text-primary-500 mb-2">TECHNOLOGIES / TOOLS</h4>
-                    <div class="grid grid-cols-2 gap-4">
-                      {
-                        project.technologies.categories.map((category) => (
-                          <div>
-                            <h5 class="text-xs font-medium mb-2">{category.name}</h5>
-                            <ul class="space-y-1">
-                              {
-                                category.items.map((tech) => (
-                                  <li class="text-sm">{tech}</li>
-                                ))
-                              }
-                            </ul>
-                          </div>
-                        ))
-                      }
+            <div class="flex flex-col gap-sm mt-4">
+              <h3 class="text-lg font-bold text-neutral-300">{messages.tech_group_gameDev}</h3>
+              <hr class="border-neutral-900" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_languages}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-c-plusplus" href="https://isocpp.org/" class="justify-start text-sm">
+                      C++
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-unrealengine-icon?mask text-white" href="https://www.unrealengine.com/" class="justify-start text-sm">
+                      Unreal Engine
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_environment}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-rider" href="https://www.jetbrains.com/rider/" class="justify-start text-sm">
+                      Rider
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-sm mt-4">
+              <h3 class="text-lg font-bold text-neutral-300">{messages.tech_group_shared}</h3>
+              <hr class="border-neutral-900" />
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_data}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-postgresql" href="https://www.postgresql.org/" class="justify-start text-sm">
+                      PostgreSQL
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-catppuccin-drizzle-orm" href="https://orm.drizzle.team/" class="justify-start text-sm">
+                      Drizzle
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_auth}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-simple-icons-betterauth" href="https://better-auth.com/" class="justify-start text-sm">
+                      Better Auth
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex flex-col gap-md">
+                <h5 class="text-sm font-bold text-neutral-400 uppercase tracking-wider">{messages.tech_cat_project}</h5>
+                <ul class="flex flex-col gap-xs">
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-git-icon" href="https://git-scm.com/" class="justify-start text-sm">
+                      Git
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-simple-icons-perforce?mask text-white" href="https://www.perforce.com/products/helix-core/" class="justify-start text-sm">
+                      Perforce P4
+                    </RLAButton>
+                  </li>
+                  <li>
+                    <RLAButton block variant="ghost" leadingIcon="i-logos-youtrack" href="https://www.jetbrains.com/youtrack/" class="justify-start text-sm">
+                      YouTrack
+                    </RLAButton>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Section -->
+          <div class="flex flex-col gap-md">
+            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">{messages.experience_heading}</h2>
+            <RLATimeline>
+              {experiences.map((exp) => (
+                <div class="relative timeline-node mb-8 last:mb-0">
+                  {/* Timeline Dot */}
+                  <div class="absolute -left-[33px] top-[4px] flex h-4 w-4 items-center justify-center rounded-full bg-neutral-950 ring-2 ring-neutral-800">
+                    <div class="h-2 w-2 rounded-full bg-primary-500" />
+                  </div>
+                  {/* Header */}
+                  <div class="flex flex-col mb-2">
+                    <h3 class="text-xl font-bold text-white">{exp.role}</h3>
+                    <div class="flex flex-row justify-between items-center text-sm mt-1">
+                      <span class="text-neutral-300 font-semibold">
+                        {exp.companyUrl ? (
+                          <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 underline transition-colors">{exp.company}</a>
+                        ) : (
+                          exp.company
+                        )}
+                      </span>
+                      <span class="text-neutral-500 font-medium">{exp.period}</span>
                     </div>
                   </div>
+                  {/* Content / Bullets */}
+                  <div class="text-sm text-neutral-400">
+                    <ul class="list-inside list-disc space-y-1.5">
+                      {exp.bullets.map((bullet) => (
+                        <li class="leading-relaxed">{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              ))
-            }
+              ))}
+            </RLATimeline>
           </div>
 
+          <!-- Education Section -->
           <div class="flex flex-col gap-md">
-            <h2 class="text-3xl font-bold">Certifications</h2>
+            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">{messages.education_heading}</h2>
+            <div class="flex flex-col gap-lg">
+              {education.map((edu) => (
+                <div class="flex flex-col gap-xs bg-neutral-950/35 border border-neutral-900/60 p-lg rounded-2xl">
+                  <h3 class="text-xl font-bold text-white">{edu.degree}</h3>
+                  <span class="text-sm text-neutral-300 font-semibold">{edu.school}</span>
+                  <span class="text-xs text-neutral-500 font-medium mt-0.5">{edu.period}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Projects Section -->
+          <div class="flex flex-col gap-md">
+            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">{messages.projects_heading}</h2>
+            <div class="flex flex-col gap-xl">
+              {
+                projects.map((project) => (
+                  <div class="flex flex-col gap-md bg-neutral-950/20 border border-neutral-900 p-lg rounded-2xl">
+                    <div class="flex flex-row justify-between items-start">
+                      <h3 class="text-2xl font-bold text-white">{project.name}</h3>
+                      <span class="text-sm text-neutral-500 font-semibold">{project.period}</span>
+                    </div>
+
+                    <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl border border-neutral-900">
+                      <RLAImage
+                        src={project.imageSrc}
+                        alt={project.name}
+                        class="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </div>
+                    <p class="text-sm text-neutral-400 leading-relaxed">{project.description}</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg border-t border-neutral-900/60 pt-md">
+                      <div>
+                        <h4 class="text-xs font-bold text-primary-500 tracking-wider mb-xs uppercase">{messages.projects_solution_label}</h4>
+                        <p class="text-xs text-neutral-400 leading-relaxed">{project.solution}</p>
+                      </div>
+
+                      <div>
+                        <h4 class="text-xs font-bold text-primary-500 tracking-wider mb-xs uppercase">{messages.projects_impact_label}</h4>
+                        <p class="text-xs text-neutral-400 leading-relaxed">{project.impact}</p>
+                      </div>
+                    </div>
+
+                    <div class="border-t border-neutral-900/60 pt-md">
+                      <h4 class="text-xs font-bold text-primary-500 tracking-wider mb-sm uppercase">{messages.projects_techs_label}</h4>
+                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {
+                          project.technologies.categories.map((category) => (
+                            <div class="bg-neutral-950/60 border border-neutral-900/40 p-md rounded-xl">
+                              <h5 class="text-2xs font-extrabold text-neutral-400 tracking-widest mb-xs uppercase">{category.name}</h5>
+                              <ul class="flex flex-wrap gap-1.5 mt-2">
+                                {
+                                  category.items.map((tech) => (
+                                    <li class="text-3xs font-semibold text-neutral-300 bg-neutral-900/80 px-2 py-0.5 rounded border border-neutral-800">{tech}</li>
+                                  ))
+                                }
+                              </ul>
+                            </div>
+                          ))
+                        }
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Certifications Section -->
+          <div class="flex flex-col gap-md">
+            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">Certifications</h2>
+            <div class="text-sm text-neutral-500 italic">None currently listed.</div>
           </div>
         </div>
       </div>
