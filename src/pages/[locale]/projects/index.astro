@@ -2,39 +2,100 @@
 import AppLayout from "@/layouts/AppLayout.astro";
 import { getCollection } from "astro:content";
 import { siteConfig } from "@/config/site.config";
-import RLASection from "rimelight/ui/components/section/RLASection.astro"
+import { useI18nAsync, getRelativeLocaleUrl } from "@rimelight/i18n";
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
+import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro";
 import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro";
 import RLAPost from "@rimelight/ui/components/post/RLAPost.astro";
-import { getRelativeLocaleUrl } from "@rimelight/i18n";
 
 const projects = (await getCollection("projects")).toSorted(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+const groupedProjects = projects.reduce<Record<string, typeof projects>>((acc, project) => {
+    const type = project.data.type || "website";
+    if (!acc[type]) acc[type] = [];
+    acc[type].push(project);
+    return acc;
+}, {});
+
+const categoryOrder = ["website", "app", "other"] as const;
+
+const badgeColorMap: Record<string, string> = {
+    "website": "info",
+    "app": "primary",
+    "other": "success",
+};
+
+const messages = await useI18nAsync(Astro, 'projects', {
+    title: "me.projects",
+    description: "Personal projects and creations.",
+    categories: {
+        "website": "Website",
+        "app": "App",
+        "other": "Other"
+    } as any
+} as any);
+
+const tabsItems = [
+    { label: "All", value: "all" },
+    ...categoryOrder
+        .filter((cat) => groupedProjects[cat]?.length)
+        .map((cat) => ({
+            label: ((messages as any).categories as Record<string, string>)[cat] || cat,
+            value: cat
+        }))
+];
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-  <RLASection
-    title="me.projects"
-  >
-    <RLAGrid>
-      {
-        projects.map((project, index) => (
-          <RLAPost
-            title={project.data.title}
-            description={project.data.description}
-            date={project.data.pubDate}
-            image={project.data.heroImage}
-            to={getRelativeLocaleUrl(`/projects/${project.id}/`)}
-            variant="ghost"
-            ui={index === 0 ? {
-                root: "col-span-full flex flex-col items-center text-center gap-6 mb-8",
-                header: "w-full aspect-[21/9]",
-                title: "text-4xl lg:text-6xl font-bold",
-                description: "text-xl max-w-2xl mx-auto"
-            } : {}}
-          />
-        ))
-      }
-    </RLAGrid>
-  </RLASection>
+  <RLAPageSection title={(messages as any).title} description={(messages as any).description}>
+    <RLATabs slot="content" items={tabsItems} variant="underline">
+      <div role="tabpanel" data-value="all" class="hidden">
+        <RLAGrid cols={4}>
+          {projects.map((project, index) => (
+            <RLAPost
+              variant="ghost"
+              orientation={index === 0 ? "horizontal" : "vertical"}
+              class={index === 0 ? "col-span-full mb-6" : ""}
+              image={project.data.heroImage}
+              date={project.data.pubDate}
+              title={project.data.title}
+              description={project.data.description}
+              to={getRelativeLocaleUrl(`/projects/${project.id}/`)}
+              badge={((messages as any).categories as Record<string, string>)[project.data.type] || project.data.type}
+              badgeColor={badgeColorMap[project.data.type] || "primary"}
+            />
+          ))}
+        </RLAGrid>
+      </div>
+      {categoryOrder.map((category) => {
+        const categoryProjects = groupedProjects[category];
+        if (!categoryProjects || categoryProjects.length === 0) return null;
+        return (
+          <div role="tabpanel" data-value={category} class="hidden">
+            <RLAGrid cols={4}>
+              {
+                categoryProjects.map((project, index) => (
+                  <RLAPost
+                    variant="ghost"
+                    orientation={index === 0 ? "horizontal" : "vertical"}
+                    class={index === 0 ? "col-span-full mb-6" : ""}
+                    image={project.data.heroImage}
+                    date={project.data.pubDate}
+                    title={project.data.title}
+                    description={project.data.description}
+                    to={getRelativeLocaleUrl(`/projects/${project.id}/`)}
+                    badge={((messages as any).categories as Record<string, string>)[category] || category}
+                    badgeColor={badgeColorMap[category] || "primary"}
+                  />
+                ))
+              }
+            </RLAGrid>
+          </div>
+        );
+      })}
+    </RLATabs>
+  </RLAPageSection>
 </AppLayout>
+

@@ -553,38 +553,13 @@ const projects = [
           <!-- Experience Section -->
           <div class="flex flex-col gap-md">
             <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">{messages.experience_heading}</h2>
-            <RLATimeline>
-              {experiences.map((exp) => (
-                <div class="relative timeline-node mb-8 last:mb-0">
-                  {/* Timeline Dot */}
-                  <div class="absolute -left-[33px] top-[4px] flex h-4 w-4 items-center justify-center rounded-full bg-neutral-950 ring-2 ring-neutral-800">
-                    <div class="h-2 w-2 rounded-full bg-primary-500" />
-                  </div>
-                  {/* Header */}
-                  <div class="flex flex-col mb-2">
-                    <h3 class="text-xl font-bold text-white">{exp.role}</h3>
-                    <div class="flex flex-row justify-between items-center text-sm mt-1">
-                      <span class="text-neutral-300 font-semibold">
-                        {exp.companyUrl ? (
-                          <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" class="hover:text-primary-400 underline transition-colors">{exp.company}</a>
-                        ) : (
-                          exp.company
-                        )}
-                      </span>
-                      <span class="text-neutral-500 font-medium">{exp.period}</span>
-                    </div>
-                  </div>
-                  {/* Content / Bullets */}
-                  <div class="text-sm text-neutral-400">
-                    <ul class="list-inside list-disc space-y-1.5">
-                      {exp.bullets.map((bullet) => (
-                        <li class="leading-relaxed">{bullet}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              ))}
-            </RLATimeline>
+            <RLATimeline
+              items={experiences.map((exp) => ({
+                date: exp.period,
+                title: `${exp.role} · ${exp.company}`,
+                description: exp.bullets.join(" ")
+              }))}
+            />
           </div>
 
           <!-- Education Section -->

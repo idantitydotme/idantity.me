@@ -57,7 +57,7 @@ const tabsItems = [
     title={messages.title}
     description={messages.description}
   >
-    <RLATabs items={tabsItems} variant="underline">
+    <RLATabs slot="content" items={tabsItems} variant="underline">
       <div role="tabpanel" data-value="all" class="hidden">
         <RLAGrid cols={4}>
           {posts.map((post, index) => (
