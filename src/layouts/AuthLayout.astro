@@ -1,0 +1,45 @@
+---
+interface AuthLayoutProps {
+  tabs: { label: string; path: string }[]
+  currentPath: string
+  backgroundMobile?: string
+  backgroundDesktop?: string
+}
+
+const { tabs, currentPath, backgroundMobile, backgroundDesktop } = Astro.props as AuthLayoutProps
+---
+
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+  <div class="absolute inset-0 pointer-events-none">
+    {backgroundMobile && (
+      <img src={backgroundMobile} alt="" class="h-full w-full object-cover md:hidden" />
+    )}
+    {backgroundDesktop && (
+      <img src={backgroundDesktop} alt="" class="hidden h-full w-full object-cover md:block" />
+    )}
+    <div class="absolute inset-0 bg-black/15" />
+  </div>
+  <div class="flex z-10 min-h-screen items-center justify-center px-4 py-8">
+    <div class="w-full max-w-md bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800 rounded-lg shadow-xl text-neutral-900 dark:text-neutral-100">
+      <div class="flex border-b border-neutral-200 dark:border-neutral-800">
+        {tabs.map((tab) => (
+          <a
+            href={tab.path}
+            class:list={[
+              "flex-1 text-center px-4 py-3 text-sm font-medium transition-colors no-underline",
+              "hover:text-primary-600 dark:hover:text-primary-400 hover:border-b-2 hover:border-primary-500",
+              tab.path === currentPath
+                ? "text-primary-600 dark:text-primary-400 border-b-2 border-primary-500 font-semibold"
+                : "text-neutral-500 dark:text-neutral-400 border-b-2 border-transparent",
+            ]}
+          >
+            {tab.label}
+          </a>
+        ))}
+      </div>
+      <div class="flex flex-col gap-md p-6">
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>

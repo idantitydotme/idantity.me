@@ -1,46 +1,19 @@
 ---
-import AppLayout from '@/layouts/AppLayout.astro'
-import { actions } from 'astro:actions'
-import Form from '@/components/Form.astro'
-import { useI18n } from "@rimelight/i18n"
+import { getRelativeLocaleUrl } from '@rimelight/i18n'
 
-const messages = useI18n(Astro, 'auth', {
-  authSignInTitle: 'Sign in',
-  authSignInDescription: 'Sign in to your account',
-  authSignInNewUserMessage: 'Your account has been created. Please sign in.',
-  authSignInEmail: 'E-mail',
-  authSignInPassword: 'Password',
-  authSignInButton: 'Sign in',
-  authSignUpTitle: 'Sign up',
-  authSignUpDescription: 'Create a new account',
-  authSignUpFirstName: 'First name',
-  authSignUpLastName: 'Last name',
-  authSignUpEmail: 'E-mail',
-  authSignUpPassword: 'Password',
-  authSignUpButton: 'Sign up',
-  authSignOutTitle: 'Sign out',
-  authSignOutDescription: 'Sign out of your account',
-  authSignOutConfirmMessage: 'Are you sure you want to sign out?',
-  authSignOutButton: 'Sign out'
-})
+try {
+  const { auth } = await import("@/auth/auth")
+  const response = await auth.api.signOut({
+    headers: Astro.request.headers,
+    asResponse: true
+  })
 
-const result = Astro.getActionResult(actions.signOut)
-
-if (result && !result.error && result.data.cookies.length > 0) {
-  Astro.response.headers.append('Location', '/')
-  Astro.response.status = 302
-
-  for (const cookie of result.data.cookies) {
+  for (const cookie of response.headers.getSetCookie()) {
     Astro.response.headers.append('Set-Cookie', cookie)
   }
-
-  return new Response(null, Astro.response)
+} catch (error) {
+  console.error("Sign out error:", error)
 }
----
 
-<AppLayout title={messages.authSignOutTitle} description={messages.authSignOutDescription}>
-  <Form method="POST" action={actions.signOut} error={result?.error}>
-    <p>{messages.authSignOutConfirmMessage}</p>
-    <button>{messages.authSignOutButton}</button>
-  </Form>
-</AppLayout>
+return Astro.redirect(getRelativeLocaleUrl(Astro.currentLocale ?? 'en', '/'))
+---

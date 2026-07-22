@@ -6,7 +6,14 @@ import RLAButton from "@rimelight/ui/components/button/RLAButton.astro";
 import RLASlideover from "@rimelight/ui/components/slideover/RLASlideover.astro";
 import type { NavigationMenuItem } from "@rimelight/ui/components/navigation-menu/navigation-menu.ts";
 import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
-import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
+import RLAAvatar from "@rimelight/ui/components/avatar/RLAAvatar.astro";
+import RLAPopover from "@rimelight/ui/components/popover/RLAPopover.astro";
+import { auth } from "@/auth";
+
+let session: any = null;
+try {
+  session = await auth.api.getSession({ headers: Astro.request.headers });
+} catch (e) {}
 
 const activeLocale = Astro.currentLocale ?? "en";
 
@@ -124,7 +131,7 @@ const socials: ButtonProps[] = [
 
   <div slot="right" class="flex items-center gap-md">
 
-    <div class="hidden md:flex flex-row gap-md">
+    <div class="hidden md:flex flex-row gap-md items-center">
       <RLANavigationMenu
         items={rightLinks}
         variant="link"
@@ -136,6 +143,40 @@ const socials: ButtonProps[] = [
       {socials.map((buttonProps) => (
         <RLAButton {...buttonProps} />
       ))}
+
+      {session && (
+        <RLAPopover placement="bottom-end" class="relative group/popover ml-2">
+          <div slot="trigger" class="flex items-center gap-xs cursor-pointer text-white hover:text-primary-400 transition-colors py-1 px-2 rounded-lg">
+            <div class="relative">
+              <RLAAvatar src={session.user.image} alt={session.user.name} size="sm" />
+              <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-black bg-success-500" />
+            </div>
+            <span class="hidden md:inline text-sm font-medium">{session.user.name}</span>
+          </div>
+
+          <div class="flex flex-col gap-2 min-w-[240px] text-neutral-900 dark:text-neutral-100">
+            <div class="flex items-center gap-sm pb-2 border-b border-neutral-200 dark:border-neutral-800">
+              <RLAAvatar src={session.user.image} alt={session.user.name} size="md" />
+              <div class="flex flex-col">
+                <span class="font-semibold text-sm">{session.user.name}</span>
+                <span class="text-xs text-neutral-500 truncate max-w-[150px]">{session.user.email}</span>
+              </div>
+            </div>
+
+            <div class="flex flex-col">
+              <RLAButton
+                color="neutral"
+                variant="ghost"
+                block={true}
+                class="!justify-start text-error-500 hover:text-error-600"
+                href={getRelativeLocaleUrl(activeLocale, '/auth/sign-out')}
+                leadingIcon="i-lucide-log-out"
+                label="Sign out"
+              />
+            </div>
+          </div>
+        </RLAPopover>
+      )}
     </div>
 
     <div class="block md:hidden">

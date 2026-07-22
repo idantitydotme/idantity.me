@@ -1,52 +1,52 @@
 ---
 import AppLayout from '@/layouts/AppLayout.astro'
-import { actions, isInputError } from 'astro:actions'
-import Form from '@/components/Form.astro'
-import Input from '@/components/Input.astro'
+import AuthLayout from '@/layouts/AuthLayout.astro'
+import AuthSignInForm from '@/components/auth/AuthSignInForm.astro'
 import { useI18n } from "@rimelight/i18n"
+import bgMobile from '@/assets/images/auth_background_mobile.jpg'
+import bgDesktop from '@/assets/images/auth_background_desktop.jpg'
 
-const messages = useI18n(Astro, 'auth', {
-  authSignInTitle: 'Sign in',
-  authSignInDescription: 'Sign in to your account',
-  authSignInNewUserMessage: 'Your account has been created. Please sign in.',
-  authSignInEmail: 'E-mail',
-  authSignInPassword: 'Password',
-  authSignInButton: 'Sign in',
-  authSignUpTitle: 'Sign up',
-  authSignUpDescription: 'Create a new account',
-  authSignUpFirstName: 'First name',
-  authSignUpLastName: 'Last name',
-  authSignUpEmail: 'E-mail',
-  authSignUpPassword: 'Password',
-  authSignUpButton: 'Sign up',
-  authSignOutTitle: 'Sign out',
-  authSignOutDescription: 'Sign out of your account',
-  authSignOutConfirmMessage: 'Are you sure you want to sign out?',
-  authSignOutButton: 'Sign out'
+const messages = useI18n(Astro, "page_auth_sign-in", {
+  meta_title: 'Sign in',
+  'sign-in_title': 'Sign in',
+  'sign-in_description': 'Sign in to your account',
+  'sign-in_new-user': 'Your account has been created. Please sign in.',
+  'sign-in_email': 'E-mail',
+  'sign-in_password': 'Password',
+  'sign-in_button': 'Sign in',
+  'sign-up_title': 'Sign up',
+  auth_email_label: 'E-mail',
+  auth_email_description: '',
+  auth_email_placeholder: 'your@email.com',
+  auth_email_invalid: 'Invalid email',
+  auth_password_label: 'Password',
+  auth_password_description: '',
+  auth_password_min_length: 'Password must be at least 8 characters',
+  auth_remember_me: 'Remember me',
+  auth_sign_in_button: 'Sign in',
+  auth_sign_in_failed_title: 'Sign in failed',
+  auth_sign_in_success_title: 'Signed in successfully',
+  auth_connection_error_description: 'Connection error',
+  auth_terms_agreement: 'By signing in you agree to our',
+  auth_terms_link: 'Terms of Service',
+  'auth_sign-in_email_help': 'Recover email',
+  'auth_sign-in_password_help': 'Forgot password?',
 })
 
-const result = Astro.getActionResult(actions.signIn)
-
-if (result && !result.error && result.data.cookies.length > 0) {
-  Astro.response.headers.append('Location', '/')
-  Astro.response.status = 302
-
-  for (const cookie of result.data.cookies) {
-    Astro.response.headers.append('Set-Cookie', cookie)
-  }
-
-  return new Response(null, Astro.response)
-}
-
-const inputErrors = isInputError(result?.error) ? result.error.fields : {}
 const isNewUser = new URL(Astro.request.url).searchParams.has('new')
+
+const currentPath = Astro.url.pathname
+const activeLocale = Astro.currentLocale ?? "en"
+const localePrefix = `/${activeLocale}`
+const tabs = [
+  { label: messages['sign-in_title'], path: `${localePrefix}/auth/sign-in` },
+  { label: messages['sign-up_title'], path: `${localePrefix}/auth/sign-up` },
+]
 ---
 
-<AppLayout title={messages.authSignInTitle} description={messages.authSignInDescription}>
-  {isNewUser && <p>{messages.authSignInNewUserMessage}</p>}
-  <Form method="POST" action={actions.signIn} error={result?.error}>
-    <Input errors={inputErrors.email} name="email" label={messages.authSignInEmail} required type="email" />
-    <Input errors={inputErrors.password} name="password" label={messages.authSignInPassword} required type="password" />
-    <button>{messages.authSignInButton}</button>
-  </Form>
+<AppLayout title={messages.meta_title} description={messages['sign-in_description']}>
+  {isNewUser && <p class="text-center text-sm text-success">{messages['sign-in_new-user']}</p>}
+  <AuthLayout tabs={tabs} currentPath={currentPath} backgroundMobile={bgMobile.src} backgroundDesktop={bgDesktop.src}>
+    <AuthSignInForm messages={messages} />
+  </AuthLayout>
 </AppLayout>

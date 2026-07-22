@@ -1,0 +1,399 @@
+---
+import RLAInput from "@rimelight/ui/components/input/RLAInput.astro"
+import RLAButton from "@rimelight/ui/components/button/RLAButton.astro"
+import RLACheckbox from "@rimelight/ui/components/checkbox/RLACheckbox.astro"
+import RLAProgress from "@rimelight/ui/components/progress/RLAProgress.astro"
+import RLAIcon from "@rimelight/ui/components/icon/RLAIcon.astro"
+
+interface Props {
+  messages?: Record<string, string>
+}
+
+const { messages = {} } = Astro.props as Props
+
+const stepTitles = [
+  messages.auth_stepper_identity ?? "Identity",
+  messages.auth_stepper_security ?? "Security",
+  messages.auth_stepper_preferences ?? "Preferences"
+]
+---
+
+<div class="w-full flex flex-col gap-lg max-w-md" id="auth-sign-up-root">
+  <p id="auth-sign-up-error" class="hidden text-sm text-error-500"></p>
+
+  <!-- Step indicators matching Nuxt UI Stepper pattern with icon support -->
+  <div class="flex items-center justify-between w-full mb-4 px-2">
+    {stepTitles.map((title, index) => {
+      const stepIcons = ["user", "lock", "check"]
+      return (
+        <div class="flex items-center gap-2 flex-1 last:flex-initial" data-step-item={index}>
+          <div
+            class="flex items-center gap-2 transition-colors cursor-pointer text-xs sm:text-sm font-medium step-indicator"
+            data-step-indicator={index}
+          >
+            <div class="size-8 rounded-full flex items-center justify-center border transition-all step-badge">
+              <RLAIcon name={stepIcons[index]} size="sm" class="step-icon" />
+            </div>
+            <span class="hidden sm:inline text-xs font-semibold step-title">{title}</span>
+          </div>
+          {index < stepTitles.length - 1 && (
+            <div class="flex-1 h-0.5 mx-2 bg-neutral-200 dark:bg-neutral-800 transition-colors step-line" data-step-line={index} />
+          )}
+        </div>
+      )
+    })}
+  </div>
+
+  <form id="auth-sign-up-form" class="flex flex-col gap-md">
+    <!-- Step 1: Identity -->
+    <div id="step-0-container" class="flex flex-col gap-md">
+      <div class="flex flex-col gap-1 text-neutral-900 dark:text-neutral-100">
+        <label class="text-sm font-medium">{messages.auth_email_label ?? "E-mail"}</label>
+        <RLAInput
+          type="email"
+          name="email"
+          id="sign-up-email"
+          placeholder={messages.auth_email_placeholder ?? "your@email.com"}
+          required
+          class="w-full"
+        />
+      </div>
+
+      <div class="absolute h-0 w-0 overflow-hidden" aria-hidden="true">
+        <input type="email" name="emailConfirmation" id="sign-up-honeypot" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <div class="flex flex-col gap-1 text-neutral-900 dark:text-neutral-100">
+        <label class="text-sm font-medium">{messages.auth_username_label ?? "Username"}</label>
+        <RLAInput
+          type="text"
+          name="username"
+          id="sign-up-username"
+          placeholder="Johndoe123"
+          required
+          class="w-full"
+        />
+      </div>
+
+      <div class="flex flex-row gap-sm">
+        <div class="flex flex-col gap-1 w-1/2 text-neutral-900 dark:text-neutral-100">
+          <label class="text-sm font-medium">{messages.auth_firstname_label ?? "First name"}</label>
+          <RLAInput
+            type="text"
+            name="firstName"
+            id="sign-up-firstname"
+            placeholder="John"
+            required
+            class="w-full"
+          />
+        </div>
+        <div class="flex flex-col gap-1 w-1/2 text-neutral-900 dark:text-neutral-100">
+          <label class="text-sm font-medium">{messages.auth_lastname_label ?? "Last name"}</label>
+          <RLAInput
+            type="text"
+            name="lastName"
+            id="sign-up-lastname"
+            placeholder="Doe"
+            required
+            class="w-full"
+          />
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-md">
+        <RLAButton type="button" id="btn-to-step-1" trailingIcon="arrowRight">
+          {messages.navigation_next ?? "Next"}
+        </RLAButton>
+      </div>
+    </div>
+
+    <!-- Step 2: Security -->
+    <div id="step-1-container" class="hidden flex-col gap-md">
+      <div class="flex flex-col gap-1 text-neutral-900 dark:text-neutral-100">
+        <label class="text-sm font-medium">{messages.auth_password_label ?? "Password"}</label>
+        <div class="relative w-full flex items-center">
+          <RLAInput
+            type="password"
+            name="password"
+            id="sign-up-password"
+            placeholder="••••••••••••••••"
+            required
+            class="w-full pr-10"
+          />
+          <button
+            type="button"
+            id="toggle-signup-password-btn"
+            class="absolute right-2 p-1 text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 focus:outline-none flex items-center justify-center"
+            aria-label="Toggle password visibility"
+          >
+            <RLAIcon name="eye" id="toggle-signup-password-icon" size="sm" />
+          </button>
+        </div>
+
+        <div class="mt-2">
+          <RLAProgress value={0} max={4} size="sm" id="password-strength-progress" />
+          <ul class="space-y-1 mt-2 text-xs text-neutral-600 dark:text-neutral-400" id="password-requirements-list">
+            <li class="flex items-center gap-xs" data-req="length">
+              <span>{messages.auth_password_req_length ?? "At least 8 characters"}</span>
+            </li>
+            <li class="flex items-center gap-xs" data-req="number">
+              <span>{messages.auth_password_req_number ?? "At least 1 number"}</span>
+            </li>
+            <li class="flex items-center gap-xs" data-req="lowercase">
+              <span>{messages.auth_password_req_lowercase ?? "At least 1 lowercase letter"}</span>
+            </li>
+            <li class="flex items-center gap-xs" data-req="uppercase">
+              <span>{messages.auth_password_req_uppercase ?? "At least 1 uppercase letter"}</span>
+            </li>
+            <li class="flex items-center gap-xs" data-req="special">
+              <span>{messages.auth_password_req_special ?? "At least 1 special character"}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-1 text-neutral-900 dark:text-neutral-100">
+        <label class="text-sm font-medium">{messages.auth_password_confirmation_label ?? "Confirm password"}</label>
+        <RLAInput
+          type="password"
+          name="passwordConfirmation"
+          id="sign-up-password-confirmation"
+          placeholder="••••••••••••••••"
+          required
+          class="w-full"
+        />
+      </div>
+
+      <div class="flex justify-between gap-md">
+        <RLAButton type="button" variant="outline" id="btn-back-to-step-0" leadingIcon="arrowLeft">
+          {messages.navigation_previous ?? "Previous"}
+        </RLAButton>
+        <RLAButton type="button" id="btn-to-step-2" trailingIcon="arrowRight">
+          {messages.navigation_next ?? "Next"}
+        </RLAButton>
+      </div>
+    </div>
+
+    <!-- Step 3: Preferences -->
+    <div id="step-2-container" class="hidden flex-col gap-md">
+      <div class="flex flex-col gap-2 text-neutral-900 dark:text-neutral-100">
+        <RLACheckbox name="terms" id="sign-up-terms" required>
+          <span slot="label">
+            {messages.auth_terms_agreement_signup ?? "I agree to the"}{" "}
+            <a href="/documents/terms-of-service" class="font-medium text-primary-600 dark:text-primary-400 hover:underline">
+              {messages.auth_terms_link ?? "Terms of Service"}
+            </a>.
+          </span>
+        </RLACheckbox>
+
+        <RLACheckbox
+          name="newsletter"
+          id="sign-up-newsletter"
+          label={messages.auth_newsletter_label ?? "Subscribe to newsletter"}
+        />
+      </div>
+
+      <div class="flex justify-between gap-md">
+        <RLAButton type="button" variant="outline" id="btn-back-to-step-1" leadingIcon="arrowLeft">
+          {messages.navigation_previous ?? "Previous"}
+        </RLAButton>
+        <RLAButton type="submit" id="sign-up-submit-btn" trailingIcon="check">
+          {messages.auth_sign_up_button ?? "Sign up"}
+        </RLAButton>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  import { authClient } from "@/auth/auth-client"
+
+  let currentStep = 0
+  const stepContainers = [
+    document.getElementById("step-0-container"),
+    document.getElementById("step-1-container"),
+    document.getElementById("step-2-container")
+  ]
+
+  const errorEl = document.getElementById("auth-sign-up-error")
+  const form = document.getElementById("auth-sign-up-form") as HTMLFormElement | null
+
+  function updateStepUI() {
+    stepContainers.forEach((container, idx) => {
+      if (container) {
+        if (idx === currentStep) {
+          container.classList.remove("hidden")
+          container.classList.add("flex")
+        } else {
+          container.classList.add("hidden")
+          container.classList.remove("flex")
+        }
+      }
+    })
+
+    document.querySelectorAll("[data-step-indicator]").forEach((indicator) => {
+      const idx = Number(indicator.getAttribute("data-step-indicator"))
+      const badge = indicator.querySelector(".step-badge") as HTMLElement | null
+      const title = indicator.querySelector(".step-title") as HTMLElement | null
+      
+      if (idx === currentStep) {
+        if (badge) badge.className = "size-8 rounded-full flex items-center justify-center border transition-all bg-primary-600 border-primary-600 text-white shadow-sm"
+        if (title) title.className = "hidden sm:inline text-xs font-bold text-primary-600 dark:text-primary-400"
+      } else if (idx < currentStep) {
+        if (badge) badge.className = "size-8 rounded-full flex items-center justify-center border transition-all bg-success-500 border-success-500 text-white"
+        if (title) title.className = "hidden sm:inline text-xs font-medium text-success-600 dark:text-success-400"
+      } else {
+        if (badge) badge.className = "size-8 rounded-full flex items-center justify-center border transition-all bg-neutral-100 dark:bg-neutral-800 border-neutral-300 dark:border-neutral-700 text-neutral-400"
+        if (title) title.className = "hidden sm:inline text-xs font-medium text-neutral-400 dark:text-neutral-500"
+      }
+    })
+
+    document.querySelectorAll("[data-step-line]").forEach((line) => {
+      const idx = Number(line.getAttribute("data-step-line"))
+      if (idx < currentStep) {
+        line.className = "flex-1 h-0.5 mx-2 bg-success-500 transition-colors"
+      } else {
+        line.className = "flex-1 h-0.5 mx-2 bg-neutral-200 dark:bg-neutral-800 transition-colors"
+      }
+    })
+  }
+
+  updateStepUI()
+
+  document.getElementById("btn-to-step-1")?.addEventListener("click", () => {
+    const email = (document.getElementById("sign-up-email") as HTMLInputElement)?.value
+    const username = (document.getElementById("sign-up-username") as HTMLInputElement)?.value
+    const firstName = (document.getElementById("sign-up-firstname") as HTMLInputElement)?.value
+    const lastName = (document.getElementById("sign-up-lastname") as HTMLInputElement)?.value
+
+    if (!email || !username || !firstName || !lastName) {
+      if (errorEl) {
+        errorEl.textContent = "Please fill in all required fields"
+        errorEl.classList.remove("hidden")
+      }
+      return
+    }
+    if (errorEl) errorEl.classList.add("hidden")
+    currentStep = 1
+    updateStepUI()
+  })
+
+  document.getElementById("btn-back-to-step-0")?.addEventListener("click", () => {
+    currentStep = 0
+    updateStepUI()
+  })
+
+  document.getElementById("btn-to-step-2")?.addEventListener("click", () => {
+    const pwd = (document.getElementById("sign-up-password") as HTMLInputElement)?.value
+    const confirm = (document.getElementById("sign-up-password-confirmation") as HTMLInputElement)?.value
+
+    if (!pwd || pwd.length < 8) {
+      if (errorEl) {
+        errorEl.textContent = "Password must be at least 8 characters"
+        errorEl.classList.remove("hidden")
+      }
+      return
+    }
+    if (pwd !== confirm) {
+      if (errorEl) {
+        errorEl.textContent = "Passwords do not match"
+        errorEl.classList.remove("hidden")
+      }
+      return
+    }
+    if (errorEl) errorEl.classList.add("hidden")
+    currentStep = 2
+    updateStepUI()
+  })
+
+  document.getElementById("btn-back-to-step-1")?.addEventListener("click", () => {
+    currentStep = 1
+    updateStepUI()
+  })
+
+  const pwdInput = document.getElementById("sign-up-password") as HTMLInputElement | null
+  const togglePwdBtn = document.getElementById("toggle-signup-password-btn")
+
+  if (togglePwdBtn && pwdInput) {
+    togglePwdBtn.addEventListener("click", (e) => {
+      e.preventDefault()
+      const isPwd = pwdInput.type === "password"
+      pwdInput.type = isPwd ? "text" : "password"
+      const svgIcon = togglePwdBtn.querySelector("svg")
+      if (svgIcon) {
+        if (isPwd) {
+          svgIcon.innerHTML = `<path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499A10.75 10.75 0 0 1 2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.225-4.22"/><line x1="2" x2="22" y1="2" y2="22"/>`
+        } else {
+          svgIcon.innerHTML = `<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0z"/><circle cx="12" cy="12" r="3"/>`
+        }
+      }
+    })
+  }
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault()
+      if (errorEl) { errorEl.classList.add("hidden"); errorEl.textContent = "" }
+
+      const honeypot = (document.getElementById("sign-up-honeypot") as HTMLInputElement)?.value
+      if (honeypot) return // Bot submission
+
+      const email = (document.getElementById("sign-up-email") as HTMLInputElement)?.value || ""
+      const username = (document.getElementById("sign-up-username") as HTMLInputElement)?.value || ""
+      const firstName = (document.getElementById("sign-up-firstname") as HTMLInputElement)?.value || ""
+      const lastName = (document.getElementById("sign-up-lastname") as HTMLInputElement)?.value || ""
+      const password = pwdInput?.value || ""
+      const terms = (document.getElementById("sign-up-terms") as HTMLInputElement)?.checked
+
+      if (!terms) {
+        if (errorEl) {
+          errorEl.textContent = "You must accept the terms of service"
+          errorEl.classList.remove("hidden")
+        }
+        return
+      }
+
+      const submitBtn = document.getElementById("sign-up-submit-btn") as HTMLButtonElement | null
+      let origBtnContent = ""
+      if (submitBtn) {
+        submitBtn.disabled = true
+        origBtnContent = submitBtn.innerHTML
+        submitBtn.innerHTML = `<span class="flex items-center justify-center gap-2"><svg class="animate-spin size-4 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span>Creating account...</span></span>`
+      }
+
+      try {
+        const { error } = await authClient.signUp.email({
+          name: username,
+          firstName,
+          lastName,
+          email,
+          password
+        } as any)
+
+        if (error) {
+          if (errorEl) {
+            errorEl.textContent = error.message || "Failed to create account"
+            errorEl.classList.remove("hidden")
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false
+            submitBtn.innerHTML = origBtnContent
+          }
+          return
+        }
+
+        const signInPath = window.location.pathname.replace(/\/sign-up.*/, "/sign-in") + "?new"
+        window.location.href = signInPath
+      } catch (err: any) {
+        if (errorEl) {
+          errorEl.textContent = err?.message || "An unexpected error occurred"
+          errorEl.classList.remove("hidden")
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false
+          submitBtn.innerHTML = origBtnContent
+        }
+      }
+    })
+  }
+</script>
