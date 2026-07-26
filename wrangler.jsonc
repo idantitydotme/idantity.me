@@ -44,6 +44,16 @@
       "bucket_name": "idantity-dot-me"
     }
   ],
+  "ratelimits": [
+    {
+      "namespace_id": "1001",
+      "name": "MY_RATE_LIMITER",
+      "simple": {
+        "limit": 100,
+        "period": 60
+      }
+    }
+  ],
   "vars": {
     "CONSTRUCTION_MODE": "false"
   }
