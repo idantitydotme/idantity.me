@@ -1,0 +1,25 @@
+---
+import EmailTemplate from "./EmailTemplate.astro"
+import type { EmailMessages } from "@/auth/email/messages"
+
+interface Props {
+  signInUrl: string
+  messages: EmailMessages
+}
+
+const { signInUrl, messages } = Astro.props
+---
+<EmailTemplate bannerAlt="Idantity security notice" common={messages.common}>
+  <div style="font-family: Arial, sans-serif; color: #333;">
+    <h1 style="color: #dc2626; font-size: 22px; margin-bottom: 16px;">{messages.signupNotification.title}</h1>
+    <p style="color: #555; font-size: 15px; line-height: 1.5; margin-bottom: 20px;">
+      {messages.signupNotification.description}
+    </p>
+    <p style="color: #555; font-size: 15px; line-height: 1.5; margin-bottom: 20px;">
+      {messages.signupNotification.sign_in_prefix} <a href={signInUrl} style="color: #0064d7;">{messages.signupNotification.sign_in}</a> {messages.signupNotification.sign_in_suffix}
+    </p>
+    <p style="color: #888; font-size: 13px; margin-top: 24px; border-top: 1px solid #eee; padding-top: 16px;">
+      {messages.signupNotification.ignore}
+    </p>
+  </div>
+</EmailTemplate>

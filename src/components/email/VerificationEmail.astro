@@ -1,0 +1,29 @@
+---
+import EmailTemplate from "./EmailTemplate.astro"
+import type { EmailMessages } from "@/auth/email/messages"
+
+interface Props {
+  url: string
+  messages: EmailMessages
+}
+
+const { url, messages } = Astro.props
+---
+<EmailTemplate bannerAlt="Verify your email" common={messages.common}>
+  <div style="font-family: Arial, sans-serif; color: #333;">
+    <h1 style="color: #333; font-size: 22px; margin-bottom: 16px;">{messages.verification.title}</h1>
+    <p style="color: #555; font-size: 15px; line-height: 1.5; margin-bottom: 20px;">
+      {messages.verification.description}
+    </p>
+    <a
+      href={url}
+      style="display: inline-block; padding: 14px 28px; background-color: #0064d7; color: white; text-decoration: none; border-radius: 6px; margin: 20px 0; font-weight: 600;"
+    >
+      {messages.verification.button}
+    </a>
+    <p style="color: #888; font-size: 13px; margin-top: 24px;">{messages.verification.copy_link}</p>
+    <p style="word-break: break-all; color: #9ca3af; font-size: 11px; font-family: monospace; background: #f3f4f6; padding: 8px; border-radius: 4px;">
+      {url}
+    </p>
+  </div>
+</EmailTemplate>

@@ -1,0 +1,67 @@
+---
+import BlankLayout from "@/layouts/BlankLayout.astro"
+import RLAMain from "@rimelight/ui/components/main/RLAMain.astro"
+import RLAButton from "@rimelight/ui/components/button/RLAButton.astro"
+import RLALink from "@rimelight/ui/components/link/RLALink.astro"
+
+interface Props {
+  title: string
+  template: "verification" | "password-reset" | "signup-notification"
+}
+
+const { title, template } = Astro.props
+const locale = Astro.currentLocale ?? "en"
+---
+<BlankLayout title={`${title} - Email Preview`} description={`Preview of the ${title} email template`}>
+  <RLAMain class="max-w-[680px] mx-auto flex flex-col gap-md" data-email-locale={locale}>
+    <div>
+      <header class="bg-primary-500 flex items-center justify-between rounded-t-xl p-2xl">
+        <h1 class="text-2xl text-white font-bold">{title}</h1>
+        <div class="flex flex-row gap-sm">
+          <RLAButton
+            label="Send Test Email"
+            data-email-test={template}
+            loadingAuto
+            leadingIcon="i-lucide-mail"
+          />
+        </div>
+      </header>
+
+      <div class="bg-[#fafafa] border-2 border-[#d1d5db] p-2xl relative rounded-b-xl">
+        <div class="w-full max-w-[600px] mx-auto bg-white border-2 border-dashed border-[var(--primary,#0064d7)] rounded relative">
+          <span class="absolute -top-3 right-4 py-1 px-2.5 rounded bg-[var(--primary,#0064d7)] text-white text-xs font-semibold tracking-wide">PREVIEW</span>
+          <slot />
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full flex justify-center pt-4">
+      <div class="w-full max-w-[680px]">
+        <RLALink leadingIcon="i-lucide-arrow-left" label="Back to preview index" href={`/${locale}/dev/email`} class="!ml-0 mx-auto block text-center" />
+      </div>
+    </div>
+  </RLAMain>
+</BlankLayout>
+
+<script>
+  document.querySelector('[data-email-test]')?.addEventListener('click', async (e) => {
+    const btn = e.currentTarget as HTMLButtonElement;
+    const status = document.querySelector('[data-email-status]');
+
+    try {
+      const res = await fetch('/api/email/preview/test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          template: btn.dataset.emailTest,
+          locale
+        })
+      });
+
+      if (!res.ok) throw new Error('Failed to send');
+      if (status) status.textContent = '✓ Sent!';
+    } catch (err) {
+      if (status) status.textContent = '✗ ' + err.message;
+    }
+  });
+</script>

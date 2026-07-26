@@ -122,12 +122,17 @@ const {
       errorMessage.textContent = ""
 
       try {
-        const { authClient } = await import("@/auth/auth-client")
-        const { error: signInError } = await authClient.signIn.email({
-          email: emailInput.value,
-          password: passwordInput.value,
-          rememberMe: rememberCheckbox ? rememberCheckbox.checked : true
+        const response = await fetch("/api/construction-guest", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: emailInput.value,
+            password: passwordInput.value,
+            rememberMe: rememberCheckbox ? rememberCheckbox.checked : true
+          })
         })
+        const errorBody = response.ok ? null : await response.json() as { error?: string }
+        const signInError = response.ok ? null : { message: errorBody?.error }
 
         if (signInError) {
           errorMessage.textContent = signInError.message || "Something went wrong"
