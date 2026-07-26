@@ -107,11 +107,6 @@ overrides:
   kysely: 0.28.17
   ws: ^8.21.0
   esbuild: 0.28.1
-  yaml: ^2.8.3
-  js-yaml: ^4.1.2
-  undici: 7.28.0
-  vite: npm:@voidzero-dev/vite-plus-core@0.2.4
-  vitest: 4.1.9
 
 importers:
 
@@ -168,12 +163,6 @@ importers:
       sharp:
         specifier: 0.35.3
         version: 0.35.3(@types/node@26.1.1)
-      turndown:
-        specifier: ^7.2.4
-        version: 7.2.4
-      turndown-plugin-gfm:
-        specifier: ^1.0.2
-        version: 1.0.2
       vue:
         specifier: 3.5.40
         version: 3.5.40(typescript@6.0.3)
@@ -6001,7 +5990,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.34.5':
     dependencies:
-      '@emnapi/runtime': 1.11.1
+      '@emnapi/runtime': 1.11.2
     optional: true
 
   '@img/sharp-wasm32@0.35.3':
@@ -6021,6 +6010,15 @@ snapshots:
     optional: true
 
   '@img/sharp-win32-ia32@0.34.5':
+    optional: true
+
+  '@img/sharp-win32-ia32@0.35.3':
+    optional: true
+
+  '@img/sharp-win32-x64@0.34.5':
+    optional: true
+
+  '@img/sharp-win32-x64@0.35.3':
     optional: true
 
   '@img/sharp-win32-ia32@0.35.3':
@@ -7352,7 +7350,7 @@ snapshots:
       yargs-parser: 22.0.0
       zod: 4.4.3
     optionalDependencies:
-      '@astrojs/markdown-remark': 7.2.1
+      '@astrojs/markdown-remark': 7.2.1(supports-color@10.2.2)
       sharp: 0.35.3(@types/node@26.1.1)
     transitivePeerDependencies:
       - '@arethetypeswrong/core'
