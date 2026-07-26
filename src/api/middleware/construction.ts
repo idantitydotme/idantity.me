@@ -1,10 +1,10 @@
 import { getFetchState } from "astro/hono"
+import { languages } from "@/config/i18n.config"
 
-const CONSTRUCTION_SKIP_SEGMENTS = ["/construction", "/auth", "/api/auth"]
-const LOCALES = ["en", "pt"]
+const WHITELISTED_ROUTES = ["/construction", "/api/auth", "/api/construction-guest"]
 
 const getLocaleFromPath = (path: string) => {
-  return LOCALES.find((loc) => path === `/${loc}` || path.startsWith(`/${loc}/`)) ?? "en"
+  return languages.find((loc) => path === `/${loc}` || path.startsWith(`/${loc}/`)) ?? "en"
 }
 
 export const construction = async (c: any, next: any) => {
@@ -28,7 +28,7 @@ export const construction = async (c: any, next: any) => {
     return next()
   }
 
-  const isSkippedPath = CONSTRUCTION_SKIP_SEGMENTS.some((path) => c.req.path.includes(path))
+  const isSkippedPath = WHITELISTED_ROUTES.some((path) => c.req.path.includes(path))
   if (isSkippedPath) {
     return next()
   }
