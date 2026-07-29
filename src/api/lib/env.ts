@@ -1,4 +1,4 @@
-interface CloudflareEnv {
+export interface CloudflareEnv {
   BLOB: R2Bucket
   R2: R2Bucket
   EMAIL: SendEmail
@@ -12,10 +12,9 @@ export function isCloudflareEnv(env: unknown): env is CloudflareEnv {
 export async function getCloudflareEnv(c: any): Promise<CloudflareEnv | undefined> {
   // Method 1: Try c.env directly (Hono context)
   if (c?.env && typeof c.env === "object") {
-    const env = c.env as CloudflareEnv
-    if (env.EMAIL || env.BLOB) {
+    if (isCloudflareEnv(c.env)) {
       console.log("[getCloudflareEnv] Found on c.env")
-      return env
+      return c.env
     }
   }
 
@@ -24,7 +23,9 @@ export async function getCloudflareEnv(c: any): Promise<CloudflareEnv | undefine
     const { env: cfEnv } = await import("cloudflare:workers")
     if (cfEnv && typeof cfEnv === "object" && ("EMAIL" in cfEnv || "BLOB" in cfEnv)) {
       console.log("[getCloudflareEnv] Found on cloudflare:workers")
-      return cfEnv as unknown as CloudflareEnv
+      if (isCloudflareEnv(cfEnv)) {
+        return cfEnv
+      }
     }
   } catch (err) {
     console.log("[getCloudflareEnv] cloudflare:workers import failed:", err)

@@ -8,7 +8,7 @@ import { getCloudflareEnv, isCloudflareEnv } from "../../lib/env"
 const api = new Hono()
 
 function previewUrl(c: Context, suffix = "") {
-  const firstSegment = new URL(c.req.url).pathname.split("/").filter(Boolean)[0]
+  const firstSegment = new URL(c.req.url).pathname.split("/").find(Boolean) ?? ""
   const locale = firstSegment === "pt" ? "pt" : "en"
   return `/${locale}/dev/email${suffix}`
 }
@@ -23,7 +23,11 @@ api.post("/test", async (c) => {
   }
 
   try {
-    const env = (c.env ?? (await getCloudflareEnv(c))) as CloudflareEnv
+    const rawEnv = c.env ?? (await getCloudflareEnv(c))
+    if (!isCloudflareEnv(rawEnv)) {
+      return c.json({ error: "Invalid environment configuration." }, 500)
+    }
+    const env = rawEnv
     const recipient = env.EMAIL_TEST_RECIPIENT
     if (!recipient) {
       return c.json({ error: "EMAIL_TEST_RECIPIENT is not configured." }, 500)

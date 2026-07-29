@@ -1,4 +1,3 @@
-import { getFetchState } from "astro/hono"
 import { auth as betterAuth } from "@/auth/auth"
 import { isConstructionGuest } from "@/auth/construction-guest"
 
@@ -10,15 +9,13 @@ export const auth = async (c: any, next: any) => {
   const isIgnored = IGNORED_ROUTES.some((path) => url.pathname.includes(path))
   const isProtected = PROTECTED_ROUTES.some((path) => url.pathname.startsWith(path))
 
-  const state = getFetchState(c)
-
   if (isIgnored) {
-    state.locals.user = null
-    state.locals.session = null
+    c.set("user", null)
+    c.set("session", null)
   } else {
     const isAuthed = await betterAuth.api.getSession({ headers: c.req.raw.headers })
     const guest = !isAuthed?.session && (await isConstructionGuest(c))
-    state.locals.user =
+    const user =
       isAuthed?.user ??
       (guest
         ? {
@@ -30,7 +27,7 @@ export const auth = async (c: any, next: any) => {
             updatedAt: new Date(0)
           }
         : null)
-    state.locals.session =
+    const session =
       isAuthed?.session ??
       (guest
         ? {
@@ -42,24 +39,26 @@ export const auth = async (c: any, next: any) => {
             updatedAt: new Date(0)
           }
         : null)
+
+    c.set("user", user)
+    c.set("session", session)
   }
+
+  const session = c.get("session")
 
   if (url.pathname === "/auth") {
     return c.redirect("/auth/sign-in")
   }
 
-  if (
-    (url.pathname === "/auth/sign-in" || url.pathname === "/auth/sign-up") &&
-    state.locals.session
-  ) {
+  if ((url.pathname === "/auth/sign-in" || url.pathname === "/auth/sign-up") && session) {
     return c.redirect("/")
   }
 
-  if (isProtected && !state.locals.session) {
+  if (isProtected && !session) {
     return c.redirect("/auth/sign-in")
   }
 
-  if (url.pathname.includes("/construction") && state.locals.session) {
+  if (url.pathname.includes("/construction") && session) {
     return c.redirect("/")
   }
 

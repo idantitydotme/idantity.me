@@ -1,6 +1,6 @@
 import { env as cfEnv } from "cloudflare:workers"
 
-const getDomain = () => (cfEnv as any)?.EMAIL_DOMAIN || "idantity.me"
+const getDomain = () => (cfEnv as Record<string, any> | undefined)?.EMAIL_DOMAIN || "idantity.me"
 
 export interface EmailPayload {
   to: string
@@ -10,7 +10,7 @@ export interface EmailPayload {
 }
 
 export async function sendEmail({ to, subject, text, html }: EmailPayload) {
-  const EMAIL = cfEnv?.EMAIL
+  const EMAIL = (cfEnv as Record<string, any> | undefined)?.EMAIL
 
   if (!EMAIL) {
     console.error("[email] EMAIL binding not available")

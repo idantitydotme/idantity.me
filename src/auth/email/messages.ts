@@ -1,17 +1,18 @@
 import en from "@/translations/en.json"
 
 export type EmailMessages = {
-  common: typeof en.email_common
-  verification: typeof en.email_verification
-  passwordReset: typeof en.email_password_reset
-  signupNotification: typeof en.email_signup_notification
+  common: any
+  verification: any
+  passwordReset: any
+  signupNotification: any
 }
 
 export function getEmailMessages(_locale = "en"): EmailMessages {
+  const json = en as Record<string, any>
   return {
-    common: en.email_common,
-    verification: en.email_verification,
-    passwordReset: en.email_password_reset,
-    signupNotification: en.email_signup_notification
+    common: json.email_common ?? {},
+    verification: json.email_verification ?? {},
+    passwordReset: json.email_password_reset ?? {},
+    signupNotification: json.email_signup_notification ?? {}
   }
 }

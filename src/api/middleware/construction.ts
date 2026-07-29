@@ -1,4 +1,3 @@
-import { getFetchState } from "astro/hono"
 import { languages } from "@/config/i18n.config"
 
 const WHITELISTED_ROUTES = ["/construction", "/api/auth", "/api/construction-guest"]
@@ -11,14 +10,14 @@ export const construction = async (c: any, next: any) => {
   const constructionMode =
     (import.meta.env.CONSTRUCTION_MODE ?? process.env.CONSTRUCTION_MODE) === "true"
 
-  const state = getFetchState(c)
+  const session = c.get("session")
   const localePrefix = getLocaleFromPath(c.req.path)
 
   const isConstructionPage =
     c.req.path === `/${localePrefix}/construction` || c.req.path === "/construction"
 
   if (isConstructionPage) {
-    if (!constructionMode || state.locals.session) {
+    if (!constructionMode || session) {
       return c.redirect(`/${localePrefix}`)
     }
     return next()
@@ -33,7 +32,7 @@ export const construction = async (c: any, next: any) => {
     return next()
   }
 
-  if (state.locals.session) {
+  if (session) {
     return next()
   }
 
