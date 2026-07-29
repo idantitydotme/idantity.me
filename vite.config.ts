@@ -115,7 +115,7 @@ export default defineConfig({
         input: [{ auto: true }, "!worker-configuration.d.ts"]
       },
       "check:vp": {
-        command: "vp check"
+        command: "vp check --fix"
       },
       "check": {
         dependsOn: ["audit", "typegen", "check:vp"],
