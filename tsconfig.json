@@ -11,7 +11,6 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "allowArbitraryExtensions": true,
-    "exactOptionalPropertyTypes": false
+    "allowArbitraryExtensions": true
   }
 }
