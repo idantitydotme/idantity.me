@@ -8,15 +8,7 @@ import RLAThemeSelector from "@rimelight/ui/components/theme-selector/RLAThemeSe
 import RLALocaleSelector from "@rimelight/ui/components/locale-selector/RLALocaleSelector.astro";
 import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
 
-const activeLocale = Astro.currentLocale ?? "en";
-
-const messages = useI18n(Astro, "app_footer", {
-  "links_resources_label": "Resources",
-  "links_resources_branding": "Branding",
-  "links_legal_label": "Legal",
-  "links_legal_privacy-policy": "Privacy Policy",
-  "links_legal_other-documents": "Other Documents"
-});
+const messages = useI18n("app_footer");
 
 const columns = [
   {
@@ -24,7 +16,7 @@ const columns = [
     children: [
       {
         label: messages["links_resources_branding"],
-        to: getRelativeLocaleUrl(activeLocale, "/branding")
+        to: getRelativeLocaleUrl("/branding")
       }
     ]
   },
@@ -33,11 +25,11 @@ const columns = [
     children: [
       {
         label: messages["links_legal_privacy-policy"],
-        to: getRelativeLocaleUrl(activeLocale, "/legal/privacy-policy")
+        to: getRelativeLocaleUrl("/legal/privacy-policy")
       },
       {
         label: messages["links_legal_other-documents"],
-        to: getRelativeLocaleUrl(activeLocale, "/legal")
+        to: getRelativeLocaleUrl("/legal")
       }
     ]
   }

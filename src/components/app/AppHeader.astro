@@ -15,46 +15,37 @@ try {
   session = await auth.api.getSession({ headers: Astro.request.headers });
 } catch (e) {}
 
-const activeLocale = Astro.currentLocale ?? "en";
+import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
 
-const messages = useI18n(Astro, "app_header", {
-	"left-links_projects_label": "me.projects",
-	"left-links_music_label": "me.music",
-	"left-links_blog_label": "me.blog",
-	"left-links_about_label": "me.about",
-	"right-links_services_label": "me.services",
-	"right-links_resume_label": "me.resume",
-  "socials_instagram_label": "Instagram",
-  "socials_github_label": "GitHub"
-});
+const messages = useI18n("app_header");
 
 const leftLinks: NavigationMenuItem[] = [
   {
     label: messages["left-links_projects_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/projects'),
+    to: getRelativeLocaleUrl('/projects'),
   },
   {
     label: messages["left-links_music_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/music'),
+    to: getRelativeLocaleUrl('/music'),
   },
   {
     label: messages["left-links_blog_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/blog'),
+    to: getRelativeLocaleUrl('/blog'),
   },
 	{
 		label: messages["left-links_about_label"],
-		to: getRelativeLocaleUrl(activeLocale, '/about'),
+		to: getRelativeLocaleUrl('/about'),
 	}
 ];
 
 const rightLinks: NavigationMenuItem[] = [
   {
     label: messages["right-links_services_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/services'),
+    to: getRelativeLocaleUrl('/services'),
   },
   {
     label: messages["right-links_resume_label"],
-    to: getRelativeLocaleUrl(activeLocale, '/resume'),
+    to: getRelativeLocaleUrl('/resume'),
   }
 ];
 
@@ -169,7 +160,7 @@ const socials: ButtonProps[] = [
                 variant="ghost"
                 block={true}
                 class="!justify-start text-error-500 hover:text-error-600"
-                href={getRelativeLocaleUrl(activeLocale, '/auth/sign-out')}
+                href={getRelativeLocaleUrl('/auth/sign-out')}
                 leadingIcon="i-lucide-log-out"
                 label="Sign out"
               />

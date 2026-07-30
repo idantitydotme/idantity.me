@@ -5,7 +5,22 @@
     "links_blog_label": "Blog",
     "links_services_label": "Services",
     "links_about_label": "About",
-    "links_resume_label": "Resume"
+    "links_resume_label": "Resume",
+    "left-links_projects_label": "me.projects",
+    "left-links_music_label": "me.music",
+    "left-links_blog_label": "me.blog",
+    "left-links_about_label": "me.about",
+    "right-links_services_label": "me.services",
+    "right-links_resume_label": "me.resume",
+    "socials_instagram_label": "Instagram",
+    "socials_github_label": "GitHub"
+  },
+  "app_footer": {
+    "links_resources_label": "Resources",
+    "links_resources_branding": "Branding",
+    "links_legal_label": "Legal",
+    "links_legal_privacy-policy": "Privacy Policy",
+    "links_legal_other-documents": "Other Documents"
   },
   "page_construction": {
     "meta_title": "Under Construction",
@@ -19,6 +34,11 @@
     "form_password_placeholder": "••••••••",
     "form_remember_me_label": "Remember me",
     "form_sign_in_button": "Sign In"
+  },
+  "page_about": {
+    "title": "About",
+    "description": "About idantity.me",
+    "heading": "About Me"
   },
   "resume": {
     "meta_title": "idantity.me | me.portfolio",
