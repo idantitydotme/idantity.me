@@ -7,11 +7,7 @@ import { useI18n } from '@rimelight/i18n';
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
 import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
 
-const messages = useI18n(Astro, 'about', {
-  title: 'About',
-  description: 'About idantity.me',
-  heading: 'About Me'
-});
+const messages = useI18n("page_about");
 ---
 
 <AppLayout title={messages.title} description={messages.description}>
