@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strictest",
+  "extends": "@rimelight/config/tsconfig/base",
   "include": [".astro/types.d.ts", "**/*", "./worker-configuration.d.ts"],
   "exclude": ["dist"],
   "compilerOptions": {
@@ -10,7 +10,6 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    },
-    "allowArbitraryExtensions": true
+    }
   }
 }
