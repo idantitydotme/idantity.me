@@ -55,6 +55,8 @@
     }
   ],
   "vars": {
-    "CONSTRUCTION_MODE": "false"
+    "CONSTRUCTION_MODE": "false",
+    "CONSTRUCTION_AUTH": "false",
+    "CONSTRUCTION_GUEST_EMAIL": "guest@idantity.me"
   }
 }

@@ -1,7 +1,7 @@
 import en from "./src/translations/en.json"
 import pt from "./src/translations/pt.json"
-import sitemap from "@astrojs/sitemap"
 import mdx from "@astrojs/mdx"
+import solid from "@astrojs/solid-js"
 import { ui } from "@rimelight/ui"
 import { sri } from "@rimelight/security"
 import { defineSecurity } from "@rimelight/security/config"
@@ -12,6 +12,7 @@ import { cacheCloudflare } from "@astrojs/cloudflare/cache"
 
 export default defineConfig({
   experimental: {
+    incrementalBuild: true,
     contentIntellisense: true,
     clientPrerender: true,
     collectionStorage: "chunked",
@@ -31,7 +32,7 @@ export default defineConfig({
 
   vite: {
     define: {
-      "import.meta.env.BUILD_TIME": JSON.stringify(new Date().toISOString())
+      "import.meta.env.BUILD_TIME": JSON.stringify(process.env.BUILD_TIME || "static")
     }
   },
 
@@ -45,9 +46,6 @@ export default defineConfig({
   cache: {
     provider: cacheCloudflare()
   },
-  image: {
-    domains: ["idantity.me", "cdn.idantity.me"]
-  },
   routeRules: {
     "/api/[...path]": {
       swr: 600 // 10 minutes stale-while-revalidate
@@ -58,7 +56,8 @@ export default defineConfig({
   },
 
   security: defineSecurity({
-    domain: "idantity.me"
+    domain: "idantity.me",
+    imgSrc: ["https://cdn.idantity.me"]
   }),
 
   i18n: {
@@ -88,26 +87,37 @@ export default defineConfig({
     }
   ],
 
+  image: {
+    domains: ["idantity.me", "cdn.idantity.me"]
+  },
+
+  markdown: {
+    syntaxHighlight: "prism"
+  },
+
   integrations: [
     rimelightI18n({
       translations: { en, pt },
       kvBinding: "idantity-dot-me_translations"
     }),
-    sitemap({
-      i18n: {
-        defaultLocale: "en",
-        locales: {
-          en: "en-US",
-          pt: "pt-BR"
-        }
-      }
+    solid({
+      include: ["**/solid/**", "**/*.tsx"]
     }),
 
     mdx(),
 
     ui({
       logos: {
-        logomark: "/favicon.svg"
+        logomark: {
+          color: "./src/assets/logos/logomark_color.svg",
+          white: "./src/assets/logos/logomark_white.svg",
+          black: "./src/assets/logos/logomark_black.svg"
+        },
+        logotype: {
+          color: "./src/assets/logos/logotype_color.svg",
+          white: "./src/assets/logos/logotype_color.svg",
+          black: "./src/assets/logos/logotype_black.svg"
+        }
       }
     }),
 

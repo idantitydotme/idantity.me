@@ -1,20 +1,13 @@
 import { auth as betterAuth } from "@/auth/auth"
 
-const IGNORED_ROUTES = ["/docs/"]
 const PROTECTED_ROUTES = ["/internal"]
 
 export const auth = async (c: any, next: any) => {
-  const isIgnored = IGNORED_ROUTES.some((path) => c.req.path.includes(path))
   const isProtected = PROTECTED_ROUTES.some((path) => c.req.path.startsWith(path))
 
-  if (isIgnored) {
-    c.set("user", null)
-    c.set("session", null)
-  } else {
-    const isAuthed = await betterAuth.api.getSession({ headers: c.req.raw.headers })
-    c.set("user", isAuthed?.user ?? null)
-    c.set("session", isAuthed?.session ?? null)
-  }
+  const isAuthed = await betterAuth.api.getSession({ headers: c.req.raw.headers })
+  c.set("user", isAuthed?.user ?? null)
+  c.set("session", isAuthed?.session ?? null)
 
   const session = c.get("session")
 
