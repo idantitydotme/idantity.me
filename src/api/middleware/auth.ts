@@ -37,8 +37,6 @@ export const auth = async (c: any, next: any) => {
   c.set("user", user)
   c.set("session", session)
 
-  const session = c.get("session")
-
   if (url.pathname === "/auth") {
     return c.redirect("/auth/sign-in")
   }

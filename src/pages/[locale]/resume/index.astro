@@ -82,12 +82,12 @@ const languages = [
 
 const heroLinks: ButtonProps[] = [
   {
-    label: messages.hero_action_hire,
+    label: messages.hero_action_hire ?? "",
     href: getRelativeLocaleUrl("/contact"),
   },
   {
     variant: "outline",
-    label: messages.hero_action_downloadCv,
+    label: messages.hero_action_downloadCv ?? "",
     href: "https://cdn.idantity.me/Documents/Daniel_Marchi_CV.pdf",
     leadingIcon: "i-lucide-download"
   }
@@ -105,45 +105,42 @@ export interface ExperienceItem {
   tags?: string[];
 }
 
-const experiences: ExperienceItem[] = [
+const experiences: [ExperienceItem, ExperienceItem, ExperienceItem] = [
   {
-    role: messages.exp_role_0,
-    company: messages.exp_company_0,
+    role: messages.exp_role_0 ?? "",
+    company: messages.exp_company_0 ?? "",
     companyUrl: "https://compass.uol",
-    image: undefined, // ready for future logo asset
-    period: messages.exp_period_0,
+    period: messages.exp_period_0 ?? "",
     location: "Curitiba, Brazil · Remote",
-    summary: messages.exp_summary_0,
+    summary: messages.exp_summary_0 ?? "",
     responsibilities: [
-      messages.exp_bullet_0_0,
-      messages.exp_bullet_0_1,
-      messages.exp_bullet_0_2
+      messages.exp_bullet_0_0 ?? "",
+      messages.exp_bullet_0_1 ?? "",
+      messages.exp_bullet_0_2 ?? ""
     ],
     tags: ["Unreal Engine", "C++", "3D Web", "UI Design"]
   },
   {
-    role: messages.exp_role_1,
-    company: messages.exp_company_1,
+    role: messages.exp_role_1 ?? "",
+    company: messages.exp_company_1 ?? "",
     companyUrl: "https://compass.uol",
-    image: undefined,
-    period: messages.exp_period_1,
+    period: messages.exp_period_1 ?? "",
     location: "Curitiba, Brazil · Remote",
-    summary: messages.exp_summary_1,
+    summary: messages.exp_summary_1 ?? "",
     responsibilities: [
-      messages.exp_bullet_1_0
+      messages.exp_bullet_1_0 ?? ""
     ],
     tags: ["Unreal Engine", "Blueprints", "E-Commerce"]
   },
   {
-    role: messages.exp_role_2,
-    company: messages.exp_company_2,
+    role: messages.exp_role_2 ?? "",
+    company: messages.exp_company_2 ?? "",
     companyUrl: "https://compass.uol",
-    image: undefined,
-    period: messages.exp_period_2,
+    period: messages.exp_period_2 ?? "",
     location: "Curitiba, Brazil · Remote",
-    summary: messages.exp_summary_2,
+    summary: messages.exp_summary_2 ?? "",
     responsibilities: [
-      messages.exp_bullet_2_0
+      messages.exp_bullet_2_0 ?? ""
     ],
     tags: ["Unreal Engine", "C++", "Gameplay"]
   }

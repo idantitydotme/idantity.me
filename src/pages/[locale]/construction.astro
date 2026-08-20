@@ -30,12 +30,12 @@ const targetLanguages = [
 
       {constructionAuth && (
         <ConstructionSignIn
-          emailLabel={messages.form_email_label}
-          emailPlaceholder={messages.form_email_placeholder}
-          passwordLabel={messages.form_password_label}
-          passwordPlaceholder={messages.form_password_placeholder}
-          rememberMeLabel={messages.form_remember_me_label}
-          signInButtonLabel={messages.form_sign_in_button}
+          emailLabel={messages.form_email_label ?? ""}
+          emailPlaceholder={messages.form_email_placeholder ?? ""}
+          passwordLabel={messages.form_password_label ?? ""}
+          passwordPlaceholder={messages.form_password_placeholder ?? ""}
+          rememberMeLabel={messages.form_remember_me_label ?? ""}
+          signInButtonLabel={messages.form_sign_in_button ?? ""}
         />
       )}
 

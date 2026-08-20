@@ -54,14 +54,14 @@ const locale = Astro.currentLocale ?? "en"
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           template: btn.dataset.emailTest,
-          locale
+          locale: document.querySelector('[data-email-locale]')?.getAttribute('data-email-locale')
         })
       });
 
       if (!res.ok) throw new Error('Failed to send');
       if (status) status.textContent = '✓ Sent!';
     } catch (err) {
-      if (status) status.textContent = '✗ ' + err.message;
+      if (status) status.textContent = '✗ ' + (err instanceof Error ? err.message : 'Unknown error');
     }
   });
 </script>
