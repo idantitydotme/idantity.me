@@ -1,5 +1,6 @@
 ---
-import RLAHead from '@rimelight/ui/components/head/RLAHead.astro';
+import SEOHead from "@rimelight/seo/components/SEOHead.astro";
+import UIHead from "@rimelight/ui/components/head/UIHead.astro";
 import AppHeader from '@/components/app/AppHeader.astro';
 import RLAMain from "@rimelight/ui/components/main/RLAMain.astro"
 import AppFooter from '@/components/app/AppFooter.astro';
@@ -25,12 +26,20 @@ const ogLocale = localeMap[Astro.currentLocale || 'en'] || 'en_US';
 
 <!doctype html>
 <html lang={Astro.currentLocale || 'en'}>
-	<RLAHead title={title} description={description} config={siteConfig} ogLocale={ogLocale} rssFeed={{ href: '/rss.xml', title: siteConfig.name }}>
-		<slot name="head" slot="head" />
-		<Font cssVariable="--font-sans" preload={true} slot="head" />
-		<Font cssVariable="--font-serif" preload={true} slot="head" />
-		<Font cssVariable="--font-mono" preload={true} slot="head" />
-	</RLAHead>
+	<head>
+		<SEOHead
+			title={title}
+			description={description}
+			config={siteConfig}
+			ogLocale={ogLocale}
+			rssFeed={{ href: '/rss.xml', title: siteConfig.name }}
+		/>
+		<UIHead />
+		<Font cssVariable="--font-sans" preload={true} />
+		<Font cssVariable="--font-serif" preload={true} />
+		<Font cssVariable="--font-mono" preload={true} />
+		<slot name="head" />
+	</head>
 	<body class="isolate">
 		<AppHeader />
 		<RLAMain>
