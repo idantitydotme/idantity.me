@@ -84,6 +84,10 @@ export default defineConfig({
     domains: ["idantity.me", "cdn.idantity.me"]
   },
 
+  markdown: {
+    syntaxHighlight: "prism"
+  },
+
   integrations: [
     rimelightI18n({
       translations: { en, pt },
