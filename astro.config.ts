@@ -1,6 +1,5 @@
 import en from "./src/translations/en.json"
 import pt from "./src/translations/pt.json"
-import mdx from "@astrojs/mdx"
 import solid from "@astrojs/solid-js"
 import { ui } from "@rimelight/ui"
 import { sri } from "@rimelight/security"
@@ -28,12 +27,6 @@ export default defineConfig({
         }
       ]
     })
-  },
-
-  vite: {
-    define: {
-      "import.meta.env.BUILD_TIME": JSON.stringify(process.env.BUILD_TIME || "static")
-    }
   },
 
   site: "https://idantity.me",
@@ -91,10 +84,6 @@ export default defineConfig({
     domains: ["idantity.me", "cdn.idantity.me"]
   },
 
-  markdown: {
-    syntaxHighlight: "prism"
-  },
-
   integrations: [
     rimelightI18n({
       translations: { en, pt },
@@ -103,8 +92,6 @@ export default defineConfig({
     solid({
       include: ["**/solid/**", "**/*.tsx"]
     }),
-
-    mdx(),
 
     ui({
       logos: {
