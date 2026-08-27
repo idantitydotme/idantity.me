@@ -83,7 +83,9 @@ export default defineConfig({
   ],
 
   image: {
-    domains: ["idantity.me", "cdn.idantity.me"]
+    domains: ["idantity.me", "cdn.idantity.me"],
+    layout: "constrained",
+    responsiveStyles: true
   },
 
   markdown: {
