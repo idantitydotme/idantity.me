@@ -1,106 +1,118 @@
 ---
-import AppLayout from "@/layouts/AppLayout.astro";
-import { siteConfig } from "@/config/site.config";
-import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
-import { getCollection } from "astro:content";
-import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
-import RLALogo from "@rimelight/ui/components/logo/RLALogo.astro";
-import RLAButton from "@rimelight/ui/components/button/RLAButton.astro";
-import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro";
-import RLAPost from "@rimelight/ui/components/post/RLAPost.astro";
+import AppLayout from "@/layouts/AppLayout.astro"
+import { siteConfig } from "@/config/site.config"
+import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n"
+import { db } from "@/db"
+import { pages } from "@/db/schema"
+import { eq, and, isNull, desc } from "drizzle-orm"
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
+import RLALogo from "@rimelight/ui/components/logo/RLALogo.astro"
+import RLAButton from "@rimelight/ui/components/button/RLAButton.astro"
+import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro"
+import RLAPost from "@rimelight/ui/components/post/RLAPost.astro"
 
-const messages = useI18n(Astro, "playground", {
-    heroTitle: "Welcome to the Rimelight Entertainment",
-    heroDesc: "Look around, test, and play with some of our interactive technologies.",
-    heroLink: "Explore Now",
-    postsTitle: "Latest Posts",
-    postsDesc: "Read the latest updates to our projects.",
-    viewAllPosts: "View All Posts",
-    ctaTitle: "Wish to join us?",
-    ctaDesc: "Explore our latest projects and get in touch.",
-    ctaStart: "Get Started",
-    ctaContribute: "Join Us",
-});
+function getLocalizedText(val: unknown, locale: string): string {
+  if (typeof val === "object" && val !== null) {
+    const record = val as Record<string, string>
+    return record[locale] || record.en || ""
+  }
+  return String(val || "")
+}
 
-const latestPosts = (await getCollection("blog"))
-  .toSorted((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const activeLocale = Astro.currentLocale ?? "en"
+const blogPages = await db
+  .select()
+  .from(pages)
+  .where(and(eq(pages.type, "blog"), isNull(pages.deletedAt)))
+  .orderBy(desc(pages.postedAt))
+  .catch(() => [])
+
+const latestPosts = blogPages.slice(0, 3)
+
+const messages = useI18n("playground")
 
 const heroLinks = [
-    {
-        label: messages.heroLink,
-        href: getRelativeLocaleUrl("/blog"),
-        color: "primary",
-        variant: "solid",
-    }
-];
+  {
+    label: messages.heroLink,
+    href: getRelativeLocaleUrl("/blog"),
+    color: "primary",
+    variant: "solid"
+  }
+]
 
 const ctaLinks = [
-    {
-        label: messages.ctaStart,
-        href: getRelativeLocaleUrl("/blog"),
-        color: "primary",
-        variant: "solid"
-    },
-    {
-        label: messages.ctaContribute,
-        href: getRelativeLocaleUrl("/"),
-        color: "primary",
-        variant: "outline",
-        trailingIcon: "i-lucide-arrow-right"
-    }
-];
+  {
+    label: messages.ctaStart,
+    href: getRelativeLocaleUrl("/blog"),
+    color: "primary",
+    variant: "solid"
+  },
+  {
+    label: messages.ctaContribute,
+    href: getRelativeLocaleUrl("/"),
+    color: "primary",
+    variant: "outline",
+    trailingIcon: "i-lucide-arrow-right"
+  }
+]
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-    <RLAPageSection
-            variant="hero"
-            reverse={true}
-            title={messages.heroTitle}
-            description={messages.heroDesc}
-            links={heroLinks}
-    >
-        <RLALogo class="pointer-events-none h-64 w-auto" variant="logomark" />
-    </RLAPageSection>
+  <RLAPageSection
+    variant="hero"
+    reverse={true}
+    title={messages.heroTitle}
+    description={messages.heroDesc}
+    links={heroLinks}
+  >
+    <RLALogo class="pointer-events-none h-64 w-auto" variant="logomark" />
+  </RLAPageSection>
 
-    <RLAPageSection
-            orientation="vertical"
-            title={messages.postsTitle}
-            description={messages.postsDesc}
-    >
-        <div slot="body" class="flex flex-col gap-xl">
-            <RLAGrid>
-                {
-                    latestPosts.map((post) => (
-                        <RLAPost
-                            variant="ghost"
-                            image={post.data.heroImage}
-                            date={post.data.pubDate}
-                            title={post.data.title}
-                            description={post.data.description}
-                            to={getRelativeLocaleUrl(`/blog/${post.id}/`)}
-                        />
-                    ))
-                }
-            </RLAGrid>
+  <RLAPageSection
+    orientation="vertical"
+    title={messages.postsTitle}
+    description={messages.postsDesc}
+  >
+    <div slot="body" class="flex flex-col gap-xl">
+      <RLAGrid>
+        {
+          latestPosts.map((post) => {
+            const content = typeof post.content === "string" ? JSON.parse(post.content) : post.content || {}
+            const title = getLocalizedText(post.title, activeLocale)
+            const description = content.properties?.description || ""
+            const heroImage = content.properties?.heroImage
+            const postDate = post.postedAt || post.createdAt
+            return (
+              <RLAPost
+                variant="ghost"
+                image={heroImage}
+                date={postDate}
+                title={title}
+                description={description}
+                to={getRelativeLocaleUrl(`/blog/${post.slug}/`)}
+              />
+            )
+          })
+        }
+      </RLAGrid>
 
-            {latestPosts.length > 0 && (
-                    <RLAButton
-                            label={messages.viewAllPosts}
-                            href={getRelativeLocaleUrl("/blog")}
-                            color="primary"
-                            variant="link"
-                            trailingIcon="i-lucide-arrow-right"
-                    />
-            )}
-        </div>
-    </RLAPageSection>
+      {latestPosts.length > 0 && (
+        <RLAButton
+          label={messages.viewAllPosts}
+          href={getRelativeLocaleUrl("/blog")}
+          color="primary"
+          variant="link"
+          trailingIcon="i-lucide-arrow-right"
+        />
+      )}
+    </div>
+  </RLAPageSection>
 
-    <RLAPageSection
-            variant="cta"
-            ctaVariant="solid"
-            title={messages.ctaTitle}
-            description={messages.ctaDesc}
-            links={ctaLinks}
-    />
+  <RLAPageSection
+    variant="cta"
+    ctaVariant="solid"
+    title={messages.ctaTitle}
+    description={messages.ctaDesc}
+    links={ctaLinks}
+  />
 </AppLayout>

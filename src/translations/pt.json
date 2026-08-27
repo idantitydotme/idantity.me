@@ -94,5 +94,65 @@
     "project_lumen_description": "Desenvolvimento de um portfólio refinado com interface acessível, interações guiadas por movimento e componentes reutilizáveis.",
     "project_lumen_solution": "Desenvolvimento de um sistema de componentes modular com Astro e Tailwind CSS, garantindo uma experiência de marca consistente em todos os dispositivos.",
     "project_lumen_impact": "Alcançou tempos de carregamento de página abaixo de 1s e pontuações Lighthouse de 95+ por meio de estratégias otimizadas de entrega de assets e carregamento preguiçoso."
+  },
+  "page_contact": {
+    "title": "Contato",
+    "description": "Entre em contato comigo diretamente.",
+    "hero_title": "Entre em Contato",
+    "hero_description": "Tem uma dúvida, proposta ou quer colaborar? Envie-me uma mensagem diretamente.",
+    "contact_form_title": "Enviar uma Mensagem",
+    "contact_form_name_label": "Seu Nome *",
+    "contact_form_email_label": "Endereço de E-mail *",
+    "contact_form_subject_label": "Assunto (Opcional)",
+    "contact_form_message_label": "Mensagem *",
+    "contact_form_send_button": "Enviar Mensagem",
+    "contact_form_placeholder_name": "Daniel Marchi",
+    "contact_form_placeholder_email": "daniel@example.com",
+    "contact_form_placeholder_subject": "Como posso te ajudar?",
+    "contact_form_placeholder_message": "Escreva sua mensagem aqui...",
+    "upload_form_title": "Enviar um Anexo",
+    "upload_form_description": "Compartilhe documentos ou imagens diretamente (PNG, JPEG, WEBP ou PDF de até 5 MB).",
+    "upload_form_file_label": "Selecionar Arquivo",
+    "upload_form_upload_button": "Enviar Anexo"
+  },
+  "page_music": {
+    "title": "Música",
+    "description": "Sets de DJ, playlists selecionadas e produções musicais.",
+    "hero_title": "Música & Áudio",
+    "hero_description": "Ouça sets de DJ, produções originais e playlists selecionadas do Spotify.",
+    "section_mixes_title": "Sets & Mixes em Destaque",
+    "section_playlists_title": "Playlists Selecionadas"
+  },
+  "blog": {
+    "title": "Blog",
+    "description": "Artigos, registros de desenvolvimento e mais.",
+    "categories_development-log": "Registro de Desenvolvimento",
+    "categories_other": "Outros",
+    "lastUpdatedOn": "Última atualização em"
+  },
+  "legal": {
+    "title": "Legal",
+    "heading": "Documentos Legais",
+    "lastUpdated": "Última atualização:",
+    "lastUpdatedOn": "Última atualização em"
+  },
+  "projects": {
+    "title": "Projetos",
+    "description": "Projetos pessoais e criações.",
+    "categories_website": "Website",
+    "categories_app": "Aplicativo",
+    "categories_other": "Outros",
+    "lastUpdatedOn": "Última atualização em"
+  },
+  "cms": {
+    "nav_dashboard": "Painel",
+    "nav_templates": "Modelos",
+    "nav_pages": "Páginas",
+    "nav_categories": "Categorias",
+    "nav_tags": "Tags",
+    "nav_bylines": "Autores",
+    "nav_versions": "Versões",
+    "nav_settings": "Configurações",
+    "sidebar_app_name": "CMS Admin"
   }
 }

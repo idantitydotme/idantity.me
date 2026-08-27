@@ -52,31 +52,7 @@ export const PRIVATE_PATH_PREFIXES = [
  * Extract all doc paths from docs config (falls back to empty when absent)
  */
 async function extractDocPaths(): Promise<string[]> {
-  try {
-    const { default: docsConfig } = await import("./docs.config")
-    const paths: string[] = []
-
-    function processSidebar(items: any[]) {
-      for (const item of items) {
-        if (item.href) {
-          // Convert /{locale}/docs/path to /docs/path
-          const path = item.href.replace("/{locale}", "")
-          paths.push(path)
-        }
-        if (item.items) {
-          processSidebar(item.items)
-        }
-      }
-    }
-
-    const sidebarItems = Array.isArray(docsConfig.sidebar)
-      ? docsConfig.sidebar
-      : docsConfig.sidebar.scopes
-    processSidebar(sidebarItems)
-    return paths
-  } catch {
-    return []
-  }
+  return []
 }
 
 /**

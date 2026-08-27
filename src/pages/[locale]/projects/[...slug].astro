@@ -1,45 +1,101 @@
 ---
-import { Image } from 'astro:assets';
-import { getEntry, render } from 'astro:content';
-import AppLayout from '@/layouts/AppLayout.astro';
-import RLADate from '@rimelight/ui/components/date/RLADate.astro';
-import { useI18n } from '@rimelight/i18n';
+import AppLayout from "@/layouts/AppLayout.astro"
+import { siteConfig } from "@/config/site.config"
+import PageRenderer from "@rimelight/cms/astro/PageRenderer.astro"
+import { auth } from "@/auth/auth"
+import { db } from "@/db"
+import { pages } from "@/db/schema"
+import { eq, and, isNull } from "drizzle-orm"
 
-const messages = useI18n(Astro, 'projectsPage', { title: 'Projects', description: 'Browse our projects', lastUpdatedOn: 'Last updated on' });
+const slug = Astro.params.slug || ""
+const activeLocale = Astro.currentLocale ?? "en"
 
-const { slug } = Astro.params;
-if (!slug) return Astro.redirect('/404');
-const project = await getEntry('projects', slug);
+const session = await auth.api.getSession({ headers: Astro.request.headers })
+const currentUser = session?.user
 
-if (!project) {
-	return Astro.redirect('/404');
+// Fetch from CMS
+const pageResult = await db
+  .select()
+  .from(pages)
+  .where(and(eq(pages.slug, slug), isNull(pages.deletedAt)))
+  .limit(1)
+
+const page = pageResult[0]
+
+if (!page) {
+  return Astro.redirect("/404")
 }
 
-const { Content } = await render(project);
-const { title, description, pubDate, updatedDate, heroImage } = project.data;
+const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content || {}
+
+function getLocalizedText(val: unknown, locale: string): string {
+  if (typeof val === "object" && val !== null) {
+    const record = val as Record<string, string>
+    return record[locale] || record.en || ""
+  }
+  return String(val || "")
+}
+
+const title = getLocalizedText(page.title, activeLocale) || siteConfig.name
+const description =
+  getLocalizedText(page.description, activeLocale) ||
+  content.properties?.description ||
+  siteConfig.description
+const heroImage = content.properties?.heroImage || (page as any).banner?.src
+const ogImageSrc = heroImage || `/og/projects/${slug}.png`
+const category = content.properties?.category
+const postDate = page.postedAt || page.createdAt
 ---
 
-<AppLayout title={title} description={description}>
-		<article>
-			<div class="hero-image">
-				{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-			</div>
-			<div class="prose">
-				<div class="title">
-					<div class="date">
-						<RLADate date={pubDate} />
-						{
-							updatedDate && (
-								<div class="last-updated-on">
-									{messages.lastUpdatedOn} <RLADate date={updatedDate} />
-								</div>
-							)
-						}
-					</div>
-					<h1>{title}</h1>
-					<hr />
-				</div>
-				<Content />
-			</div>
-		</article>
+<AppLayout title={title} description={description} ogImageSrc={ogImageSrc} ogImageAlt={title}>
+  <div class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+    {heroImage && (
+      <div class="mb-8 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm aspect-[21/9]">
+        <img src={heroImage} alt={title} class="w-full h-full object-cover" />
+      </div>
+    )}
+
+    <header class="border-b border-neutral-200 dark:border-neutral-800 pb-8 mb-8">
+      {category && (
+        <span class="inline-block px-2.5 py-1 text-xs font-semibold rounded-full bg-primary-500/10 text-primary-500 mb-3 uppercase tracking-wider">
+          {category}
+        </span>
+      )}
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-neutral-900 dark:text-white tracking-tight leading-tight">
+        {title}
+      </h1>
+      {description && (
+        <p class="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 mt-4 leading-relaxed">
+          {description}
+        </p>
+      )}
+      {postDate && (
+        <div class="flex items-center gap-4 text-xs text-neutral-500 mt-6">
+          <time datetime={new Date(postDate).toISOString()}>
+            {new Date(postDate).toLocaleDateString(activeLocale, {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            })}
+          </time>
+        </div>
+      )}
+    </header>
+
+    <article class="cms-article">
+      {currentUser ? (
+        <PageRenderer
+          blocks={content.blocks || []}
+          session={{
+            userId: currentUser.id,
+            roles: [(currentUser as any).role || "user"],
+            permissions: []
+          }}
+          locale={activeLocale}
+        />
+      ) : (
+        <PageRenderer blocks={content.blocks || []} locale={activeLocale} />
+      )}
+    </article>
+  </div>
 </AppLayout>

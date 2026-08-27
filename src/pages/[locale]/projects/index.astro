@@ -1,101 +1,121 @@
 ---
-import AppLayout from "@/layouts/AppLayout.astro";
-import { getCollection } from "astro:content";
-import { siteConfig } from "@/config/site.config";
-import { useI18nAsync, getRelativeLocaleUrl } from "@rimelight/i18n";
-import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
-import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro";
-import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro";
-import RLAPost from "@rimelight/ui/components/post/RLAPost.astro";
+import AppLayout from "@/layouts/AppLayout.astro"
+import { siteConfig } from "@/config/site.config"
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
+import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro"
+import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro"
+import RLAPost from "@rimelight/ui/components/post/RLAPost.astro"
+import { db } from "@/db"
+import { pages } from "@/db/schema"
+import { eq, desc, and, isNull } from "drizzle-orm"
 
-const projects = (await getCollection("projects")).toSorted(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const activeLocale = Astro.currentLocale ?? "en"
 
-const groupedProjects = projects.reduce<Record<string, typeof projects>>((acc, project) => {
-    const type = project.data.type || "website";
-    if (!acc[type]) acc[type] = [];
-    acc[type].push(project);
-    return acc;
-}, {});
+// Fetch CMS pages with type 'projects'
+const projectPages = await db
+  .select()
+  .from(pages)
+  .where(and(eq(pages.type, "projects"), isNull(pages.deletedAt)))
+  .orderBy(desc(pages.postedAt), desc(pages.createdAt))
 
-const categoryOrder = ["website", "app", "other"] as const;
+function getPageTitle(title: unknown, locale: string): string {
+  if (typeof title === "object" && title !== null) {
+    const titleRecord = title as Record<string, string>
+    return titleRecord[locale] || titleRecord.en || ""
+  }
+  return String(title || "")
+}
+
+const groupedProjects = projectPages.reduce<Record<string, typeof projectPages>>((acc, page) => {
+  const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content
+  const type = content?.properties?.category || "other"
+  if (!acc[type]) acc[type] = []
+  acc[type].push(page)
+  return acc
+}, {})
+
+const categoryOrder = ["website", "app", "other"] as const
 
 const badgeColorMap: Record<string, string> = {
-    "website": "info",
-    "app": "primary",
-    "other": "success",
-};
+  website: "info",
+  app: "primary",
+  other: "success"
+}
 
-const messages = await useI18nAsync(Astro, 'projects', {
-    title: "me.projects",
-    description: "Personal projects and creations.",
-    categories: {
-        "website": "Website",
-        "app": "App",
-        "other": "Other"
-    } as any
-} as any);
+const categoryMessages: Record<string, string> = {
+  website: t("projects.categories_website"),
+  app: t("projects.categories_app"),
+  other: t("projects.categories_other")
+}
 
 const tabsItems = [
-    { label: "All", value: "all" },
-    ...categoryOrder
-        .filter((cat) => groupedProjects[cat]?.length)
-        .map((cat) => ({
-            label: ((messages as any).categories as Record<string, string>)[cat] || cat,
-            value: cat
-        }))
-];
+  { label: "All", value: "all" },
+  ...categoryOrder
+    .filter((cat) => groupedProjects[cat]?.length)
+    .map((cat) => ({
+      label: categoryMessages[cat] ?? cat,
+      value: cat
+    }))
+]
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-  <RLAPageSection title={(messages as any).title} description={(messages as any).description}>
+  <RLAPageSection title={t("projects.title")} description={t("projects.description")}>
     <RLATabs slot="content" items={tabsItems} variant="underline">
-      <div role="tabpanel" data-value="all" class="hidden">
+      <div role="tabpanel" data-value="all">
         <RLAGrid cols={4}>
-          {projects.map((project, index) => (
-            <RLAPost
-              variant="ghost"
-              orientation={index === 0 ? "horizontal" : "vertical"}
-              class={index === 0 ? "col-span-full mb-6" : ""}
-              image={project.data.heroImage}
-              date={project.data.pubDate}
-              title={project.data.title}
-              description={project.data.description}
-              to={getRelativeLocaleUrl(`/projects/${project.id}/`)}
-              badge={((messages as any).categories as Record<string, string>)[project.data.type] || project.data.type}
-              badgeColor={badgeColorMap[project.data.type] || "primary"}
-            />
-          ))}
+          {projectPages.map((page, index) => {
+            const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content
+            const titleVal = getPageTitle(page.title, activeLocale)
+            const category = content?.properties?.category || "other"
+            const postDate = page.postedAt || page.createdAt
+            return (
+              <RLAPost
+                variant="ghost"
+                orientation={index === 0 ? "horizontal" : "vertical"}
+                class={index === 0 ? "col-span-full mb-6" : ""}
+                image={content?.properties?.heroImage}
+                date={postDate}
+                title={titleVal}
+                description={content?.properties?.description}
+                to={getRelativeLocaleUrl(`/projects/${page.slug}/`)}
+                badge={categoryMessages[category] ?? category}
+                badgeColor={badgeColorMap[category] || "primary"}
+              />
+            )
+          })}
         </RLAGrid>
       </div>
       {categoryOrder.map((category) => {
-        const categoryProjects = groupedProjects[category];
-        if (!categoryProjects || categoryProjects.length === 0) return null;
+        const categoryProjectPages = groupedProjects[category]
+        if (!categoryProjectPages || categoryProjectPages.length === 0) return null
         return (
-          <div role="tabpanel" data-value={category} class="hidden">
+          <div role="tabpanel" data-value={category}>
             <RLAGrid cols={4}>
-              {
-                categoryProjects.map((project, index) => (
+              {categoryProjectPages.map((page, index) => {
+                const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content
+                const titleVal = getPageTitle(page.title, activeLocale)
+                const postDate = page.postedAt || page.createdAt
+                return (
                   <RLAPost
                     variant="ghost"
                     orientation={index === 0 ? "horizontal" : "vertical"}
                     class={index === 0 ? "col-span-full mb-6" : ""}
-                    image={project.data.heroImage}
-                    date={project.data.pubDate}
-                    title={project.data.title}
-                    description={project.data.description}
-                    to={getRelativeLocaleUrl(`/projects/${project.id}/`)}
-                    badge={((messages as any).categories as Record<string, string>)[category] || category}
+                    image={content?.properties?.heroImage}
+                    date={postDate}
+                    title={titleVal}
+                    description={content?.properties?.description}
+                    to={getRelativeLocaleUrl(`/projects/${page.slug}/`)}
+                    badge={categoryMessages[category] ?? category}
                     badgeColor={badgeColorMap[category] || "primary"}
                   />
-                ))
-              }
+                )
+              })}
             </RLAGrid>
           </div>
-        );
+        )
       })}
     </RLATabs>
   </RLAPageSection>
 </AppLayout>
-

@@ -6,6 +6,8 @@ import { sri } from "@rimelight/security"
 import { defineSecurity } from "@rimelight/security/config"
 import cloudflare from "@astrojs/cloudflare"
 import { rimelightI18n } from "@rimelight/i18n/integration"
+import { rimelightCms } from "@rimelight/cms/integration"
+import { r2 } from "@rimelight/cms/storage"
 import { defineConfig, fontProviders, svgoOptimizer } from "astro/config"
 import { cacheCloudflare } from "@astrojs/cloudflare/cache"
 
@@ -96,22 +98,30 @@ export default defineConfig({
     solid({
       include: ["**/solid/**", "**/*.tsx"]
     }),
-
-    ui({
-      logos: {
-        logomark: {
-          color: "./src/assets/logos/logomark_color.svg",
-          white: "./src/assets/logos/logomark_white.svg",
-          black: "./src/assets/logos/logomark_black.svg"
-        },
-        logotype: {
-          color: "./src/assets/logos/logotype_color.svg",
-          white: "./src/assets/logos/logotype_color.svg",
-          black: "./src/assets/logos/logotype_black.svg"
-        }
-      }
+    rimelightCms({
+      storage: r2({
+        binding: "BLOB"
+      })
     }),
-
     sri()
-  ]
+  ],
+
+  vite: {
+    plugins: [
+      ui({
+        logos: {
+          logomark: {
+            color: "./src/assets/logos/logomark_color.svg",
+            white: "./src/assets/logos/logomark_white.svg",
+            black: "./src/assets/logos/logomark_black.svg"
+          },
+          logotype: {
+            color: "./src/assets/logos/logotype_color.svg",
+            white: "./src/assets/logos/logotype_color.svg",
+            black: "./src/assets/logos/logotype_black.svg"
+          }
+        }
+      })
+    ]
+  }
 })

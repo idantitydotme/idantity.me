@@ -1,44 +1,69 @@
 ---
-import { getEntry, render } from 'astro:content';
-import AppLayout from '@/layouts/AppLayout.astro';
-import RLADate from '@rimelight/ui/components/date/RLADate.astro';
-import { useI18n } from "@rimelight/i18n";
+import AppLayout from "@/layouts/AppLayout.astro"
+import PageRenderer from "@rimelight/cms/astro/PageRenderer.astro"
+import RLADate from "@rimelight/ui/components/date/RLADate.astro"
+import RLAContainer from "@rimelight/ui/components/container/RLAContainer.astro"
+import { t } from "@rimelight/i18n"
+import { db } from "@/db"
+import { pages } from "@/db/schema"
+import { eq, and, isNull } from "drizzle-orm"
 
+const activeLocale = Astro.currentLocale ?? "en"
 
-const messages = useI18n(Astro, "legal", {
-    lastUpdatedOn: "Last updated on",
-});
+const { slug } = Astro.params
+if (!slug) return Astro.redirect("/404")
 
-const { slug } = Astro.params;
-if (!slug) return Astro.redirect('/404');
-const post = await getEntry('legal', slug);
+const pageResult = await db
+  .select()
+  .from(pages)
+  .where(and(eq(pages.type, "legal"), eq(pages.slug, slug), isNull(pages.deletedAt)))
+  .limit(1)
 
-if (!post) {
-	return Astro.redirect('/404');
+const page = pageResult[0]
+
+if (!page) {
+  return Astro.redirect("/404")
 }
 
-const { Content } = await render(post);
-const { title, description, pubDate, updatedDate } = post.data;
+const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content || {}
+
+function getLocalizedText(val: unknown, locale: string): string {
+  if (typeof val === "object" && val !== null) {
+    const record = val as Record<string, string>
+    return record[locale] || record.en || ""
+  }
+  return String(val || "")
+}
+
+const title = getLocalizedText(page.title, activeLocale)
+const description = getLocalizedText(page.description, activeLocale)
+const pubDate = page.postedAt || page.createdAt
+const updatedDate = page.updatedAt
 ---
 
 <AppLayout title={title} description={description}>
+	<RLAContainer class="py-16 max-w-3xl">
+		<style is:global>
+			[data-theme="dark"] .prose{--un-prose-body:var(--un-prose-invert-body);--un-prose-headings:var(--un-prose-invert-headings);--un-prose-lead:var(--un-prose-invert-lead);--un-prose-links:var(--un-prose-invert-links);--un-prose-bold:var(--un-prose-invert-bold);--un-prose-counters:var(--un-prose-invert-counters);--un-prose-bullets:var(--un-prose-invert-bullets);--un-prose-hr:var(--un-prose-invert-hr);--un-prose-quotes:var(--un-prose-invert-quotes);--un-prose-quote-borders:var(--un-prose-invert-quote-borders);--un-prose-captions:var(--un-prose-invert-captions);--un-prose-kbd:var(--un-prose-invert-kbd);--un-prose-kbd-shadows:var(--un-prose-invert-kbd-shadows);--un-prose-code:var(--un-prose-invert-code);--un-prose-pre-code:var(--un-prose-invert-pre-code);--un-prose-pre-bg:var(--un-prose-invert-pre-bg);--un-prose-th-borders:var(--un-prose-invert-th-borders);--un-prose-td-borders:var(--un-prose-invert-td-borders)}
+		</style>
 		<article>
-			<div class="prose">
-				<div class="title">
-					<div class="date">
+			<div class="prose max-w-none">
+				<div class="title mb-8">
+					<div class="date text-neutral-400 mb-2 text-sm">
 						<RLADate date={pubDate} />
 						{
 							updatedDate && (
-								<div class="last-updated-on">
-									{messages.lastUpdatedOn} <RLADate date={updatedDate} />
+								<div class="last-updated-on text-xs text-neutral-500 mt-1">
+									{t("legal.lastUpdatedOn")} <RLADate date={updatedDate} />
 								</div>
 							)
 						}
 					</div>
-					<h1>{title}</h1>
-					<hr />
+					<h1 class="text-4xl font-extrabold text-white mb-4">{title}</h1>
+					<hr class="border-neutral-800" />
 				</div>
-				<Content />
+				<PageRenderer blocks={content.blocks || []} locale={activeLocale} />
 			</div>
 		</article>
+	</RLAContainer>
 </AppLayout>

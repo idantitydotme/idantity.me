@@ -1,106 +1,118 @@
 ---
-import AppLayout from '@/layouts/AppLayout.astro';
-import { getCollection } from 'astro:content';
-import { getRelativeLocaleUrl } from 'astro:i18n';
-import { siteConfig } from "@/config/site.config";
-import { useI18nAsync } from "@rimelight/i18n";
+import AppLayout from "@/layouts/AppLayout.astro"
+import { siteConfig } from "@/config/site.config"
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
 import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro"
 import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro"
 import RLAPost from "@rimelight/ui/components/post/RLAPost.astro"
+import { db } from "@/db"
+import { pages } from "@/db/schema"
+import { eq, desc, and, isNull } from "drizzle-orm"
 
-const activeLocale = Astro.currentLocale ?? "en";
+const activeLocale = Astro.currentLocale ?? "en"
 
-const posts = (await getCollection('blog'))
-  .filter((post) => post.id.startsWith(`${activeLocale}/`))
-  .toSorted(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-  );
+// Fetch CMS pages with type 'blog'
+const blogPages = await db
+  .select()
+  .from(pages)
+  .where(and(eq(pages.type, "blog"), isNull(pages.deletedAt)))
+  .orderBy(desc(pages.postedAt), desc(pages.createdAt))
 
-const groupedPosts = posts.reduce<Record<string, typeof posts>>((acc, post) => {
-  const type = post.data.type;
-  if (!acc[type]) acc[type] = [];
-  acc[type].push(post);
-  return acc;
-}, {});
+function getPageTitle(title: unknown, locale: string): string {
+  if (typeof title === "object" && title !== null) {
+    const titleRecord = title as Record<string, string>
+    return titleRecord[locale] || titleRecord.en || ""
+  }
+  return String(title || "")
+}
 
-const categoryOrder = ["development-log", "other"] as const;
+const groupedPosts = blogPages.reduce<Record<string, typeof blogPages>>((acc, page) => {
+  const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content
+  const type = content?.properties?.category || "other"
+  if (!acc[type]) acc[type] = []
+  acc[type].push(page)
+  return acc
+}, {})
+
+const categoryOrder = ["development-log", "other"] as const
 
 const badgeColorMap: Record<string, string> = {
   "development-log": "info",
-  "other": "success",
-};
+  other: "success"
+}
 
-const messages = await useI18nAsync(Astro, 'blog', {
-  title: "me.blog",
-  description: "Articles, development logs, and more.",
-  categories: {
-    "development-log": "Development Log",
-    "other": "Other"
-  } as any
-} as any);
+const categoryMessages: Record<string, string> = {
+  "development-log": t("blog.categories_development-log"),
+  other: t("blog.categories_other")
+}
 
 const tabsItems = [
   { label: "All", value: "all" },
   ...categoryOrder
     .filter((cat) => groupedPosts[cat]?.length)
     .map((cat) => ({
-      label: (messages.categories as unknown as Record<string, string>)[cat],
+      label: categoryMessages[cat] ?? cat,
       value: cat
     }))
-];
+]
 ---
 
 <AppLayout title={siteConfig.name} description={siteConfig.description}>
-  <RLAPageSection
-    variant="hero"
-    title={messages.title}
-    description={messages.description}
-  >
+  <RLAPageSection title={t("blog.title")} description={t("blog.description")}>
     <RLATabs slot="content" items={tabsItems} variant="underline">
-      <div role="tabpanel" data-value="all" class="hidden">
+      <div role="tabpanel" data-value="all">
         <RLAGrid cols={4}>
-          {posts.map((post, index) => (
-            <RLAPost
-              variant="ghost"
-              orientation={index === 0 ? "horizontal" : "vertical"}
-              class={index === 0 ? "col-span-full mb-6" : ""}
-              image={post.data.heroImage}
-              date={post.data.pubDate}
-              title={post.data.title}
-              description={post.data.description}
-              to={getRelativeLocaleUrl(`/blog/${post.id.replace(`${activeLocale}/`, "")}/`)}
-              badge={(messages.categories as unknown as Record<string, string>)[post.data.type]}
-              badgeColor={badgeColorMap[post.data.type] || "primary"}
-            />
-          ))}
+          {blogPages.map((page, index) => {
+            const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content
+            const titleVal = getPageTitle(page.title, activeLocale)
+            const category = content?.properties?.category || "other"
+            const postDate = page.postedAt || page.createdAt
+            return (
+              <RLAPost
+                variant="ghost"
+                orientation={index === 0 ? "horizontal" : "vertical"}
+                class={index === 0 ? "col-span-full mb-6" : ""}
+                image={content?.properties?.heroImage}
+                date={postDate}
+                title={titleVal}
+                description={content?.properties?.description}
+                to={getRelativeLocaleUrl(`/blog/${page.slug}/`)}
+                badge={categoryMessages[category] ?? category}
+                badgeColor={badgeColorMap[category] || "primary"}
+              />
+            )
+          })}
         </RLAGrid>
       </div>
       {categoryOrder.map((category) => {
-        const categoryPosts = groupedPosts[category];
-        if (!categoryPosts || categoryPosts.length === 0) return null;
+        const categoryPages = groupedPosts[category]
+        if (!categoryPages || categoryPages.length === 0) return null
         return (
-          <div role="tabpanel" data-value={category} class="hidden">
+          <div role="tabpanel" data-value={category}>
             <RLAGrid cols={4}>
-              {
-                categoryPosts.map((post, index) => (
+              {categoryPages.map((page, index) => {
+                const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content
+                const titleVal = getPageTitle(page.title, activeLocale)
+                const postDate = page.postedAt || page.createdAt
+                return (
                   <RLAPost
                     variant="ghost"
                     orientation={index === 0 ? "horizontal" : "vertical"}
                     class={index === 0 ? "col-span-full mb-6" : ""}
-                    image={post.data.heroImage}
-                    date={post.data.pubDate}
-                    title={post.data.title}
-                    description={post.data.description}
-                    to={getRelativeLocaleUrl(`/blog/${post.id.replace(`${activeLocale}/`, "")}/`)}
-                    badge={(messages.categories as unknown as Record<string, string>)[category]}
+                    image={content?.properties?.heroImage}
+                    date={postDate}
+                    title={titleVal}
+                    description={content?.properties?.description}
+                    to={getRelativeLocaleUrl(`/blog/${page.slug}/`)}
+                    badge={categoryMessages[category] ?? category}
                     badgeColor={badgeColorMap[category] || "primary"}
                   />
-                ))
-              }
+                )
+              })}
             </RLAGrid>
           </div>
-        );
+        )
       })}
     </RLATabs>
   </RLAPageSection>

@@ -1,8 +1,11 @@
 import { ActionError, defineAction, type ActionErrorCode } from "astro:actions"
 import { z } from "astro/zod"
 import { APIError } from "better-auth/api"
+import { contact, upload } from "./contact"
 
 export const server = {
+  contact,
+  upload,
   signUp: defineAction({
     accept: "form",
     input: z.object({
