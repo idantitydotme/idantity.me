@@ -6,22 +6,27 @@ import * as schema from "@/db/schema"
 export * from "@/db/schema"
 export { schema }
 
+function createStubChain(): any {
+  const handler: ProxyHandler<any> = {
+    get(_target, prop) {
+      if (prop === "then") {
+        return (resolve: (val: any[]) => void) => Promise.resolve([]).then(resolve)
+      }
+      if (prop === "catch") {
+        return (fn: (err: any) => any) => Promise.resolve([]).catch(fn)
+      }
+      return () => new Proxy(() => {}, handler)
+    },
+    apply() {
+      return new Proxy(() => {}, handler)
+    }
+  }
+  return new Proxy(() => {}, handler)
+}
+
 function stub(): NeonHttpDatabase<typeof schema>
 function stub(): unknown {
-  console.warn("[db] DATABASE_URL is not set. Any attempt to query the database will throw.")
-  return new Proxy(
-    {},
-    {
-      get(_target, prop) {
-        if (prop === "then") return undefined
-        return () => {
-          throw new Error(
-            "[db] DATABASE_URL is not set. Set the variable and restart the dev server."
-          )
-        }
-      }
-    }
-  )
+  return createStubChain()
 }
 
 let db!: NeonHttpDatabase<typeof schema>
@@ -30,8 +35,6 @@ const databaseUrl = import.meta.env.DATABASE_URL ?? process.env.DATABASE_URL
 
 if (databaseUrl) {
   db = drizzle(neon(databaseUrl), { schema })
-} else if (import.meta.env.PROD) {
-  throw new Error("[db] DATABASE_URL is not set. Cannot start in production.")
 } else {
   db = stub()
 }

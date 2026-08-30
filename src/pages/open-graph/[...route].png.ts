@@ -184,10 +184,10 @@ export const GET: APIRoute<OgProps> = async ({ request, params, props }) => {
   const url = new URL(request.url)
   const routeParam = params.route ?? ""
 
-  const title = props.title || url.searchParams.get("title") || routeParam || "Daniel Marchi"
-  const description = props.description || url.searchParams.get("description") || ""
-  const type = props.type || url.searchParams.get("type") || ""
-  const pubDate = props.pubDate || url.searchParams.get("pubDate") || ""
+  const title = props?.title || url.searchParams.get("title") || routeParam || "Daniel Marchi"
+  const description = props?.description || url.searchParams.get("description") || ""
+  const type = props?.type || url.searchParams.get("type") || ""
+  const pubDate = props?.pubDate || url.searchParams.get("pubDate") || ""
 
   const jsx = buildOgJsx(title, description, type, pubDate)
   const { regular, bold } = await getFonts()
