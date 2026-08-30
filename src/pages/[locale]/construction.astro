@@ -5,8 +5,6 @@ import ConstructionSignIn from '@/components/auth/ConstructionSignIn.astro'
 import RLALogo from '@rimelight/ui/components/logo/RLALogo.astro'
 import RLALocaleSelector from "@rimelight/ui/components/locale-selector/RLALocaleSelector.astro";
 
-const constructionAuth = (import.meta.env.CONSTRUCTION_AUTH ?? process.env.CONSTRUCTION_AUTH) === "true"
-
 const messages = await useI18nAsync('page_construction')
 
 const targetLanguages = [
@@ -24,20 +22,16 @@ const targetLanguages = [
           {messages.title}
         </h1>
         <p class="m-0 text-neutral-400">
-          {constructionAuth ? messages.description : messages.description_no_auth}
+          {messages.description}
         </p>
       </div>
 
-      {constructionAuth && (
-        <ConstructionSignIn
-          emailLabel={messages.form_email_label ?? ""}
-          emailPlaceholder={messages.form_email_placeholder ?? ""}
-          passwordLabel={messages.form_password_label ?? ""}
-          passwordPlaceholder={messages.form_password_placeholder ?? ""}
-          rememberMeLabel={messages.form_remember_me_label ?? ""}
-          signInButtonLabel={messages.form_sign_in_button ?? ""}
-        />
-      )}
+      <ConstructionSignIn
+        passphraseLabel={messages.form_passphrase_label ?? ""}
+        passphrasePlaceholder={messages.form_passphrase_placeholder ?? ""}
+        rememberMeLabel={messages.form_remember_me_label ?? ""}
+        signInButtonLabel={messages.form_sign_in_button ?? ""}
+      />
 
       <div class="flex flex-col items-center gap-2 text-xs text-neutral-500">
         <RLALocaleSelector locales={targetLanguages} />

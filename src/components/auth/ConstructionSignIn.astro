@@ -7,20 +7,16 @@ import RLACheckbox from "@rimelight/ui/components/checkbox/RLACheckbox.astro"
 
 interface Props {
   allowAuth?: boolean
-  emailLabel?: string
-  emailPlaceholder?: string
-  passwordLabel?: string
-  passwordPlaceholder?: string
+  passphraseLabel?: string
+  passphrasePlaceholder?: string
   rememberMeLabel?: string
   signInButtonLabel?: string
 }
 
 const {
   allowAuth = true,
-  emailLabel = "E-mail",
-  emailPlaceholder = "your@email.com",
-  passwordLabel = "Password",
-  passwordPlaceholder = "••••••••",
+  passphraseLabel = "Passphrase",
+  passphrasePlaceholder = "Enter passphrase...",
   rememberMeLabel = "Remember me",
   signInButtonLabel = "Sign In"
 } = Astro.props
@@ -33,7 +29,7 @@ const {
 
       <div class="flex flex-col gap-4">
         <RLAFormField
-          label={emailLabel}
+          label={passphraseLabel}
           required
           ui={{
             label: 'text-white',
@@ -41,28 +37,10 @@ const {
           }}
         >
           <RLAInput
-            id="email-input"
-            type="email"
-            name="email"
-            placeholder={emailPlaceholder}
-            class="w-full text-white"
-            required
-          />
-        </RLAFormField>
-
-        <RLAFormField
-          label={passwordLabel}
-          required
-          ui={{
-            label: 'text-white',
-            description: 'text-neutral-500'
-          }}
-        >
-          <RLAInput
-            id="password-input"
+            id="passphrase-input"
             type="password"
-            name="password"
-            placeholder={passwordPlaceholder}
+            name="passphrase"
+            placeholder={passphrasePlaceholder}
             class="w-full text-white"
             required
           />
@@ -104,8 +82,7 @@ const {
   }
 
   const form = document.getElementById("sign-in-form")
-  const emailInput = document.getElementById("email-input") as HTMLInputElement | null
-  const passwordInput = document.getElementById("password-input") as HTMLInputElement | null
+  const passphraseInput = document.getElementById("passphrase-input") as HTMLInputElement | null
   const rememberCheckbox = document.getElementById("remember-me-checkbox") as HTMLInputElement | null
   const errorMessage = document.getElementById("error-message")
   const submitButton = document.getElementById("submit-button")
@@ -113,7 +90,7 @@ const {
   if (form) {
     form.addEventListener("submit", async (event) => {
       event.preventDefault()
-      if (!emailInput || !passwordInput || !submitButton || !errorMessage) return
+      if (!passphraseInput || !submitButton || !errorMessage) return
 
       // Set loading state
       submitButton.setAttribute("disabled", "true")
@@ -126,8 +103,7 @@ const {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            email: emailInput.value,
-            password: passwordInput.value,
+            passphrase: passphraseInput.value,
             rememberMe: rememberCheckbox ? rememberCheckbox.checked : true
           })
         })
