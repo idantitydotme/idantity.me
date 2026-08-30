@@ -37,6 +37,7 @@ export default defineConfig({
   },
 
   output: "server",
+  session: false,
   adapter: cloudflare(),
   cache: {
     provider: cacheCloudflare()
