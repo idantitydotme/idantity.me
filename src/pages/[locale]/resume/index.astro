@@ -161,14 +161,34 @@ const education = [
 
 const certifications = [
   {
-    title: "Unreal Engine Specialist Certification",
-    issuer: "Epic Games",
-    period: "2023"
+    title: "HTML Essential Training",
+    issuer: "LinkedIn Learning",
+    credentialId: "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
   },
   {
-    title: "Full Stack Web Development Professional",
-    issuer: "Meta",
-    period: "2022"
+    title: "CSS Essential Training",
+    issuer: "LinkedIn Learning",
+    credentialId: "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
+  },
+  {
+    title: "TypeScript Essential Training",
+    issuer: "LinkedIn Learning",
+    credentialId: "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
+  },
+  {
+    title: "Unreal Engine 5 Essential Training",
+    issuer: "LinkedIn Learning",
+    credentialId: "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
+  },
+  {
+    title: "PostgreSQL Essential Training",
+    issuer: "LinkedIn Learning",
+    credentialId: "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
+  },
+  {
+    title: "Git Essential Training",
+    issuer: "LinkedIn Learning",
+    credentialId: "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
   }
 ];
 
@@ -694,13 +714,20 @@ const projects = [
 
           <!-- Certifications Section -->
           <div class="flex flex-col gap-md">
-            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">Certifications</h2>
+            <h2 class="text-3xl font-bold text-white border-b border-neutral-900 pb-2">{messages.certifications_heading ?? "Certifications"}</h2>
             <div class="flex flex-col gap-lg">
               {certifications.map((cert) => (
                 <div class="flex flex-col gap-xs bg-neutral-950/35 border border-neutral-900/60 p-lg rounded-2xl">
                   <h3 class="text-xl font-bold text-white">{cert.title}</h3>
                   <span class="text-sm text-neutral-300 font-semibold">{cert.issuer}</span>
-                  <span class="text-xs text-neutral-500 font-medium mt-0.5">{cert.period}</span>
+                  {cert.credentialId && (
+                    <div class="mt-2 pt-2 border-t border-neutral-900/50 flex flex-wrap items-center gap-1.5 text-xs">
+                      <span class="text-neutral-500 font-medium">{messages.certifications_id_label ?? "Certificate ID"}:</span>
+                      <code class="text-neutral-400 font-mono text-2xs bg-neutral-900/80 px-2 py-0.5 rounded border border-neutral-800 break-all select-all">
+                        {cert.credentialId}
+                      </code>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>

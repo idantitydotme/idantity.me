@@ -91,7 +91,9 @@
     "project_lumen_name": "Website Lumen Studio",
     "project_lumen_description": "Desenvolvimento de um portfólio refinado com interface acessível, interações guiadas por movimento e componentes reutilizáveis.",
     "project_lumen_solution": "Desenvolvimento de um sistema de componentes modular com Astro e Tailwind CSS, garantindo uma experiência de marca consistente em todos os dispositivos.",
-    "project_lumen_impact": "Alcançou tempos de carregamento de página abaixo de 1s e pontuações Lighthouse de 95+ por meio de estratégias otimizadas de entrega de assets e carregamento preguiçoso."
+    "project_lumen_impact": "Alcançou tempos de carregamento de página abaixo de 1s e pontuações Lighthouse de 95+ por meio de estratégias otimizadas de entrega de assets e carregamento preguiçoso.",
+    "certifications_heading": "Certificações",
+    "certifications_id_label": "ID do Certificado"
   },
   "page_contact": {
     "title": "Contato",

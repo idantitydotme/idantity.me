@@ -111,7 +111,9 @@
     "project_lumen_name": "Lumen Studio Website",
     "project_lumen_description": "Built a polished portfolio experience with accessible UI, motion-led interactions, and reusable components.",
     "project_lumen_solution": "Designed a modular component system with Astro and Tailwind CSS, ensuring consistent brand experience across all breakpoints.",
-    "project_lumen_impact": "Achieved sub-1s page load metrics and 95+ Lighthouse scores through optimized asset delivery and lazy loading strategies."
+    "project_lumen_impact": "Achieved sub-1s page load metrics and 95+ Lighthouse scores through optimized asset delivery and lazy loading strategies.",
+    "certifications_heading": "Certifications",
+    "certifications_id_label": "Certificate ID"
   },
   "page_contact": {
     "title": "Contact Us",
