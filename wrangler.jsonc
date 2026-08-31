@@ -35,13 +35,15 @@
   "kv_namespaces": [
     {
       "binding": "idantity-dot-me_translations",
-      "id": "4600654d2fa04084b7914fa36609e6f5"
+      "id": "4600654d2fa04084b7914fa36609e6f5",
+      "remote": true
     }
   ],
   "r2_buckets": [
     {
       "binding": "BLOB",
-      "bucket_name": "idantity-dot-me"
+      "bucket_name": "idantity-dot-me",
+      "remote": true
     }
   ],
   "ratelimits": [
