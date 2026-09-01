@@ -228,8 +228,8 @@ importers:
         specifier: 0.0.2
         version: 0.0.2(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
       '@rimelight/ui':
-        specifier: 0.0.44
-        version: 0.0.44(@astrojs/solid-js@7.0.2(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.1)(yaml@2.9.0))(@astrojs/vue@7.0.1(@types/node@26.4.0)(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(esbuild@0.28.1)(jiti@2.7.0)(supports-color@10.2.2)(tsx@4.23.1)(vue@3.5.40(typescript@6.0.3))(yaml@2.9.0))(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(solid-js@1.9.15)(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(vue@3.5.40(typescript@6.0.3))
+        specifier: 0.0.45
+        version: 0.0.45(@astrojs/solid-js@7.0.2(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.1)(yaml@2.9.0))(@astrojs/vue@7.0.1(@types/node@26.4.0)(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(esbuild@0.28.1)(jiti@2.7.0)(supports-color@10.2.2)(tsx@4.23.1)(vue@3.5.40(typescript@6.0.3))(yaml@2.9.0))(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(solid-js@1.9.15)(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(vue@3.5.40(typescript@6.0.3))
       astro:
         specifier: 7.2.9
         version: 7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0)
@@ -2037,6 +2037,25 @@ packages:
 
   '@rimelight/ui@0.0.44':
     resolution: {integrity: sha512-xQkPoLkzzhdYKCOXo1D5IscOxZMr00ScuvxWrx11hKowz+xY0OXI0qwes6qVHhimKpw7OhlP3CHs0VJQeIDiOg==}
+    engines: {node: '>=26.7.0'}
+    peerDependencies:
+      '@astrojs/solid-js': '>=7.0.1'
+      '@astrojs/vue': '>=7.0.1'
+      astro: '>=7.0.0'
+      solid-js: '>=1.9.13'
+      vue: '>=3.0.0'
+    peerDependenciesMeta:
+      '@astrojs/solid-js':
+        optional: true
+      '@astrojs/vue':
+        optional: true
+      solid-js:
+        optional: true
+      vue:
+        optional: true
+
+  '@rimelight/ui@0.0.45':
+    resolution: {integrity: sha512-+4E/FfnIS71sMBD29DNj1s7vg/1UQ1rfipoXHD1rjk6NTRn4UOZcD2tBUQEs4R6U7bIVViREyuUXuzvI9yZReA==}
     engines: {node: '>=26.7.0'}
     peerDependencies:
       '@astrojs/solid-js': '>=7.0.1'
@@ -6004,6 +6023,22 @@ snapshots:
       astro: 7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0)
 
   '@rimelight/ui@0.0.44(@astrojs/solid-js@7.0.2(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.1)(yaml@2.9.0))(@astrojs/vue@7.0.1(@types/node@26.4.0)(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(esbuild@0.28.1)(jiti@2.7.0)(supports-color@10.2.2)(tsx@4.23.1)(vue@3.5.40(typescript@6.0.3))(yaml@2.9.0))(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(solid-js@1.9.15)(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(vue@3.5.40(typescript@6.0.3))':
+    dependencies:
+      '@unocss/vite': 66.8.1(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
+      astro: 7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0)
+      unocss: 66.8.1(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
+    optionalDependencies:
+      '@astrojs/solid-js': 7.0.2(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.1)(yaml@2.9.0)
+      '@astrojs/vue': 7.0.1(@types/node@26.4.0)(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(esbuild@0.28.1)(jiti@2.7.0)(supports-color@10.2.2)(tsx@4.23.1)(vue@3.5.40(typescript@6.0.3))(yaml@2.9.0)
+      solid-js: 1.9.15
+      vue: 3.5.40(typescript@6.0.3)
+    transitivePeerDependencies:
+      - '@unocss/astro'
+      - '@unocss/postcss'
+      - '@unocss/webpack'
+      - vite
+
+  '@rimelight/ui@0.0.45(@astrojs/solid-js@7.0.2(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.1)(yaml@2.9.0))(@astrojs/vue@7.0.1(@types/node@26.4.0)(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(esbuild@0.28.1)(jiti@2.7.0)(supports-color@10.2.2)(tsx@4.23.1)(vue@3.5.40(typescript@6.0.3))(yaml@2.9.0))(astro@7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(solid-js@1.9.15)(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))(vue@3.5.40(typescript@6.0.3))':
     dependencies:
       '@unocss/vite': 66.8.1(vite@8.2.1(@types/node@26.4.0)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
       astro: 7.2.9(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.4.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0)
