@@ -4,6 +4,8 @@ Thumbs.db
 
 # IDE
 .idea/
+.vscode/
+.zed/
 
 # Dependencies
 node_modules/
@@ -12,17 +14,11 @@ node_modules/
 .astro/
 
 # Environment Variables
-*.env
-*.env.*
+*.env*
 !.env.example
 
 # Outputs
 dist/
-
-# Drizzle
-server/db/drizzle/*.json
-server/db/drizzle/_journal.json
-server/db/drizzle/*_draft.sql
 
 # Testing
 reports/
@@ -32,9 +28,12 @@ test-results/
 
 # Logs
 logs/
-*.log
+*.log*
 *.cpuprofile
-pnpm-debug.log*
+
+# Misc
+*.local
+*.tsbuildinfo
 
 # Cloudflare
 .wrangler/
@@ -43,6 +42,7 @@ pnpm-debug.log*
 worker-configuration.d.ts
 .cache/
 
-# Misc
-*.local
-*.tsbuildinfo
+# Drizzle
+server/db/drizzle/*.json
+server/db/drizzle/_journal.json
+server/db/drizzle/*_draft.sql
