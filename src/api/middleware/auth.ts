@@ -1,5 +1,5 @@
-import { auth as betterAuth } from "@/auth/auth"
-import { isConstructionGuest } from "@/auth/construction-guest"
+import { auth as betterAuth } from "#auth/auth"
+import { isConstructionGuest } from "#auth/construction-guest"
 
 const PROTECTED_ROUTES = ["/internal"]
 

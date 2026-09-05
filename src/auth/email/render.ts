@@ -1,8 +1,8 @@
 import { experimental_AstroContainer as AstroContainer } from "astro/container"
-import VerificationEmail from "@/components/email/VerificationEmail.astro"
-import PasswordResetEmail from "@/components/email/PasswordResetEmail.astro"
-import SignupNotificationEmail from "@/components/email/SignupNotificationEmail.astro"
-import ContactEmail from "@/components/email/ContactEmail.astro"
+import VerificationEmail from "#components/email/VerificationEmail.astro"
+import PasswordResetEmail from "#components/email/PasswordResetEmail.astro"
+import SignupNotificationEmail from "#components/email/SignupNotificationEmail.astro"
+import ContactEmail from "#components/email/ContactEmail.astro"
 import { getEmailMessages } from "./messages"
 
 const container = AstroContainer.create()

@@ -1,13 +1,13 @@
 ---
-import AppLayout from "@/layouts/AppLayout.astro"
-import { siteConfig } from "@/config/site.config"
+import AppLayout from "#layouts/AppLayout.astro"
+import { siteConfig } from "#config/site.config"
 import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
 import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro"
 import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro"
 import RLAPost from "@rimelight/ui/components/post/RLAPost.astro"
-import { db } from "@/db"
-import { pages } from "@/db/schema"
+import { db } from "#db"
+import { pages } from "#db/schema"
 import { eq, desc, and, isNull } from "drizzle-orm"
 
 const activeLocale = Astro.currentLocale ?? "en"

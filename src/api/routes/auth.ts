@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { auth } from "@/auth/auth"
+import { auth } from "#auth/auth"
 
 const api = new Hono()
 

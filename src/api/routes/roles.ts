@@ -1,7 +1,7 @@
 import { Hono } from "hono"
-import { auth } from "@/auth/auth"
-import { db } from "@/db"
-import { role } from "@/db/schema"
+import { auth } from "#auth/auth"
+import { db } from "#db"
+import { role } from "#db/schema"
 import { eq, isNull, desc } from "drizzle-orm"
 
 const rolesApi = new Hono()

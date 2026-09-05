@@ -1,6 +1,6 @@
 import { Hono } from "hono"
-import { auth } from "@/auth/auth"
-import { db } from "@/db"
+import { auth } from "#auth/auth"
+import { db } from "#db"
 import {
   pages,
   pageDrafts,
@@ -8,7 +8,7 @@ import {
   pageTemplates,
   pageVersions,
   pageVersionApprovals
-} from "@/db/schema"
+} from "#db/schema"
 import { eq, and, desc, isNull } from "drizzle-orm"
 import {
   validateServerBlockPayload,

@@ -1,4 +1,4 @@
-import api from "@/api"
+import api from "#api"
 import { type APIContext } from "astro"
 
 export async function ALL({ request, params }: APIContext) {

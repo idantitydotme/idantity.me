@@ -1,4 +1,4 @@
-import { auth as betterAuth } from "@/auth/auth"
+import { auth as betterAuth } from "#auth/auth"
 
 const PROTECTED_ROUTES = ["/internal"]
 

@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { signInConstructionGuest } from "@/auth/construction-guest"
+import { signInConstructionGuest } from "#auth/construction-guest"
 
 const api = new Hono()
 

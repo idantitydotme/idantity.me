@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss"
 import { getCollection } from "astro:content"
-import { siteConfig } from "@/config/site.config"
+import { siteConfig } from "#config/site.config"
 
 export async function GET(context) {
   const blog = await getCollection("blog")

@@ -1,11 +1,11 @@
 ---
-import AppLayout from "@/layouts/AppLayout.astro"
+import AppLayout from "#layouts/AppLayout.astro"
 import PageRenderer from "@rimelight/cms/astro/PageRenderer.astro"
 import RLADate from "@rimelight/ui/components/date/RLADate.astro"
 import RLAContainer from "@rimelight/ui/components/container/RLAContainer.astro"
 import { t } from "@rimelight/i18n"
-import { db } from "@/db"
-import { pages } from "@/db/schema"
+import { db } from "#db"
+import { pages } from "#db/schema"
 import { eq, and, isNull } from "drizzle-orm"
 
 const activeLocale = Astro.currentLocale ?? "en"

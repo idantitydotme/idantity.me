@@ -16,7 +16,7 @@ export const server = {
     }),
     handler: async (input) => {
       try {
-        const { auth } = await import("@/auth/auth")
+        const { auth } = await import("#auth/auth")
         await auth.api.signUpEmail({
           body: {
             name: `${input.firstName} ${input.lastName}`,
@@ -40,7 +40,7 @@ export const server = {
     }),
     handler: async (input, ctx) => {
       try {
-        const { auth } = await import("@/auth/auth")
+        const { auth } = await import("#auth/auth")
         const response = await auth.api.signInEmail({
           body: {
             email: input.email,
@@ -59,7 +59,7 @@ export const server = {
     accept: "form",
     handler: async (_input, ctx) => {
       try {
-        const { auth } = await import("@/auth/auth")
+        const { auth } = await import("#auth/auth")
         const response = await auth.api.signOut({
           headers: ctx.request.headers,
           asResponse: true

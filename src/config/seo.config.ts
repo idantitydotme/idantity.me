@@ -1,6 +1,6 @@
 import type { SeoEntry, LocaleConfig } from "@rimelight/seo"
-import { db } from "@/db"
-import { pages } from "@/db/schema"
+import { db } from "#db"
+import { pages } from "#db/schema"
 import { eq, and, isNull } from "drizzle-orm"
 
 /**

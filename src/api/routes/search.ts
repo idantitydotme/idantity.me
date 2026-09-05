@@ -1,6 +1,6 @@
 import { Hono } from "hono"
-import { db } from "@/db"
-import { searchIndex } from "@/db/schema"
+import { db } from "#db"
+import { searchIndex } from "#db/schema"
 import { sql, desc, or, ilike } from "drizzle-orm"
 
 const api = new Hono()

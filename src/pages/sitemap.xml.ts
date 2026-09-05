@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro"
 import { buildSitemapUrls, buildSitemapXml } from "@rimelight/seo"
-import { SEO_LOCALES, seoEntries } from "@/config/seo.config"
+import { SEO_LOCALES, seoEntries } from "#config/seo.config"
 
 export const GET: APIRoute = async () => {
   const entries = await seoEntries()

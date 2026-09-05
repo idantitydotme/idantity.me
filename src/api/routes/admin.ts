@@ -1,7 +1,7 @@
 import { Hono } from "hono"
-import { auth } from "@/auth/auth"
-import { db } from "@/db"
-import { user, session, role } from "@/db/schema"
+import { auth } from "#auth/auth"
+import { db } from "#db"
+import { user, session, role } from "#db/schema"
 import { eq, and, count, desc, isNull, like, or, sql } from "drizzle-orm"
 
 type Env = {
@@ -502,7 +502,7 @@ adminApi.post("/organizations", async (c) => {
       return c.json({ error: "Organization name and slug are required" }, 400)
     }
 
-    const { organization } = await import("@/db/schema")
+    const { organization } = await import("#db/schema")
     const newOrg = await db
       .insert(organization)
       .values({
@@ -525,7 +525,7 @@ adminApi.post("/organizations", async (c) => {
 adminApi.delete("/organizations/:id", async (c) => {
   try {
     const id = c.req.param("id")
-    const { organization } = await import("@/db/schema")
+    const { organization } = await import("#db/schema")
 
     await db.update(organization).set({ deletedAt: new Date() }).where(eq(organization.id, id))
 

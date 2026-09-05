@@ -1,6 +1,6 @@
 ---
 try {
-  const { auth } = await import("@/auth/auth")
+  const { auth } = await import("#auth/auth")
   const response = await auth.api.signOut({
     headers: Astro.request.headers,
     asResponse: true

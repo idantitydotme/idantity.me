@@ -1,6 +1,6 @@
 import type { APIRoute } from "astro"
 import { buildRobotsTxt } from "@rimelight/seo"
-import { PRIVATE_PATH_PREFIXES } from "@/config/seo.config"
+import { PRIVATE_PATH_PREFIXES } from "#config/seo.config"
 
 export const GET: APIRoute = ({ site }) => {
   const sitemapURL = new URL("sitemap.xml", site).toString()

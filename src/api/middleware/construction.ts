@@ -1,4 +1,4 @@
-import { languages } from "@/config/i18n.config"
+import { languages } from "#config/i18n.config"
 
 const WHITELISTED_ROUTES = ["/construction", "/api/auth", "/api/construction-guest"]
 

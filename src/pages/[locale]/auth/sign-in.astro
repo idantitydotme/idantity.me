@@ -1,10 +1,10 @@
 ---
-import AppLayout from '@/layouts/AppLayout.astro'
-import AuthLayout from '@/layouts/AuthLayout.astro'
-import AuthSignInForm from '@/components/auth/AuthSignInForm.astro'
+import AppLayout from '#layouts/AppLayout.astro'
+import AuthLayout from '#layouts/AuthLayout.astro'
+import AuthSignInForm from '#components/auth/AuthSignInForm.astro'
 import { useI18n } from "@rimelight/i18n"
-import bgMobile from '@/assets/images/auth_background_mobile.jpg'
-import bgDesktop from '@/assets/images/auth_background_desktop.jpg'
+import bgMobile from '#assets/images/auth_background_mobile.jpg'
+import bgDesktop from '#assets/images/auth_background_desktop.jpg'
 
 const messages = useI18n(Astro, "page_auth_sign-in", {
   meta_title: 'Sign in',

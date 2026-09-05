@@ -1,9 +1,9 @@
 import { defineAction, ActionError } from "astro:actions"
 import { z } from "astro/zod"
 import { env as cfEnv } from "cloudflare:workers"
-import { verifyTurnstile } from "@/lib/turnstile"
-import { sendEmail } from "@/auth/email"
-import { renderContactEmail } from "@/auth/email/render"
+import { verifyTurnstile } from "#lib/turnstile"
+import { sendEmail } from "#auth/email"
+import { renderContactEmail } from "#auth/email/render"
 
 export const contact = defineAction({
   accept: "form",

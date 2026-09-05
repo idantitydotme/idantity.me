@@ -20,6 +20,16 @@
     "url": "git+https://github.com/idantitydotme/idantity.me.git"
   },
   "type": "module",
+  "imports": {
+    "#*": [
+      "./src/*",
+      "./src/*.ts",
+      "./src/*.tsx",
+      "./src/*/index.ts",
+      "./src/*/index.tsx",
+      "./src/*/index.astro"
+    ]
+  },
   "scripts": {
     "prepare": "vp config",
     "generate-types": "wrangler types",
