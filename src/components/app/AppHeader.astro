@@ -15,36 +15,35 @@ try {
   session = await auth.api.getSession({ headers: Astro.request.headers });
 } catch (e) {}
 
-import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
 
-const messages = useI18n("app_header");
 
 const leftLinks: NavigationMenuItem[] = [
   {
-    label: messages["left-links_projects_label"],
+    label: t("app_header.left-links_projects_label"),
     to: getRelativeLocaleUrl('/projects'),
   },
   {
-    label: messages["left-links_music_label"],
+    label: t("app_header.left-links_music_label"),
     to: getRelativeLocaleUrl('/music'),
   },
   {
-    label: messages["left-links_blog_label"],
+    label: t("app_header.left-links_blog_label"),
     to: getRelativeLocaleUrl('/blog'),
   },
 	{
-		label: messages["left-links_about_label"],
+		label: t("app_header.left-links_about_label"),
 		to: getRelativeLocaleUrl('/about'),
 	}
 ];
 
 const rightLinks: NavigationMenuItem[] = [
   {
-    label: messages["right-links_services_label"],
+    label: t("app_header.right-links_services_label"),
     to: getRelativeLocaleUrl('/services'),
   },
   {
-    label: messages["right-links_resume_label"],
+    label: t("app_header.right-links_resume_label"),
     to: getRelativeLocaleUrl('/resume'),
   }
 ];

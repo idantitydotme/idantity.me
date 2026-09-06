@@ -1,7 +1,7 @@
 ---
 import AppLayout from "#layouts/AppLayout.astro"
 import { siteConfig } from "#config/site.config"
-import { useI18n, getRelativeLocaleUrl, getLocale } from "@rimelight/i18n"
+import { t, getRelativeLocaleUrl, getLocale } from "@rimelight/i18n"
 import { db } from "#db"
 import { pages } from "#db/schema"
 import { eq, and, isNull, desc } from "drizzle-orm"
@@ -29,11 +29,10 @@ const blogPages = await db
 
 const latestPosts = blogPages.slice(0, 3)
 
-const messages = useI18n("playground")
 
 const heroLinks = [
   {
-    label: messages.heroLink,
+    label: t("playground.heroLink"),
     href: getRelativeLocaleUrl("/blog"),
     color: "primary",
     variant: "solid"
@@ -42,13 +41,13 @@ const heroLinks = [
 
 const ctaLinks = [
   {
-    label: messages.ctaStart,
+    label: t("playground.ctaStart"),
     href: getRelativeLocaleUrl("/blog"),
     color: "primary",
     variant: "solid"
   },
   {
-    label: messages.ctaContribute,
+    label: t("playground.ctaContribute"),
     href: getRelativeLocaleUrl("/"),
     color: "primary",
     variant: "outline",
@@ -61,8 +60,8 @@ const ctaLinks = [
   <RLAPageSection
     variant="hero"
     reverse={true}
-    title={messages.heroTitle}
-    description={messages.heroDesc}
+    title={t("playground.heroTitle")}
+    description={t("playground.heroDesc")}
     links={heroLinks}
   >
     <RLALogo class="pointer-events-none h-64 w-auto" variant="logomark" />
@@ -70,8 +69,8 @@ const ctaLinks = [
 
   <RLAPageSection
     orientation="vertical"
-    title={messages.postsTitle}
-    description={messages.postsDesc}
+    title={t("playground.postsTitle")}
+    description={t("playground.postsDesc")}
   >
     <div slot="body" class="flex flex-col gap-xl">
       <RLAGrid>
@@ -98,7 +97,7 @@ const ctaLinks = [
 
       {latestPosts.length > 0 && (
         <RLAButton
-          label={messages.viewAllPosts}
+          label={t("playground.viewAllPosts")}
           href={getRelativeLocaleUrl("/blog")}
           color="primary"
           variant="link"
@@ -111,8 +110,8 @@ const ctaLinks = [
   <RLAPageSection
     variant="cta"
     ctaVariant="solid"
-    title={messages.ctaTitle}
-    description={messages.ctaDesc}
+    title={t("playground.ctaTitle")}
+    description={t("playground.ctaDesc")}
     links={ctaLinks}
   />
 </AppLayout>

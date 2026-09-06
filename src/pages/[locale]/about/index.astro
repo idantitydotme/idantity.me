@@ -1,14 +1,13 @@
 ---
 import AppLayout from '#layouts/AppLayout.astro';
 import AboutHeroImage from '#assets/images/placeholder.webp';
-import { useI18n } from '@rimelight/i18n';
+import { t } from "@rimelight/i18n";
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
 import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
 
-const messages = useI18n("page_about");
 ---
 
-<AppLayout title={messages.title} description={messages.description}>
+<AppLayout title={t("page_about.title")} description={t("page_about.description")}>
 	<RLAPageSection
     variant="hero"
     title="About Me"

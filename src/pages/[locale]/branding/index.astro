@@ -1,15 +1,11 @@
 ---
 import AppLayout from "#layouts/AppLayout.astro";
-import { useI18n } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 
 
-const messages = useI18n(Astro, 'branding', {
-  title: 'Branding',
-  description: 'idantity.me Branding Guidelines'
-});
 ---
 
-<AppLayout title={messages.title} description={messages.description}>
-    <h1>{messages.title}</h1>
-    <p>{messages.description}</p>
+<AppLayout title={t("branding.title")} description={t("branding.description")}>
+    <h1>{t("branding.title")}</h1>
+    <p>{t("branding.description")}</p>
 </AppLayout>

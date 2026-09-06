@@ -1,22 +1,11 @@
 ---
 import AppLayout from '#layouts/AppLayout.astro';
-import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 
-
-const messages = useI18n(Astro, 'errors', {
-  notFound: 'Page Not Found',
-  notFoundDesc: 'The page you are looking for does not exist.',
-  serverError: 'Server Error',
-  unknownError: 'Unknown error',
-  goHome: 'Go Home'
-});
+Astro.response.status = 404;
+Astro.response.statusText = "Not Found";
 ---
 
-<AppLayout title={messages.notFound} description={messages.notFoundDesc}>
-  <div class="error-container">
-    <p class="error-code">404</p>
-    <h1 class="error-title">{messages.notFound}</h1>
-    <p class="error-desc">{messages.notFoundDesc}</p>
-    <a href={getRelativeLocaleUrl('/')} class="error-link">{messages.goHome}</a>
-  </div>
+<AppLayout title={t("errors.notFound")} description={t("errors.notFoundDesc")} is404={true}>
+
 </AppLayout>

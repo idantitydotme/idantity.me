@@ -6,29 +6,28 @@ import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
 import RLALinkGroup from "@rimelight/ui/components/link-group/RLALinkGroup.astro";
 import RLAThemeSelector from "@rimelight/ui/components/theme-selector/RLAThemeSelector.astro";
 import RLALocaleSelector from "@rimelight/ui/components/locale-selector/RLALocaleSelector.astro";
-import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n";
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
 
-const messages = useI18n("app_footer");
 
 const columns = [
   {
-    label: messages["links_resources_label"],
+    label: t("app_footer.links_resources_label"),
     children: [
       {
-        label: messages["links_resources_branding"],
+        label: t("app_footer.links_resources_branding"),
         to: getRelativeLocaleUrl("/branding")
       }
     ]
   },
   {
-    label: messages["links_legal_label"],
+    label: t("app_footer.links_legal_label"),
     children: [
       {
-        label: messages["links_legal_privacy-policy"],
+        label: t("app_footer.links_legal_privacy-policy"),
         to: getRelativeLocaleUrl("/legal/privacy-policy")
       },
       {
-        label: messages["links_legal_other-documents"],
+        label: t("app_footer.links_legal_other-documents"),
         to: getRelativeLocaleUrl("/legal")
       }
     ]

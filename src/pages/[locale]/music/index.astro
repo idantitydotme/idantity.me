@@ -2,16 +2,8 @@
 import AppLayout from "#layouts/AppLayout.astro";
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
 import RLACard from "@rimelight/ui/components/card/RLACard.astro";
-import { useI18n } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 
-const messages = useI18n(Astro, "page_music", {
-  title: "Music",
-  description: "DJ mixes, curated playlists, and musical productions.",
-  hero_title: "Music & Audio",
-  hero_description: "Listen to DJ sets, original productions, and curated Spotify playlists.",
-  section_mixes_title: "Featured Mixes & Sets",
-  section_playlists_title: "Curated Playlists"
-});
 
 const spotifyPlaylists = [
   {
@@ -33,17 +25,17 @@ const spotifyPlaylists = [
 ];
 ---
 
-<AppLayout title={messages.title} description={messages.description}>
+<AppLayout title={t("page_music.title")} description={t("page_music.description")}>
   <RLAPageSection
     variant="hero"
-    title={messages.hero_title}
-    description={messages.hero_description}
+    title={t("page_music.hero_title")}
+    description={t("page_music.hero_description")}
     orientation="horizontal"
   />
 
   <!-- Featured Audio Section -->
   <RLAPageSection
-    title={messages.section_mixes_title}
+    title={t("page_music.section_mixes_title")}
     orientation="vertical"
   >
     <div slot="body" class="max-w-4xl mx-auto w-full">
@@ -72,7 +64,7 @@ const spotifyPlaylists = [
 
   <!-- Curated Playlists Section -->
   <RLAPageSection
-    title={messages.section_playlists_title}
+    title={t("page_music.section_playlists_title")}
     orientation="vertical"
   >
     <div slot="body" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto w-full">

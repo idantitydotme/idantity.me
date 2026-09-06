@@ -3,19 +3,18 @@ import RLAInput from "@rimelight/ui/components/input/RLAInput.astro"
 import RLAButton from "@rimelight/ui/components/button/RLAButton.astro"
 import RLACheckbox from "@rimelight/ui/components/checkbox/RLACheckbox.astro"
 import RLAIcon from "@rimelight/ui/components/icon/RLAIcon.astro"
+import { t } from "@rimelight/i18n"
 
 interface Props {
   recovery?: boolean
   terms?: boolean
   remember?: boolean
-  messages?: Record<string, string>
 }
 
 const {
   recovery = true,
   terms = true,
   remember = true,
-  messages = {}
 } = Astro.props as Props
 ---
 
@@ -24,24 +23,24 @@ const {
 
   <form id="auth-sign-in-form" method="POST" action="javascript:void(0)" class="flex flex-col gap-md text-left">
     <div class="flex flex-col gap-1 text-neutral-900 dark:text-neutral-100">
-      <label class="text-sm font-medium">{messages.auth_email_label ?? "E-mail"}</label>
+      <label class="text-sm font-medium">{t("page_auth_sign-in.auth_email_label")}</label>
       <RLAInput
         type="email"
         name="email"
         id="sign-in-email"
-        placeholder={messages.auth_email_placeholder ?? "your@email.com"}
+        placeholder={t("page_auth_sign-in.auth_email_placeholder")}
         required
         class="w-full"
       />
       {recovery && (
         <a href="/auth/recovery" class="text-xs text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 mt-1">
-          {messages["auth_sign-in_email_help"] ?? "Recover email"}
+          {t("page_auth_sign-in.auth_sign-in_email_help")}
         </a>
       )}
     </div>
 
     <div class="flex flex-col gap-1 text-neutral-900 dark:text-neutral-100">
-      <label class="text-sm font-medium">{messages.auth_password_label ?? "Password"}</label>
+      <label class="text-sm font-medium">{t("page_auth_sign-in.auth_password_label")}</label>
       <div class="relative w-full flex items-center">
         <RLAInput
           type="password"
@@ -62,7 +61,7 @@ const {
       </div>
       {recovery && (
         <a href="/auth/recovery" class="text-xs text-neutral-500 hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200 mt-1">
-          {messages["auth_sign-in_password_help"] ?? "Forgot password?"}
+          {t("page_auth_sign-in.auth_sign-in_password_help")}
         </a>
       )}
     </div>
@@ -71,7 +70,7 @@ const {
       <RLACheckbox
         name="rememberMe"
         id="sign-in-remember"
-        label={messages.auth_remember_me ?? "Remember me"}
+        label={t("page_auth_sign-in.auth_remember_me")}
       />
     )}
 
@@ -82,15 +81,15 @@ const {
       block
       id="sign-in-submit-btn"
     >
-      {messages.auth_sign_in_button ?? "Sign in"}
+      {t("page_auth_sign-in.auth_sign_in_button")}
     </RLAButton>
   </form>
 
   {terms && (
     <span class="text-center text-sm text-neutral-700 dark:text-neutral-300">
-      {messages.auth_terms_agreement ?? "By signing in you agree to our"}{" "}
+      {t("page_auth_sign-in.auth_terms_agreement")}{" "}
       <a href="/documents/terms-of-service" class="font-medium text-primary-600 dark:text-primary-400 hover:underline">
-        {messages.auth_terms_link ?? "Terms of Service"}
+        {t("page_auth_sign-in.auth_terms_link")}
       </a>.
     </span>
   )}

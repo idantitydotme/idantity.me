@@ -27,7 +27,6 @@ app.route("/api", api)
 // 6. Localization & Routing Middleware
 app.use(i18n())
 
-
 // 7. Astro Actions & Pages
 app.use(actions())
 app.use(pages())

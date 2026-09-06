@@ -2,72 +2,21 @@
 import AppLayout from '#layouts/AppLayout.astro'
 import AuthLayout from '#layouts/AuthLayout.astro'
 import AuthSignUpForm from '#components/auth/AuthSignUpForm.astro'
-import { useI18n, getLocale } from "@rimelight/i18n"
+import { t, getLocale } from "@rimelight/i18n"
 import bgMobile from '#assets/images/auth_background_mobile.jpg'
 import bgDesktop from '#assets/images/auth_background_desktop.jpg'
-
-const messages = useI18n(Astro, "page_auth_sign-up", {
-  meta_title: 'Sign up',
-  'sign-up_title': 'Sign up',
-  'sign-up_description': 'Create a new account',
-  'sign-up_first-name': 'First name',
-  'sign-up_last-name': 'Last name',
-  'sign-up_email': 'E-mail',
-  'sign-up_password': 'Password',
-  'sign-up_button': 'Sign up',
-  'sign-in_title': 'Sign in',
-  auth_email_label: 'E-mail',
-  auth_email_description: '',
-  auth_email_placeholder: 'your@email.com',
-  auth_email_invalid: 'Invalid email',
-  auth_username_label: 'Username',
-  auth_username_length_error: 'Username must be between 2 and 24 characters',
-  auth_username_no_spaces: 'Username cannot contain spaces',
-  auth_username_format_error: 'Username can only contain letters, numbers, dots and underscores',
-  auth_username_restricted_error: 'This username is not available',
-  auth_firstname_label: 'First name',
-  auth_firstname_length_error: 'First name must be between 2 and 24 characters',
-  auth_lastname_label: 'Last name',
-  auth_lastname_length_error: 'Last name must be between 2 and 24 characters',
-  auth_password_label: 'Password',
-  auth_password_description: '',
-  auth_password_length_error: 'Password must be between 8 and 24 characters',
-  auth_password_confirmation_label: 'Confirm password',
-  auth_passwords_mismatch: 'Passwords do not match',
-  auth_password_req_length: 'At least 8 characters',
-  auth_password_req_number: 'At least 1 number',
-  auth_password_req_lowercase: 'At least 1 lowercase letter',
-  auth_password_req_uppercase: 'At least 1 uppercase letter',
-  auth_password_req_special: 'At least 1 special character',
-  auth_stepper_identity: 'Identity',
-  auth_stepper_security: 'Security',
-  auth_stepper_preferences: 'Preferences',
-  auth_sign_up_button: 'Sign up',
-  auth_sign_up_failed_title: 'Sign up failed',
-  auth_account_creation_success_title: 'Account created successfully',
-  auth_account_creation_success_description: 'Your account has been created.',
-  auth_connection_error_description: 'Connection error',
-  auth_validation_error_title: 'Validation failed',
-  auth_terms_agreement_signup: 'I agree to the',
-  auth_terms_link: 'Terms of Service',
-  auth_terms_required: 'You must accept the terms of service',
-  auth_newsletter_label: 'Subscribe to newsletter',
-  auth_newsletter_description: 'Get the latest news and updates',
-  navigation_next: 'Next',
-  navigation_previous: 'Previous',
-})
 
 const currentPath = Astro.url.pathname
 const activeLocale = getLocale()
 const localePrefix = `/${activeLocale}`
 const tabs = [
-  { label: messages['sign-in_title'], path: `${localePrefix}/auth/sign-in` },
-  { label: messages['sign-up_title'], path: `${localePrefix}/auth/sign-up` },
+  { label: t("page_auth_sign-up.sign-in_title"), path: `${localePrefix}/auth/sign-in` },
+  { label: t("page_auth_sign-up.sign-up_title"), path: `${localePrefix}/auth/sign-up` },
 ]
 ---
 
-<AppLayout title={messages.meta_title} description={messages['sign-up_description']}>
+<AppLayout title={t("page_auth_sign-up.meta_title")} description={t("page_auth_sign-up.sign-up_description")}>
   <AuthLayout tabs={tabs} currentPath={currentPath} backgroundMobile={bgMobile.src} backgroundDesktop={bgDesktop.src}>
-    <AuthSignUpForm messages={messages} />
+    <AuthSignUpForm />
   </AuthLayout>
 </AppLayout>

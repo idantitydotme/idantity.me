@@ -1,22 +1,16 @@
 ---
 import AppLayout from "../../../layouts/AppLayout.astro";
-import { useI18n } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 
 
-const messages = useI18n(Astro, 'assets', {
-  title: 'Asset Manager',
-  heading: 'Assets',
-  description: 'A dedicated test environment for the new simplified asset management system.',
-  devNotes: 'Development Notes'
-});
 ---
 
-<AppLayout title={messages.title} description={messages.description}>
+<AppLayout title={t("assets.title")} description={t("assets.description")}>
         <div class="max-w-4xl mx-auto">
             <header class="mb-12">
-                <h1 class="text-4xl font-black mb-4 tracking-tight">{messages.heading}</h1>
+                <h1 class="text-4xl font-black mb-4 tracking-tight">{t("assets.heading")}</h1>
                 <p class="text-xl text-neutral-500 dark:text-neutral-400">
-                    {messages.description}
+                    {t("assets.description")}
                 </p>
             </header>
 
@@ -28,7 +22,7 @@ const messages = useI18n(Astro, 'assets', {
                 <div class="p-6 rounded-xl bg-primary-500/5 border border-primary-500/10">
                     <h3 class="text-lg font-bold mb-2 flex items-center gap-2">
                         <span class="size-2 rounded-full bg-primary-500 animate-pulse"></span>
-                        {messages.devNotes}
+                        {t("assets.devNotes")}
                     </h3>
                     <ul class="space-y-2 text-sm text-neutral-600 dark:text-neutral-400">
                         <li>• Simplified migration from <code>rimelight-components</code></li>
