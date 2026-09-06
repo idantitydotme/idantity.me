@@ -1,7 +1,7 @@
 ---
 import AppLayout from "#layouts/AppLayout.astro"
 import { siteConfig } from "#config/site.config"
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
+import { t, getRelativeLocaleUrl, getLocale } from "@rimelight/i18n"
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
 import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro"
 import RLAGrid from "@rimelight/ui/components/grid/RLAGrid.astro"
@@ -10,7 +10,7 @@ import { db } from "#db"
 import { pages } from "#db/schema"
 import { eq, desc, and, isNull } from "drizzle-orm"
 
-const activeLocale = Astro.currentLocale ?? "en"
+const activeLocale = getLocale()
 
 // Fetch CMS pages with type 'blog'
 const blogPages = await db

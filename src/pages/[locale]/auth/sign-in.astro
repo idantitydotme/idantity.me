@@ -2,7 +2,7 @@
 import AppLayout from '#layouts/AppLayout.astro'
 import AuthLayout from '#layouts/AuthLayout.astro'
 import AuthSignInForm from '#components/auth/AuthSignInForm.astro'
-import { useI18n } from "@rimelight/i18n"
+import { useI18n, getLocale } from "@rimelight/i18n"
 import bgMobile from '#assets/images/auth_background_mobile.jpg'
 import bgDesktop from '#assets/images/auth_background_desktop.jpg'
 
@@ -36,7 +36,7 @@ const messages = useI18n(Astro, "page_auth_sign-in", {
 const isNewUser = new URL(Astro.request.url).searchParams.has('new')
 
 const currentPath = Astro.url.pathname
-const activeLocale = Astro.currentLocale ?? "en"
+const activeLocale = getLocale()
 const localePrefix = `/${activeLocale}`
 const tabs = [
   { label: messages['sign-in_title'], path: `${localePrefix}/auth/sign-in` },

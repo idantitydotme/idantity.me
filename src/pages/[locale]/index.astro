@@ -1,7 +1,7 @@
 ---
 import AppLayout from "#layouts/AppLayout.astro"
 import { siteConfig } from "#config/site.config"
-import { useI18n, getRelativeLocaleUrl } from "@rimelight/i18n"
+import { useI18n, getRelativeLocaleUrl, getLocale } from "@rimelight/i18n"
 import { db } from "#db"
 import { pages } from "#db/schema"
 import { eq, and, isNull, desc } from "drizzle-orm"
@@ -19,7 +19,7 @@ function getLocalizedText(val: unknown, locale: string): string {
   return String(val || "")
 }
 
-const activeLocale = Astro.currentLocale ?? "en"
+const activeLocale = getLocale()
 const blogPages = await db
   .select()
   .from(pages)

@@ -8,32 +8,33 @@ import RLAScrollToTop from "@rimelight/ui/components/scroll-to-top/RLAScrollToTo
 import RLAToaster from "@rimelight/ui/components/toaster/RLAToaster.astro"
 import { siteConfig } from "#config/site.config";
 import { Font } from 'astro:assets';
+import { getHtmlLang, getOgLocale, getLanguageAlternates } from '@rimelight/i18n';
 
 interface AppLayoutProps {
 	title: string;
 	description: string;
+	languageAlternates?: Array<{ hreflang: string; href: string }>;
 }
 
-const { title, description } = Astro.props as AppLayoutProps;
-
-const localeMap: Record<string, string> = {
-	en: 'en_US',
-	pt: 'pt_BR',
-	es: 'es_ES',
-};
-const ogLocale = localeMap[Astro.currentLocale || 'en'] || 'en_US';
+const {
+	title,
+	description,
+	languageAlternates = getLanguageAlternates(Astro.url.pathname, siteConfig.url)
+} = Astro.props as AppLayoutProps;
 ---
 
 <!doctype html>
-<html lang={Astro.currentLocale || 'en'}>
+<html lang={getHtmlLang()}>
 	<head>
 		<SEOHead
 			title={title}
 			description={description}
 			config={siteConfig}
-			ogLocale={ogLocale}
+			ogLocale={getOgLocale()}
+			languageAlternates={languageAlternates}
 			rssFeed={{ href: '/rss.xml', title: siteConfig.name }}
 		/>
+
 		<UIHead />
 		<Font cssVariable="--font-sans" preload={true} />
 		<Font cssVariable="--font-serif" preload={true} />
