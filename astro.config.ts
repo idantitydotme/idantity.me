@@ -75,7 +75,10 @@ export default defineConfig({
 
   vite: {
     plugins: [
-      security(),
+      security({
+        domain: "idantity.me",
+        imgSrc: ["https://cdn.idantity.me"]
+      }),
       i18n({
         locales: ["en", "pt"],
         defaultLocale: "en",

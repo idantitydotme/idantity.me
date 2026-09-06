@@ -10,12 +10,7 @@ import { actions, pages } from "astro/hono"
 const app = new Hono()
 
 // 1. Security Middleware
-app.use(
-  security({
-    domain: "idantity.me",
-    imgSrc: ["https://cdn.idantity.me"]
-  })
-)
+app.use(security())
 
 // 2. Rate Limiting Middleware (pending implementation)
 // app.use(ratelimit)
