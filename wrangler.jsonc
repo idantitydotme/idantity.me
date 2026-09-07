@@ -56,9 +56,9 @@
       }
     }
   ],
-  "triggers": {
-    "crons": ["* * * * *"]
-  },
+  // "triggers": {
+  //   "crons": ["* * * * *"]
+  // },
   "vars": {
     "CONSTRUCTION_MODE": "false"
   }
