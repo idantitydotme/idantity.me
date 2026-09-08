@@ -22,7 +22,7 @@ const blogPages = await db
 function getPageTitle(title: unknown, locale: string): string {
   if (typeof title === "object" && title !== null) {
     const titleRecord = title as Record<string, string>
-    return titleRecord[locale] || titleRecord.en || ""
+    return titleRecord[locale] || titleRecord["en"] || ""
   }
   return String(title || "")
 }

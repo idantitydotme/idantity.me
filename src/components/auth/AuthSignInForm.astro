@@ -124,8 +124,8 @@ const {
       })
     }
 
-    if (form && !form.dataset.initialized) {
-      form.dataset.initialized = "true"
+    if (form && !form.dataset["initialized"]) {
+      form.dataset["initialized"] = "true"
       form.addEventListener("submit", async (e) => {
         e.preventDefault()
         e.stopPropagation()

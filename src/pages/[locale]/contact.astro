@@ -8,7 +8,7 @@ import { env } from "cloudflare:workers";
 
 
 const cfEnv = (env as Record<string, any> | undefined) ?? {};
-const turnstileSiteKey = import.meta.env.TURNSTILE_SITE_KEY || cfEnv.TURNSTILE_SITE_KEY || "";
+const turnstileSiteKey = import.meta.env["TURNSTILE_SITE_KEY"] || cfEnv["TURNSTILE_SITE_KEY"] || "";
 ---
 
 <AppLayout title={t("page_contact.title")} description={t("page_contact.description")}>

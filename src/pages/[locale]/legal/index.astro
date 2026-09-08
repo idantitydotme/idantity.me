@@ -12,7 +12,7 @@ const activeLocale = getLocale()
 function getLocalizedText(val: unknown, locale: string): string {
   if (typeof val === "object" && val !== null) {
     const record = val as Record<string, string>
-    return record[locale] || record.en || ""
+    return record[locale] || record["en"] || ""
   }
   return String(val || "")
 }
