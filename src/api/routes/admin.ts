@@ -193,8 +193,8 @@ adminApi.post("/users", async (c) => {
     // Call Better Auth createUser or signUpEmail
     let newUser: any = null
     try {
-      if (authApi.createUser) {
-        newUser = await authApi.createUser({
+      if (authApi["createUser"]) {
+        newUser = await authApi["createUser"]({
           body: {
             email: email.toLowerCase(),
             password,
@@ -258,8 +258,8 @@ adminApi.delete("/users/:id", async (c) => {
 
     // Try Better Auth admin removeUser endpoint first
     try {
-      if (authApi.removeUser) {
-        await authApi.removeUser({
+      if (authApi["removeUser"]) {
+        await authApi["removeUser"]({
           body: { userId },
           headers: c.req.raw.headers
         })
@@ -340,8 +340,8 @@ adminApi.post("/users/:id/role", async (c) => {
 
     // Attempt Better Auth setRole plugin call or DB update
     try {
-      if (authApi.setRole) {
-        await authApi.setRole({
+      if (authApi["setRole"]) {
+        await authApi["setRole"]({
           body: { userId, role: newRole },
           headers: c.req.raw.headers
         })
@@ -380,8 +380,8 @@ adminApi.post("/users/:id/ban", async (c) => {
 
     if (isBan) {
       try {
-        if (authApi.banUser) {
-          await authApi.banUser({
+        if (authApi["banUser"]) {
+          await authApi["banUser"]({
             body: { userId, banReason: banReason || "Banned by administrator" },
             headers: c.req.raw.headers
           })
@@ -402,8 +402,8 @@ adminApi.post("/users/:id/ban", async (c) => {
       await db.delete(session).where(eq(session.userId, userId))
     } else {
       try {
-        if (authApi.unbanUser) {
-          await authApi.unbanUser({
+        if (authApi["unbanUser"]) {
+          await authApi["unbanUser"]({
             body: { userId },
             headers: c.req.raw.headers
           })

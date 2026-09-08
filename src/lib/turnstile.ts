@@ -3,8 +3,8 @@ export function isTurnstileEnabled(env: any): boolean {
     env?.TURNSTILE_SITE_KEY ||
     (typeof process !== "undefined" ? process.env?.TURNSTILE_SITE_KEY : undefined)
   const secretKey =
-    env?.TURNSTILE_SECRET_KEY ||
-    (typeof process !== "undefined" ? process.env?.TURNSTILE_SECRET_KEY : undefined)
+    env?.["TURNSTILE_SECRET_KEY"] ||
+    (typeof process !== "undefined" ? process.env?.["TURNSTILE_SECRET_KEY"] : undefined)
   return !!(siteKey && secretKey)
 }
 
@@ -30,8 +30,8 @@ export async function verifyTurnstile(
   }
 
   const secretKey =
-    env?.TURNSTILE_SECRET_KEY ||
-    (typeof process !== "undefined" ? process.env?.TURNSTILE_SECRET_KEY : "")
+    env?.["TURNSTILE_SECRET_KEY"] ||
+    (typeof process !== "undefined" ? process.env?.["TURNSTILE_SECRET_KEY"] : "")
 
   try {
     const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {

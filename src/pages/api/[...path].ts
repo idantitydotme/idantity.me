@@ -2,7 +2,7 @@ import api from "#api"
 import { type APIContext } from "astro"
 
 export async function ALL({ request, params }: APIContext) {
-  const path = "/" + (params.path || "")
+  const path = "/" + (params["path"] || "")
   const url = new URL(request.url)
   url.pathname = path
 

@@ -265,8 +265,8 @@ importers:
         specifier: 1.2.130
         version: 1.2.130
       '@rimelight/config':
-        specifier: 0.0.4
-        version: 0.0.4
+        specifier: 0.0.5
+        version: 0.0.5
       '@types/node':
         specifier: 26.5.0
         version: 26.5.0
@@ -2050,8 +2050,8 @@ packages:
     peerDependencies:
       astro: '>=7.0.0'
 
-  '@rimelight/config@0.0.4':
-    resolution: {integrity: sha512-Atj/eEf34YmT1MFW2GWZQQMhyMJRd6rFtSaAdoQopsCX4b6WZMjRg0xJ7AP5hYAKqDRdANZ2QDnOjfrZKOrmQg==}
+  '@rimelight/config@0.0.5':
+    resolution: {integrity: sha512-RwHyv7h6FlfCjmkH7G6ts+VJr4Ej2OLTJ1xDzKEgaJZ1ZijKBFkTz7tIjUAangawkn6E9dp9MXMddx05+aZHUg==}
     engines: {node: '>=26.7.0'}
 
   '@rimelight/i18n@0.0.7':
@@ -6209,7 +6209,7 @@ snapshots:
       - vite
       - vue
 
-  '@rimelight/config@0.0.4': {}
+  '@rimelight/config@0.0.5': {}
 
   '@rimelight/i18n@0.0.7(astro@7.3.1(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.5.0)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))':
     dependencies:

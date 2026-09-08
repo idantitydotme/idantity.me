@@ -8,7 +8,7 @@ type GuestEnv = {
 
 const getConfig = (env?: GuestEnv) => {
   return {
-    passphrase: env?.CONSTRUCTION_PASSPHRASE ?? process.env.CONSTRUCTION_PASSPHRASE
+    passphrase: env?.["CONSTRUCTION_PASSPHRASE"] ?? process.env["CONSTRUCTION_PASSPHRASE"]
   }
 }
 

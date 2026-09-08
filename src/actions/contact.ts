@@ -27,7 +27,7 @@ export const contact = defineAction({
       })
     }
 
-    const ownerEmail = env.CONTACT_OWNER_EMAIL || `owner@${env.EMAIL_DOMAIN || "idantity.me"}`
+    const ownerEmail = env["CONTACT_OWNER_EMAIL"] || `owner@${env["EMAIL_DOMAIN"] || "idantity.me"}`
 
     const mailSubject =
       input.subject && input.subject.length > 0
@@ -80,7 +80,7 @@ export const upload = defineAction({
   }),
   handler: async (input) => {
     const env = (cfEnv as Record<string, any> | undefined) ?? {}
-    const bucket = env.BLOB ?? env.STORAGE_BUCKET
+    const bucket = env["BLOB"] ?? env["STORAGE_BUCKET"]
 
     if (!bucket) {
       if (import.meta.env.DEV) {
