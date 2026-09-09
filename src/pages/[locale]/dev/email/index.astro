@@ -1,0 +1,154 @@
+---
+import BlankLayout from "#layouts/BlankLayout.astro"
+import { getLocale } from "@rimelight/i18n"
+
+const links = [
+  ["verification", "Verify Email"],
+  ["password-reset", "Password Reset"],
+  ["signup-notification", "Sign-up Notification"],
+  ["contact", "Contact Form"]
+]
+const locale = getLocale()
+---
+
+<BlankLayout title="Email Templates Preview" description="Preview Rimelight email templates">
+  <main class="email-preview-index" data-email-locale={locale}>
+    <h1>Email Templates Preview</h1>
+    {
+      links.map(([path, title]) => (
+        <article>
+          <h2>{title}</h2>
+          <div class="actions">
+            <a href={`/${locale}/dev/email/${path}`}>Open Preview</a>
+            <button
+              type="button"
+              data-email-test={path}
+              style="display:inline-block;padding:10px 20px;border:0;border-radius:6px;background:#111827;color:#ffffff;font:inherit;font-size:14px;cursor:pointer;"
+            >
+              Send Test Email
+            </button>
+          </div>
+          <p class="email-test-status" data-email-status={path} role="status" />
+        </article>
+      ))
+    }
+  </main>
+</BlankLayout>
+
+<style>
+  :global(body) {
+    background: #eef0f4;
+    color: #1f2937;
+  }
+  :global(.rla-main-container) {
+    min-height: auto;
+    padding-top: 0;
+  }
+  .email-preview-index {
+    max-width: 600px;
+    margin: auto;
+    padding: 40px;
+  }
+  h1 {
+    color: #111827;
+  }
+  article {
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 16px 0;
+    box-shadow: 0 2px 8px #11182718;
+  }
+  h2 {
+    color: #1f2937;
+    margin: 0 0 16px;
+    font-size: 18px;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  a,
+  button {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 0;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  a {
+    background: var(--rl-primary-500);
+    color: #ffffff;
+    text-decoration: none;
+  }
+  a:hover {
+    background: var(--rl-primary-600);
+  }
+  button {
+    background: #111827;
+    color: #ffffff;
+  }
+  button:hover {
+    background: #374151;
+  }
+  button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+  }
+  .email-test-status {
+    min-height: 1.25rem;
+    margin: 12px 0 0;
+    color: #374151;
+    font-size: 13px;
+  }
+  .email-test-status.success {
+    color: #166534;
+  }
+  .email-test-status.error {
+    color: #b91c1c;
+  }
+</style>
+
+<script>
+  const locale =
+    document.querySelector<HTMLElement>("[data-email-locale]")?.dataset["emailLocale"] ?? "en"
+
+  document.querySelectorAll<HTMLButtonElement>("[data-email-test]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const template = button.dataset["emailTest"]
+      const status = document.querySelector<HTMLElement>(`[data-email-status="${template}"]`)
+      if (!template || !status) return
+
+      button.disabled = true
+      status.className = "email-test-status"
+      status.textContent = "Sending..."
+
+      try {
+        const response = await fetch(`/api/dev/email/preview/test`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ template, locale })
+        })
+        const raw = await response.text()
+        let result: { ok?: boolean; error?: string }
+        try {
+          result = JSON.parse(raw) as { ok?: boolean; error?: string }
+        } catch {
+          throw new Error(raw || `Request failed with status ${response.status}`)
+        }
+        if (!response.ok) throw new Error(result.error ?? "Unable to send test email")
+        status.className = "email-test-status success"
+        status.textContent = "Test email sent."
+      } catch (error) {
+        status.className = "email-test-status error"
+        status.textContent = error instanceof Error ? error.message : "Unable to send test email"
+      } finally {
+        button.disabled = false
+      }
+    })
+  })
+</script>

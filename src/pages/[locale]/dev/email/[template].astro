@@ -1,0 +1,59 @@
+---
+import EmailPreviewLayout from "#components/email/EmailPreviewLayout.astro"
+import VerificationEmail from "#components/email/VerificationEmail.astro"
+import PasswordResetEmail from "#components/email/PasswordResetEmail.astro"
+import SignupNotificationEmail from "#components/email/SignupNotificationEmail.astro"
+import ContactEmail from "#components/email/ContactEmail.astro"
+import { getEmailMessages } from "#auth/email/messages"
+import { getLocale } from "@rimelight/i18n"
+
+const { template } = Astro.params
+const locale = getLocale()
+const messages = getEmailMessages(locale)
+
+const titles: Record<string, string> = {
+  verification: "Verify Your Email",
+  "password-reset": "Reset Password",
+  "signup-notification": "Signup Security Notification",
+  contact: "Contact Form Submission"
+}
+
+const title = titles[template as string] ?? "Email Preview"
+---
+
+<EmailPreviewLayout title={title} template={template as any}>
+  {
+    template === "verification" && (
+      <VerificationEmail
+        url="https://rimelight.com/en/api/auth/verify-email?token=test-token"
+        messages={messages}
+      />
+    )
+  }
+  {
+    template === "password-reset" && (
+      <PasswordResetEmail
+        url="https://rimelight.com/en/auth/reset-password?token=test-token"
+        messages={messages}
+      />
+    )
+  }
+  {
+    template === "signup-notification" && (
+      <SignupNotificationEmail
+        signInUrl="https://rimelight.com/en/auth/sign-in"
+        messages={messages}
+      />
+    )
+  }
+  {
+    template === "contact" && (
+      <ContactEmail
+        name="Jane Doe"
+        email="jane.doe@example.com"
+        subject="Inquiry about Rimelight Starter"
+        message="Hello team, I am testing the new contact email template. It looks fantastic!"
+      />
+    )
+  }
+</EmailPreviewLayout>

@@ -1,0 +1,13 @@
+---
+import EmailPreviewLayout from "#components/email/EmailPreviewLayout.astro"
+import ContactEmail from "#components/email/ContactEmail.astro"
+---
+
+<EmailPreviewLayout template="contact" title="Contact Form">
+  <ContactEmail
+    name="Jane Doe"
+    email="jane.doe@example.com"
+    subject="Inquiry about Rimelight Starter"
+    message="Hello team, I am testing the contact email template preview."
+  />
+</EmailPreviewLayout>
