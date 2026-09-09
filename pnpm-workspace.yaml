@@ -7,6 +7,9 @@ minimumReleaseAgeExclude:
 overrides:
   # Vulnerability Fixes
   esbuild: ">=0.25.0"
+  js-yaml: ">=4.3.2"
+  sharp: ">=0.35.4"
+  svgo: ">=4.1.0"
 allowBuilds:
   esbuild: true
   workerd: true
