@@ -7,8 +7,7 @@ const getLocaleFromPath = (path: string) => {
 }
 
 export const construction = async (c: any, next: any) => {
-  const constructionMode =
-    (import.meta.env["CONSTRUCTION_MODE"] ?? process.env["CONSTRUCTION_MODE"]) === "true"
+  const constructionMode = c.env?.["CONSTRUCTION_MODE"] === "true"
 
   const session = c.get("session")
   const localePrefix = getLocaleFromPath(c.req.path)
