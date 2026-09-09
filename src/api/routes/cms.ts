@@ -121,7 +121,7 @@ async function checkApprovalRequirements(pageId: string, userId: string, userRol
 
 // Templates
 cms.get("/templates", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const templates = await db.select().from(pageTemplates).orderBy(desc(pageTemplates.createdAt))
@@ -129,7 +129,7 @@ cms.get("/templates", async (c) => {
 })
 
 cms.post("/templates", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const body = await c.req.json()
@@ -157,7 +157,7 @@ cms.post("/templates", async (c) => {
 })
 
 cms.put("/templates/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -178,7 +178,7 @@ cms.put("/templates/:id", async (c) => {
 })
 
 cms.delete("/templates/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -189,7 +189,7 @@ cms.delete("/templates/:id", async (c) => {
 
 // Versions
 cms.get("/versions", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const versionsList = await db
@@ -218,7 +218,7 @@ cms.get("/versions", async (c) => {
 
 // Pages
 cms.get("/pages", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const pagesList = await db
@@ -238,7 +238,7 @@ cms.get("/pages", async (c) => {
 })
 
 cms.get("/pages/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -266,7 +266,7 @@ cms.get("/pages/:id", async (c) => {
 })
 
 cms.post("/pages", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const body = await c.req.json()
@@ -326,7 +326,7 @@ cms.post("/pages", async (c) => {
       templateId,
       templateVersion,
       content: pageContent,
-      authorIds: [session.user.id],
+      authorIds: [session.userId],
       createdAt: new Date(),
       updatedAt: new Date()
     })
@@ -338,7 +338,7 @@ cms.post("/pages", async (c) => {
   await db.insert(pageDrafts).values({
     pageId: page[0].id,
     content: pageContent,
-    updatedBy: session.user.id,
+    updatedBy: session.userId,
     updatedAt: new Date()
   })
 
@@ -346,7 +346,7 @@ cms.post("/pages", async (c) => {
 })
 
 cms.put("/pages/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -364,8 +364,8 @@ cms.put("/pages/:id", async (c) => {
         : existingPage[0].content
 
     const userSession = {
-      userId: session.user.id,
-      roles: session.user.role ? [session.user.role] : [],
+      userId: session.userId,
+      roles: session.roles || ["member"],
       permissions: []
     }
 
@@ -389,7 +389,7 @@ cms.put("/pages/:id", async (c) => {
 })
 
 cms.delete("/pages/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -400,7 +400,7 @@ cms.delete("/pages/:id", async (c) => {
 
 // Drafts
 cms.post("/pages/:id/draft", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -418,8 +418,8 @@ cms.post("/pages/:id/draft", async (c) => {
     const existingContent = typeof baseContent === "string" ? JSON.parse(baseContent) : baseContent
 
     const userSession = {
-      userId: session.user.id,
-      roles: session.user.role ? [session.user.role] : [],
+      userId: session.userId,
+      roles: session.roles || ["member"],
       permissions: []
     }
 
@@ -453,14 +453,14 @@ cms.post("/pages/:id/draft", async (c) => {
     .values({
       pageId: id,
       content: draftPayload,
-      updatedBy: session.user.id,
+      updatedBy: session.userId,
       updatedAt: new Date()
     })
     .onConflictDoUpdate({
       target: pageDrafts.pageId,
       set: {
         content: draftPayload,
-        updatedBy: session.user.id,
+        updatedBy: session.userId,
         updatedAt: new Date()
       }
     })
@@ -470,7 +470,7 @@ cms.post("/pages/:id/draft", async (c) => {
 
 // Draft Locks
 cms.post("/pages/:id/lock/checkout", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -499,16 +499,16 @@ cms.post("/pages/:id/lock/checkout", async (c) => {
     .insert(pageDraftLocks)
     .values({
       pageId: id,
-      lockedByUserId: session.user.id,
-      lockedByUserName: session.user.name,
+      lockedByUserId: session.userId,
+      lockedByUserName: session.name || "User",
       acquiredAt: new Date(),
       expiresAt
     })
     .onConflictDoUpdate({
       target: pageDraftLocks.pageId,
       set: {
-        lockedByUserId: session.user.id,
-        lockedByUserName: session.user.name,
+        lockedByUserId: session.userId,
+        lockedByUserName: session.name || "User",
         acquiredAt: new Date(),
         expiresAt
       }
@@ -518,7 +518,7 @@ cms.post("/pages/:id/lock/checkout", async (c) => {
 })
 
 cms.post("/pages/:id/lock/heartbeat", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -529,7 +529,7 @@ cms.post("/pages/:id/lock/heartbeat", async (c) => {
     .where(eq(pageDraftLocks.pageId, id))
     .limit(1)
 
-  if (existingLock[0] && existingLock[0].lockedByUserId !== session.user.id) {
+  if (existingLock[0] && existingLock[0].lockedByUserId !== session.userId) {
     const isExpired = new Date(existingLock[0].expiresAt) < new Date()
     if (!isExpired) {
       return c.json({ error: "Forbidden: Lock held by another user" }, 403)
@@ -541,8 +541,8 @@ cms.post("/pages/:id/lock/heartbeat", async (c) => {
   await db
     .update(pageDraftLocks)
     .set({
-      lockedByUserId: session.user.id,
-      lockedByUserName: session.user.name,
+      lockedByUserId: session.userId,
+      lockedByUserName: session.name || "User",
       expiresAt
     })
     .where(eq(pageDraftLocks.pageId, id))
@@ -551,20 +551,20 @@ cms.post("/pages/:id/lock/heartbeat", async (c) => {
 })
 
 cms.post("/pages/:id/lock/release", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
   await db
     .delete(pageDraftLocks)
-    .where(and(eq(pageDraftLocks.pageId, id), eq(pageDraftLocks.lockedByUserId, session.user.id)))
+    .where(and(eq(pageDraftLocks.pageId, id), eq(pageDraftLocks.lockedByUserId, session.userId)))
 
   return c.json({ success: true })
 })
 
 // Versions
 cms.post("/pages/:id/publish", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -574,8 +574,8 @@ cms.post("/pages/:id/publish", async (c) => {
   if (!page[0]) return c.json({ error: "Page not found" }, 404)
 
   // Check approval requirements
-  const userRoles = session.user.role ? [session.user.role] : []
-  const approvalCheck = await checkApprovalRequirements(id, session.user.id, userRoles)
+  const userRoles = session.roles || ["member"]
+  const approvalCheck = await checkApprovalRequirements(id, session.userId, userRoles)
   if (!approvalCheck.canPublish) {
     return c.json({ error: approvalCheck.reason }, 403)
   }
@@ -604,8 +604,8 @@ cms.post("/pages/:id/publish", async (c) => {
       tags: page[0].tags,
       authorIds: page[0].authorIds,
       content: body.content,
-      createdBy: session.user.id,
-      approvedBy: [session.user.id],
+      createdBy: session.userId,
+      approvedBy: [session.userId],
       approvedAt: new Date(),
       changeSummary: body.changeSummary,
       createdAt: new Date()
@@ -617,8 +617,8 @@ cms.post("/pages/:id/publish", async (c) => {
   // Record this approval
   await db.insert(pageVersionApprovals).values({
     versionId: version[0].id,
-    userId: session.user.id,
-    userRole: session.user.role || "member",
+    userId: session.userId,
+    userRole: session.roles?.[0] || "member",
     approvedAt: new Date()
   })
 
@@ -641,14 +641,14 @@ cms.post("/pages/:id/publish", async (c) => {
 
 // Guest Preview Tokens
 cms.post("/pages/:id/preview-token", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
   const page = await db.select().from(pages).where(eq(pages.id, id)).limit(1)
   if (!page[0]) return c.json({ error: "Page not found" }, 404)
 
-  const secret = process.env.BETTER_AUTH_SECRET || "rimelight-preview-secret-key"
+  const secret = process.env["CMS_PREVIEW_SECRET"] || "rimelight-preview-secret-key"
   const { token, expiresAt } = await generatePreviewToken(id, secret, 86400 * 7) // 7 days
 
   return c.json({
@@ -660,7 +660,7 @@ cms.post("/pages/:id/preview-token", async (c) => {
 
 // Visual Revision Diffs
 cms.get("/pages/:id/diff", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -711,7 +711,7 @@ cms.get("/pages/:id/diff", async (c) => {
 
 // Approvals
 cms.post("/versions/:versionId/approve", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const versionId = c.req.param("versionId")
@@ -731,7 +731,7 @@ cms.post("/versions/:versionId/approve", async (c) => {
     .where(
       and(
         eq(pageVersionApprovals.versionId, versionId),
-        eq(pageVersionApprovals.userId, session.user.id)
+        eq(pageVersionApprovals.userId, session.userId)
       )
     )
     .limit(1)
@@ -743,8 +743,8 @@ cms.post("/versions/:versionId/approve", async (c) => {
   // Add approval
   await db.insert(pageVersionApprovals).values({
     versionId,
-    userId: session.user.id,
-    userRole: session.user.role || "member",
+    userId: session.userId,
+    userRole: session.roles?.[0] || "member",
     approvedAt: new Date()
   })
 
@@ -772,9 +772,11 @@ cms.get("/settings", async (c) => {
 })
 
 cms.put("/settings", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
-  const isOwnerOrAdmin = ["owner", "admin"].includes(session.user.role?.toLowerCase() || "")
+  const isOwnerOrAdmin = ["owner", "admin"].includes(
+    (session.roles?.[0] || "member")?.toLowerCase() || ""
+  )
   if (!isOwnerOrAdmin) return c.json({ error: "Forbidden" }, 403)
 
   const body = await c.req.json()
@@ -791,7 +793,7 @@ cms.get("/taxonomies/:taxonomy/terms", async (c) => {
 })
 
 cms.post("/taxonomies/:taxonomy/terms", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const taxonomy = c.req.param("taxonomy")
@@ -809,7 +811,7 @@ cms.get("/taxonomies/:taxonomy/terms/:slug", async (c) => {
 })
 
 cms.put("/taxonomies/:taxonomy/terms/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -819,7 +821,7 @@ cms.put("/taxonomies/:taxonomy/terms/:id", async (c) => {
 })
 
 cms.delete("/taxonomies/:taxonomy/terms/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -835,7 +837,7 @@ cms.get("/pages/:id/terms", async (c) => {
 })
 
 cms.post("/pages/:id/terms/:taxonomy", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -854,7 +856,7 @@ cms.get("/bylines", async (c) => {
 })
 
 cms.post("/bylines", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const body = await c.req.json()
@@ -870,7 +872,7 @@ cms.get("/bylines/:id", async (c) => {
 })
 
 cms.put("/bylines/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")
@@ -881,7 +883,7 @@ cms.put("/bylines/:id", async (c) => {
 })
 
 cms.delete("/bylines/:id", async (c) => {
-  const session = await auth.api.getSession({ headers: c.req.raw.headers })
+  const session = await auth.getSession(c.req.raw)
   if (!session) return c.json({ error: "Unauthorized" }, 401)
 
   const id = c.req.param("id")

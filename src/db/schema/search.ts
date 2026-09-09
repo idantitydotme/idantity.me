@@ -1,12 +1,6 @@
-import { pgTable, text, timestamp, unique, customType } from "drizzle-orm/pg-core"
+import { sqliteTable, text, integer, uniqueIndex } from "drizzle-orm/sqlite-core"
 
-const tsvector = customType<{ data: string; notNull: true; default: true }>({
-  dataType() {
-    return "tsvector"
-  }
-})
-
-export const searchIndex = pgTable(
+export const searchIndex = sqliteTable(
   "search_index",
   {
     id: text("id")
@@ -18,12 +12,11 @@ export const searchIndex = pgTable(
     url: text("url").notNull(),
     bodyContent: text("body_content").notNull(),
     searchableText: text("searchable_text").notNull(),
-    searchVector: tsvector("search_vector").notNull(),
-    updatedAt: timestamp("updated_at")
+    updatedAt: integer("updated_at", { mode: "timestamp" })
       .$defaultFn(() => new Date())
       .notNull()
   },
-  (t) => [unique("search_index_source_type_source_id_key").on(t.sourceType, t.sourceId)]
+  (t) => [uniqueIndex("search_index_source_type_source_id_key").on(t.sourceType, t.sourceId)]
 )
 
 export type SearchIndex = typeof searchIndex.$inferSelect

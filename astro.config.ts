@@ -69,7 +69,8 @@ export default defineConfig({
     rimelightCms({
       storage: r2({
         binding: "BLOB"
-      })
+      }),
+      auth: "./src/auth/auth.ts"
     })
   ],
 

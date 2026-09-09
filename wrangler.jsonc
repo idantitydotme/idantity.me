@@ -32,6 +32,15 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "idantity-dot-me",
+      "database_id": "51076606-e3ee-4e09-bf45-04db8b0737f9",
+      "migrations_dir": "./drizzle",
+      "remote": true
+    }
+  ],
   "kv_namespaces": [
     {
       "binding": "idantity-dot-me_translations",
