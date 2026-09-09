@@ -1,6 +1,6 @@
 {
-  "name": "Rimelight Starter",
-  "short_name": "Rimelight",
+  "name": "idantity.me",
+  "short_name": "idantity.me",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
