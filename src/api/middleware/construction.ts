@@ -1,4 +1,5 @@
 import { languages } from "#config/i18n.config"
+import { env } from "cloudflare:workers"
 
 const WHITELISTED_ROUTES = ["/construction", "/api/auth", "/api/construction-guest"]
 
@@ -7,7 +8,7 @@ const getLocaleFromPath = (path: string) => {
 }
 
 export const construction = async (c: any, next: any) => {
-  const constructionMode = c.env?.["CONSTRUCTION_MODE"] === "true"
+  const constructionMode = (c.env?.["CONSTRUCTION_MODE"] ?? env["CONSTRUCTION_MODE"]) === "true"
 
   const session = c.get("session")
   const localePrefix = getLocaleFromPath(c.req.path)
