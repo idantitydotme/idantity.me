@@ -1,4 +1,5 @@
 import { Hono } from "hono"
+import { cf } from "@astrojs/cloudflare/hono"
 import { security, devOnly } from "@rimelight/security/middleware"
 import { ratelimit } from "#api/middleware/ratelimit"
 import { authMiddleware } from "#api/middleware/auth"
@@ -7,9 +8,10 @@ import api from "#api"
 import { i18n } from "@rimelight/i18n/hono"
 import { astro } from "astro/hono"
 
-const app = new Hono()
+const app = new Hono<{ Bindings: Env }>()
 
 // Middlewares
+app.use(cf())
 app.use(security())
 app.use(ratelimit)
 app.use(authMiddleware)
@@ -23,4 +25,6 @@ app.route("/api", api)
 app.use(i18n())
 app.use(astro())
 
-export default app
+export default {
+  fetch: app.fetch
+}
