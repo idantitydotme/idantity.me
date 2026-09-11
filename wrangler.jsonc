@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "idantity-dot-me",
   "main": "@astrojs/cloudflare/entrypoints/server",
-  "compatibility_date": "2026-09-11",
+  "compatibility_date": "2026-09-01",
   "compatibility_flags": ["new_module_registry"],
   "cache": {
     "enabled": true
