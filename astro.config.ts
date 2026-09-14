@@ -36,19 +36,28 @@ export default defineConfig({
       provider: fontProviders.fontsource(),
       name: "Noto Sans",
       cssVariable: "--font-sans",
-      fallbacks: ["sans-serif"]
+      fallbacks: ["sans-serif"],
+      subsets: ["latin", "latin-ext"],
+      weights: [400, 500, 600, 700],
+      styles: ["normal"]
     },
     {
       provider: fontProviders.fontsource(),
       name: "Noto Serif",
       cssVariable: "--font-serif",
-      fallbacks: ["serif"]
+      fallbacks: ["serif"],
+      subsets: ["latin", "latin-ext"],
+      weights: [400, 700],
+      styles: ["normal"]
     },
     {
       provider: fontProviders.fontsource(),
       name: "JetBrains Mono",
       cssVariable: "--font-mono",
-      fallbacks: ["monospace"]
+      fallbacks: ["monospace"],
+      subsets: ["latin", "latin-ext"],
+      weights: [400, 500, 700],
+      styles: ["normal"]
     }
   ],
 
