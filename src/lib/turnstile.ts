@@ -1,7 +1,7 @@
 export function isTurnstileEnabled(env: any): boolean {
   const siteKey =
     env?.TURNSTILE_SITE_KEY ||
-    (typeof process !== "undefined" ? process.env?.TURNSTILE_SITE_KEY : undefined)
+    (typeof process !== "undefined" ? process.env?.["TURNSTILE_SITE_KEY"] : undefined)
   const secretKey =
     env?.["TURNSTILE_SECRET_KEY"] ||
     (typeof process !== "undefined" ? process.env?.["TURNSTILE_SECRET_KEY"] : undefined)
