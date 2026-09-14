@@ -1,121 +1,36 @@
 import en from "./src/translations/en.json"
 import pt from "./src/translations/pt.json"
-import { ui } from "@rimelight/ui"
-import { security } from "@rimelight/security"
-import cloudflare from "@astrojs/cloudflare"
-import { cacheCloudflare } from "@astrojs/cloudflare/cache"
-import solid from "@astrojs/solid-js"
-import { i18n } from "@rimelight/i18n"
-import { rimelightCms } from "@rimelight/cms/integration"
-import { r2 } from "@rimelight/cms/storage"
-import { defineConfig, fontProviders } from "astro/config"
+import { defineConfig } from "astro/config"
+import { rimelightAstroConfig } from "@rimelight/config/astro"
 
-export default defineConfig({
-  site: "https://idantity.me",
-  prefetch: {
-    prefetchAll: true
-  },
-
-  output: "server",
-  session: false,
-  adapter: cloudflare(),
-  cache: {
-    provider: cacheCloudflare()
-  },
-  routeRules: {
-    "/api/[...path]": {
-      swr: 600 // 10 minutes stale-while-revalidate
+export default defineConfig(
+  rimelightAstroConfig({
+    domain: "idantity.me",
+    solid: true,
+    cms: true,
+    security: true,
+    i18n: {
+      translations: { en, pt }
     },
-    "/[...path]": {
-      maxAge: 300 // 5 minutes cache
-    }
-  },
-
-  fonts: [
-    {
-      provider: fontProviders.fontsource(),
-      name: "Noto Sans",
-      cssVariable: "--font-sans",
-      fallbacks: ["sans-serif"],
-      subsets: ["latin", "latin-ext"],
-      weights: [400, 500, 600, 700],
-      styles: ["normal"]
-    },
-    {
-      provider: fontProviders.fontsource(),
-      name: "Noto Serif",
-      cssVariable: "--font-serif",
-      fallbacks: ["serif"],
-      subsets: ["latin", "latin-ext"],
-      weights: [400, 700],
-      styles: ["normal"]
-    },
-    {
-      provider: fontProviders.fontsource(),
-      name: "JetBrains Mono",
-      cssVariable: "--font-mono",
-      fallbacks: ["monospace"],
-      subsets: ["latin", "latin-ext"],
-      weights: [400, 500, 700],
-      styles: ["normal"]
-    }
-  ],
-
-  image: {
-    domains: ["idantity.me", "cdn.idantity.me"],
-    layout: "constrained",
-    responsiveStyles: true
-  },
-
-  markdown: {
-    syntaxHighlight: "prism"
-  },
-
-  integrations: [
-    solid({
-      include: ["**/solid/**", "**/*.tsx"]
-    }),
-    rimelightCms({
-      storage: r2({
-        binding: "BLOB"
-      }),
-      auth: "./src/auth/auth.ts"
-    })
-  ],
-
-  vite: {
-    plugins: [
-      security({
-        domain: "idantity.me",
-        imgSrc: ["https://cdn.idantity.me"]
-      }),
-      i18n({
-        locales: ["en", "pt"],
-        defaultLocale: "en",
-        prefixDefaultLocale: true,
-        translations: { en, pt },
-        kvBinding: "idantity-dot-me_translations"
-      }),
-      ui({
-        logos: {
-          logomark: {
-            color: "./src/assets/logos/logomark_color.svg",
-            white: "./src/assets/logos/logomark_white.svg",
-            black: "./src/assets/logos/logomark_black.svg"
-          },
-          logotype: {
-            color: "./src/assets/logos/logotype_color.svg",
-            white: "./src/assets/logos/logotype_color.svg",
-            black: "./src/assets/logos/logotype_black.svg"
-          }
+    ui: {
+      logos: {
+        logomark: {
+          color: "./src/assets/logos/logomark_color.svg",
+          white: "./src/assets/logos/logomark_white.svg",
+          black: "./src/assets/logos/logomark_black.svg"
         },
-        shortcuts: {
-          categories: {
-            system: { label: "System" },
-            navigation: { label: "Navigation" }
-          }
+        logotype: {
+          color: "./src/assets/logos/logotype_color.svg",
+          white: "./src/assets/logos/logotype_color.svg",
+          black: "./src/assets/logos/logotype_black.svg"
         }
-      })
-    ]
-  }
-})
+      },
+      shortcuts: {
+        categories: {
+          system: { label: "System" },
+          navigation: { label: "Navigation" }
+        }
+      }
+    }
+  })
+)
