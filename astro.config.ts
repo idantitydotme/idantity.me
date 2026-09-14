@@ -1,14 +1,14 @@
 import en from "./src/translations/en.json"
 import pt from "./src/translations/pt.json"
-import solid from "@astrojs/solid-js"
 import { ui } from "@rimelight/ui"
 import { security } from "@rimelight/security"
 import cloudflare from "@astrojs/cloudflare"
+import { cacheCloudflare } from "@astrojs/cloudflare/cache"
+import solid from "@astrojs/solid-js"
 import { i18n } from "@rimelight/i18n"
 import { rimelightCms } from "@rimelight/cms/integration"
 import { r2 } from "@rimelight/cms/storage"
 import { defineConfig, fontProviders } from "astro/config"
-import { cacheCloudflare } from "@astrojs/cloudflare/cache"
 
 export default defineConfig({
   site: "https://idantity.me",
