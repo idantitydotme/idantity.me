@@ -1,0 +1,18 @@
+---
+import ErrorPage from "#components/ErrorPage.astro";
+import { auth } from "#auth/auth";
+
+const session = await auth.getSession(Astro.request);
+const userEmail = session?.email;
+---
+
+<ErrorPage
+	code={403}
+	title="Access Denied"
+	description="Your account does not have administrator privileges required to access this page."
+	userEmail={userEmail || ""}
+	requiredRole="admin"
+	actions={[
+		{ label: "Go to Home Page", href: "/", variant: "solid", color: "primary", icon: "i-lucide-home" }
+	]}
+/>

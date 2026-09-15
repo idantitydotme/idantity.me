@@ -1,37 +1,81 @@
 import type { APIRoute } from "astro"
 import { render } from "takumi-js"
+import { db } from "#db"
+import { pages } from "#db/schema"
+import { eq, and, isNull } from "drizzle-orm"
 
 export const prerender = true
 
+function getLocalizedText(val: unknown, locale = "en"): string {
+  if (typeof val === "object" && val !== null) {
+    const record = val as Record<string, string>
+    return record[locale] || Object.values(record)[0] || ""
+  }
+  if (typeof val === "string") return val
+  if (typeof val === "number" || typeof val === "boolean") return String(val)
+  return ""
+}
+
 export async function getStaticPaths() {
+  const blogPages = await db
+    .select({
+      slug: pages.slug,
+      title: pages.title,
+      description: pages.description,
+      postedAt: pages.postedAt
+    })
+    .from(pages)
+    .where(and(eq(pages.type, "blog"), isNull(pages.deletedAt)))
+    .catch(() => [])
+
+  const legalPages = await db
+    .select({ slug: pages.slug, title: pages.title, description: pages.description })
+    .from(pages)
+    .where(and(eq(pages.type, "legal"), isNull(pages.deletedAt)))
+    .catch(() => [])
+
   const paths = [
     {
       params: { route: "page" },
       props: {
-        title: "Daniel Marchi",
-        description: "idantity.me",
-        type: "Page"
+        title: "idantity.me",
+        description: "Personal Portfolio & Journal",
+        type: "Portfolio",
+        isDocs: false
       },
       cacheKey: "static-page"
     },
     {
       params: { route: "default" },
       props: {
-        title: "Daniel Marchi",
-        description: "idantity.me",
-        type: "Portfolio"
+        title: "idantity.me",
+        description: "Personal Portfolio & Journal",
+        type: "Portfolio",
+        isDocs: false
       },
       cacheKey: "static-default"
     },
-    {
-      params: { route: "forum-default" },
+    ...blogPages.map((b) => ({
+      params: { route: `blog/${b.slug}` },
       props: {
-        title: "Daniel Marchi",
-        description: "Discussions & Community",
-        type: "Community"
+        title: getLocalizedText(b.title),
+        description: getLocalizedText(b.description),
+        type: "Blog Post",
+        isDocs: false,
+        pubDate: b.postedAt ? new Date(b.postedAt).toLocaleDateString() : ""
       },
-      cacheKey: "static-forum"
-    }
+      cacheKey: b.slug
+    })),
+    ...legalPages.map((l) => ({
+      params: { route: `legal/${l.slug}` },
+      props: {
+        title: getLocalizedText(l.title),
+        description: getLocalizedText(l.description),
+        type: "Legal",
+        isDocs: false
+      },
+      cacheKey: l.slug
+    }))
   ]
   return paths
 }
@@ -52,7 +96,13 @@ async function getFonts(): Promise<{ regular: ArrayBuffer; bold: ArrayBuffer }> 
   return fontCache
 }
 
-function buildOgJsx(title: string, description: string, typeDisplay: string, pubDate: string): any {
+function buildOgJsx(
+  title: string,
+  description: string,
+  typeDisplay: string,
+  pubDate: string,
+  isDocs: boolean
+): any {
   return {
     type: "div",
     props: {
@@ -178,18 +228,23 @@ interface OgProps {
   description?: string
   type?: string
   pubDate?: string
+  isDocs?: boolean
 }
 
 export const GET: APIRoute<OgProps> = async ({ request, params, props }) => {
   const url = new URL(request.url)
   const routeParam = params["route"] ?? ""
 
-  const title = props?.title || url.searchParams.get("title") || routeParam || "Daniel Marchi"
+  const title =
+    props?.title || url.searchParams.get("title") || routeParam || "idantity.me"
   const description = props?.description || url.searchParams.get("description") || ""
   const type = props?.type || url.searchParams.get("type") || ""
   const pubDate = props?.pubDate || url.searchParams.get("pubDate") || ""
+  const isDocs =
+    props?.isDocs ?? (url.searchParams.get("isDocs") === "true" || routeParam.includes("docs"))
 
-  const jsx = buildOgJsx(title, description, type, pubDate)
+  const jsx = buildOgJsx(title, description, type, pubDate, isDocs)
+
   const { regular, bold } = await getFonts()
 
   const pngBuffer = await render(jsx, {

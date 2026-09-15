@@ -1,0 +1,12 @@
+---
+import ErrorPage from "#components/ErrorPage.astro";
+---
+
+<ErrorPage
+	code={401}
+	title="Authentication Required"
+	description="You must be signed in to access this page."
+	actions={[
+		{ label: "Go to Home Page", href: "/", variant: "solid", color: "primary", icon: "i-lucide-home" }
+	]}
+/>
