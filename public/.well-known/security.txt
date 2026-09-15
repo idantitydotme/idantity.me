@@ -1,3 +1,0 @@
-Contact: mailto:idantity.me@idantity.me
-Preferred-Languages: en
-Policy: https://idantity.me/legal/security/
