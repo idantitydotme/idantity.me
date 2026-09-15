@@ -21,7 +21,8 @@ export const GET: APIRoute = async ({ request }) => {
   let title = url.searchParams.get("title") || ""
   let description = url.searchParams.get("description") || ""
   let date = url.searchParams.get("pubDate") || ""
-  const badge = url.searchParams.get("type") ||
+  const badge =
+    url.searchParams.get("type") ||
     (routeParam.includes("blog") ? "Blog Post" : routeParam.includes("legal") ? "Legal" : "")
 
   if (!title && routeParam && routeParam !== "page" && routeParam !== "default") {
@@ -41,8 +42,7 @@ export const GET: APIRoute = async ({ request }) => {
     }
   }
 
-  const isDocs =
-    url.searchParams.get("isDocs") === "true" || routeParam.includes("docs")
+  const isDocs = url.searchParams.get("isDocs") === "true" || routeParam.includes("docs")
 
   return renderDefaultOg({
     title: title || "idantity.me",
