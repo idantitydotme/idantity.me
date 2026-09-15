@@ -1,5 +1,3 @@
-import en from "./src/translations/en.json"
-import pt from "./src/translations/pt.json"
 import { defineConfig } from "astro/config"
 import { rimelightAstroConfig } from "@rimelight/config/astro"
 
@@ -9,9 +7,7 @@ export default defineConfig(
     solid: true,
     cms: true,
     security: true,
-    i18n: {
-      translations: { en, pt }
-    },
+    i18n: true,
     ui: {
       logos: {
         logomark: {
