@@ -42,7 +42,6 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "14.3.1",
-    "@astrojs/rss": "4.0.19",
     "@astrojs/solid-js": "7.0.2",
     "@rimelight/auth": "0.0.5",
     "@rimelight/cms": "0.0.8",
