@@ -1,9 +1,8 @@
 import { Hono } from "hono"
 import { cf } from "@astrojs/cloudflare/hono"
-import { security, devOnly } from "@rimelight/security/middleware"
+import { security, devOnly, construction } from "@rimelight/security/middleware"
 import { ratelimit } from "#api/middleware/ratelimit"
 import { authMiddleware } from "#api/middleware/auth"
-import { construction } from "#api/middleware/construction"
 import api from "#api"
 import { i18n } from "@rimelight/i18n/hono"
 import { astro } from "astro/hono"
@@ -15,7 +14,7 @@ app.use(cf())
 app.use(security())
 app.use(ratelimit)
 app.use(authMiddleware)
-app.use(construction)
+app.use(construction())
 app.use(devOnly)
 
 // Hono API Routing
