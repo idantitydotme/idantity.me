@@ -1,5 +1,5 @@
 import { Hono } from "hono"
-import { auth } from "#auth/auth"
+import { auth } from "@rimelight/auth"
 import { db } from "#db"
 import {
   pages,

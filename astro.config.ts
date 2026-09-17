@@ -36,6 +36,7 @@ export default defineConfig(
     },
     solid: true,
     cms: true,
+    auth: true,
     security: true,
     i18n: {
       locales: ["en", "es"],
