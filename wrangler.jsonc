@@ -69,8 +69,5 @@
   // },
   "vars": {
     "CONSTRUCTION_MODE": "false"
-  },
-  "secrets": {
-    "required": ["TURNSTILE_SECRET_KEY"]
   }
 }
