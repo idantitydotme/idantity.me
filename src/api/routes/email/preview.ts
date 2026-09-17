@@ -3,7 +3,7 @@ import type { Context } from "hono"
 import { sendVerificationEmail } from "#auth/email/verification"
 import { sendPasswordResetEmail } from "#auth/email/password-reset"
 import { sendExistingUserSignUpNotification } from "#auth/email/notifications"
-import { getCloudflareEnv, isCloudflareEnv } from "../../lib/env"
+import { env } from "cloudflare:workers"
 
 const api = new Hono()
 
@@ -19,12 +19,7 @@ api.get("/:template", (c) => c.redirect(previewUrl(c, `/${c.req.param("template"
 
 api.post("/test", async (c) => {
   try {
-    const rawEnv = c.env ?? (await getCloudflareEnv(c))
-    if (!isCloudflareEnv(rawEnv)) {
-      return c.json({ error: "Invalid environment configuration." }, 500)
-    }
-    const env = rawEnv
-    const recipient = env.EMAIL_TEST_RECIPIENT
+    const recipient = (env as any)?.EMAIL_TEST_RECIPIENT || (c.env as any)?.EMAIL_TEST_RECIPIENT
     if (!recipient) {
       return c.json({ error: "EMAIL_TEST_RECIPIENT is not configured." }, 500)
     }
