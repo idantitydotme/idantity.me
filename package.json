@@ -41,12 +41,12 @@
     "check": "pnpm audit && wrangler types && vp check --fix && astro check"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "14.3.1",
+    "@astrojs/cloudflare": "14.3.2",
     "@astrojs/solid-js": "7.0.2",
     "@rimelight/auth": "0.0.9",
     "@rimelight/cms": "0.0.16",
     "@rimelight/i18n": "0.0.16",
-    "@rimelight/security": "0.0.17",
+    "@rimelight/security": "0.0.18",
     "@rimelight/seo": "0.0.12",
     "@rimelight/ui": "0.0.56",
     "astro": "7.3.3",
@@ -61,7 +61,7 @@
     "@iconify-json/logos": "1.2.14",
     "@iconify-json/lucide": "1.2.133",
     "@rimelight/config": "0.0.14",
-    "@types/node": "26.5.1",
+    "@types/node": "26.6.1",
     "drizzle-kit": "0.31.10",
     "takumi-js": "2.14.0",
     "typescript": "6.0.3",
