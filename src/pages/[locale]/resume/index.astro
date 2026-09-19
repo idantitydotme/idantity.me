@@ -240,7 +240,7 @@ const projects = [
               href={getRelativeLocaleUrl("/contact")}
               variant="ghost"
               color="success"
-              class="w-full justify-center text-xs font-bold"
+              class="w-full justify-center text-sm font-bold"
             >
               <span class="relative flex size-2.5 mr-2">
                 {currentAvailability.ping && (
@@ -273,7 +273,7 @@ const projects = [
                 <RLAIcon name="i-lucide-user" class="text-sm" />
                 <h3 class="text-md font-bold">{t("page_resume.about_heading")}</h3>
               </div>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
             <ul class="flex flex-col gap-sm text-sm text-neutral-500">
               <li class="flex justify-between">
@@ -298,7 +298,7 @@ const projects = [
                   leadingIcon="i-lucide-map-pin"
                   label={t("page_resume.sidebar_location")}
                   href="https://en.wikipedia.org/wiki/Curitiba"
-                  class="text-xs hover:text-primary-400"
+                  class="text-sm hover:text-primary-400"
                 />
               </li>
             </ul>
@@ -311,14 +311,14 @@ const projects = [
                 <RLAIcon name="i-lucide-languages" class="text-sm" />
                 <h3 class="text-md font-bold">{t("page_resume.languages_heading")}</h3>
               </div>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
             <ul class="flex flex-col gap-sm">
               {languages.map((language) => (
                 <li class="flex flex-col gap-xs">
                   <div class="flex flex-row justify-between items-center text-sm">
                     <span>{t(`page_resume.${language.nameKey}`)}</span>
-                    <span class="text-xs text-neutral-500">{t(`page_resume.${language.levelKey}`)}</span>
+                    <span class="text-sm text-neutral-500">{t(`page_resume.${language.levelKey}`)}</span>
                   </div>
                   <RLAProgress size="sm" value={language.score}/>
                 </li>
@@ -348,7 +348,7 @@ const projects = [
           <section class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
               <h2 class="text-3xl font-bold">{t("page_resume.skills_heading")}</h2>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
             <ul class="grid grid-cols-1 md:grid-cols-3 gap-lg">
               <li>
@@ -385,12 +385,12 @@ const projects = [
           <section class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
               <h2 class="text-3xl font-bold">{t("page_resume.tech_heading")}</h2>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
 
             <div class="flex flex-col gap-sm">
               <h3 class="text-lg font-bold">{t("page_resume.tech_group_webDev")}</h3>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </div>
 
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
@@ -466,7 +466,7 @@ const projects = [
 
             <div class="flex flex-col gap-sm">
               <h3 class="text-lg font-bold">{t("page_resume.tech_group_gameDev")}</h3>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </div>
 
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
@@ -505,7 +505,7 @@ const projects = [
 
             <div class="flex flex-col gap-sm">
               <h3 class="text-lg font-bold">{t("page_resume.tech_group_shared")}</h3>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </div>
 
             <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
@@ -563,7 +563,7 @@ const projects = [
           <section class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
               <h2 class="text-3xl font-bold">{t("page_resume.experience_heading")}</h2>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
             <RLATimeline
               orientation="vertical"
@@ -579,6 +579,15 @@ const projects = [
             >
               <div slot="exp-0-description" class="flex flex-col gap-2">
                 {experiences[0].location && <p class="text-sm text-neutral-500">{experiences[0].location}</p>}
+                {experiences[0].tags && experiences[0].tags.length > 0 && (
+                  <div class="flex flex-wrap gap-1.5">
+                    {experiences[0].tags.map((tag) => (
+                      <RLABadge variant="outline">
+                        {tag}
+                      </RLABadge>
+                    ))}
+                  </div>
+                )}
                 {experiences[0].summary && (
                   <div>
                     <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
@@ -593,19 +602,19 @@ const projects = [
                     </ul>
                   </div>
                 )}
+              </div>
+
+              <div slot="exp-1-description" class="flex flex-col gap-2">
+                {experiences[1].location && <p class="text-sm text-neutral-500">{experiences[1].location}</p>}
                 {experiences[0].tags && experiences[0].tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
                     {experiences[0].tags.map((tag) => (
-                      <RLABadge variant="outline" color="primary">
+                      <RLABadge variant="outline">
                         {tag}
                       </RLABadge>
                     ))}
                   </div>
                 )}
-              </div>
-
-              <div slot="exp-1-description" class="flex flex-col gap-2">
-                {experiences[1].location && <p class="text-sm text-neutral-500">{experiences[1].location}</p>}
                 {experiences[1].summary && (
                   <div>
                     <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
@@ -620,19 +629,19 @@ const projects = [
                     </ul>
                   </div>
                 )}
-                {experiences[1].tags && experiences[1].tags.length > 0 && (
+              </div>
+
+              <div slot="exp-2-description" class="flex flex-col gap-2">
+                {experiences[2].location && <p class="text-sm text-neutral-500">{experiences[2].location}</p>}
+                {experiences[0].tags && experiences[0].tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
-                    {experiences[1].tags.map((tag) => (
-                      <RLABadge variant="outline" color="primary">
+                    {experiences[0].tags.map((tag) => (
+                      <RLABadge variant="outline">
                         {tag}
                       </RLABadge>
                     ))}
                   </div>
                 )}
-              </div>
-
-              <div slot="exp-2-description" class="flex flex-col gap-2">
-                {experiences[2].location && <p class="text-sm text-neutral-500">{experiences[2].location}</p>}
                 {experiences[2].summary && (
                   <div>
                     <span class="text-sm font-bold text-neutral-500 ">{t("page_resume.exp_summary_label")}:</span>
@@ -647,15 +656,6 @@ const projects = [
                     </ul>
                   </div>
                 )}
-                {experiences[2].tags && experiences[2].tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5">
-                    {experiences[2].tags.map((tag) => (
-                      <RLABadge variant="outline" color="primary">
-                        {tag}
-                      </RLABadge>
-                    ))}
-                  </div>
-                )}
               </div>
             </RLATimeline>
           </section>
@@ -664,7 +664,7 @@ const projects = [
           <section class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
               <h2 class="text-3xl font-bold">{t("page_resume.education_heading")}</h2>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
             <RLATimeline
               orientation="vertical"
@@ -682,7 +682,7 @@ const projects = [
           <section class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
               <h2 class="text-3xl font-bold">{t("page_resume.projects_heading")}</h2>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
             <div class="flex flex-col gap-xl">
               {
@@ -702,7 +702,7 @@ const projects = [
                     </div>
                     <p class="text-sm text-neutral-500">{project.description}</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg border-t border-neutral-800/80 pt-md">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg border-t border-neutral-500 pt-md">
                       <div>
                         <h4 class="text-sm font-bold">{t("page_resume.projects_solution_label")}</h4>
                         <p class="text-sm text-neutral-500">{project.solution}</p>
@@ -724,7 +724,7 @@ const projects = [
                               <div class="flex flex-wrap gap-1.5">
                                 {
                                   category.items.map((tech) => (
-                                    <RLABadge variant="outline" color="neutral">
+                                    <RLABadge variant="outline">
                                       {tech}
                                     </RLABadge>
                                   ))
@@ -745,7 +745,7 @@ const projects = [
           <section class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
               <h2 class="text-3xl font-bold">{t("page_resume.certifications_heading") ?? "Certifications"}</h2>
-              <hr class="border-neutral-800/80" />
+              <hr class="border-neutral-500" />
             </header>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
               {certifications.map((cert) => (
