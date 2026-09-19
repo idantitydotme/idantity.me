@@ -152,13 +152,15 @@ const socials = [
     size: "lg",
     variant: "ghost" as const,
     leadingIcon: "i-logos-linkedin-icon?mask text-white hover:text-primary-500",
-    href: "https://linkedin.com/daniel-marchi"
+    href: "https://linkedin.com/daniel-marchi",
+    ariaLabel: "LinkedIn"
   },
   {
     size: "lg",
     variant: "ghost" as const,
     leadingIcon: "i-logos-github-icon?mask text-white hover:text-primary-500",
-    href: "https://github.com/idantitydotme"
+    href: "https://github.com/idantitydotme",
+    ariaLabel: "GitHub"
   }
 ];
 
@@ -326,7 +328,7 @@ const projects = [
     <RLAPage>
       <div class="flex flex-col md:flex-row gap-xl">
         <!-- Left Sidebar -->
-        <aside class="flex flex-col w-full gap-xl py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
+        <aside aria-label="Profile" class="flex flex-col w-full gap-xl py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
           <!-- Introduction Section -->
           <section class="flex flex-col items-center">
             <header class="flex flex-col gap-xs items-center">
@@ -367,6 +369,7 @@ const projects = [
                     variant={social.variant}
                     leadingIcon={social.leadingIcon}
                     href={social.href}
+                    aria-label={social.ariaLabel}
                   />
                 </li>
               ))}
@@ -382,23 +385,25 @@ const projects = [
               </div>
               <hr class="border-neutral-500" />
             </header>
-            <ul class="flex flex-col gap-sm text-sm text-neutral-500">
+            <dl class="flex flex-col gap-sm text-sm text-neutral-500">
               {aboutDetails.map((item) => (
-                <li class="flex justify-between">
-                  <span>{item.label}</span>
-                  <span class="text-neutral-500">{item.value}</span>
-                </li>
+                <div class="flex justify-between">
+                  <dt>{item.label}</dt>
+                  <dd class="text-neutral-500">{item.value}</dd>
+                </div>
               ))}
-              <li class="flex justify-between items-center pb-1.5">
-                <span>Location</span>
-                <RLALink
-                  leadingIcon="i-lucide-map-pin"
-                  label={t("page_resume.sidebar_location")}
-                  href="https://en.wikipedia.org/wiki/Curitiba"
-                  class="text-sm hover:text-primary-400"
-                />
-              </li>
-            </ul>
+              <div class="flex justify-between items-center pb-1.5">
+                <dt>Location</dt>
+                <dd>
+                  <RLALink
+                    leadingIcon="i-lucide-map-pin"
+                    label={t("page_resume.sidebar_location")}
+                    href="https://en.wikipedia.org/wiki/Curitiba"
+                    class="text-sm hover:text-primary-400"
+                  />
+                </dd>
+              </div>
+            </dl>
           </section>
 
           <!-- Languages Section -->
@@ -410,17 +415,17 @@ const projects = [
               </div>
               <hr class="border-neutral-500" />
             </header>
-            <ul class="flex flex-col gap-sm">
+            <dl class="flex flex-col gap-sm">
               {languages.map((language) => (
-                <li class="flex flex-col gap-xs">
+                <div class="flex flex-col gap-xs">
                   <div class="flex flex-row justify-between items-center text-sm">
-                    <span>{t(`page_resume.${language.nameKey}`)}</span>
-                    <span class="text-sm text-neutral-500">{t(`page_resume.${language.levelKey}`)}</span>
+                    <dt>{t(`page_resume.${language.nameKey}`)}</dt>
+                    <dd class="text-sm text-neutral-500">{t(`page_resume.${language.levelKey}`)}</dd>
                   </div>
                   <RLAProgress size="sm" value={language.score}/>
-                </li>
+                </div>
               ))}
-            </ul>
+            </dl>
           </section>
         </aside>
 
