@@ -1,11 +1,25 @@
 ---
-import AppLayout from '#layouts/AppLayout.astro';
+import AppLayout from "#layouts/AppLayout.astro";
+import AppError from "#components/app/AppError.astro";
 import { t } from "@rimelight/i18n";
+
+interface Props {
+	error?: unknown;
+}
+
+const { error } = Astro.props;
 
 Astro.response.status = 500;
 Astro.response.statusText = "Internal Server Error";
 ---
 
-<AppLayout title={t("errors.serverError")} description={t("errors.serverError")} noindex={true}>
-
+<AppLayout title={t("errors.serverError") || "Internal Server Error"} description={t("errors.serverErrorDesc") || "An unexpected error occurred on the server."} noindex={true}>
+	<AppError
+		code={500}
+		title={t("errors.serverError") || "Internal Server Error"}
+		description={error instanceof Error ? error.message : (t("errors.serverErrorDesc") || "An unexpected error occurred on the server.")}
+		actions={[
+			{ label: "Go to Home Page", href: "/", variant: "solid", color: "primary", icon: "i-lucide-home" }
+		]}
+	/>
 </AppLayout>

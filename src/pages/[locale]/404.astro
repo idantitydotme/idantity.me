@@ -1,11 +1,19 @@
 ---
-import AppLayout from '#layouts/AppLayout.astro';
+import AppLayout from "#layouts/AppLayout.astro";
+import AppError from "#components/app/AppError.astro";
 import { t } from "@rimelight/i18n";
 
 Astro.response.status = 404;
 Astro.response.statusText = "Not Found";
 ---
 
-<AppLayout title={t("errors.notFound")} description={t("errors.notFoundDesc")} is404={true} noindex={true}>
-
+<AppLayout title={t("errors.notFound") || "Page Not Found"} description={t("errors.notFoundDesc") || "The page you are looking for does not exist."} is404={true} noindex={true}>
+	<AppError
+		code={404}
+		title={t("errors.notFound") || "Page Not Found"}
+		description={t("errors.notFoundDesc") || "The page you are looking for does not exist or has been moved."}
+		actions={[
+			{ label: "Go to Home Page", href: "/", variant: "solid", color: "primary", icon: "i-lucide-home" }
+		]}
+	/>
 </AppLayout>

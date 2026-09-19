@@ -1,12 +1,18 @@
 ---
-import ErrorPage from "#components/ErrorPage.astro";
+import AppLayout from "#layouts/AppLayout.astro";
+import AppError from "#components/app/AppError.astro";
+
+Astro.response.status = 401;
+Astro.response.statusText = "Unauthorized";
 ---
 
-<ErrorPage
-	code={401}
-	title="Authentication Required"
-	description="You must be signed in to access this page."
-	actions={[
-		{ label: "Go to Home Page", href: "/", variant: "solid", color: "primary", icon: "i-lucide-home" }
-	]}
-/>
+<AppLayout title="401 - Authentication Required" description="You must be signed in to access this page." noindex={true}>
+	<AppError
+		code={401}
+		title="Authentication Required"
+		description="You must be signed in to access this page."
+		actions={[
+			{ label: "Go to Home Page", href: "/", variant: "solid", color: "primary", icon: "i-lucide-home" }
+		]}
+	/>
+</AppLayout>
