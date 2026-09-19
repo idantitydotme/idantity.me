@@ -543,9 +543,9 @@ const projects = [
 
               <div slot="exp-1-description" class="flex flex-col gap-2">
                 {experiences[1].location && <p class="text-sm text-neutral-500">{experiences[1].location}</p>}
-                {experiences[0].tags && experiences[0].tags.length > 0 && (
+                {experiences[1].tags && experiences[1].tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
-                    {experiences[0].tags.map((tag) => (
+                    {experiences[1].tags.map((tag) => (
                       <RLABadge variant="outline">
                         {tag}
                       </RLABadge>
@@ -570,9 +570,9 @@ const projects = [
 
               <div slot="exp-2-description" class="flex flex-col gap-2">
                 {experiences[2].location && <p class="text-sm text-neutral-500">{experiences[2].location}</p>}
-                {experiences[0].tags && experiences[0].tags.length > 0 && (
+                {experiences[2].tags && experiences[2].tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
-                    {experiences[0].tags.map((tag) => (
+                    {experiences[2].tags.map((tag) => (
                       <RLABadge variant="outline">
                         {tag}
                       </RLABadge>
@@ -581,7 +581,7 @@ const projects = [
                 )}
                 {experiences[2].summary && (
                   <div>
-                    <span class="text-sm font-bold text-neutral-500 ">{t("page_resume.exp_summary_label")}:</span>
+                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
                     <p class="text-sm text-neutral-500">{experiences[2].summary}</p>
                   </div>
                 )}
