@@ -1,29 +1,184 @@
 ---
 import AppLayout from "#layouts/AppLayout.astro";
-import RLAContainer from "@rimelight/ui/components/container/RLAContainer.astro"
-import RLAPage from "@rimelight/ui/components/page/RLAPage.astro"
-import RLAAvatar from "@rimelight/ui/components/avatar/RLAAvatar.astro"
-import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
-import RLALink from "@rimelight/ui/components/link/RLALink.astro"
-import RLAButton from "@rimelight/ui/components/button/RLAButton.astro"
-import RLABadge from "@rimelight/ui/components/badge/RLABadge.astro"
-import type { ButtonProps } from "@rimelight/ui/components/button/button.ts"
-import RLAIcon from "@rimelight/ui/components/icon/RLAIcon.astro"
-import RLAProgress from "@rimelight/ui/components/progress/RLAProgress.astro"
-import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro"
-import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
+import RLAContainer from "@rimelight/ui/components/container/RLAContainer.astro";
+import RLAPage from "@rimelight/ui/components/page/RLAPage.astro";
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
+import RLAAvatar from "@rimelight/ui/components/avatar/RLAAvatar.astro";
+import RLAImage from "@rimelight/ui/components/image/RLAImage.astro";
+import RLALink from "@rimelight/ui/components/link/RLALink.astro";
+import RLAButton from "@rimelight/ui/components/button/RLAButton.astro";
+import RLABadge from "@rimelight/ui/components/badge/RLABadge.astro";
+import RLAIcon from "@rimelight/ui/components/icon/RLAIcon.astro";
+import RLAProgress from "@rimelight/ui/components/progress/RLAProgress.astro";
+import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro";
+import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
+
+export type AvailabilityStatus = "available" | "busy" | "looking";
+
+export interface AvailabilityPreset {
+  labelKey: string;
+  colorClass: string;
+  ping: boolean;
+}
+
+export interface AboutDetail {
+  label: string;
+  value: string;
+}
+
+export interface SocialLink {
+  icon: string;
+  href: string;
+  ariaLabel: string;
+}
+
+export interface LanguageSkill {
+  nameKey: string;
+  levelKey: string;
+  score: number;
+}
+
+export interface SkillItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface TechItem {
+  label: string;
+  icon: string;
+  href: string;
+}
+
+export interface TechCategory {
+  title: string;
+  items: TechItem[];
+}
+
+export interface TechGroup {
+  title: string;
+  categories: TechCategory[];
+}
+
+export interface ExperienceItem {
+  role: string;
+  company: string;
+  companyUrl?: string;
+  image?: string;
+  period: string;
+  location?: string;
+  summary?: string;
+  responsibilities?: string[];
+  tags?: string[];
+}
+
+export interface EducationItem {
+  degree: string;
+  school: string;
+  period: string;
+}
+
+export interface CertificationItem {
+  title: string;
+  issuer: string;
+  credentialId?: string;
+}
+
+export type DatePeriod = string | { start: string; end?: string };
+
+export interface ResumeProject {
+  name: string;
+  role?: string;
+  period: DatePeriod;
+  href?: string;
+  imageSrc?: string;
+  summary?: string;
+  highlights?: string[];
+  tags?: string[];
+}
 
 const age = (d => d.getFullYear() - 1997 - (d.getMonth() < 3 || (d.getMonth() === 3 && d.getDate() < 30) ? 1 : 0))(new Date());
 
-const aboutDetails = [
+const aboutDetails: AboutDetail[] = [
   { label: t("page_resume.about_gender_label"), value: t("page_resume.about_gender_value") },
   { label: t("page_resume.about_pronouns_label"), value: t("page_resume.about_pronouns_value") },
   { label: t("page_resume.about_nationality_label"), value: t("page_resume.about_nationality_value") },
   { label: t("page_resume.about_age_label"), value: `${age} ${t("page_resume.about_age_value")}` }
 ];
 
-const skills = [
+const availabilityStatus: AvailabilityStatus = "available";
+
+const availabilityConfig: Record<AvailabilityStatus, AvailabilityPreset> = {
+  available: {
+    labelKey: "sidebar_availability_available",
+    colorClass: "bg-success-500",
+    ping: true
+  },
+  busy: {
+    labelKey: "sidebar_availability_busy",
+    colorClass: "bg-error-500",
+    ping: false
+  },
+  looking: {
+    labelKey: "sidebar_availability_looking",
+    colorClass: "bg-warning-500",
+    ping: true
+  }
+};
+
+const currentAvailability = availabilityConfig[availabilityStatus];
+
+const socials: SocialLink[] = [
+  {
+    icon: "i-logos-linkedin-icon",
+    href: "https://linkedin.com/daniel-marchi",
+    ariaLabel: t("page_resume.aria_social_linkedin") ?? "LinkedIn"
+  },
+  {
+    icon: "i-logos-github-icon",
+    href: "https://github.com/idantitydotme",
+    ariaLabel: t("page_resume.aria_social_github") ?? "GitHub"
+  }
+];
+
+const languages: readonly LanguageSkill[] = [
+  {
+    nameKey: "lang_portuguese",
+    levelKey: "level_fluent",
+    score: 100
+  },
+  {
+    nameKey: "lang_english",
+    levelKey: "level_fluent",
+    score: 100
+  },
+  {
+    nameKey: "lang_spanish",
+    levelKey: "level_intermediate",
+    score: 50
+  },
+  {
+    nameKey: "lang_romanian",
+    levelKey: "level_basic",
+    score: 25
+  }
+] as const;
+
+const heroLinks: ButtonProps[] = [
+  {
+    label: t("page_resume.hero_action_hire") ?? "",
+    href: getRelativeLocaleUrl("/contact")
+  },
+  {
+    variant: "outline",
+    label: t("page_resume.hero_action_downloadCv") ?? "",
+    href: "https://cdn.idantity.me/Documents/Daniel_Marchi_CV.pdf",
+    leadingIcon: "i-lucide-download"
+  }
+];
+
+const skills: SkillItem[] = [
   {
     icon: "i-lucide-code-2",
     title: t("page_resume.skills_webDev"),
@@ -41,7 +196,7 @@ const skills = [
   }
 ];
 
-const techGroups = [
+const techGroups: TechGroup[] = [
   {
     title: t("page_resume.tech_group_webDev"),
     categories: [
@@ -123,333 +278,18 @@ const techGroups = [
   }
 ];
 
-// Availability state presets: 'available' | 'busy' | 'looking'
-const availabilityStatus: 'available' | 'busy' | 'looking' = 'available';
-
-const availabilityConfig = {
-  available: {
-    labelKey: "sidebar_availability_available" as const,
-    colorClass: "bg-success-500",
-    ping: true
-  },
-  busy: {
-    labelKey: "sidebar_availability_busy" as const,
-    colorClass: "bg-error-500",
-    ping: false
-  },
-  looking: {
-    labelKey: "sidebar_availability_looking" as const,
-    colorClass: "bg-warning-500",
-    ping: true
-  }
-};
-
-const currentAvailability = availabilityConfig[availabilityStatus];
-
-const socials = [
-  {
-    icon: "i-logos-linkedin-icon",
-    href: "https://linkedin.com/daniel-marchi",
-    ariaLabel: t("page_resume.aria_social_linkedin") ?? "LinkedIn"
-  },
-  {
-    icon: "i-logos-github-icon",
-    href: "https://github.com/idantitydotme",
-    ariaLabel: t("page_resume.aria_social_github") ?? "GitHub"
-  }
-];
-
-const languages = [
-  {
-    nameKey: "lang_portuguese",
-    levelKey: "level_fluent",
-    score: 100
-  },
-  {
-    nameKey: "lang_english",
-    levelKey: "level_fluent",
-    score: 100
-  },
-  {
-    nameKey: "lang_spanish",
-    levelKey: "level_intermediate",
-    score: 50
-  },
-  {
-    nameKey: "lang_romanian",
-    levelKey: "level_basic",
-    score: 25
-  }
-] as const;
-
-const heroLinks: ButtonProps[] = [
-  {
-    label: t("page_resume.hero_action_hire") ?? "",
-    href: getRelativeLocaleUrl("/contact"),
-  },
-  {
-    variant: "outline",
-    label: t("page_resume.hero_action_downloadCv") ?? "",
-    href: "https://cdn.idantity.me/Documents/Daniel_Marchi_CV.pdf",
-    leadingIcon: "i-lucide-download"
-  }
-];
-
-export interface ExperienceItem {
-  role: string;
-  company: string;
-  companyUrl?: string;
-  image?: string;
-  period: string;
-  location?: string;
-  summary?: string;
-  responsibilities?: string[];
-  tags?: string[];
-}
-
-const experiences: ExperienceItem[] = [
-  {
-    role: t("page_resume.exp_role_0") ?? "",
-    company: t("page_resume.exp_company_0") ?? "",
-    companyUrl: "https://compass.uol",
-    period: t("page_resume.exp_period_0") ?? "",
-    location: t("page_resume.exp_location_0") ?? "",
-    summary: t("page_resume.exp_summary_0") ?? "",
-    responsibilities: [
-      t("page_resume.exp_bullet_0_0") ?? ""
-    ],
-    tags: [
-      t("page_resume.exp_tag_0_0") ?? "",
-      t("page_resume.exp_tag_0_1") ?? "",
-      t("page_resume.exp_tag_0_2") ?? ""
-    ]
-  },
-  {
-    role: t("page_resume.exp_role_1") ?? "",
-    company: t("page_resume.exp_company_1") ?? "",
-    companyUrl: "https://compass.uol",
-    period: t("page_resume.exp_period_1") ?? "",
-    location: t("page_resume.exp_location_1") ?? "",
-    summary: t("page_resume.exp_summary_1") ?? "",
-    responsibilities: [
-      t("page_resume.exp_bullet_1_0") ?? ""
-    ],
-    tags: [
-      t("page_resume.exp_tag_1_0") ?? "",
-      t("page_resume.exp_tag_1_1") ?? "",
-      t("page_resume.exp_tag_1_2") ?? "",
-      t("page_resume.exp_tag_1_3") ?? ""
-    ]
-  },
-  {
-    role: t("page_resume.exp_role_2") ?? "",
-    company: t("page_resume.exp_company_2") ?? "",
-    companyUrl: "https://compass.uol",
-    period: t("page_resume.exp_period_2") ?? "",
-    location: t("page_resume.exp_location_2") ?? "",
-    summary: t("page_resume.exp_summary_2") ?? "",
-    responsibilities: [
-      t("page_resume.exp_bullet_2_0") ?? "",
-      t("page_resume.exp_bullet_2_1") ?? "",
-      t("page_resume.exp_bullet_2_2") ?? ""
-    ],
-    tags: [
-      t("page_resume.exp_tag_2_0") ?? "",
-      t("page_resume.exp_tag_2_1") ?? "",
-      t("page_resume.exp_tag_2_2") ?? "",
-      t("page_resume.exp_tag_2_3") ?? "",
-      t("page_resume.exp_tag_2_4") ?? "",
-      t("page_resume.exp_tag_2_5") ?? ""
-    ]
-  },
-  {
-    role: t("page_resume.exp_role_3") ?? "",
-    company: t("page_resume.exp_company_3") ?? "",
-    companyUrl: "https://concentrix.com",
-    period: t("page_resume.exp_period_3") ?? "",
-    location: t("page_resume.exp_location_3") ?? "",
-    summary: t("page_resume.exp_summary_3") ?? "",
-    responsibilities: [
-      t("page_resume.exp_bullet_3_0") ?? "",
-      t("page_resume.exp_bullet_3_1") ?? "",
-      t("page_resume.exp_bullet_3_2") ?? ""
-    ],
-    tags: [
-      t("page_resume.exp_tag_3_0") ?? "",
-      t("page_resume.exp_tag_3_1") ?? ""
-    ]
-  },
-  {
-    role: t("page_resume.exp_role_4") ?? "",
-    company: t("page_resume.exp_company_4") ?? "",
-    companyUrl: "https://concentrix.com",
-    period: t("page_resume.exp_period_4") ?? "",
-    location: t("page_resume.exp_location_4") ?? "",
-    summary: t("page_resume.exp_summary_4") ?? "",
-    responsibilities: [
-      t("page_resume.exp_bullet_4_0") ?? "",
-      t("page_resume.exp_bullet_4_1") ?? "",
-      t("page_resume.exp_bullet_4_2") ?? ""
-    ],
-    tags: [
-      t("page_resume.exp_tag_4_0") ?? "",
-      t("page_resume.exp_tag_4_1") ?? ""
-    ]
-  }
-];
+const experiences = t.raw<ExperienceItem[]>("page_resume.experiences", []);
 
 // Chronological (oldest first) in source, reverse-chronological (most recent first) for display.
 const orderedExperiences = [...experiences].reverse();
 
-const education = [
-  {
-    degree: t("page_resume.edu_degree_0"),
-    school: t("page_resume.edu_school_0"),
-    period: t("page_resume.edu_period_0")
-  },
-  {
-    degree: t("page_resume.edu_degree_1"),
-    school: t("page_resume.edu_school_1"),
-    period: t("page_resume.edu_period_1")
-  }
-];
+const education = t.raw<EducationItem[]>("page_resume.education", []);
 
 // Chronological (oldest first) in source, reverse-chronological (most recent first) for display.
 const orderedEducation = [...education].reverse();
 
-const certifications = [
-  {
-    title: t("page_resume.cert_html_title") ?? "HTML Essential Training",
-    issuer: "LinkedIn Learning",
-    credentialId: "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
-  },
-  {
-    title: t("page_resume.cert_css_title") ?? "CSS Essential Training",
-    issuer: "LinkedIn Learning",
-    credentialId: "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
-  },
-  {
-    title: t("page_resume.cert_ts_title") ?? "TypeScript Essential Training",
-    issuer: "LinkedIn Learning",
-    credentialId: "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
-  },
-  {
-    title: t("page_resume.cert_postgres_title") ?? "PostgreSQL Essential Training",
-    issuer: "LinkedIn Learning",
-    credentialId: "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
-  },
-  {
-    title: t("page_resume.cert_git_title") ?? "Git Essential Training",
-    issuer: "LinkedIn Learning",
-    credentialId: "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
-  },
-  {
-    title: t("page_resume.cert_ue5_title") ?? "Unreal Engine 5 Essential Training",
-    issuer: "LinkedIn Learning",
-    credentialId: "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
-  }
-];
-
-export type DatePeriod = string | { start: string; end?: string };
-
-export interface ResumeProject {
-  name: string;
-  role?: string;
-  period: DatePeriod;
-  href?: string;
-  imageSrc?: string;
-  summary?: string;
-  highlights?: string[];
-  tags?: string[];
-}
-
-const projects: ResumeProject[] = [
-  {
-    name: t("page_resume.project_name_0"),
-    role: t("page_resume.project_role_0"),
-    period: "2025",
-    href: "https://rimelight.com/franchises/grand-tale",
-    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
-    summary: t("page_resume.project_summary_0"),
-    highlights: [
-      t("page_resume.project_highlight_0_0"),
-      t("page_resume.project_highlight_0_1")
-    ],
-    tags: [
-      t("page_resume.project_tag_0_0") ?? "",
-      t("page_resume.project_tag_0_1") ?? "",
-      t("page_resume.project_tag_0_2") ?? ""
-    ]
-  },
-  {
-    name: t("page_resume.project_name_1"),
-    role: t("page_resume.project_role_1"),
-    period: "2025",
-    href: "https://rimelight.com",
-    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
-    summary: t("page_resume.project_summary_1"),
-    highlights: [
-      t("page_resume.project_highlight_1_0"),
-      t("page_resume.project_highlight_1_1")
-    ],
-    tags: [
-      t("page_resume.project_tag_1_0") ?? "",
-      t("page_resume.project_tag_1_1") ?? "",
-      t("page_resume.project_tag_1_2") ?? ""
-    ]
-  },
-  {
-    name: t("page_resume.project_name_2"),
-    role: t("page_resume.project_role_2"),
-    period: "2025",
-    href: "https://idantity.me",
-    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
-    summary: t("page_resume.project_summary_2"),
-    highlights: [
-      t("page_resume.project_highlight_2_0"),
-      t("page_resume.project_highlight_2_1")
-    ],
-    tags: [
-      t("page_resume.project_tag_2_0") ?? "",
-      t("page_resume.project_tag_2_1") ?? "",
-      t("page_resume.project_tag_2_2") ?? ""
-    ]
-  },
-  {
-    name: t("page_resume.project_name_3"),
-    role: t("page_resume.project_role_3"),
-    period: "2025",
-    href: "https://queerkit.com",
-    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
-    summary: t("page_resume.project_summary_3"),
-    highlights: [
-      t("page_resume.project_highlight_3_0"),
-      t("page_resume.project_highlight_3_1")
-    ],
-    tags: [
-      t("page_resume.project_tag_3_0") ?? "",
-      t("page_resume.project_tag_3_1") ?? "",
-      t("page_resume.project_tag_3_2") ?? ""
-    ]
-  },
-  {
-    name: t("page_resume.project_name_4"),
-    role: t("page_resume.project_role_4"),
-    period: "2025",
-    href: "https://marcelocfilho.com",
-    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
-    summary: t("page_resume.project_summary_4"),
-    highlights: [
-      t("page_resume.project_highlight_4_0"),
-      t("page_resume.project_highlight_4_1")
-    ],
-    tags: [
-      t("page_resume.project_tag_4_0") ?? "",
-      t("page_resume.project_tag_4_1") ?? "",
-      t("page_resume.project_tag_4_2") ?? ""
-    ]
-  }
-];
+const certifications = t.raw<CertificationItem[]>("page_resume.certifications", []);
+const projects = t.raw<ResumeProject[]>("page_resume.projects", []);
 ---
 
 <AppLayout title={t("page_resume.meta_title")} description={t("page_resume.meta_description")}>
@@ -544,149 +384,37 @@ const projects: ResumeProject[] = [
               orientation="vertical"
               size="xl"
               class="w-full"
-              items={orderedExperiences.map((exp, idx) => ({
-                slot: `exp-${idx}`,
+              items={orderedExperiences.map((exp) => ({
+                ...exp,
                 date: exp.period,
                 title: `${exp.role} @ ${exp.company}`,
                 avatar: exp.image ? { src: exp.image, alt: exp.company } : undefined,
                 icon: exp.image ? undefined : "i-lucide-briefcase"
               }))}
             >
-              {orderedExperiences[0] && (
-                <div slot="exp-0-description" class="flex flex-col gap-2">
-                  {orderedExperiences[0].location && <p class="text-sm text-neutral-500">{orderedExperiences[0].location}</p>}
-                  {orderedExperiences[0].tags && orderedExperiences[0].tags.length > 0 && (
+              {(exp: ExperienceItem) => (
+                <div class="flex flex-col gap-2">
+                  {exp.location && <p class="text-sm text-neutral-500">{exp.location}</p>}
+                  {exp.tags && exp.tags.length > 0 && (
                     <div class="flex flex-wrap gap-1.5">
-                      {orderedExperiences[0].tags.map((tag) => (
+                      {exp.tags.map((tag) => (
                         <RLABadge variant="soft">
                           {tag}
                         </RLABadge>
                       ))}
                     </div>
                   )}
-                  {orderedExperiences[0].summary && (
+                  {exp.summary && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{orderedExperiences[0].summary}</p>
+                      <p class="text-sm text-neutral-500">{exp.summary}</p>
                     </div>
                   )}
-                  {orderedExperiences[0].responsibilities && orderedExperiences[0].responsibilities.length > 0 && (
+                  {exp.responsibilities && exp.responsibilities.length > 0 && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
                       <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
-                        {orderedExperiences[0].responsibilities.map((resp) => <li>{resp}</li>)}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
-              {orderedExperiences[1] && (
-                <div slot="exp-1-description" class="flex flex-col gap-2">
-                  {orderedExperiences[1].location && <p class="text-sm text-neutral-500">{orderedExperiences[1].location}</p>}
-                  {orderedExperiences[1].tags && orderedExperiences[1].tags.length > 0 && (
-                    <div class="flex flex-wrap gap-1.5">
-                      {orderedExperiences[1].tags.map((tag) => (
-                        <RLABadge variant="soft">
-                          {tag}
-                        </RLABadge>
-                      ))}
-                    </div>
-                  )}
-                  {orderedExperiences[1].summary && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{orderedExperiences[1].summary}</p>
-                    </div>
-                  )}
-                  {orderedExperiences[1].responsibilities && orderedExperiences[1].responsibilities.length > 0 && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
-                        {orderedExperiences[1].responsibilities.map((resp) => <li>{resp}</li>)}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
-              {orderedExperiences[2] && (
-                <div slot="exp-2-description" class="flex flex-col gap-2">
-                  {orderedExperiences[2].location && <p class="text-sm text-neutral-500">{orderedExperiences[2].location}</p>}
-                  {orderedExperiences[2].tags && orderedExperiences[2].tags.length > 0 && (
-                    <div class="flex flex-wrap gap-1.5">
-                      {orderedExperiences[2].tags.map((tag) => (
-                        <RLABadge variant="soft">
-                          {tag}
-                        </RLABadge>
-                      ))}
-                    </div>
-                  )}
-                  {orderedExperiences[2].summary && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{orderedExperiences[2].summary}</p>
-                    </div>
-                  )}
-                  {orderedExperiences[2].responsibilities && orderedExperiences[2].responsibilities.length > 0 && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
-                        {orderedExperiences[2].responsibilities.map((resp) => <li>{resp}</li>)}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
-              {orderedExperiences[3] && (
-                <div slot="exp-3-description" class="flex flex-col gap-2">
-                  {orderedExperiences[3].location && <p class="text-sm text-neutral-500">{orderedExperiences[3].location}</p>}
-                  {orderedExperiences[3].tags && orderedExperiences[3].tags.length > 0 && (
-                    <div class="flex flex-wrap gap-1.5">
-                      {orderedExperiences[3].tags.map((tag) => (
-                        <RLABadge variant="soft">
-                          {tag}
-                        </RLABadge>
-                      ))}
-                    </div>
-                  )}
-                  {orderedExperiences[3].summary && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{orderedExperiences[3].summary}</p>
-                    </div>
-                  )}
-                  {orderedExperiences[3].responsibilities && orderedExperiences[3].responsibilities.length > 0 && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
-                        {orderedExperiences[3].responsibilities.map((resp) => <li>{resp}</li>)}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
-              {orderedExperiences[4] && (
-                <div slot="exp-4-description" class="flex flex-col gap-2">
-                  {orderedExperiences[4].location && <p class="text-sm text-neutral-500">{orderedExperiences[4].location}</p>}
-                  {orderedExperiences[4].tags && orderedExperiences[4].tags.length > 0 && (
-                    <div class="flex flex-wrap gap-1.5">
-                      {orderedExperiences[4].tags.map((tag) => (
-                        <RLABadge variant="soft">
-                          {tag}
-                        </RLABadge>
-                      ))}
-                    </div>
-                  )}
-                  {orderedExperiences[4].summary && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{orderedExperiences[4].summary}</p>
-                    </div>
-                  )}
-                  {orderedExperiences[4].responsibilities && orderedExperiences[4].responsibilities.length > 0 && (
-                    <div>
-                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
-                        {orderedExperiences[4].responsibilities.map((resp) => <li>{resp}</li>)}
+                        {exp.responsibilities.map((resp) => <li>{resp}</li>)}
                       </ul>
                     </div>
                   )}
