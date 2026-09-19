@@ -57,7 +57,6 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.10",
-    "@astrojs/ts-plugin": "1.10.12",
     "@iconify-json/logos": "1.2.14",
     "@iconify-json/lucide": "1.2.134",
     "@rimelight/config": "0.0.18",
