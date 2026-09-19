@@ -132,7 +132,7 @@ import { t } from "@rimelight/i18n";
   </RLAPageSection>
 
   <script>
-    import { actions, isInputError } from "astro:actions";
+    import { api } from "#api/client";
 
     const contactForm = document.getElementById("contact-form") as HTMLFormElement | null;
     const contactStatus = document.getElementById("contact-status") as HTMLParagraphElement | null;
@@ -143,24 +143,27 @@ import { t } from "@rimelight/i18n";
         contactStatus.textContent = "Sending message...";
         contactStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-neutral-500";
 
-        const { data, error } = await actions.contact(new FormData(contactForm));
+        try {
+          const res = await api.contact.$post({
+            form: new FormData(contactForm) as any
+          });
+          const result = await res.json();
 
-        if (error) {
-          const message = isInputError(error)
-            ? Object.values(error.fields).flat()[0] ?? "Please check form fields and try again."
-            : error.message;
+          if (!res.ok || !result.success) {
+            const errorMsg = (!result.success && "error" in result) ? result.error : "Please check form fields and try again.";
+            contactStatus.textContent = errorMsg || "Please check form fields and try again.";
+            contactStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-red-500";
+            return;
+          }
 
-          contactStatus.textContent = message;
-          contactStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-red-500";
-          return;
-        }
-
-        if (data?.success) {
           contactStatus.textContent = "Message sent successfully! ✅";
           contactStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-green-600 dark:text-green-400";
           contactForm.reset();
           // @ts-ignore
           window.turnstile?.reset?.();
+        } catch (err) {
+          contactStatus.textContent = "Failed to send message. Please try again.";
+          contactStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-red-500";
         }
       });
     }
@@ -174,22 +177,25 @@ import { t } from "@rimelight/i18n";
         uploadStatus.textContent = "Uploading file...";
         uploadStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-neutral-500";
 
-        const { data, error } = await actions.upload(new FormData(uploadForm));
+        try {
+          const res = await api.upload.$post({
+            form: new FormData(uploadForm) as any
+          });
+          const result = await res.json();
 
-        if (error) {
-          const message = isInputError(error)
-            ? Object.values(error.fields).flat()[0] ?? "Failed to upload file."
-            : error.message;
+          if (!res.ok || !result.success) {
+            const errorMsg = (!result.success && "error" in result) ? result.error : "Failed to upload file.";
+            uploadStatus.textContent = errorMsg || "Failed to upload file.";
+            uploadStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-red-500";
+            return;
+          }
 
-          uploadStatus.textContent = message;
-          uploadStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-red-500";
-          return;
-        }
-
-        if (data?.success) {
-          uploadStatus.textContent = `File uploaded! Key: ${data.key} ✅`;
+          uploadStatus.textContent = `File uploaded! Key: ${result.key} ✅`;
           uploadStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-green-600 dark:text-green-400";
           uploadForm.reset();
+        } catch (err) {
+          uploadStatus.textContent = "Failed to upload file.";
+          uploadStatus.className = "text-sm min-h-[1.5rem] mt-2 font-medium text-red-500";
         }
       });
     }

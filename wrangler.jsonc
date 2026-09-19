@@ -64,10 +64,18 @@
       }
     }
   ],
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "remote": true
+    }
+  ],
   // "triggers": {
   //   "crons": ["* * * * *"]
   // },
   "vars": {
-    "CONSTRUCTION_MODE": "true"
+    "CONSTRUCTION_MODE": "true",
+    "EMAIL_DOMAIN": "idantity.me",
+    "CONTACT_OWNER_EMAIL": "owner@idantity.me"
   }
 }
