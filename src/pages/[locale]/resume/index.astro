@@ -213,40 +213,71 @@ const experiences: ExperienceItem[] = [
     company: t("page_resume.exp_company_0") ?? "",
     companyUrl: "https://compass.uol",
     period: t("page_resume.exp_period_0") ?? "",
-    location: t("page_resume.exp_location_0") ?? "Curitiba, Brazil · Remote",
+    location: t("page_resume.exp_location_0") ?? "",
     summary: t("page_resume.exp_summary_0") ?? "",
     responsibilities: [
-      t("page_resume.exp_bullet_0_0") ?? "",
-      t("page_resume.exp_bullet_0_1") ?? "",
-      t("page_resume.exp_bullet_0_2") ?? ""
+      t("page_resume.exp_bullet_0_0") ?? ""
     ],
-    tags: ["Unreal Engine", "C++", "3D Web", "UI Design"]
+    tags: ["Unreal Engine", "C++", "Blueprints"]
   },
   {
     role: t("page_resume.exp_role_1") ?? "",
     company: t("page_resume.exp_company_1") ?? "",
     companyUrl: "https://compass.uol",
     period: t("page_resume.exp_period_1") ?? "",
-    location: t("page_resume.exp_location_1") ?? "Curitiba, Brazil · Remote",
+    location: t("page_resume.exp_location_1") ?? "",
     summary: t("page_resume.exp_summary_1") ?? "",
     responsibilities: [
       t("page_resume.exp_bullet_1_0") ?? ""
     ],
-    tags: ["Unreal Engine", "Blueprints", "E-Commerce"]
+    tags: ["Unreal Engine", "C++", "Blueprints", "E-Commerce"]
   },
   {
     role: t("page_resume.exp_role_2") ?? "",
     company: t("page_resume.exp_company_2") ?? "",
     companyUrl: "https://compass.uol",
     period: t("page_resume.exp_period_2") ?? "",
-    location: t("page_resume.exp_location_2") ?? "Curitiba, Brazil · Remote",
+    location: t("page_resume.exp_location_2") ?? "",
     summary: t("page_resume.exp_summary_2") ?? "",
     responsibilities: [
-      t("page_resume.exp_bullet_2_0") ?? ""
+      t("page_resume.exp_bullet_2_0") ?? "",
+      t("page_resume.exp_bullet_2_1") ?? "",
+      t("page_resume.exp_bullet_2_2") ?? ""
     ],
-    tags: ["Unreal Engine", "C++", "Gameplay"]
+    tags: ["Unreal Engine", "C++", "Blueprints", "E-Commerce", "UI Design"]
+  },
+  {
+    role: t("page_resume.exp_role_3") ?? "",
+    company: t("page_resume.exp_company_3") ?? "",
+    companyUrl: "https://concentrix.com",
+    period: t("page_resume.exp_period_3") ?? "",
+    location: t("page_resume.exp_location_3") ?? "",
+    summary: t("page_resume.exp_summary_3") ?? "",
+    responsibilities: [
+      t("page_resume.exp_bullet_3_0") ?? "",
+      t("page_resume.exp_bullet_3_1") ?? "",
+      t("page_resume.exp_bullet_3_2") ?? ""
+    ],
+    tags: ["Customer Service", "Customer Experience"]
+  },
+  {
+    role: t("page_resume.exp_role_4") ?? "",
+    company: t("page_resume.exp_company_4") ?? "",
+    companyUrl: "https://concentrix.com",
+    period: t("page_resume.exp_period_4") ?? "",
+    location: t("page_resume.exp_location_4") ?? "",
+    summary: t("page_resume.exp_summary_4") ?? "",
+    responsibilities: [
+      t("page_resume.exp_bullet_4_0") ?? "",
+      t("page_resume.exp_bullet_4_1") ?? "",
+      t("page_resume.exp_bullet_4_2") ?? ""
+    ],
+    tags: ["Customer Service", "Customer Experience"]
   }
 ];
+
+// Chronological (oldest first) in source, reverse-chronological (most recent first) for display.
+const orderedExperiences = [...experiences].reverse();
 
 const education = [
   {
@@ -260,6 +291,9 @@ const education = [
     period: t("page_resume.edu_period_1")
   }
 ];
+
+// Chronological (oldest first) in source, reverse-chronological (most recent first) for display.
+const orderedEducation = [...education].reverse();
 
 const certifications = [
   {
@@ -442,7 +476,7 @@ const projects: ResumeProject[] = [
               orientation="vertical"
               size="xl"
               class="w-full"
-              items={experiences.map((exp, idx) => ({
+              items={orderedExperiences.map((exp, idx) => ({
                 slot: `exp-${idx}`,
                 date: exp.period,
                 title: `${exp.role} @ ${exp.company}`,
@@ -450,85 +484,141 @@ const projects: ResumeProject[] = [
                 icon: exp.image ? undefined : "i-lucide-briefcase"
               }))}
             >
-              {experiences[0] && (
+              {orderedExperiences[0] && (
                 <div slot="exp-0-description" class="flex flex-col gap-2">
-                  {experiences[0].location && <p class="text-sm text-neutral-500">{experiences[0].location}</p>}
-                  {experiences[0].tags && experiences[0].tags.length > 0 && (
+                  {orderedExperiences[0].location && <p class="text-sm text-neutral-500">{orderedExperiences[0].location}</p>}
+                  {orderedExperiences[0].tags && orderedExperiences[0].tags.length > 0 && (
                     <div class="flex flex-wrap gap-1.5">
-                      {experiences[0].tags.map((tag) => (
+                      {orderedExperiences[0].tags.map((tag) => (
                         <RLABadge variant="soft">
                           {tag}
                         </RLABadge>
                       ))}
                     </div>
                   )}
-                  {experiences[0].summary && (
+                  {orderedExperiences[0].summary && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{experiences[0].summary}</p>
+                      <p class="text-sm text-neutral-500">{orderedExperiences[0].summary}</p>
                     </div>
                   )}
-                  {experiences[0].responsibilities && experiences[0].responsibilities.length > 0 && (
+                  {orderedExperiences[0].responsibilities && orderedExperiences[0].responsibilities.length > 0 && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
                       <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
-                        {experiences[0].responsibilities.map((resp) => <li>{resp}</li>)}
+                        {orderedExperiences[0].responsibilities.map((resp) => <li>{resp}</li>)}
                       </ul>
                     </div>
                   )}
                 </div>
               )}
-              {experiences[1] && (
+              {orderedExperiences[1] && (
                 <div slot="exp-1-description" class="flex flex-col gap-2">
-                  {experiences[1].location && <p class="text-sm text-neutral-500">{experiences[1].location}</p>}
-                  {experiences[1].tags && experiences[1].tags.length > 0 && (
+                  {orderedExperiences[1].location && <p class="text-sm text-neutral-500">{orderedExperiences[1].location}</p>}
+                  {orderedExperiences[1].tags && orderedExperiences[1].tags.length > 0 && (
                     <div class="flex flex-wrap gap-1.5">
-                      {experiences[1].tags.map((tag) => (
+                      {orderedExperiences[1].tags.map((tag) => (
                         <RLABadge variant="soft">
                           {tag}
                         </RLABadge>
                       ))}
                     </div>
                   )}
-                  {experiences[1].summary && (
+                  {orderedExperiences[1].summary && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{experiences[1].summary}</p>
+                      <p class="text-sm text-neutral-500">{orderedExperiences[1].summary}</p>
                     </div>
                   )}
-                  {experiences[1].responsibilities && experiences[1].responsibilities.length > 0 && (
+                  {orderedExperiences[1].responsibilities && orderedExperiences[1].responsibilities.length > 0 && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                      <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                        {experiences[1].responsibilities.map((resp) => <li>{resp}</li>)}
+                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
+                        {orderedExperiences[1].responsibilities.map((resp) => <li>{resp}</li>)}
                       </ul>
                     </div>
                   )}
                 </div>
               )}
-              {experiences[2] && (
+              {orderedExperiences[2] && (
                 <div slot="exp-2-description" class="flex flex-col gap-2">
-                  {experiences[2].location && <p class="text-sm text-neutral-500">{experiences[2].location}</p>}
-                  {experiences[2].tags && experiences[2].tags.length > 0 && (
+                  {orderedExperiences[2].location && <p class="text-sm text-neutral-500">{orderedExperiences[2].location}</p>}
+                  {orderedExperiences[2].tags && orderedExperiences[2].tags.length > 0 && (
                     <div class="flex flex-wrap gap-1.5">
-                      {experiences[2].tags.map((tag) => (
+                      {orderedExperiences[2].tags.map((tag) => (
                         <RLABadge variant="soft">
                           {tag}
                         </RLABadge>
                       ))}
                     </div>
                   )}
-                  {experiences[2].summary && (
+                  {orderedExperiences[2].summary && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                      <p class="text-sm text-neutral-500">{experiences[2].summary}</p>
+                      <p class="text-sm text-neutral-500">{orderedExperiences[2].summary}</p>
                     </div>
                   )}
-                  {experiences[2].responsibilities && experiences[2].responsibilities.length > 0 && (
+                  {orderedExperiences[2].responsibilities && orderedExperiences[2].responsibilities.length > 0 && (
                     <div>
                       <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                      <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                        {experiences[2].responsibilities.map((resp) => <li>{resp}</li>)}
+                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
+                        {orderedExperiences[2].responsibilities.map((resp) => <li>{resp}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
+              {orderedExperiences[3] && (
+                <div slot="exp-3-description" class="flex flex-col gap-2">
+                  {orderedExperiences[3].location && <p class="text-sm text-neutral-500">{orderedExperiences[3].location}</p>}
+                  {orderedExperiences[3].tags && orderedExperiences[3].tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5">
+                      {orderedExperiences[3].tags.map((tag) => (
+                        <RLABadge variant="soft">
+                          {tag}
+                        </RLABadge>
+                      ))}
+                    </div>
+                  )}
+                  {orderedExperiences[3].summary && (
+                    <div>
+                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
+                      <p class="text-sm text-neutral-500">{orderedExperiences[3].summary}</p>
+                    </div>
+                  )}
+                  {orderedExperiences[3].responsibilities && orderedExperiences[3].responsibilities.length > 0 && (
+                    <div>
+                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
+                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
+                        {orderedExperiences[3].responsibilities.map((resp) => <li>{resp}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
+              {orderedExperiences[4] && (
+                <div slot="exp-4-description" class="flex flex-col gap-2">
+                  {orderedExperiences[4].location && <p class="text-sm text-neutral-500">{orderedExperiences[4].location}</p>}
+                  {orderedExperiences[4].tags && orderedExperiences[4].tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5">
+                      {orderedExperiences[4].tags.map((tag) => (
+                        <RLABadge variant="soft">
+                          {tag}
+                        </RLABadge>
+                      ))}
+                    </div>
+                  )}
+                  {orderedExperiences[4].summary && (
+                    <div>
+                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
+                      <p class="text-sm text-neutral-500">{orderedExperiences[4].summary}</p>
+                    </div>
+                  )}
+                  {orderedExperiences[4].responsibilities && orderedExperiences[4].responsibilities.length > 0 && (
+                    <div>
+                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
+                      <ul class="flex flex-col gap-sm pl-lg list-disc text-sm text-neutral-500">
+                        {orderedExperiences[4].responsibilities.map((resp) => <li>{resp}</li>)}
                       </ul>
                     </div>
                   )}
@@ -546,7 +636,7 @@ const projects: ResumeProject[] = [
             <RLATimeline
               orientation="vertical"
               size="xl"
-              items={education.map((edu) => ({
+              items={orderedEducation.map((edu) => ({
                 date: edu.period,
                 title: edu.degree,
                 description: edu.school,
