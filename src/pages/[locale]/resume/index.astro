@@ -695,7 +695,7 @@ const projects = [
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
               {certifications.map((cert) => (
                 <details class="group cursor-pointer flex flex-col gap-1.5">
-                  <summary class="list-none [&::-webkit-details-marker]:hidden flex items-start justify-between gap-sm select-none">
+                  <summary class=" flex items-start justify-between gap-sm select-none">
                     <div class="flex flex-col">
                       <h3 class="text-lg font-bold group-hover:text-primary-500 transition-colors">{cert.title}</h3>
                       <span class="text-sm text-neutral-500">{cert.issuer}</span>
@@ -706,7 +706,7 @@ const projects = [
                   </summary>
                   {cert.credentialId && (
                     <code class="block text-sm text-neutral-500 break-all">
-                      ID: {cert.credentialId}
+                      Certificate ID: {cert.credentialId}
                     </code>
                   )}
                 </details>
