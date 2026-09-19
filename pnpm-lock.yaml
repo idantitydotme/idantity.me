@@ -261,23 +261,23 @@ importers:
         specifier: 7.0.2
         version: 7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1)
       '@rimelight/auth':
-        specifier: 0.0.11
-        version: 0.0.11(drizzle-orm@0.45.2)(hono@4.13.8)
+        specifier: 0.0.13
+        version: 0.0.13(drizzle-orm@0.45.2)(hono@4.13.8)
       '@rimelight/cms':
-        specifier: 0.0.18
-        version: 0.0.18(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+        specifier: 0.0.20
+        version: 0.0.20(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       '@rimelight/i18n':
-        specifier: 0.0.18
-        version: 0.0.18
+        specifier: 0.0.20
+        version: 0.0.20
       '@rimelight/security':
-        specifier: 0.0.22
-        version: 0.0.22(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(sharp@0.35.4(@types/node@26.6.1))(solid-js@1.9.15)(srvx@1.0.5)(takumi-js@2.14.0(csstype@3.2.3))(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+        specifier: 0.0.24
+        version: 0.0.24(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(csstype@3.2.3)(hono@4.13.8)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       '@rimelight/seo':
-        specifier: 0.0.15
-        version: 0.0.15(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(sharp@0.35.4(@types/node@26.6.1))(takumi-js@2.14.0(csstype@3.2.3))
+        specifier: 0.0.17
+        version: 0.0.17(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(csstype@3.2.3)
       '@rimelight/ui':
-        specifier: 0.0.58
-        version: 0.0.58(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+        specifier: 0.0.60
+        version: 0.0.60(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       astro:
         specifier: 7.3.3
         version: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)
@@ -304,8 +304,8 @@ importers:
         specifier: 1.2.134
         version: 1.2.134
       '@rimelight/config':
-        specifier: 0.0.18
-        version: 0.0.18(704f526f62ca3a7cdf94193f7cc09b32)
+        specifier: 0.0.20
+        version: 0.0.20(1a5230d67a4fd2d7424d8e1587c1f3d8)
       '@types/node':
         specifier: 26.6.1
         version: 26.6.1
@@ -1384,12 +1384,6 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@nanostores/i18n@1.3.3':
-    resolution: {integrity: sha512-hwuTKJ+DKCOuszmmOuNfDeA8j86WJWLLzjzE1BYm+mabMcD5JYDnTd0wPMwgGJ+U//ApRaxviRvOtvk50F+RCg==}
-    engines: {node: ^20.0.0 || >=22.0.0}
-    peerDependencies:
-      nanostores: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^1.0.0
-
   '@napi-rs/wasm-runtime@1.2.4':
     resolution: {integrity: sha512-AJxoUD2/15ESHbvpcyjU274nsAPLuOtPHCk0vKJM5pj//Fg/B1FXNWjPnXTT9PymCYYiHo4zPj0ZomXBKhoy7g==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=23.5.0}
@@ -1825,8 +1819,8 @@ packages:
   '@quansync/fs@1.0.0':
     resolution: {integrity: sha512-4TJ3DFtlf1L5LDMaM6CanJ/0lckGNtJcMjQ1NAV6zDmA0tEHKZtxNKin8EgPaVX1YzljbxckyT2tJrpQKAtngQ==}
 
-  '@rimelight/auth@0.0.11':
-    resolution: {integrity: sha512-I2IqLltZKaQSX4FCVzOuYdyi8p+UbPp2VfKKbiuf9Go3O5LsQOjAwfu6315XDZ8wZgRgwb0i693DP7Cq5hFcnw==}
+  '@rimelight/auth@0.0.13':
+    resolution: {integrity: sha512-ueEyED93YML6O4/QGqsQ3J7TMEM/ZpjGkVYJlg2CVtnU25ixCb0o1Kv/Kmro68YyVb06Kb/kyhy2DZtrKiKMiQ==}
     engines: {node: '>=26.9.0'}
     peerDependencies:
       drizzle-orm: '>=0.30.0'
@@ -1837,24 +1831,24 @@ packages:
       hono:
         optional: true
 
-  '@rimelight/cms@0.0.18':
-    resolution: {integrity: sha512-E0BSWRaJJjhKKtV6B853ZmvIE6lrLIkC9RfmZxJtlZKCvf3zfeZ6wLf8Feg8rD9XhI//cJZPzIy/BNJ5b9wDxQ==}
+  '@rimelight/cms@0.0.20':
+    resolution: {integrity: sha512-2gV807+VcDp2InC5Nw4m2auv/aWHq1lkAKD/8Of0dxxfEZFpdhjd4/KyG4+PyXhbBHzbczcGhsILAVoBLgCMqQ==}
     engines: {node: '>=26.9.0'}
     peerDependencies:
       astro: '>=7.0.0'
 
-  '@rimelight/config@0.0.18':
-    resolution: {integrity: sha512-VsCorpuh5aOvmmtlOSZYtRDyI02zFB7iKaysrfZ4Lgwf/0Zs160Nk+kpfcp9wyetRrfXlsKIIFY7EwgVFe9nBQ==}
+  '@rimelight/config@0.0.20':
+    resolution: {integrity: sha512-BoFhwf4qEzadHfqWKTrWJ2n+N0TSxlUVF9ll40HlI32RDS0kcBvfNPp3DRbLZc6yAmpPjls69F0+6y31xjL4Yw==}
     engines: {node: '>=26.9.0'}
     peerDependencies:
       '@astrojs/cloudflare': '>=14.0.0'
       '@astrojs/solid-js': '>=7.0.0'
-      '@rimelight/auth': 0.0.11
-      '@rimelight/cms': 0.0.18
-      '@rimelight/i18n': 0.0.18
-      '@rimelight/security': 0.0.22
-      '@rimelight/seo': 0.0.15
-      '@rimelight/ui': 0.0.58
+      '@rimelight/auth': 0.0.13
+      '@rimelight/cms': 0.0.20
+      '@rimelight/i18n': 0.0.20
+      '@rimelight/security': 0.0.24
+      '@rimelight/seo': 0.0.17
+      '@rimelight/ui': 0.0.60
       astro: '>=7.0.0'
       drizzle-kit: '>=0.30.0'
     peerDependenciesMeta:
@@ -1879,12 +1873,13 @@ packages:
       drizzle-kit:
         optional: true
 
-  '@rimelight/i18n@0.0.18':
-    resolution: {integrity: sha512-PC1JxhbSnE7bMafdFV8oiTD+KhtbzHWHI68hj5eVyxE8EHY+UOR6UL3ZbkcHFRJO4zNN4Q0KBskFF6KUsNscwg==}
+  '@rimelight/i18n@0.0.20':
+    resolution: {integrity: sha512-fSboMqVuksolx3cAMnCL+7IfzdcX/GzuoWB6QiSySvVLa/A6sknittMPCYgHWLQU7KxQRIzYVTGw6LlcLevggg==}
     engines: {node: '>=26.9.0'}
+    hasBin: true
 
-  '@rimelight/security@0.0.22':
-    resolution: {integrity: sha512-pOBCIKSJEBp1yzdziZ58/3Q9SdtSi+k/OJkJbnrvSH/yTo7OGtK1EjHO53J8NbEz9q/0ZEoldtp1A+UhiXzX7Q==}
+  '@rimelight/security@0.0.24':
+    resolution: {integrity: sha512-yBRn0dqdQGPMY6eMafQeyuvLUwFeKTeQgGW6NWbU755CyVeAXIwpSLEtzKrTYpTpMJvVs016fF32kXAIbzxaFw==}
     engines: {node: '>=26.9.0'}
     peerDependencies:
       astro: '>=7.0.0'
@@ -1893,21 +1888,14 @@ packages:
       hono:
         optional: true
 
-  '@rimelight/seo@0.0.15':
-    resolution: {integrity: sha512-llnoYMiNqIEtUey+nNH0JFxlF4goneMqW050pIkpNqC7AkW40BljF86aMHrmqzDgvRmLNKs2C8QtcufHQ7er+w==}
+  '@rimelight/seo@0.0.17':
+    resolution: {integrity: sha512-jKnpVuuF9bpRMKXoT8qCQtD0RNIoP6fxrjQuM6fQ2BvWhqUQygrduyOPkcM1HJgXz/CSl3R2Nn9K9c7pd+o1mQ==}
     engines: {node: '>=26.9.0'}
     peerDependencies:
       astro: '>=7.0.0'
-      sharp: '>=0.33.0'
-      takumi-js: '>=2.0.0'
-    peerDependenciesMeta:
-      sharp:
-        optional: true
-      takumi-js:
-        optional: true
 
-  '@rimelight/ui@0.0.58':
-    resolution: {integrity: sha512-wmbjVfAHYCa/qwagm4IgLTbRW3YtdR0JnHrGiWVWKjNc6NijhmSZXlsLCt8Ryt7xluEnIasC8+P/FuFqqnxw6A==}
+  '@rimelight/ui@0.0.60':
+    resolution: {integrity: sha512-+Xw96PFRXFSlfxkqi/4eqERHSTxbF4xUhNiD/9uTni46esPAXkzXceq4d0lQradZPF0mX+m3oHv2FT1imXq+3g==}
     engines: {node: '>=26.9.0'}
     peerDependencies:
       '@astrojs/solid-js': '>=7.0.1'
@@ -3352,10 +3340,6 @@ packages:
     resolution: {integrity: sha512-Y2tUNy4ouw6tq5oDSKeQYGOyhkUBhNOcGV/02KC+6kd9eDGqdZd++mjMiIDilrBYvjEnCYvVtsuHCuP+okSfug==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-
-  nanostores@1.5.3:
-    resolution: {integrity: sha512-rQLB6eV4f2AW/n3L0JmwCROpaisYy9EDEADvEFSd1C/qG8hB6O5TPlh9A791JRbJr4CnMQBzptDcvD9OR1+6WA==}
-    engines: {node: ^20.0.0 || >=22.0.0}
 
   neotraverse@1.0.1:
     resolution: {integrity: sha512-WmmLty1YWwJl9yZi77v2dVIV6X2kuYV8YYBI/G3LWGKdGHmHUvL1z7FW0iDvEvGAwNEoc5x1tOOOyDnf5jJw/w==}
@@ -5070,10 +5054,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.6.0
 
-  '@nanostores/i18n@1.3.3(nanostores@1.5.3)':
-    dependencies:
-      nanostores: 1.5.3
-
   '@napi-rs/wasm-runtime@1.2.4(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)':
     dependencies:
       '@emnapi/core': 1.11.1
@@ -5305,18 +5285,18 @@ snapshots:
     dependencies:
       quansync: 1.0.0
 
-  '@rimelight/auth@0.0.11(drizzle-orm@0.45.2)(hono@4.13.8)':
+  '@rimelight/auth@0.0.13(drizzle-orm@0.45.2)(hono@4.13.8)':
     dependencies:
       jose: 6.2.12
     optionalDependencies:
       drizzle-orm: 0.45.2
       hono: 4.13.8
 
-  '@rimelight/cms@0.0.18(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
+  '@rimelight/cms@0.0.20(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
     dependencies:
-      '@rimelight/auth': 0.0.11(drizzle-orm@0.45.2)(hono@4.13.8)
-      '@rimelight/i18n': 0.0.18
-      '@rimelight/ui': 0.0.58(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+      '@rimelight/auth': 0.0.13(drizzle-orm@0.45.2)(hono@4.13.8)
+      '@rimelight/i18n': 0.0.20
+      '@rimelight/ui': 0.0.60(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       astro: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)
       drizzle-orm: 0.45.2
       solid-js: 1.9.15
@@ -5366,29 +5346,26 @@ snapshots:
       - vite
       - vue
 
-  '@rimelight/config@0.0.18(704f526f62ca3a7cdf94193f7cc09b32)':
+  '@rimelight/config@0.0.20(1a5230d67a4fd2d7424d8e1587c1f3d8)':
     optionalDependencies:
       '@astrojs/cloudflare': 14.3.2(@types/node@26.6.1)(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(wrangler@4.135.0(@types/node@26.6.1))(yaml@2.9.1)
       '@astrojs/solid-js': 7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1)
-      '@rimelight/auth': 0.0.11(drizzle-orm@0.45.2)(hono@4.13.8)
-      '@rimelight/cms': 0.0.18(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
-      '@rimelight/i18n': 0.0.18
-      '@rimelight/security': 0.0.22(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(sharp@0.35.4(@types/node@26.6.1))(solid-js@1.9.15)(srvx@1.0.5)(takumi-js@2.14.0(csstype@3.2.3))(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
-      '@rimelight/seo': 0.0.15(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(sharp@0.35.4(@types/node@26.6.1))(takumi-js@2.14.0(csstype@3.2.3))
-      '@rimelight/ui': 0.0.58(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+      '@rimelight/auth': 0.0.13(drizzle-orm@0.45.2)(hono@4.13.8)
+      '@rimelight/cms': 0.0.20(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+      '@rimelight/i18n': 0.0.20
+      '@rimelight/security': 0.0.24(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(csstype@3.2.3)(hono@4.13.8)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+      '@rimelight/seo': 0.0.17(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(csstype@3.2.3)
+      '@rimelight/ui': 0.0.60(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       astro: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)
       drizzle-kit: 0.31.10
 
-  '@rimelight/i18n@0.0.18':
-    dependencies:
-      '@nanostores/i18n': 1.3.3(nanostores@1.5.3)
-      nanostores: 1.5.3
+  '@rimelight/i18n@0.0.20': {}
 
-  '@rimelight/security@0.0.22(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(hono@4.13.8)(rolldown@1.2.8)(sharp@0.35.4(@types/node@26.6.1))(solid-js@1.9.15)(srvx@1.0.5)(takumi-js@2.14.0(csstype@3.2.3))(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
+  '@rimelight/security@0.0.24(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(csstype@3.2.3)(hono@4.13.8)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
     dependencies:
-      '@rimelight/i18n': 0.0.18
-      '@rimelight/seo': 0.0.15(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(sharp@0.35.4(@types/node@26.6.1))(takumi-js@2.14.0(csstype@3.2.3))
-      '@rimelight/ui': 0.0.58(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+      '@rimelight/i18n': 0.0.20
+      '@rimelight/seo': 0.0.17(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(csstype@3.2.3)
+      '@rimelight/ui': 0.0.60(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       astro: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)
     optionalDependencies:
       hono: 4.13.8
@@ -5400,24 +5377,27 @@ snapshots:
       - '@unocss/postcss'
       - '@unocss/webpack'
       - cac
+      - csstype
       - ocache
+      - preact
+      - react
       - rolldown
       - rollup
-      - sharp
       - solid-js
       - srvx
-      - takumi-js
       - vite
       - vue
 
-  '@rimelight/seo@0.0.15(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(sharp@0.35.4(@types/node@26.6.1))(takumi-js@2.14.0(csstype@3.2.3))':
+  '@rimelight/seo@0.0.17(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(csstype@3.2.3)':
     dependencies:
       astro: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)
-    optionalDependencies:
-      sharp: 0.35.4(@types/node@26.6.1)
       takumi-js: 2.14.0(csstype@3.2.3)
+    transitivePeerDependencies:
+      - csstype
+      - preact
+      - react
 
-  '@rimelight/ui@0.0.58(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
+  '@rimelight/ui@0.0.60(@astrojs/solid-js@7.0.2(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(solid-js@1.9.15)(supports-color@10.2.2)(tsx@4.23.13)(yaml@2.9.1))(astro@7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))(cac@7.0.0)(rolldown@1.2.8)(solid-js@1.9.15)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
     dependencies:
       '@unocss/vite': 66.10.5(cac@7.0.0)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       astro: 7.3.3(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@26.6.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)
@@ -5570,10 +5550,8 @@ snapshots:
     transitivePeerDependencies:
       - preact
       - react
-    optional: true
 
-  '@takumi-rs/helpers@2.14.0':
-    optional: true
+  '@takumi-rs/helpers@2.14.0': {}
 
   '@takumi-rs/wasm@2.14.0(csstype@3.2.3)':
     dependencies:
@@ -5583,7 +5561,6 @@ snapshots:
     transitivePeerDependencies:
       - preact
       - react
-    optional: true
 
   '@testing-library/dom@10.4.2':
     dependencies:
@@ -6790,8 +6767,6 @@ snapshots:
 
   nanoid@3.3.19: {}
 
-  nanostores@1.5.3: {}
-
   neotraverse@1.0.1: {}
 
   nlcst-to-string@4.0.0:
@@ -7197,7 +7172,6 @@ snapshots:
       - csstype
       - preact
       - react
-    optional: true
 
   tiny-inflate@1.0.3: {}
 
