@@ -17,6 +17,113 @@ import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
 // Imprecise but good enough for this use case to avoid adding a date library or larger function.
 const age = Math.floor((Date.now() - new Date(1997, 3, 30).getTime()) / (365.25 * 24 * 60 * 60 * 1000));
 
+const aboutDetails = [
+  { label: t("page_resume.about_gender_label"), value: t("page_resume.about_gender_value") },
+  { label: t("page_resume.about_pronouns_label"), value: t("page_resume.about_pronouns_value") },
+  { label: t("page_resume.about_nationality_label"), value: t("page_resume.about_nationality_value") },
+  { label: t("page_resume.about_age_label"), value: `${age} ${t("page_resume.about_age_value")}` }
+];
+
+const skills = [
+  {
+    icon: "i-lucide-code-2",
+    title: t("page_resume.skills_webDev"),
+    description: t("page_resume.skills_webDev_desc")
+  },
+  {
+    icon: "i-lucide-gamepad-2",
+    title: t("page_resume.skills_gameDev"),
+    description: t("page_resume.skills_gameDev_desc")
+  },
+  {
+    icon: "i-lucide-palette",
+    title: t("page_resume.skills_design"),
+    description: t("page_resume.skills_design_desc")
+  }
+];
+
+const techGroups = [
+  {
+    title: t("page_resume.tech_group_webDev"),
+    categories: [
+      {
+        title: t("page_resume.tech_cat_languages"),
+        items: [
+          { label: "TypeScript", icon: "i-logos-typescript-icon", href: "https://www.typescriptlang.org/" },
+          { label: "Astro", icon: "i-logos-astro-icon", href: "https://astro.build/" },
+          { label: "Vue", icon: "i-logos-vue", href: "https://vuejs.org/" },
+          { label: "SolidJS", icon: "i-logos-solidjs-icon", href: "https://www.solidjs.com/" },
+          { label: "UnoCSS", icon: "i-logos-unocss", href: "https://unocss.dev/" }
+        ]
+      },
+      {
+        title: t("page_resume.tech_cat_environment"),
+        items: [
+          { label: "WebStorm", icon: "i-logos-webstorm", href: "https://www.jetbrains.com/webstorm/" }
+        ]
+      },
+      {
+        title: t("page_resume.tech_cat_build"),
+        items: [
+          { label: "Vite-plus", icon: "i-logos-vitejs", href: "https://vite.dev/" },
+          { label: "pnpm", icon: "i-logos-pnpm", href: "https://pnpm.io/" }
+        ]
+      },
+      {
+        title: t("page_resume.tech_cat_deployment"),
+        items: [
+          { label: "Cloudflare", icon: "i-logos-cloudflare-icon", href: "https://cloudflare.com/" }
+        ]
+      }
+    ]
+  },
+  {
+    title: t("page_resume.tech_group_gameDev"),
+    categories: [
+      {
+        title: t("page_resume.tech_cat_languages"),
+        items: [
+          { label: "C++", icon: "i-logos-c-plusplus", href: "https://isocpp.org/" },
+          { label: "Verse", icon: "i-simple-icons-fortnite", href: "https://dev.epicgames.com/documentation/en-us/uefn/verse-language-reference" }
+        ]
+      },
+      {
+        title: t("page_resume.tech_cat_environment"),
+        items: [
+          { label: "Unreal Engine", icon: "i-logos-unrealengine-icon?mask text-white", href: "https://www.unrealengine.com/" },
+          { label: "Rider", icon: "i-logos-rider", href: "https://www.jetbrains.com/rider/" }
+        ]
+      }
+    ]
+  },
+  {
+    title: t("page_resume.tech_group_shared"),
+    categories: [
+      {
+        title: t("page_resume.tech_cat_data"),
+        items: [
+          { label: "PostgreSQL", icon: "i-logos-postgresql", href: "https://www.postgresql.org/" },
+          { label: "Drizzle", icon: "i-catppuccin-drizzle-orm", href: "https://orm.drizzle.team/" }
+        ]
+      },
+      {
+        title: t("page_resume.tech_cat_auth"),
+        items: [
+          { label: "Cloudflare Access", icon: "i-simple-icons-cloudflare", href: "https://cloudflare.com/" }
+        ]
+      },
+      {
+        title: t("page_resume.tech_cat_project"),
+        items: [
+          { label: "Git", icon: "i-logos-git-icon", href: "https://git-scm.com/" },
+          { label: "Lore", icon: "i-simple-icons-epicgames?mask text-white", href: "https://dev.epicgames.com/documentation/en-us/uefn/unreal-revision-control-in-unreal-editor-for-fortnite" },
+          { label: "YouTrack", icon: "i-logos-youtrack", href: "https://www.jetbrains.com/youtrack/" }
+        ]
+      }
+    ]
+  }
+];
+
 // Availability state presets: 'available' | 'busy' | 'looking'
 const availabilityStatus: 'available' | 'busy' | 'looking' = 'available';
 
@@ -276,22 +383,12 @@ const projects = [
               <hr class="border-neutral-500" />
             </header>
             <ul class="flex flex-col gap-sm text-sm text-neutral-500">
-              <li class="flex justify-between">
-                <span>{t("page_resume.about_gender_label")}</span>
-                <span class="text-neutral-500">{t("page_resume.about_gender_value")}</span>
-              </li>
-              <li class="flex justify-between">
-                <span>{t("page_resume.about_pronouns_label")}</span>
-                <span class="text-neutral-500">{t("page_resume.about_pronouns_value")}</span>
-              </li>
-              <li class="flex justify-between">
-                <span>{t("page_resume.about_nationality_label")}</span>
-                <span class="text-neutral-500">{t("page_resume.about_nationality_value")}</span>
-              </li>
-              <li class="flex justify-between">
-                <span>{t("page_resume.about_age_label")}</span>
-                <span class="text-neutral-500">{age} {t("page_resume.about_age_value")}</span>
-              </li>
+              {aboutDetails.map((item) => (
+                <li class="flex justify-between">
+                  <span>{item.label}</span>
+                  <span class="text-neutral-500">{item.value}</span>
+                </li>
+              ))}
               <li class="flex justify-between items-center pb-1.5">
                 <span>Location</span>
                 <RLALink
@@ -351,33 +448,17 @@ const projects = [
               <hr class="border-neutral-500" />
             </header>
             <ul class="grid grid-cols-1 md:grid-cols-3 gap-lg">
-              <li>
-                <div class="flex items-center gap-sm">
-                  <RLAIcon name="i-lucide-code-2" size="lg" class="text-primary-500" />
-                  <h3 class="text-lg font-bold">{t("page_resume.skills_webDev")}</h3>
-                </div>
-                <p class="text-sm text-neutral-500">
-                  {t("page_resume.skills_webDev_desc")}
-                </p>
-              </li>
-              <li>
-                <div class="flex items-center gap-sm">
-                  <RLAIcon name="i-lucide-gamepad-2" size="lg" class="text-primary-500" />
-                  <h3 class="text-lg font-bold">{t("page_resume.skills_gameDev")}</h3>
-                </div>
-                <p class="text-sm text-neutral-500">
-                  {t("page_resume.skills_gameDev_desc")}
-                </p>
-              </li>
-              <li>
-                <div class="flex items-center gap-sm">
-                  <RLAIcon name="i-lucide-palette" size="lg" class="text-primary-500" />
-                  <h3 class="text-lg font-bold">{t("page_resume.skills_design")}</h3>
-                </div>
-                <p class="text-sm text-neutral-500">
-                  {t("page_resume.skills_design_desc")}
-                </p>
-              </li>
+              {skills.map((skill) => (
+                <li>
+                  <div class="flex items-center gap-sm">
+                    <RLAIcon name={skill.icon} size="lg" class="text-primary-500" />
+                    <h3 class="text-lg font-bold">{skill.title}</h3>
+                  </div>
+                  <p class="text-sm text-neutral-500">
+                    {skill.description}
+                  </p>
+                </li>
+              ))}
             </ul>
           </section>
 
@@ -388,175 +469,31 @@ const projects = [
               <hr class="border-neutral-500" />
             </header>
 
-            <div class="flex flex-col gap-sm">
-              <h3 class="text-lg font-bold">{t("page_resume.tech_group_webDev")}</h3>
-              <hr class="border-neutral-500" />
-            </div>
+            {techGroups.map((group) => (
+              <>
+                <div class="flex flex-col gap-sm">
+                  <h3 class="text-lg font-bold">{group.title}</h3>
+                  <hr class="border-neutral-500" />
+                </div>
 
-            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_languages")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-typescript-icon" href="https://www.typescriptlang.org/" class="text-sm">
-                      TypeScript
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-astro-icon" href="https://astro.build/" class="text-sm">
-                      Astro
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-vue" href="https://vuejs.org/" class="text-sm">
-                      Vue
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-solidjs-icon" href="https://www.solidjs.com/" class="text-sm">
-                      SolidJS
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-unocss" href="https://unocss.dev/" class="text-sm">
-                      UnoCSS
-                    </RLAButton>
-                  </li>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
+                  {group.categories.map((category) => (
+                    <li class="flex flex-col gap-md items-start text-left">
+                      <h4 class="text-sm font-bold">{category.title}</h4>
+                      <ul class="flex flex-col gap-xs w-full items-start">
+                        {category.items.map((item) => (
+                          <li class="w-full">
+                            <RLAButton block justify="start" variant="ghost" leadingIcon={item.icon} href={item.href} class="text-sm">
+                              {item.label}
+                            </RLAButton>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
                 </ul>
-              </li>
-
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_environment")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-webstorm" href="https://www.jetbrains.com/webstorm/" class="text-sm">
-                      WebStorm
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_build")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-vitejs" href="https://vite.dev/" class="text-sm">
-                      Vite-plus
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-pnpm" href="https://pnpm.io/" class="text-sm">
-                      pnpm
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_deployment")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-cloudflare-icon" href="https://cloudflare.com/" class="text-sm">
-                      Cloudflare
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-
-            <div class="flex flex-col gap-sm">
-              <h3 class="text-lg font-bold">{t("page_resume.tech_group_gameDev")}</h3>
-              <hr class="border-neutral-500" />
-            </div>
-
-            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_languages")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-c-plusplus" href="https://isocpp.org/" class="text-sm">
-                      C++
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-simple-icons-fortnite" href="https://dev.epicgames.com/documentation/en-us/uefn/verse-language-reference" class="text-sm">
-                      Verse
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_environment")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-unrealengine-icon?mask text-white" href="https://www.unrealengine.com/" class="text-sm">
-                      Unreal Engine
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-rider" href="https://www.jetbrains.com/rider/" class="text-sm">
-                      Rider
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-
-            <div class="flex flex-col gap-sm">
-              <h3 class="text-lg font-bold">{t("page_resume.tech_group_shared")}</h3>
-              <hr class="border-neutral-500" />
-            </div>
-
-            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_data")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-postgresql" href="https://www.postgresql.org/" class="text-sm">
-                      PostgreSQL
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-catppuccin-drizzle-orm" href="https://orm.drizzle.team/" class="text-sm">
-                      Drizzle
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_auth")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-simple-icons-cloudflare" href="https://cloudflare.com/" class="text-sm">
-                      Cloudflare Access
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-
-              <li class="flex flex-col gap-md items-start text-left">
-                <h4 class="text-sm font-bold">{t("page_resume.tech_cat_project")}</h4>
-                <ul class="flex flex-col gap-xs w-full items-start">
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-git-icon" href="https://git-scm.com/" class="text-sm">
-                      Git
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-simple-icons-epicgames?mask text-white" href="https://dev.epicgames.com/documentation/en-us/uefn/unreal-revision-control-in-unreal-editor-for-fortnite" class="text-sm">
-                      Lore
-                    </RLAButton>
-                  </li>
-                  <li class="w-full">
-                    <RLAButton block justify="start" variant="ghost" leadingIcon="i-logos-youtrack" href="https://www.jetbrains.com/youtrack/" class="text-sm">
-                      YouTrack
-                    </RLAButton>
-                  </li>
-                </ul>
-              </li>
-            </ul>
+              </>
+            ))}
           </section>
 
           <!-- Experience Section -->
