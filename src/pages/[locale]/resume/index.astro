@@ -360,118 +360,8 @@ const projects: ResumeProject[] = [
   <RLAContainer class="max-w-none">
     <RLAPage>
       <div class="flex flex-col md:flex-row gap-xl">
-        <!-- Left Sidebar -->
-        <aside aria-label={t("page_resume.aria_sidebar_profile")} class="flex flex-col w-full gap-xl py-8 md:py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
-          <!-- Introduction Section -->
-          <section aria-labelledby="resume-sidebar-name" class="flex flex-col items-center">
-            <header class="flex flex-col gap-xs items-center">
-              <RLAAvatar
-                src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
-                alt={t("page_resume.sidebar_name")}
-                class="!size-40 border-4 border-primary-500 shadow-xl"
-              />
-
-              <div class="text-center">
-                <h2 id="resume-sidebar-name" class="text-3xl font-bold">{t("page_resume.sidebar_name")}</h2>
-                <p class="text-md text-neutral-500">{t("page_resume.sidebar_title")}</p>
-              </div>
-            </header>
-
-            <!-- Availability Status Indicator -->
-            <RLAButton
-              href={getRelativeLocaleUrl("/contact")}
-              variant="ghost"
-              color="success"
-              class="w-full justify-center text-sm font-bold"
-            >
-              <span class="relative flex size-2.5" aria-hidden="true">
-                {currentAvailability.ping && (
-                  <span class={`absolute inline-flex size-full animate-ping rounded-full opacity-75 ${currentAvailability.colorClass}`} />
-                )}
-                <span class={`relative inline-flex size-2.5 rounded-full ${currentAvailability.colorClass}`} />
-              </span>
-              {t(`page_resume.${currentAvailability.labelKey}`)}
-            </RLAButton>
-
-            <!-- Socials -->
-            <ul class="flex gap-sm justify-center w-full">
-              {socials.map((social) => (
-                <li>
-                  <RLAButton
-                    size="lg"
-                    variant="ghost"
-                    leadingIcon={`${social.icon}?mask text-white hover:text-primary-500`}
-                    href={social.href}
-                    aria-label={social.ariaLabel}
-                  />
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <!-- About Me Section -->
-          <section aria-labelledby="resume-about-heading" class="flex flex-col gap-sm">
-            <header class="flex flex-col gap-2">
-              <div class="flex flex-row items-center gap-2">
-                <RLAIcon name="i-lucide-user" class="text-sm" />
-                <h3 id="resume-about-heading" class="text-md font-bold">{t("page_resume.about_heading")}</h3>
-              </div>
-              <hr aria-hidden="true" class="border-neutral-500" />
-            </header>
-            <dl class="flex flex-col gap-sm text-sm text-neutral-500">
-              {aboutDetails.map((item) => (
-                <div class="flex justify-between">
-                  <dt>{item.label}</dt>
-                  <dd>{item.value}</dd>
-                </div>
-              ))}
-              <div class="flex justify-between items-center pb-1.5">
-                <dt>{t("page_resume.about_location_label")}</dt>
-                <dd>
-                  <RLALink
-                    leadingIcon="i-lucide-map-pin"
-                    label={t("page_resume.sidebar_location")}
-                    aria-label={`${t("page_resume.about_location_label")}: ${t("page_resume.sidebar_location")}`}
-                    href="https://en.wikipedia.org/wiki/Curitiba"
-                    class="text-sm hover:text-primary-400"
-                  />
-                </dd>
-              </div>
-            </dl>
-          </section>
-
-          <!-- Languages Section -->
-          <section aria-labelledby="resume-languages-heading" class="flex flex-col gap-sm">
-            <header class="flex flex-col gap-2">
-              <div class="flex flex-row items-center gap-2">
-                <RLAIcon name="i-lucide-languages" class="text-sm" />
-                <h3 id="resume-languages-heading" class="text-md font-bold">{t("page_resume.languages_heading")}</h3>
-              </div>
-              <hr aria-hidden="true" class="border-neutral-500" />
-            </header>
-            <dl class="flex flex-col gap-sm">
-              {languages.map((language) => (
-                <div class="flex flex-col gap-xs">
-                  <div class="flex flex-row justify-between items-center text-sm">
-                    <dt>{t(`page_resume.${language.nameKey}`)}</dt>
-                    <dd class="text-sm text-neutral-500">{t(`page_resume.${language.levelKey}`)}</dd>
-                  </div>
-                  <dd>
-                    <RLAProgress
-                      size="sm"
-                      value={language.score}
-                      aria-label={`${t(`page_resume.${language.nameKey}`)}: ${t(`page_resume.${language.levelKey}`)}`}
-                    />
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </section>
-        </aside>
-
         <!-- Page Body -->
-        <article class="flex flex-col gap-xl py-8 md:py-16 flex-1">
-          <RLAPageSection
+        <div class="flex flex-col gap-xl py-8 md:py-16 flex-1">          <RLAPageSection
             variant="hero"
             orientation="horizontal"
             title={t("page_resume.hero_title")}
@@ -800,7 +690,114 @@ const projects: ResumeProject[] = [
               ))}
             </ul>
           </section>
-        </article>
+        </div>
+
+        <!-- Left Sidebar -->
+        <aside aria-label={t("page_resume.aria_sidebar_profile")} class="order-first flex flex-col w-full gap-xl py-8 md:py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
+          <!-- Introduction Section -->
+          <section aria-labelledby="resume-sidebar-name" class="flex flex-col items-center">
+            <header class="flex flex-col gap-xs items-center">
+              <RLAAvatar
+                src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
+                alt={t("page_resume.sidebar_name")}
+                class="!size-40 border-4 border-primary-500 shadow-xl"
+              />
+
+              <div class="text-center">
+                <h2 id="resume-sidebar-name" class="text-3xl font-bold">{t("page_resume.sidebar_name")}</h2>
+                <p class="text-md text-neutral-500">{t("page_resume.sidebar_title")}</p>
+              </div>
+            </header>
+
+            <!-- Availability Status Indicator -->
+            <RLAButton
+              href={getRelativeLocaleUrl("/contact")}
+              variant="ghost"
+              color="success"
+              class="w-full justify-center text-sm font-bold"
+            >
+              <span class="relative flex size-2.5" aria-hidden="true">
+                {currentAvailability.ping && (
+                  <span class={`absolute inline-flex size-full animate-ping rounded-full opacity-75 ${currentAvailability.colorClass}`} />
+                )}
+                <span class={`relative inline-flex size-2.5 rounded-full ${currentAvailability.colorClass}`} />
+              </span>
+              {t(`page_resume.${currentAvailability.labelKey}`)}
+            </RLAButton>
+
+            <!-- Socials -->
+            <ul class="flex gap-sm justify-center w-full">
+              {socials.map((social) => (
+                <li>
+                  <RLAButton
+                    size="lg"
+                    variant="ghost"
+                    leadingIcon={`${social.icon}?mask text-white hover:text-primary-500`}
+                    href={social.href}
+                    aria-label={social.ariaLabel}
+                  />
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <!-- About Me Section -->
+          <section aria-labelledby="resume-about-heading" class="flex flex-col gap-sm">
+            <header class="flex flex-col gap-2">
+              <div class="flex flex-row items-center gap-2">
+                <RLAIcon name="i-lucide-user" class="text-sm" />
+                <h3 id="resume-about-heading" class="text-md font-bold">{t("page_resume.about_heading")}</h3>
+              </div>
+              <hr aria-hidden="true" class="border-neutral-500" />
+            </header>
+            <dl class="flex flex-col gap-sm text-sm text-neutral-500">
+              {aboutDetails.map((item) => (
+                <div class="flex justify-between">
+                  <dt>{item.label}</dt>
+                  <dd>{item.value}</dd>
+                </div>
+              ))}
+              <div class="flex justify-between items-center pb-1.5">
+                <dt>{t("page_resume.about_location_label")}</dt>
+                <dd>
+                  <RLALink
+                    leadingIcon="i-lucide-map-pin"
+                    label={t("page_resume.sidebar_location")}
+                    aria-label={`${t("page_resume.about_location_label")}: ${t("page_resume.sidebar_location")}`}
+                    href="https://en.wikipedia.org/wiki/Curitiba"
+                    class="text-sm hover:text-primary-400"
+                  />
+                </dd>
+              </div>
+            </dl>
+          </section>
+
+          <!-- Languages Section -->
+          <section aria-labelledby="resume-languages-heading" class="flex flex-col gap-sm">
+            <header class="flex flex-col gap-2">
+              <div class="flex flex-row items-center gap-2">
+                <RLAIcon name="i-lucide-languages" class="text-sm" />
+                <h3 id="resume-languages-heading" class="text-md font-bold">{t("page_resume.languages_heading")}</h3>
+              </div>
+              <hr aria-hidden="true" class="border-neutral-500" />
+            </header>
+            <dl class="flex flex-col gap-sm">
+              {languages.map((language) => (
+                <div class="grid grid-cols-[1fr_auto] gap-y-1 items-center">
+                  <dt class="text-sm">{t(`page_resume.${language.nameKey}`)}</dt>
+                  <dd class="text-sm text-neutral-500 text-end">{t(`page_resume.${language.levelKey}`)}</dd>
+                  <dd class="col-span-2">
+                    <RLAProgress
+                      size="sm"
+                      value={language.score}
+                      aria-label={`${t(`page_resume.${language.nameKey}`)}: ${t(`page_resume.${language.levelKey}`)}`}
+                    />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        </aside>
       </div>
     </RLAPage>
   </RLAContainer>
