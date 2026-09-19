@@ -10,32 +10,30 @@ import RLABadge from "@rimelight/ui/components/badge/RLABadge.astro"
 import type { ButtonProps } from "@rimelight/ui/components/button/button.ts"
 import RLAIcon from "@rimelight/ui/components/icon/RLAIcon.astro"
 import RLAProgress from "@rimelight/ui/components/progress/RLAProgress.astro"
-import Project_01_Image from "#assets/images/placeholder.webp"
-import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro";
-import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
+import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro"
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
 
-// Unprecise but good enough for this use case to avoid adding a date library or larger function.
+// Imprecise but good enough for this use case to avoid adding a date library or larger function.
 const age = Math.floor((Date.now() - new Date(1997, 3, 30).getTime()) / (365.25 * 24 * 60 * 60 * 1000));
 
 // Availability state presets: 'available' | 'busy' | 'looking'
 const availabilityStatus: 'available' | 'busy' | 'looking' = 'available';
 
-
 const availabilityConfig = {
   available: {
     labelKey: "sidebar_availability_available" as const,
-    colorClass: "bg-emerald-500",
+    colorClass: "bg-success-500",
     ping: true
   },
   busy: {
     labelKey: "sidebar_availability_busy" as const,
-    colorClass: "bg-red-500",
+    colorClass: "bg-error-500",
     ping: false
   },
   looking: {
     labelKey: "sidebar_availability_looking" as const,
-    colorClass: "bg-amber-500",
+    colorClass: "bg-warning-500",
     ping: true
   }
 };
@@ -194,7 +192,7 @@ const certifications = [
 
 const projects = [
   {
-    imageSrc: Project_01_Image,
+    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
     name: t("page_resume.project_lumen_name"),
     period: "2025",
     description: t("page_resume.project_lumen_description"),
@@ -704,7 +702,7 @@ const projects = [
                       <span class="text-sm text-neutral-500 font-semibold">{project.period}</span>
                     </div>
 
-                    <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl border border-neutral-800/80">
+                    <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl">
                       <RLAImage
                         src={project.imageSrc}
                         alt={project.name}

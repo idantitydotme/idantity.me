@@ -12,6 +12,10 @@ export default defineConfig(
         logo: {
           alt: "idantity"
         },
+        favicon: {
+          svg: "https://cdn.idantity.me/logos/logomark_color.svg"
+        },
+        appleTouchIcon: "https://cdn.idantity.me/logos/logomark_color.svg",
         colors: {
           themeColor: "#ffffff",
           backgroundColor: "#ffffff"
@@ -42,6 +46,19 @@ export default defineConfig(
       locales: ["en", "es"],
       defaultLocale: "en"
     },
-    ui: true
+    ui: {
+      logos: {
+        logomark: {
+          color: "https://cdn.idantity.me/logos/logomark_color.svg",
+          white: "https://cdn.idantity.me/logos/logomark_white.svg",
+          black: "https://cdn.idantity.me/logos/logomark_black.svg"
+        },
+        logotype: {
+          color: "https://cdn.idantity.me/logos/logotype_color.svg",
+          white: "https://cdn.idantity.me/logos/logotype_white.svg",
+          black: "https://cdn.idantity.me/logos/logotype_black.svg"
+        }
+      }
+    }
   })
 )

@@ -1,10 +1,8 @@
 ---
-import AppLayout from '#layouts/AppLayout.astro';
-import AboutHeroImage from '#assets/images/placeholder.webp';
-import { t } from "@rimelight/i18n";
-import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
+import AppLayout from "#layouts/AppLayout.astro"
+import { t } from "@rimelight/i18n"
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
 import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
-
 ---
 
 <AppLayout title={t("page_about.title")} description={t("page_about.description")}>
@@ -13,7 +11,7 @@ import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
     title="About Me"
     orientation="horizontal"
   >
-    <RLAImage src={AboutHeroImage} alt="Daniel Marchi" />
+    <RLAImage src="https://cdn.idantity.me/images/placeholder.webp" alt="Daniel Marchi" />
   </RLAPageSection>
 
   <RLAPageSection
@@ -21,7 +19,7 @@ import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
     orientation="horizontal"
     reverse
   >
-    <RLAImage src={AboutHeroImage} alt="Daniel Marchi" />
+    <RLAImage src="https://cdn.idantity.me/images/placeholder.webp" alt="Daniel Marchi" />
     <slot name="description">
       <p>In many programming languages, <a href="https://en.wikipedia.org/wiki/Property_(programming)#Dot_notation">"dot notation"</a> is the concept of using dots ('.') as a way to access internal properties or functionality of an entity.
         symbolizes struggles I've had throughout the years with self identity, and in accessing emotions and</p>
@@ -33,7 +31,7 @@ import RLAImage from "@rimelight/ui/components/image/RLAImage.astro"
     description="Who keeps me company throughout my day."
     orientation="horizontal"
   >
-    <RLAImage src={AboutHeroImage} alt="Daniel Marchi" />
+    <RLAImage src="https://cdn.idantity.me/images/placeholder.webp" alt="Daniel Marchi" />
 
     <slot name="footer">
       <p>I've had cats my entire life, and currently live with two beautiful .</p>
