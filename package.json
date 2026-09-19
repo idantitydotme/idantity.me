@@ -63,7 +63,6 @@
     "@rimelight/config": "0.0.18",
     "@types/node": "26.6.1",
     "drizzle-kit": "0.31.10",
-    "takumi-js": "2.14.0",
     "typescript": "6.0.3",
     "unocss": "66.10.5",
     "vite-plus": "0.3.3"
