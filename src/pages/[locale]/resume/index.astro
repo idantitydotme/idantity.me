@@ -231,7 +231,7 @@ const projects = [
 
               <div class="text-center">
                 <h2 class="text-3xl font-bold">{t("page_resume.sidebar_name")}</h2>
-                <p class="text-md text-neutral-300">{t("page_resume.sidebar_title")}</p>
+                <p class="text-md text-neutral-500">{t("page_resume.sidebar_title")}</p>
               </div>
             </header>
 
@@ -275,22 +275,22 @@ const projects = [
               </div>
               <hr class="border-neutral-800/80" />
             </header>
-            <ul class="space-y-2 text-sm text-neutral-300">
+            <ul class="space-y-2 text-sm text-neutral-500">
               <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
                 <span>{t("page_resume.about_gender_label")}</span>
-                <span class="text-neutral-300">{t("page_resume.about_gender_value")}</span>
+                <span class="text-neutral-500">{t("page_resume.about_gender_value")}</span>
               </li>
               <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
                 <span>{t("page_resume.about_pronouns_label")}</span>
-                <span class="text-neutral-300">{t("page_resume.about_pronouns_value")}</span>
+                <span class="text-neutral-500">{t("page_resume.about_pronouns_value")}</span>
               </li>
               <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
                 <span>{t("page_resume.about_nationality_label")}</span>
-                <span class="text-neutral-300">{t("page_resume.about_nationality_value")}</span>
+                <span class="text-neutral-500">{t("page_resume.about_nationality_value")}</span>
               </li>
               <li class="flex justify-between border-b border-neutral-900/40 pb-1.5">
                 <span>{t("page_resume.about_age_label")}</span>
-                <span class="text-neutral-300">{age} {t("page_resume.about_age_value")}</span>
+                <span class="text-neutral-500">{age} {t("page_resume.about_age_value")}</span>
               </li>
               <li class="flex justify-between items-center pb-1.5">
                 <span>Location</span>
@@ -318,7 +318,7 @@ const projects = [
                 <li class="flex flex-col gap-xs">
                   <div class="flex flex-row justify-between items-center text-sm">
                     <span>{t(`page_resume.${language.nameKey}`)}</span>
-                    <span class="text-xs text-neutral-300">{t(`page_resume.${language.levelKey}`)}</span>
+                    <span class="text-xs text-neutral-500">{t(`page_resume.${language.levelKey}`)}</span>
                   </div>
                   <RLAProgress size="sm" value={language.score}/>
                 </li>
@@ -356,7 +356,7 @@ const projects = [
                   <RLAIcon name="i-lucide-code-2" size="lg" class="text-primary-500" />
                   <h3 class="text-lg font-bold">{t("page_resume.skills_webDev")}</h3>
                 </div>
-                <p class="text-sm text-neutral-300">
+                <p class="text-sm text-neutral-500">
                   {t("page_resume.skills_webDev_desc")}
                 </p>
               </li>
@@ -365,7 +365,7 @@ const projects = [
                   <RLAIcon name="i-lucide-gamepad-2" size="lg" class="text-primary-500" />
                   <h3 class="text-lg font-bold">{t("page_resume.skills_gameDev")}</h3>
                 </div>
-                <p class="text-sm text-neutral-300">
+                <p class="text-sm text-neutral-500">
                   {t("page_resume.skills_gameDev_desc")}
                 </p>
               </li>
@@ -374,7 +374,7 @@ const projects = [
                   <RLAIcon name="i-lucide-palette" size="lg" class="text-primary-500" />
                   <h3 class="text-lg font-bold">{t("page_resume.skills_design")}</h3>
                 </div>
-                <p class="text-sm text-neutral-300">
+                <p class="text-sm text-neutral-500">
                   {t("page_resume.skills_design_desc")}
                 </p>
               </li>
@@ -578,18 +578,18 @@ const projects = [
               }))}
             >
               <div slot="exp-0-description" class="flex flex-col gap-2">
-                {experiences[0].location && <p class="text-sm text-neutral-300">{experiences[0].location}</p>}
+                {experiences[0].location && <p class="text-sm text-neutral-500">{experiences[0].location}</p>}
                 {experiences[0].summary && (
                   <div>
-                    <span class="text-sm font-bold text-neutral-300 block">{t("page_resume.exp_summary_label")}:</span>
-                    <p class="text-sm text-neutral-300">{experiences[0].summary}</p>
+                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
+                    <p class="text-sm text-neutral-500">{experiences[0].summary}</p>
                   </div>
                 )}
                 {experiences[0].responsibilities && experiences[0].responsibilities.length > 0 && (
                   <div>
-                    <span class="text-sm font-bold text-neutral-300 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-300">
-                      {experiences[0].responsibilities.map((resp) => <li class="text-neutral-300">{resp}</li>)}
+                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
+                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
+                      {experiences[0].responsibilities.map((resp) => <li class="text-neutral-500">{resp}</li>)}
                     </ul>
                   </div>
                 )}
@@ -605,18 +605,18 @@ const projects = [
               </div>
 
               <div slot="exp-1-description" class="flex flex-col gap-2">
-                {experiences[1].location && <p class="text-sm text-neutral-300">{experiences[1].location}</p>}
+                {experiences[1].location && <p class="text-sm text-neutral-500">{experiences[1].location}</p>}
                 {experiences[1].summary && (
                   <div>
-                    <span class="text-sm font-bold text-neutral-300 block">{t("page_resume.exp_summary_label")}:</span>
-                    <p class="text-sm text-neutral-300">{experiences[1].summary}</p>
+                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
+                    <p class="text-sm text-neutral-500">{experiences[1].summary}</p>
                   </div>
                 )}
                 {experiences[1].responsibilities && experiences[1].responsibilities.length > 0 && (
                   <div>
-                    <span class="text-sm font-bold text-neutral-300 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-300">
-                      {experiences[1].responsibilities.map((resp) => <li class="text-neutral-300">{resp}</li>)}
+                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
+                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
+                      {experiences[1].responsibilities.map((resp) => <li class="text-neutral-500">{resp}</li>)}
                     </ul>
                   </div>
                 )}
@@ -632,18 +632,18 @@ const projects = [
               </div>
 
               <div slot="exp-2-description" class="flex flex-col gap-2">
-                {experiences[2].location && <p class="text-sm text-neutral-300">{experiences[2].location}</p>}
+                {experiences[2].location && <p class="text-sm text-neutral-500">{experiences[2].location}</p>}
                 {experiences[2].summary && (
                   <div>
-                    <span class="text-sm font-bold text-neutral-300 ">{t("page_resume.exp_summary_label")}:</span>
-                    <p class="text-sm text-neutral-300">{experiences[2].summary}</p>
+                    <span class="text-sm font-bold text-neutral-500 ">{t("page_resume.exp_summary_label")}:</span>
+                    <p class="text-sm text-neutral-500">{experiences[2].summary}</p>
                   </div>
                 )}
                 {experiences[2].responsibilities && experiences[2].responsibilities.length > 0 && (
                   <div>
-                    <span class="text-sm font-bold text-neutral-300 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-300">
-                      {experiences[2].responsibilities.map((resp) => <li class="text-neutral-300">{resp}</li>)}
+                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
+                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
+                      {experiences[2].responsibilities.map((resp) => <li class="text-neutral-500">{resp}</li>)}
                     </ul>
                   </div>
                 )}
@@ -690,7 +690,7 @@ const projects = [
                   <div class="flex flex-col gap-md">
                     <div class="flex flex-row justify-between items-start">
                       <h3 class="text-lg font-bold">{project.name}</h3>
-                      <span class="text-sm text-neutral-300">{project.period}</span>
+                      <span class="text-sm text-neutral-500">{project.period}</span>
                     </div>
 
                     <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl">
@@ -700,17 +700,17 @@ const projects = [
                         class="absolute inset-0 w-full h-full object-cover"
                       />
                     </div>
-                    <p class="text-sm text-neutral-300">{project.description}</p>
+                    <p class="text-sm text-neutral-500">{project.description}</p>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-lg border-t border-neutral-800/80 pt-md">
                       <div>
                         <h4 class="text-sm font-bold">{t("page_resume.projects_solution_label")}</h4>
-                        <p class="text-sm text-neutral-300">{project.solution}</p>
+                        <p class="text-sm text-neutral-500">{project.solution}</p>
                       </div>
 
                       <div>
                         <h4 class="text-sm font-bold">{t("page_resume.projects_impact_label")}</h4>
-                        <p class="text-sm text-neutral-300">{project.impact}</p>
+                        <p class="text-sm text-neutral-500">{project.impact}</p>
                       </div>
                     </div>
 
@@ -720,7 +720,7 @@ const projects = [
                         {
                           project.technologies.categories.map((category) => (
                             <div class="flex flex-col gap-xs">
-                              <h5 class="text-sm font-bold text-neutral-300">{category.name}</h5>
+                              <h5 class="text-sm font-bold text-neutral-500">{category.name}</h5>
                               <div class="flex flex-wrap gap-1.5">
                                 {
                                   category.items.map((tech) => (
@@ -751,9 +751,9 @@ const projects = [
               {certifications.map((cert) => (
                 <div class="flex flex-col">
                   <h3 class="text-lg font-bold">{cert.title}</h3>
-                  <span class="text-sm text-neutral-300">{cert.issuer}</span>
+                  <span class="text-sm text-neutral-500">{cert.issuer}</span>
                   {cert.credentialId && (
-                    <code class="text-sm text-neutral-300 break-all select-all">
+                    <code class="text-sm text-neutral-500 break-all select-all">
                       {cert.credentialId}
                     </code>
                   )}
