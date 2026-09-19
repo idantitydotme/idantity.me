@@ -71,13 +71,12 @@ const spotifyPlaylists = [
       {spotifyPlaylists.map((playlist) => (
         <RLACard class="p-2 overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-default shadow-sm hover:shadow-md transition-shadow">
           <iframe
-            style="border-radius: 12px"
             src={`https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator`}
             width="100%"
             height="352"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"
-            class="w-full border-0"
+            class="w-full border-0 rounded-xl"
           />
         </RLACard>
       ))}

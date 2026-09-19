@@ -57,29 +57,13 @@ const scores = [
             class="lighthouse-score group flex flex-col items-center"
             role="listitem"
           >
-            <div class="relative">
               <svg
-                class="lighthouse-gauge"
+                class="lighthouse-gauge size-24 sm:size-28 md:size-36"
                 width="120"
                 height="120"
                 viewBox="0 0 120 120"
                 aria-hidden="true"
-                style="width: 96px; height: 96px;"
               >
-                <style>
-                  @media (min-width: 640px) {
-                    .lighthouse-gauge {
-                      width: 112px !important;
-                      height: 112px !important;
-                    }
-                  }
-                  @media (min-width: 768px) {
-                    .lighthouse-gauge {
-                      width: 144px !important;
-                      height: 144px !important;
-                    }
-                  }
-                </style>
                 <circle
                   cx="60"
                   cy="60"
@@ -100,21 +84,18 @@ const scores = [
                   stroke-dashoffset={offset}
                   class="lighthouse-progress"
                   transform="rotate(-90 60 60)"
-                  style={`--target-offset: ${offset}`}
                 />
                 <text
                   x="60"
                   y="60"
                   text-anchor="middle"
                   dominant-baseline="central"
-                  class="lighthouse-number font-semibold font-sans"
+                  class="lighthouse-number font-semibold font-sans text-3xl"
                   fill={color}
-                  style="font-size: 2rem;"
                 >
                   {score.value}
                 </text>
               </svg>
-            </div>
 
             <span class="text-muted-foreground mt-2xl text-center text-sm font-medium">
               {score.label}
@@ -168,7 +149,7 @@ const scores = [
       stroke-dashoffset: 339.292; /* Approximate circumference */
     }
     to {
-      stroke-dashoffset: var(--target-offset, 0);
+      stroke-dashoffset: 0;
     }
   }
 
