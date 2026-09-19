@@ -483,9 +483,16 @@ const projects = [
                       <ul class="flex flex-col gap-xs w-full items-start">
                         {category.items.map((item) => (
                           <li class="w-full">
-                            <RLAButton block justify="start" variant="ghost" leadingIcon={item.icon} href={item.href} class="text-sm">
-                              {item.label}
-                            </RLAButton>
+                            <RLAButton
+                              block
+                              justify="start"
+                              variant="ghost"
+                              color="neutral"
+                              leadingIcon={item.icon}
+                              href={item.href}
+                              label={item.label}
+                              class="text-sm"
+                            />
                           </li>
                         ))}
                       </ul>
