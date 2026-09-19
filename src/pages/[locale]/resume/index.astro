@@ -673,16 +673,6 @@ const projects: ResumeProject[] = [
                         <code class="block text-xs text-neutral-500 break-all">
                           {t("page_resume.certifications_id_label")}: {cert.credentialId}
                         </code>
-                        {cert.url && (
-                          <RLALink
-                            href={cert.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            label={t("page_resume.certifications_verify_label")}
-                            trailingIcon="i-lucide-external-link"
-                            class="text-xs text-primary-400 hover:text-primary-300 w-fit"
-                          />
-                        )}
                       </div>
                     )}
                   </details>
@@ -716,12 +706,14 @@ const projects: ResumeProject[] = [
               color="success"
               class="w-full justify-center text-sm font-bold"
             >
-              <span class="relative flex size-2.5" aria-hidden="true">
-                {currentAvailability.ping && (
-                  <span class={`absolute inline-flex size-full animate-ping rounded-full opacity-75 ${currentAvailability.colorClass}`} />
-                )}
-                <span class={`relative inline-flex size-2.5 rounded-full ${currentAvailability.colorClass}`} />
-              </span>
+              <span
+                aria-hidden="true"
+                class:list={[
+                  "relative inline-block size-2.5 rounded-full",
+                  currentAvailability.colorClass,
+                  { "before:content-[''] before:absolute before:inset-0 before:rounded-full before:animate-ping before:opacity-75 before:bg-inherit": currentAvailability.ping }
+                ]}
+              />
               {t(`page_resume.${currentAvailability.labelKey}`)}
             </RLAButton>
 
