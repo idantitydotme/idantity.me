@@ -149,16 +149,12 @@ const currentAvailability = availabilityConfig[availabilityStatus];
 
 const socials = [
   {
-    size: "lg",
-    variant: "ghost" as const,
-    leadingIcon: "i-logos-linkedin-icon?mask text-white hover:text-primary-500",
+    icon: "i-logos-linkedin-icon",
     href: "https://linkedin.com/daniel-marchi",
     ariaLabel: "LinkedIn"
   },
   {
-    size: "lg",
-    variant: "ghost" as const,
-    leadingIcon: "i-logos-github-icon?mask text-white hover:text-primary-500",
+    icon: "i-logos-github-icon",
     href: "https://github.com/idantitydotme",
     ariaLabel: "GitHub"
   }
@@ -166,26 +162,26 @@ const socials = [
 
 const languages = [
   {
-    nameKey: "lang_portuguese" as const,
-    levelKey: "level_fluent" as const,
+    nameKey: "lang_portuguese",
+    levelKey: "level_fluent",
     score: 100
   },
   {
-    nameKey: "lang_english" as const,
-    levelKey: "level_fluent" as const,
+    nameKey: "lang_english",
+    levelKey: "level_fluent",
     score: 100
   },
   {
-    nameKey: "lang_spanish" as const,
-    levelKey: "level_intermediate" as const,
+    nameKey: "lang_spanish",
+    levelKey: "level_intermediate",
     score: 50
   },
   {
-    nameKey: "lang_romanian" as const,
-    levelKey: "level_basic" as const,
+    nameKey: "lang_romanian",
+    levelKey: "level_basic",
     score: 25
   }
-];
+] as const;
 
 const heroLinks: ButtonProps[] = [
   {
@@ -212,7 +208,7 @@ export interface ExperienceItem {
   tags?: string[];
 }
 
-const experiences: [ExperienceItem, ExperienceItem, ExperienceItem] = [
+const experiences: ExperienceItem[] = [
   {
     role: t("page_resume.exp_role_0") ?? "",
     company: t("page_resume.exp_company_0") ?? "",
@@ -365,9 +361,9 @@ const projects = [
               {socials.map((social) => (
                 <li>
                   <RLAButton
-                    size={social.size}
-                    variant={social.variant}
-                    leadingIcon={social.leadingIcon}
+                    size="lg"
+                    variant="ghost"
+                    leadingIcon={`${social.icon}?mask text-white hover:text-primary-500`}
                     href={social.href}
                     aria-label={social.ariaLabel}
                   />
@@ -377,11 +373,11 @@ const projects = [
           </section>
 
           <!-- About Me Section -->
-          <section class="flex flex-col gap-sm">
+          <section aria-labelledby="resume-about-heading" class="flex flex-col gap-sm">
             <header class="flex flex-col gap-2">
               <div class="flex flex-row items-center gap-2">
                 <RLAIcon name="i-lucide-user" class="text-sm" />
-                <h3 class="text-md font-bold">{t("page_resume.about_heading")}</h3>
+                <h3 id="resume-about-heading" class="text-md font-bold">{t("page_resume.about_heading")}</h3>
               </div>
               <hr class="border-neutral-500" />
             </header>
@@ -393,7 +389,7 @@ const projects = [
                 </div>
               ))}
               <div class="flex justify-between items-center pb-1.5">
-                <dt>Location</dt>
+                <dt>{t("page_resume.about_location_label")}</dt>
                 <dd>
                   <RLALink
                     leadingIcon="i-lucide-map-pin"
@@ -407,11 +403,11 @@ const projects = [
           </section>
 
           <!-- Languages Section -->
-          <section class="flex flex-col gap-sm">
+          <section aria-labelledby="resume-languages-heading" class="flex flex-col gap-sm">
             <header class="flex flex-col gap-2">
               <div class="flex flex-row items-center gap-2">
                 <RLAIcon name="i-lucide-languages" class="text-sm" />
-                <h3 class="text-md font-bold">{t("page_resume.languages_heading")}</h3>
+                <h3 id="resume-languages-heading" class="text-md font-bold">{t("page_resume.languages_heading")}</h3>
               </div>
               <hr class="border-neutral-500" />
             </header>
@@ -447,9 +443,9 @@ const projects = [
           </RLAPageSection>
 
           <!-- Skills Section -->
-          <section class="flex flex-col gap-md">
+          <section aria-labelledby="resume-skills-heading" class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
-              <h2 class="text-3xl font-bold">{t("page_resume.skills_heading")}</h2>
+              <h2 id="resume-skills-heading" class="text-3xl font-bold">{t("page_resume.skills_heading")}</h2>
               <hr class="border-neutral-500" />
             </header>
             <ul class="grid grid-cols-1 md:grid-cols-3 gap-lg">
@@ -468,9 +464,9 @@ const projects = [
           </section>
 
           <!-- Technologies & Tools Section -->
-          <section class="flex flex-col gap-md">
+          <section aria-labelledby="resume-tech-heading" class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
-              <h2 class="text-3xl font-bold">{t("page_resume.tech_heading")}</h2>
+              <h2 id="resume-tech-heading" class="text-3xl font-bold">{t("page_resume.tech_heading")}</h2>
               <hr class="border-neutral-500" />
             </header>
 
@@ -509,9 +505,9 @@ const projects = [
           </section>
 
           <!-- Experience Section -->
-          <section class="flex flex-col gap-md">
+          <section aria-labelledby="resume-experience-heading" class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
-              <h2 class="text-3xl font-bold">{t("page_resume.experience_heading")}</h2>
+              <h2 id="resume-experience-heading" class="text-3xl font-bold">{t("page_resume.experience_heading")}</h2>
               <hr class="border-neutral-500" />
             </header>
             <RLATimeline
@@ -610,9 +606,9 @@ const projects = [
           </section>
 
           <!-- Education Section -->
-          <section class="flex flex-col gap-md">
+          <section aria-labelledby="resume-education-heading" class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
-              <h2 class="text-3xl font-bold">{t("page_resume.education_heading")}</h2>
+              <h2 id="resume-education-heading" class="text-3xl font-bold">{t("page_resume.education_heading")}</h2>
               <hr class="border-neutral-500" />
             </header>
             <RLATimeline
@@ -628,9 +624,9 @@ const projects = [
           </section>
 
           <!-- Projects Section -->
-          <section class="flex flex-col gap-md">
+          <section aria-labelledby="resume-projects-heading" class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
-              <h2 class="text-3xl font-bold">{t("page_resume.projects_heading")}</h2>
+              <h2 id="resume-projects-heading" class="text-3xl font-bold">{t("page_resume.projects_heading")}</h2>
               <hr class="border-neutral-500" />
             </header>
             <div class="flex flex-col gap-xl">
@@ -639,7 +635,7 @@ const projects = [
                   <div class="flex flex-col gap-md">
                     <div class="flex flex-row justify-between items-start">
                       <h3 class="text-lg font-bold">{project.name}</h3>
-                      <span class="text-sm text-neutral-500">{project.period}</span>
+                      <time class="text-sm text-neutral-500">{project.period}</time>
                     </div>
 
                     <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl">
@@ -691,9 +687,9 @@ const projects = [
           </section>
 
           <!-- Certifications Section -->
-          <section class="flex flex-col gap-md">
+          <section aria-labelledby="resume-certifications-heading" class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
-              <h2 class="text-3xl font-bold">{t("page_resume.certifications_heading") ?? "Certifications"}</h2>
+              <h2 id="resume-certifications-heading" class="text-3xl font-bold">{t("page_resume.certifications_heading") ?? "Certifications"}</h2>
               <hr class="border-neutral-500" />
             </header>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
