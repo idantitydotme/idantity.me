@@ -632,11 +632,11 @@ const projects = [
             <div class="flex flex-col gap-xl">
               {
                 projects.map((project) => (
-                  <div class="flex flex-col gap-md">
-                    <div class="flex flex-row justify-between items-start">
+                  <article class="flex flex-col gap-md">
+                    <header class="flex flex-row justify-between items-start">
                       <h3 class="text-lg font-bold">{project.name}</h3>
                       <time class="text-sm text-neutral-500">{project.period}</time>
-                    </div>
+                    </header>
 
                     <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl">
                       <RLAImage
@@ -680,7 +680,7 @@ const projects = [
                         }
                       </div>
                     </div>
-                  </div>
+                  </article>
                 ))
               }
             </div>
