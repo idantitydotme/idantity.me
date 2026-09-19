@@ -150,12 +150,12 @@ const socials = [
   {
     icon: "i-logos-linkedin-icon",
     href: "https://linkedin.com/daniel-marchi",
-    ariaLabel: "LinkedIn"
+    ariaLabel: t("page_resume.aria_social_linkedin") ?? "LinkedIn"
   },
   {
     icon: "i-logos-github-icon",
     href: "https://github.com/idantitydotme",
-    ariaLabel: "GitHub"
+    ariaLabel: t("page_resume.aria_social_github") ?? "GitHub"
   }
 ];
 
@@ -213,7 +213,7 @@ const experiences: ExperienceItem[] = [
     company: t("page_resume.exp_company_0") ?? "",
     companyUrl: "https://compass.uol",
     period: t("page_resume.exp_period_0") ?? "",
-    location: "Curitiba, Brazil · Remote",
+    location: t("page_resume.exp_location_0") ?? "Curitiba, Brazil · Remote",
     summary: t("page_resume.exp_summary_0") ?? "",
     responsibilities: [
       t("page_resume.exp_bullet_0_0") ?? "",
@@ -227,7 +227,7 @@ const experiences: ExperienceItem[] = [
     company: t("page_resume.exp_company_1") ?? "",
     companyUrl: "https://compass.uol",
     period: t("page_resume.exp_period_1") ?? "",
-    location: "Curitiba, Brazil · Remote",
+    location: t("page_resume.exp_location_1") ?? "Curitiba, Brazil · Remote",
     summary: t("page_resume.exp_summary_1") ?? "",
     responsibilities: [
       t("page_resume.exp_bullet_1_0") ?? ""
@@ -239,7 +239,7 @@ const experiences: ExperienceItem[] = [
     company: t("page_resume.exp_company_2") ?? "",
     companyUrl: "https://compass.uol",
     period: t("page_resume.exp_period_2") ?? "",
-    location: "Curitiba, Brazil · Remote",
+    location: t("page_resume.exp_location_2") ?? "Curitiba, Brazil · Remote",
     summary: t("page_resume.exp_summary_2") ?? "",
     responsibilities: [
       t("page_resume.exp_bullet_2_0") ?? ""
@@ -263,34 +263,40 @@ const education = [
 
 const certifications = [
   {
-    title: "HTML Essential Training",
+    title: t("page_resume.cert_html_title") ?? "HTML Essential Training",
     issuer: "LinkedIn Learning",
-    credentialId: "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
+    credentialId: "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9",
+    url: "https://www.linkedin.com/learning/certificates/d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
   },
   {
-    title: "CSS Essential Training",
+    title: t("page_resume.cert_css_title") ?? "CSS Essential Training",
     issuer: "LinkedIn Learning",
-    credentialId: "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
+    credentialId: "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328",
+    url: "https://www.linkedin.com/learning/certificates/39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
   },
   {
-    title: "TypeScript Essential Training",
+    title: t("page_resume.cert_ts_title") ?? "TypeScript Essential Training",
     issuer: "LinkedIn Learning",
-    credentialId: "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
+    credentialId: "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7",
+    url: "https://www.linkedin.com/learning/certificates/b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
   },
   {
-    title: "PostgreSQL Essential Training",
+    title: t("page_resume.cert_postgres_title") ?? "PostgreSQL Essential Training",
     issuer: "LinkedIn Learning",
-    credentialId: "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
+    credentialId: "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733",
+    url: "https://www.linkedin.com/learning/certificates/f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
   },
   {
-    title: "Git Essential Training",
+    title: t("page_resume.cert_git_title") ?? "Git Essential Training",
     issuer: "LinkedIn Learning",
-    credentialId: "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
+    credentialId: "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34",
+    url: "https://www.linkedin.com/learning/certificates/0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
   },
   {
-    title: "Unreal Engine 5 Essential Training",
+    title: t("page_resume.cert_ue5_title") ?? "Unreal Engine 5 Essential Training",
     issuer: "LinkedIn Learning",
-    credentialId: "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
+    credentialId: "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630",
+    url: "https://www.linkedin.com/learning/certificates/d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
   }
 ];
 
@@ -355,13 +361,13 @@ const projects: ResumeProject[] = [
     <RLAPage>
       <div class="flex flex-col md:flex-row gap-xl">
         <!-- Left Sidebar -->
-        <aside aria-label="Profile" class="flex flex-col w-full gap-xl py-8 md:py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
+        <aside aria-label={t("page_resume.aria_sidebar_profile")} class="flex flex-col w-full gap-xl py-8 md:py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
           <!-- Introduction Section -->
           <section class="flex flex-col items-center">
             <header class="flex flex-col gap-xs items-center">
               <RLAAvatar
                 src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
-                alt="Daniel Marchi"
+                alt={t("page_resume.sidebar_name")}
                 class="!size-40 border-4 border-primary-500 shadow-xl"
               />
 
@@ -425,6 +431,7 @@ const projects: ResumeProject[] = [
                   <RLALink
                     leadingIcon="i-lucide-map-pin"
                     label={t("page_resume.sidebar_location")}
+                    aria-label={`${t("page_resume.about_location_label")}: ${t("page_resume.sidebar_location")}`}
                     href="https://en.wikipedia.org/wiki/Curitiba"
                     class="text-sm hover:text-primary-400"
                   />
@@ -449,7 +456,11 @@ const projects: ResumeProject[] = [
                     <dt>{t(`page_resume.${language.nameKey}`)}</dt>
                     <dd class="text-sm text-neutral-500">{t(`page_resume.${language.levelKey}`)}</dd>
                   </div>
-                  <RLAProgress size="sm" value={language.score}/>
+                  <RLAProgress
+                    size="sm"
+                    value={language.score}
+                    aria-label={`${t(`page_resume.${language.nameKey}`)}: ${t(`page_resume.${language.levelKey}`)}`}
+                  />
                 </div>
               ))}
             </dl>
@@ -467,7 +478,7 @@ const projects: ResumeProject[] = [
           >
             <RLAImage
               src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
-              alt="Daniel Marchi"
+              alt={t("page_resume.sidebar_name")}
               width={800}
               height={800}
             />
@@ -553,86 +564,34 @@ const projects: ResumeProject[] = [
                 icon: exp.image ? undefined : "i-lucide-briefcase"
               }))}
             >
-              <div slot="exp-0-description" class="flex flex-col gap-2">
-                {experiences[0].location && <p class="text-sm text-neutral-500">{experiences[0].location}</p>}
-                {experiences[0].tags && experiences[0].tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5">
-                    {experiences[0].tags.map((tag) => (
-                      <RLABadge variant="soft">
-                        {tag}
-                      </RLABadge>
-                    ))}
-                  </div>
-                )}
-                {experiences[0].summary && (
-                  <div>
-                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                    <p class="text-sm text-neutral-500">{experiences[0].summary}</p>
-                  </div>
-                )}
-                {experiences[0].responsibilities && experiences[0].responsibilities.length > 0 && (
-                  <div>
-                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                      {experiences[0].responsibilities.map((resp) => <li>{resp}</li>)}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              <div slot="exp-1-description" class="flex flex-col gap-2">
-                {experiences[1].location && <p class="text-sm text-neutral-500">{experiences[1].location}</p>}
-                {experiences[1].tags && experiences[1].tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5">
-                    {experiences[1].tags.map((tag) => (
-                      <RLABadge variant="soft">
-                        {tag}
-                      </RLABadge>
-                    ))}
-                  </div>
-                )}
-                {experiences[1].summary && (
-                  <div>
-                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                    <p class="text-sm text-neutral-500">{experiences[1].summary}</p>
-                  </div>
-                )}
-                {experiences[1].responsibilities && experiences[1].responsibilities.length > 0 && (
-                  <div>
-                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                      {experiences[1].responsibilities.map((resp) => <li>{resp}</li>)}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              <div slot="exp-2-description" class="flex flex-col gap-2">
-                {experiences[2].location && <p class="text-sm text-neutral-500">{experiences[2].location}</p>}
-                {experiences[2].tags && experiences[2].tags.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5">
-                    {experiences[2].tags.map((tag) => (
-                      <RLABadge variant="soft">
-                        {tag}
-                      </RLABadge>
-                    ))}
-                  </div>
-                )}
-                {experiences[2].summary && (
-                  <div>
-                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
-                    <p class="text-sm text-neutral-500">{experiences[2].summary}</p>
-                  </div>
-                )}
-                {experiences[2].responsibilities && experiences[2].responsibilities.length > 0 && (
-                  <div>
-                    <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
-                    <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                      {experiences[2].responsibilities.map((resp) => <li>{resp}</li>)}
-                    </ul>
-                  </div>
-                )}
-              </div>
+              {experiences.map((exp, idx) => (
+                <div slot={`exp-${idx}-description`} class="flex flex-col gap-2">
+                  {exp.location && <p class="text-sm text-neutral-500">{exp.location}</p>}
+                  {exp.tags && exp.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-1.5">
+                      {exp.tags.map((tag) => (
+                        <RLABadge variant="soft">
+                          {tag}
+                        </RLABadge>
+                      ))}
+                    </div>
+                  )}
+                  {exp.summary && (
+                    <div>
+                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_summary_label")}:</span>
+                      <p class="text-sm text-neutral-500">{exp.summary}</p>
+                    </div>
+                  )}
+                  {exp.responsibilities && exp.responsibilities.length > 0 && (
+                    <div>
+                      <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
+                      <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
+                        {exp.responsibilities.map((resp) => <li>{resp}</li>)}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
             </RLATimeline>
           </section>
 
@@ -672,7 +631,7 @@ const projects: ResumeProject[] = [
                             <span class="inline-flex items-center gap-1">
                               <time>{project.period.start}</time>
                               <span aria-hidden="true">–</span>
-                              <time>{project.period.end || "Present"}</time>
+                              <time>{project.period.end || t("page_resume.period_present")}</time>
                             </span>
                           ) : (
                             <time>{project.period}</time>
@@ -691,7 +650,8 @@ const projects: ResumeProject[] = [
                           size="sm"
                           variant="soft"
                           href={project.href}
-                          label="View"
+                          label={t("page_resume.project_view_button")}
+                          aria-label={`${t("page_resume.project_view_button")}: ${project.name}`}
                           trailingIcon="i-lucide-external-link"
                           class="shrink-0"
                         />
@@ -740,7 +700,7 @@ const projects: ResumeProject[] = [
           <!-- Certifications Section -->
           <section aria-labelledby="resume-certifications-heading" class="flex flex-col gap-md">
             <header class="flex flex-col gap-xs">
-              <h2 id="resume-certifications-heading" class="text-3xl font-bold">{t("page_resume.certifications_heading") ?? "Certifications"}</h2>
+              <h2 id="resume-certifications-heading" class="text-3xl font-bold">{t("page_resume.certifications_heading")}</h2>
               <hr class="border-neutral-500" />
             </header>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
@@ -756,9 +716,21 @@ const projects: ResumeProject[] = [
                     )}
                   </summary>
                   {cert.credentialId && (
-                    <code class="block text-sm text-neutral-500 break-all">
-                      Certificate ID: {cert.credentialId}
-                    </code>
+                    <div class="flex flex-col gap-1.5 pt-1">
+                      <code class="block text-xs text-neutral-500 break-all">
+                        {t("page_resume.certifications_id_label")}: {cert.credentialId}
+                      </code>
+                      {cert.url && (
+                        <RLALink
+                          href={cert.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          label={t("page_resume.certifications_verify_label")}
+                          trailingIcon="i-lucide-external-link"
+                          class="text-xs text-primary-400 hover:text-primary-300 w-fit"
+                        />
+                      )}
+                    </div>
                   )}
                 </details>
               ))}
@@ -769,3 +741,4 @@ const projects: ResumeProject[] = [
     </RLAPage>
   </RLAContainer>
 </AppLayout>
+
