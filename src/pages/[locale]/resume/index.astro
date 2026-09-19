@@ -324,7 +324,7 @@ const projects = [
     <RLAPage>
       <div class="flex flex-col md:flex-row gap-xl">
         <!-- Left Sidebar -->
-        <aside aria-label="Profile" class="flex flex-col w-full gap-xl py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
+        <aside aria-label="Profile" class="flex flex-col w-full gap-xl py-8 md:py-16 md:w-80 shrink-0 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8">
           <!-- Introduction Section -->
           <section class="flex flex-col items-center">
             <header class="flex flex-col gap-xs items-center">
@@ -357,7 +357,7 @@ const projects = [
             </RLAButton>
 
             <!-- Socials -->
-            <ul class="flex flex-row gap-sm justify-center w-full">
+            <ul class="flex gap-sm justify-center w-full">
               {socials.map((social) => (
                 <li>
                   <RLAButton
@@ -385,7 +385,7 @@ const projects = [
               {aboutDetails.map((item) => (
                 <div class="flex justify-between">
                   <dt>{item.label}</dt>
-                  <dd class="text-neutral-500">{item.value}</dd>
+                  <dd>{item.value}</dd>
                 </div>
               ))}
               <div class="flex justify-between items-center pb-1.5">
@@ -479,9 +479,9 @@ const projects = [
 
                 <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-lg">
                   {group.categories.map((category) => (
-                    <li class="flex flex-col gap-md items-start text-left">
+                    <li class="flex flex-col gap-md">
                       <h4 class="text-sm font-bold">{category.title}</h4>
-                      <ul class="flex flex-col gap-xs w-full items-start">
+                      <ul class="flex flex-col gap-xs w-full">
                         {category.items.map((item) => (
                           <li class="w-full">
                             <RLAButton
@@ -543,7 +543,7 @@ const projects = [
                   <div>
                     <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
                     <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                      {experiences[0].responsibilities.map((resp) => <li class="text-neutral-500">{resp}</li>)}
+                      {experiences[0].responsibilities.map((resp) => <li>{resp}</li>)}
                     </ul>
                   </div>
                 )}
@@ -570,7 +570,7 @@ const projects = [
                   <div>
                     <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
                     <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                      {experiences[1].responsibilities.map((resp) => <li class="text-neutral-500">{resp}</li>)}
+                      {experiences[1].responsibilities.map((resp) => <li>{resp}</li>)}
                     </ul>
                   </div>
                 )}
@@ -597,7 +597,7 @@ const projects = [
                   <div>
                     <span class="text-sm font-bold text-neutral-500 block">{t("page_resume.exp_responsibilities_label")}:</span>
                     <ul class="space-y-1 pl-4 list-disc text-sm text-neutral-500">
-                      {experiences[2].responsibilities.map((resp) => <li class="text-neutral-500">{resp}</li>)}
+                      {experiences[2].responsibilities.map((resp) => <li>{resp}</li>)}
                     </ul>
                   </div>
                 )}
@@ -695,7 +695,7 @@ const projects = [
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
               {certifications.map((cert) => (
                 <details class="group cursor-pointer flex flex-col gap-1.5">
-                  <summary class=" flex items-start justify-between gap-sm select-none">
+                  <summary class="flex items-start justify-between gap-sm select-none">
                     <div class="flex flex-col">
                       <h3 class="text-lg font-bold group-hover:text-primary-500 transition-colors">{cert.title}</h3>
                       <span class="text-sm text-neutral-500">{cert.issuer}</span>
