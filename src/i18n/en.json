@@ -70,8 +70,11 @@
     "hero_action_downloadCv": "Download CV",
     "skills_heading": "Skills",
     "skills_webDev": "Web Development",
+    "skills_webDev_desc": "Building fast, responsive, and secure web applications using modern standard architectures, framework integration, and performance optimization techniques.",
     "skills_gameDev": "Game Development",
+    "skills_gameDev_desc": "Developing real-time virtual experiences, game logic, and gameplay loops in game engines with standard clean coding practices and performant structures.",
     "skills_design": "Design Philosophies",
+    "skills_design_desc": "Focusing on accessible user experiences, interface detail, smooth interactive feedback loops, and visually consistent modular systems.",
     "tech_heading": "Technologies & Tools",
     "tech_cat_languages": "Languages & Frameworks",
     "tech_cat_environment": "Development Environment",
@@ -91,6 +94,8 @@
     "edu_school_1": "UFPR - Universidade Federal do Paraná",
     "edu_period_1": "2018 - 2022",
     "experience_heading": "Experience",
+    "exp_summary_label": "Summary",
+    "exp_responsibilities_label": "Responsibilities",
     "exp_role_0": "Junior Game Programmer",
     "exp_company_0": "Compass.UOL",
     "exp_period_0": "Nov 2022 - Mar 2023",
@@ -117,7 +122,10 @@
     "project_lumen_solution": "Designed a modular component system with Astro and Tailwind CSS, ensuring consistent brand experience across all breakpoints.",
     "project_lumen_impact": "Achieved sub-1s page load metrics and 95+ Lighthouse scores through optimized asset delivery and lazy loading strategies.",
     "certifications_heading": "Certifications",
-    "certifications_id_label": "Certificate ID"
+    "certifications_id_label": "Certificate ID",
+    "certifications_verify_label": "Verify Certificate",
+    "certifications_copy_id": "Copy ID",
+    "certifications_copied": "Copied!"
   },
   "page_contact": {
     "title": "Contact Us",

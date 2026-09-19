@@ -50,8 +50,11 @@
     "hero_action_downloadCv": "Baixar CV",
     "skills_heading": "Habilidades",
     "skills_webDev": "Desenvolvimento Web",
+    "skills_webDev_desc": "Construção de aplicações web rápidas, responsivas e seguras utilizando arquiteturas modernas, integração de frameworks e técnicas de otimização de performance.",
     "skills_gameDev": "Desenvolvimento de Jogos",
+    "skills_gameDev_desc": "Desenvolvimento de experiências virtuais em tempo real, lógica de jogo e gameplay loops em game engines com boas práticas de código limpo e estruturas performáticas.",
     "skills_design": "Filosofias de Design",
+    "skills_design_desc": "Foco em experiências acessíveis, detalhamento de interface, ciclos suaves de feedback interativo e sistemas modulares visualmente consistentes.",
     "tech_heading": "Tecnologias & Ferramentas",
     "tech_cat_languages": "Linguagens & Frameworks",
     "tech_cat_environment": "Ambiente de Desenvolvimento",
@@ -71,6 +74,8 @@
     "edu_school_1": "UFPR - Universidade Federal do Paraná",
     "edu_period_1": "2018 - 2022",
     "experience_heading": "Experiência",
+    "exp_summary_label": "Resumo",
+    "exp_responsibilities_label": "Responsabilidades",
     "exp_role_0": "Programador de Jogos Júnior",
     "exp_company_0": "Compass.UOL",
     "exp_period_0": "Nov 2022 - Mar 2023",
@@ -97,7 +102,10 @@
     "project_lumen_solution": "Desenvolvimento de um sistema de componentes modular com Astro e Tailwind CSS, garantindo uma experiência de marca consistente em todos os dispositivos.",
     "project_lumen_impact": "Alcançou tempos de carregamento de página abaixo de 1s e pontuações Lighthouse de 95+ por meio de estratégias otimizadas de entrega de assets e carregamento preguiçoso.",
     "certifications_heading": "Certificações",
-    "certifications_id_label": "ID do Certificado"
+    "certifications_id_label": "ID do Certificado",
+    "certifications_verify_label": "Verificar Certificado",
+    "certifications_copy_id": "Copiar ID",
+    "certifications_copied": "Copiado!"
   },
   "page_contact": {
     "title": "Contato",
