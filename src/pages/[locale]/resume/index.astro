@@ -176,11 +176,6 @@ const certifications = [
     credentialId: "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
   },
   {
-    title: "Unreal Engine 5 Essential Training",
-    issuer: "LinkedIn Learning",
-    credentialId: "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
-  },
-  {
     title: "PostgreSQL Essential Training",
     issuer: "LinkedIn Learning",
     credentialId: "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
@@ -189,6 +184,11 @@ const certifications = [
     title: "Git Essential Training",
     issuer: "LinkedIn Learning",
     credentialId: "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
+  },
+  {
+    title: "Unreal Engine 5 Essential Training",
+    issuer: "LinkedIn Learning",
+    credentialId: "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
   }
 ];
 
@@ -569,6 +569,7 @@ const projects = [
             </header>
             <RLATimeline
               orientation="vertical"
+              size="xl"
               class="w-full"
               items={experiences.map((exp, idx) => ({
                 slot: `exp-${idx}`,
@@ -678,6 +679,7 @@ const projects = [
             </header>
             <RLATimeline
               orientation="vertical"
+              size="xl"
               items={education.map((edu) => ({
                 date: edu.period,
                 title: edu.degree,
@@ -696,13 +698,13 @@ const projects = [
             <div class="flex flex-col gap-xl">
               {
                 projects.map((project) => (
-                  <div class="flex flex-col gap-md bg-neutral-950/20 border border-neutral-900 p-lg rounded-2xl">
+                  <div class="flex flex-col gap-md">
                     <div class="flex flex-row justify-between items-start">
                       <h3 class="text-2xl font-bold text-white">{project.name}</h3>
                       <span class="text-sm text-neutral-500 font-semibold">{project.period}</span>
                     </div>
 
-                    <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl border border-neutral-900">
+                    <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl border border-neutral-800/80">
                       <RLAImage
                         src={project.imageSrc}
                         alt={project.name}
@@ -711,7 +713,7 @@ const projects = [
                     </div>
                     <p class="text-sm text-neutral-400 leading-relaxed">{project.description}</p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg border-t border-neutral-900/60 pt-md">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg border-t border-neutral-800/80 pt-md">
                       <div>
                         <h4 class="text-xs font-bold text-primary-500 tracking-wider mb-xs uppercase">{t("page_resume.projects_solution_label")}</h4>
                         <p class="text-xs text-neutral-400 leading-relaxed">{project.solution}</p>
@@ -723,14 +725,14 @@ const projects = [
                       </div>
                     </div>
 
-                    <div class="border-t border-neutral-900/60 pt-md">
+                    <div class="border-t border-neutral-800/80 pt-md">
                       <h4 class="text-xs font-bold text-primary-500 tracking-wider mb-sm uppercase">{t("page_resume.projects_techs_label")}</h4>
                       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {
                           project.technologies.categories.map((category) => (
-                            <div class="bg-neutral-950/60 border border-neutral-900/40 p-md rounded-xl">
-                              <h5 class="text-2xs font-extrabold text-neutral-400 tracking-widest mb-xs uppercase">{category.name}</h5>
-                              <div class="flex flex-wrap gap-1.5 mt-2">
+                            <div class="flex flex-col gap-xs">
+                              <h5 class="text-2xs font-extrabold text-neutral-400 tracking-widest uppercase">{category.name}</h5>
+                              <div class="flex flex-wrap gap-1.5 mt-1">
                                 {
                                   category.items.map((tech) => (
                                     <RLABadge variant="outline" color="neutral">
@@ -756,15 +758,15 @@ const projects = [
               <h2 class="text-3xl font-bold text-white">{t("page_resume.certifications_heading") ?? "Certifications"}</h2>
               <hr class="border-neutral-800/80" />
             </header>
-            <div class="flex flex-col gap-lg">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
               {certifications.map((cert) => (
-                <div class="flex flex-col gap-xs bg-neutral-950/35 border border-neutral-900/60 p-lg rounded-2xl">
-                  <h3 class="text-xl font-bold text-white">{cert.title}</h3>
-                  <span class="text-sm text-neutral-300 font-semibold">{cert.issuer}</span>
+                <div class="flex flex-col gap-0.5">
+                  <h3 class="text-lg font-bold text-white leading-snug">{cert.title}</h3>
+                  <span class="text-sm text-neutral-400 font-medium">{cert.issuer}</span>
                   {cert.credentialId && (
-                    <div class="mt-2 pt-2 border-t border-neutral-900/50 flex flex-wrap items-center gap-1.5 text-xs">
+                    <div class="flex flex-wrap items-center gap-1.5 text-xs">
                       <span class="text-neutral-500 font-medium">{t("page_resume.certifications_id_label") ?? "Certificate ID"}:</span>
-                      <code class="text-neutral-400 font-mono text-2xs bg-neutral-900/80 px-2 py-0.5 rounded border border-neutral-800 break-all select-all">
+                      <code class="text-neutral-400 font-mono text-2xs break-all select-all">
                         {cert.credentialId}
                       </code>
                     </div>
