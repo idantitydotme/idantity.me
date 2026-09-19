@@ -365,8 +365,11 @@ const projects: ResumeProject[] = [
             <RLAImage
               src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
               alt={t("page_resume.sidebar_name")}
-              width={800}
-              height={800}
+              width={364}
+              height={364}
+              widths={[364, 728]}
+              loading="eager"
+              fetchpriority="high"
             />
           </RLAPageSection>
 

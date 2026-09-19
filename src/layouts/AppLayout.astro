@@ -166,16 +166,6 @@ const ogImageUrl = ogImageSrc
 							}
 						}, { passive: true });
 					}
-
-					(function retry() {
-						const h = getHeight(contentEl);
-						if (h !== naturalHeight) {
-							naturalHeight = h;
-							RL.update();
-						}
-						if (h > 0 && h !== 64 && contentEl && contentEl.offsetHeight > 0) return;
-						requestAnimationFrame(retry);
-					})();
 				}
 
 				// Init all existing headers
