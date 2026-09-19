@@ -749,15 +749,22 @@ const projects = [
             </header>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
               {certifications.map((cert) => (
-                <div class="flex flex-col">
-                  <h3 class="text-lg font-bold">{cert.title}</h3>
-                  <span class="text-sm text-neutral-500">{cert.issuer}</span>
+                <details class="group cursor-pointer flex flex-col gap-1.5">
+                  <summary class="list-none [&::-webkit-details-marker]:hidden flex items-start justify-between gap-sm select-none">
+                    <div class="flex flex-col">
+                      <h3 class="text-lg font-bold group-hover:text-primary-500 transition-colors">{cert.title}</h3>
+                      <span class="text-sm text-neutral-500">{cert.issuer}</span>
+                    </div>
+                    {cert.credentialId && (
+                      <span class="i-lucide-chevron-down text-neutral-500 transition-transform duration-200 group-open:rotate-180" />
+                    )}
+                  </summary>
                   {cert.credentialId && (
-                    <code class="text-sm text-neutral-500 break-all select-all">
-                      {cert.credentialId}
+                    <code class="block text-sm text-neutral-500 break-all">
+                      ID: {cert.credentialId}
                     </code>
                   )}
-                </div>
+                </details>
               ))}
             </div>
           </section>
