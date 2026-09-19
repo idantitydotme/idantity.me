@@ -38,7 +38,7 @@
     "description": "About idantity.me",
     "heading": "About Me"
   },
-  "resume": {
+  "page_resume": {
     "meta_title": "idantity.me | me.portfolio",
     "meta_description": "My professional portfolio and resume.",
     "sidebar_name": "Daniel Marchi",
@@ -94,16 +94,19 @@
     "exp_role_0": "Junior Game Programmer",
     "exp_company_0": "Compass.UOL",
     "exp_period_0": "Nov 2022 - Mar 2023",
+    "exp_summary_0": "Developed real-time 3D virtual experiences and E-Commerce solutions in Unreal Engine with UI mockups and technical documentation.",
     "exp_bullet_0_0": "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine.",
     "exp_bullet_0_1": "Elaborating high-fidelity interface mockups.",
     "exp_bullet_0_2": "Project documentation and comparative analytical breakdowns for stakeholders.",
     "exp_role_1": "Trainee Game Programmer",
     "exp_company_1": "Compass.UOL",
     "exp_period_1": "Jul 2021 - Oct 2021",
+    "exp_summary_1": "Developed real-time 3D virtual experiences for E-Commerce using Unreal Engine and Blueprints.",
     "exp_bullet_1_0": "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine.",
     "exp_role_2": "Intern Game Programmer",
     "exp_company_2": "Compass.UOL",
     "exp_period_2": "Feb 2021 - Jun 2021",
+    "exp_summary_2": "Engaged in training exercises and problem-solving activities using Unreal Engine and C++.",
     "exp_bullet_2_0": "Training exercises and problem solving activities in Unreal Engine.",
     "projects_heading": "Projects",
     "projects_solution_label": "SOLUTION",
