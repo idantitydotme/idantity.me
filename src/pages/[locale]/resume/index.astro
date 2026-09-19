@@ -404,10 +404,10 @@ const projects: ResumeProject[] = [
               <hr aria-hidden="true" class="border-neutral-500" />
             </header>
 
-            {techGroups.map((group) => (
-              <section class="flex flex-col gap-md">
+            {techGroups.map((group, groupIndex) => (
+              <section aria-labelledby={`resume-tech-group-${groupIndex}`} class="flex flex-col gap-md">
                 <div class="flex flex-col gap-sm">
-                  <h3 class="text-lg font-bold">{group.title}</h3>
+                  <h3 id={`resume-tech-group-${groupIndex}`} class="text-lg font-bold">{group.title}</h3>
                   <hr aria-hidden="true" class="border-neutral-500" />
                 </div>
 
