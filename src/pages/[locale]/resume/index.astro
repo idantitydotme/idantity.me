@@ -14,8 +14,7 @@ import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro"
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro"
 import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
 
-// Imprecise but good enough for this use case to avoid adding a date library or larger function.
-const age = Math.floor((Date.now() - new Date(1997, 3, 30).getTime()) / (365.25 * 24 * 60 * 60 * 1000));
+const age = (d => d.getFullYear() - 1997 - (d.getMonth() < 3 || (d.getMonth() === 3 && d.getDate() < 30) ? 1 : 0))(new Date());
 
 const aboutDetails = [
   { label: t("page_resume.about_gender_label"), value: t("page_resume.about_gender_value") },
@@ -295,26 +294,58 @@ const certifications = [
   }
 ];
 
-const projects = [
+export type DatePeriod = string | { start: string; end?: string };
+
+export interface ResumeProject {
+  name: string;
+  role?: string;
+  period: DatePeriod;
+  href?: string;
+  imageSrc?: string;
+  summary?: string;
+  highlights?: string[];
+  tags?: string[];
+}
+
+const projects: ResumeProject[] = [
   {
-    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
     name: t("page_resume.project_lumen_name"),
+    role: t("page_resume.project_lumen_role"),
     period: "2025",
-    description: t("page_resume.project_lumen_description"),
-    solution: t("page_resume.project_lumen_solution"),
-    impact: t("page_resume.project_lumen_impact"),
-    technologies: {
-      categories: [
-        {
-          name: "FRONTEND",
-          items: ["TypeScript", "Astro", "UnoCSS", "Responsive Design"]
-        },
-        {
-          name: "PERFORMANCE",
-          items: ["Asset Optimization", "Lazy Loading", "Image CDN"]
-        }
-      ]
-    }
+    href: "https://idantity.me",
+    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
+    summary: t("page_resume.project_lumen_summary"),
+    highlights: [
+      t("page_resume.project_lumen_highlight_0"),
+      t("page_resume.project_lumen_highlight_1")
+    ],
+    tags: ["TypeScript", "Astro", "UnoCSS"]
+  },
+  {
+    name: t("page_resume.project_rimelight_name"),
+    role: t("page_resume.project_rimelight_role"),
+    period: { start: "2024", end: "2025" },
+    href: "https://github.com/idantitydotme",
+    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
+    summary: t("page_resume.project_rimelight_summary"),
+    highlights: [
+      t("page_resume.project_rimelight_highlight_0"),
+      t("page_resume.project_rimelight_highlight_1")
+    ],
+    tags: ["Astro", "SolidJS", "TypeScript", "UnoCSS"]
+  },
+  {
+    name: t("page_resume.project_verse_name"),
+    role: t("page_resume.project_verse_role"),
+    period: "2024",
+    href: "https://dev.epicgames.com",
+    imageSrc: "https://cdn.idantity.me/images/placeholder.webp",
+    summary: t("page_resume.project_verse_summary"),
+    highlights: [
+      t("page_resume.project_verse_highlight_0"),
+      t("page_resume.project_verse_highlight_1")
+    ],
+    tags: ["Verse", "UEFN", "Unreal Engine"]
   }
 ];
 ---
@@ -527,7 +558,7 @@ const projects = [
                 {experiences[0].tags && experiences[0].tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
                     {experiences[0].tags.map((tag) => (
-                      <RLABadge variant="outline">
+                      <RLABadge variant="soft">
                         {tag}
                       </RLABadge>
                     ))}
@@ -554,7 +585,7 @@ const projects = [
                 {experiences[1].tags && experiences[1].tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
                     {experiences[1].tags.map((tag) => (
-                      <RLABadge variant="outline">
+                      <RLABadge variant="soft">
                         {tag}
                       </RLABadge>
                     ))}
@@ -581,7 +612,7 @@ const projects = [
                 {experiences[2].tags && experiences[2].tags.length > 0 && (
                   <div class="flex flex-wrap gap-1.5">
                     {experiences[2].tags.map((tag) => (
-                      <RLABadge variant="outline">
+                      <RLABadge variant="soft">
                         {tag}
                       </RLABadge>
                     ))}
@@ -629,57 +660,77 @@ const projects = [
               <h2 id="resume-projects-heading" class="text-3xl font-bold">{t("page_resume.projects_heading")}</h2>
               <hr class="border-neutral-500" />
             </header>
-            <div class="flex flex-col gap-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-md md:gap-lg">
               {
                 projects.map((project) => (
-                  <article class="flex flex-col gap-md">
-                    <header class="flex flex-row justify-between items-start">
-                      <h3 class="text-lg font-bold">{project.name}</h3>
-                      <time class="text-sm text-neutral-500">{project.period}</time>
+                  <article class="flex flex-col gap-sm">
+                    <header class="flex items-start justify-between gap-sm">
+                      <div class="flex flex-col gap-0.5 min-w-0">
+                        <h3 class="text-base font-bold">{project.name}</h3>
+                        <div class="flex flex-wrap items-center gap-x-1.5 text-xs text-neutral-500">
+                          {typeof project.period === "object" ? (
+                            <span class="inline-flex items-center gap-1">
+                              <time>{project.period.start}</time>
+                              <span aria-hidden="true">–</span>
+                              <time>{project.period.end || "Present"}</time>
+                            </span>
+                          ) : (
+                            <time>{project.period}</time>
+                          )}
+                          {project.role && (
+                            <>
+                              <span aria-hidden="true">·</span>
+                              <span>{project.role}</span>
+                            </>
+                          )}
+                        </div>
+                      </div>
+
+                      {project.href && (
+                        <RLAButton
+                          size="sm"
+                          variant="soft"
+                          href={project.href}
+                          label="View"
+                          trailingIcon="i-lucide-external-link"
+                          class="shrink-0"
+                        />
+                      )}
                     </header>
 
-                    <div class="relative w-full aspect-[21/9] overflow-hidden rounded-xl">
+                    {project.tags && project.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <RLABadge size="sm" variant="soft">{tag}</RLABadge>
+                        ))}
+                      </div>
+                    )}
+
+                    {project.imageSrc && (
                       <RLAImage
                         src={project.imageSrc}
                         alt={project.name}
-                        class="absolute inset-0 w-full h-full object-cover"
+                        width={600}
+                        height={338}
+                        ui={{
+                          root: "w-full block",
+                          trigger: "w-full aspect-video",
+                          triggerImage: "w-full h-full max-w-none object-cover"
+                        }}
                       />
-                    </div>
-                    <p class="text-sm text-neutral-500">{project.description}</p>
+                    )}
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg border-t border-neutral-500 pt-md">
-                      <div>
-                        <h4 class="text-sm font-bold">{t("page_resume.projects_solution_label")}</h4>
-                        <p class="text-sm text-neutral-500">{project.solution}</p>
-                      </div>
+                    {project.summary && (
+                      <p class="text-sm text-neutral-500">{project.summary}</p>
+                    )}
 
-                      <div>
-                        <h4 class="text-sm font-bold">{t("page_resume.projects_impact_label")}</h4>
-                        <p class="text-sm text-neutral-500">{project.impact}</p>
-                      </div>
-                    </div>
-
-                    <div>
-                      <h4 class="text-sm font-bold">{t("page_resume.projects_techs_label")}</h4>
-                      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        {
-                          project.technologies.categories.map((category) => (
-                            <div class="flex flex-col gap-xs">
-                              <h5 class="text-sm font-bold text-neutral-500">{category.name}</h5>
-                              <div class="flex flex-wrap gap-1.5">
-                                {
-                                  category.items.map((tech) => (
-                                    <RLABadge variant="outline">
-                                      {tech}
-                                    </RLABadge>
-                                  ))
-                                }
-                              </div>
-                            </div>
-                          ))
-                        }
-                      </div>
-                    </div>
+                    {project.highlights && project.highlights.length > 0 && (
+                      <ul class="space-y-1 pl-4 list-disc text-xs text-neutral-500">
+                        {project.highlights.map((highlight) => (
+                          <li>{highlight}</li>
+                        ))}
+                      </ul>
+                    )}
                   </article>
                 ))
               }
