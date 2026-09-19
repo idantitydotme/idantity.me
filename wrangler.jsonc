@@ -68,6 +68,6 @@
   //   "crons": ["* * * * *"]
   // },
   "vars": {
-    "CONSTRUCTION_MODE": "false"
+    "CONSTRUCTION_MODE": "true"
   }
 }
