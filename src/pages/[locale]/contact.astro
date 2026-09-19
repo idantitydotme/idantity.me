@@ -3,12 +3,8 @@ import AppLayout from "#layouts/AppLayout.astro";
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
 import RLACard from "@rimelight/ui/components/card/RLACard.astro";
 import RLAButton from "@rimelight/ui/components/button/RLAButton.astro";
+import Turnstile from "@rimelight/security/components/Turnstile.astro";
 import { t } from "@rimelight/i18n";
-import { env } from "cloudflare:workers";
-
-
-const cfEnv = (env as Record<string, any> | undefined) ?? {};
-const turnstileSiteKey = import.meta.env["TURNSTILE_SITE_KEY"] || cfEnv["TURNSTILE_SITE_KEY"] || "";
 ---
 
 <AppLayout title={t("page_contact.title")} description={t("page_contact.description")}>
@@ -77,9 +73,7 @@ const turnstileSiteKey = import.meta.env["TURNSTILE_SITE_KEY"] || cfEnv["TURNSTI
               ></textarea>
             </div>
 
-            {turnstileSiteKey && (
-              <div class="cf-turnstile my-2" data-sitekey={turnstileSiteKey}></div>
-            )}
+            <Turnstile />
 
             <RLAButton
               type="submit"
@@ -136,10 +130,6 @@ const turnstileSiteKey = import.meta.env["TURNSTILE_SITE_KEY"] || cfEnv["TURNSTI
       </RLACard>
     </div>
   </RLAPageSection>
-
-  {turnstileSiteKey && (
-    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-  )}
 
   <script>
     import { actions, isInputError } from "astro:actions";
