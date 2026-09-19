@@ -3,9 +3,7 @@ import { db } from "#db"
 import { searchIndex } from "#db/schema"
 import { desc, or, like } from "drizzle-orm"
 
-const api = new Hono()
-
-api.get("/", async (c) => {
+const api = new Hono().get("/", async (c) => {
   const q = c.req.query("q") || ""
 
   if (!q.trim()) {
