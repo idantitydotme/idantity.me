@@ -34,10 +34,6 @@ const {
 	ogImageAlt,
 	favicon
 } = Astro.props as AppLayoutProps;
-
-const ogImageUrl = ogImageSrc
-	? new URL(ogImageSrc, Astro.site).toString()
-	: new URL(`/open-graph/page.png?${new URLSearchParams({ title, description })}`, Astro.site).toString();
 ---
 
 <!doctype html>
@@ -61,7 +57,6 @@ const ogImageUrl = ogImageSrc
     <Font cssVariable="--font-sans" />
     <Font cssVariable="--font-serif" />
     <Font cssVariable="--font-mono" />
-    <meta property="og:image" content={ogImageUrl} />
     <slot name="head" />
   </head>
 	<body class="isolate">
