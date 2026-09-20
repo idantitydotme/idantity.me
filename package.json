@@ -60,7 +60,6 @@
     "@iconify-json/logos": "1.2.14",
     "@iconify-json/lucide": "1.2.134",
     "@rimelight/config": "0.0.20",
-    "@types/node": "26.6.1",
     "drizzle-kit": "0.31.10",
     "typescript": "6.0.3",
     "vite-plus": "0.3.3"
