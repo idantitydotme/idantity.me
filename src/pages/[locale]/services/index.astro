@@ -1,11 +1,297 @@
 ---
 import AppLayout from "#layouts/AppLayout.astro";
-import { siteConfig } from "virtual:rimelight/seo";
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
+import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
+import RLAAccordion from "@rimelight/ui/components/accordion/RLAAccordion.astro";
 import LighthouseScores from "#components/services/LighthouseScores.astro";
-import HttpObservatoryProps from "#components/services/HttpObservatory.astro"
+import HttpObservatory from "#components/services/HttpObservatory.astro";
+
+const heroLinks = [
+  {
+    label: t("page_services.cta_discuss_project"),
+    href: getRelativeLocaleUrl("/contact"),
+    color: "primary" as const,
+    variant: "solid" as const,
+    leadingIcon: "i-lucide-mail"
+  },
+  {
+    label: t("page_services.cta_view_work"),
+    href: getRelativeLocaleUrl("/projects"),
+    color: "primary" as const,
+    variant: "outline" as const,
+    trailingIcon: "i-lucide-arrow-right"
+  }
+];
+
+const ctaLinks = [
+  {
+    label: t("page_services.cta_final_button"),
+    href: getRelativeLocaleUrl("/contact"),
+    color: "primary" as const,
+    variant: "solid" as const,
+    trailingIcon: "i-lucide-arrow-right"
+  }
+];
+
+const services = [
+  {
+    icon: "i-lucide-layout-grid",
+    title: t("page_services.service_1_title"),
+    description: t("page_services.service_1_desc"),
+    tags: ["Astro", "TypeScript", "UnoCSS", "Core Web Vitals", "i18n"],
+    features: [
+      t("page_services.service_1_feat_1"),
+      t("page_services.service_1_feat_2"),
+      t("page_services.service_1_feat_3"),
+    ]
+  },
+  {
+    icon: "i-lucide-shield-check",
+    title: t("page_services.service_2_title"),
+    description: t("page_services.service_2_desc"),
+    tags: ["Strict CSP", "HSTS", "Turnstile", "HTTP Observatory A+"],
+    features: [
+      t("page_services.service_2_feat_1"),
+      t("page_services.service_2_feat_2"),
+      t("page_services.service_2_feat_3"),
+    ]
+  },
+  {
+    icon: "i-lucide-server",
+    title: t("page_services.service_3_title"),
+    description: t("page_services.service_3_desc"),
+    tags: ["Hono", "Cloudflare", "PlanetScale", "Serverless SQL"],
+    features: [
+      t("page_services.service_3_feat_1"),
+      t("page_services.service_3_feat_2"),
+      t("page_services.service_3_feat_3"),
+    ]
+  },
+  {
+    icon: "i-lucide-gauge",
+    title: t("page_services.service_4_title"),
+    description: t("page_services.service_4_desc"),
+    tags: ["Lighthouse 100", "Asset Pipeline", "Tree-shaking", "Refactoring"],
+    features: [
+      t("page_services.service_4_feat_1"),
+      t("page_services.service_4_feat_2"),
+      t("page_services.service_4_feat_3"),
+    ]
+  }
+];
+
+const workflowSteps = [
+  {
+    num: t("page_services.step_1_num"),
+    icon: "i-lucide-compass",
+    title: t("page_services.step_1_title"),
+    description: t("page_services.step_1_desc")
+  },
+  {
+    num: t("page_services.step_2_num"),
+    icon: "i-lucide-code-2",
+    title: t("page_services.step_2_title"),
+    description: t("page_services.step_2_desc")
+  },
+  {
+    num: t("page_services.step_3_num"),
+    icon: "i-lucide-activity",
+    title: t("page_services.step_3_title"),
+    description: t("page_services.step_3_desc")
+  },
+  {
+    num: t("page_services.step_4_num"),
+    icon: "i-lucide-rocket",
+    title: t("page_services.step_4_title"),
+    description: t("page_services.step_4_desc")
+  }
+];
+
+const techStack = [
+  { name: "Astro", category: "Framework", icon: "i-logos-astro-icon?mask text-foreground" },
+  { name: "TypeScript", category: "Language", icon: "i-logos-typescript-icon" },
+  { name: "Vite+", category: "Unified Toolchain", icon: "i-logos-vite-icon-dark" },
+  { name: "Hono", category: "Edge API", icon: "i-logos-hono" },
+  { name: "Cloudflare", category: "Infrastructure", icon: "i-logos-cloudflare-icon" },
+  { name: "PlanetScale", category: "Serverless Database", icon: "i-logos-planetscale?mask text-foreground" },
+  { name: "SolidJS", category: "UI Library", icon: "i-logos-solidjs-icon" },
+  { name: "UnoCSS", category: "Styling Engine", icon: "i-logos-unocss" }
+];
+
+const faqItems = [
+  {
+    label: t("page_services.faq_q1"),
+    content: t("page_services.faq_a1"),
+    icon: "i-lucide-help-circle"
+  },
+  {
+    label: t("page_services.faq_q2"),
+    content: t("page_services.faq_a2"),
+    icon: "i-lucide-help-circle"
+  },
+  {
+    label: t("page_services.faq_q3"),
+    content: t("page_services.faq_a3"),
+    icon: "i-lucide-help-circle"
+  },
+  {
+    label: t("page_services.faq_q4"),
+    content: t("page_services.faq_a4"),
+    icon: "i-lucide-help-circle"
+  }
+];
 ---
 
-<AppLayout title={siteConfig.name} description={siteConfig.description}>
-  <LighthouseScores />
-  <HttpObservatoryProps />
+<AppLayout title={t("page_services.title")} description={t("page_services.description")}>
+  <!-- 1. Hero Section -->
+  <RLAPageSection
+    variant="hero"
+    headline={t("page_services.hero_headline")}
+    title={t("page_services.hero_title")}
+    description={t("page_services.hero_description")}
+    links={heroLinks}
+  />
+
+  <!-- 2. Quality Benchmarks & Social Proof Section -->
+  <RLAPageSection
+    orientation="vertical"
+    headline={t("page_services.benchmarks_headline")}
+    title={t("page_services.benchmarks_title")}
+    description={t("page_services.benchmarks_description")}
+  >
+    <div slot="body" class="mx-auto w-full max-w-5xl">
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 items-stretch">
+        <div class="p-6 md:p-8 rounded-2xl bg-neutral-500/5 hover:bg-neutral-500/10 transition-colors flex flex-col justify-between">
+          <LighthouseScores />
+        </div>
+        <div class="p-6 md:p-8 rounded-2xl bg-neutral-500/5 hover:bg-neutral-500/10 transition-colors flex flex-col justify-between">
+          <HttpObservatory />
+        </div>
+      </div>
+    </div>
+  </RLAPageSection>
+
+  <!-- 3. Core Services Grid -->
+  <RLAPageSection
+    orientation="vertical"
+    headline={t("page_services.services_headline")}
+    title={t("page_services.services_title")}
+    description={t("page_services.services_description")}
+  >
+    <div slot="body" class="mx-auto w-full max-w-5xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {services.map((service) => (
+          <div class="p-6 md:p-8 rounded-2xl bg-neutral-500/5 hover:bg-neutral-500/10 transition-all flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3.5 mb-4">
+                <div class="flex size-11 items-center justify-center rounded-xl bg-primary-500/10 text-primary-500">
+                  <span class={`${service.icon} size-5`} aria-hidden="true" />
+                </div>
+                <h3 class="text-xl font-bold text-foreground">
+                  {service.title}
+                </h3>
+              </div>
+
+              <p class="text-muted-foreground text-sm leading-relaxed mb-6">
+                {service.description}
+              </p>
+
+              <div class="mb-6">
+                <ul class="flex flex-col gap-2.5">
+                  {service.features.map((feat) => (
+                    <li class="flex items-start gap-2.5 text-sm text-foreground/90">
+                      <span class="i-lucide-check-circle-2 size-4 text-emerald-500 shrink-0 mt-0.5" aria-hidden="true" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-border/40 flex flex-wrap gap-1.5">
+              {service.tags.map((tag) => (
+                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-neutral-500/10 text-muted-foreground">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </RLAPageSection>
+
+  <!-- 4. Workflow / Process Section -->
+  <RLAPageSection
+    orientation="vertical"
+    headline={t("page_services.process_headline")}
+    title={t("page_services.process_title")}
+    description={t("page_services.process_description")}
+  >
+    <div slot="body" class="mx-auto w-full max-w-5xl">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {workflowSteps.map((step) => (
+          <div class="p-6 rounded-2xl bg-neutral-500/5 hover:bg-neutral-500/10 transition-all flex flex-col justify-between relative overflow-hidden group">
+            <div class="absolute -top-3 -right-2 text-5xl font-black text-muted-foreground/10 select-none group-hover:text-primary-500/15 transition-colors">
+              {step.num}
+            </div>
+            <div>
+              <div class="flex size-10 items-center justify-center rounded-lg bg-primary-500/10 text-primary-500 mb-4">
+                <span class={`${step.icon} size-5`} aria-hidden="true" />
+              </div>
+              <h4 class="text-base font-bold text-foreground mb-2">
+                {step.title}
+              </h4>
+              <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                {step.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </RLAPageSection>
+
+  <!-- 5. Technologies & Standards Grid -->
+  <RLAPageSection
+    orientation="vertical"
+    headline={t("page_services.tech_headline")}
+    title={t("page_services.tech_title")}
+    description={t("page_services.tech_description")}
+  >
+    <div slot="body" class="mx-auto w-full max-w-5xl">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+        {techStack.map((tech) => (
+          <div class="flex items-center gap-3 p-3.5 rounded-xl bg-neutral-500/5 hover:bg-neutral-500/10 transition">
+            <span class={`${tech.icon} size-6 shrink-0`} aria-hidden="true" />
+            <div class="flex flex-col min-w-0">
+              <span class="font-semibold text-sm text-foreground truncate">{tech.name}</span>
+              <span class="text-xs text-muted-foreground truncate">{tech.category}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </RLAPageSection>
+
+  <!-- 6. FAQ Section -->
+  <RLAPageSection
+    orientation="vertical"
+    headline={t("page_services.faq_headline")}
+    title={t("page_services.faq_title")}
+    description={t("page_services.faq_description")}
+  >
+    <div slot="body" class="mx-auto w-full max-w-3xl">
+      <RLAAccordion items={faqItems} multiple={false} />
+    </div>
+  </RLAPageSection>
+
+  <!-- 7. Final Call to Action -->
+  <RLAPageSection
+    variant="cta"
+    ctaVariant="solid"
+    title={t("page_services.cta_final_title")}
+    description={t("page_services.cta_final_desc")}
+    links={ctaLinks}
+  />
 </AppLayout>

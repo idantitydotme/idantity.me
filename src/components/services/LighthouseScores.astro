@@ -1,19 +1,15 @@
 ---
 /**
  * LighthouseScores.astro
- * A callout component displaying perfect Lighthouse scores
- * Designed to match the authentic Lighthouse report aesthetic
+ * A clean, responsive callout component displaying perfect Lighthouse scores
+ * with rich context and fluid sizing.
  */
-export interface LighthouseScore {
-  label: string;
-  value: number;
-}
-
 export interface LighthouseScoresProps {
   performance?: number;
   accessibility?: number;
   bestPractices?: number;
   seo?: number;
+  showDetails?: boolean;
 }
 
 const {
@@ -21,165 +17,111 @@ const {
   accessibility = 100,
   bestPractices = 100,
   seo = 100,
+  showDetails = true,
 } = Astro.props;
 
-const scores = [
-  { label: 'Performance', value: performance },
-  { label: 'Accessibility', value: accessibility },
-  { label: 'Best Practices', value: bestPractices },
-  { label: 'SEO', value: seo },
+const metrics = [
+  {
+    label: "Performance",
+    value: performance,
+    desc: "Sub-second LCP & instantaneous edge delivery",
+  },
+  {
+    label: "Accessibility",
+    value: accessibility,
+    desc: "WCAG 2.1 AA compliant, screen-reader optimized",
+  },
+  {
+    label: "Best Practices",
+    value: bestPractices,
+    desc: "Modern web standards, HTTPS & zero console errors",
+  },
+  {
+    label: "SEO",
+    value: seo,
+    desc: "Semantic metadata, structured data & discoverability",
+  },
 ];
 ---
 
-<div class="lighthouse-container">
-  <!-- Header -->
-  <div class="mb-4xl text-center">
-    <h3 class="font-heading text-foreground text-3xl font-bold md:text-4xl">
-      Lighthouse Report
-    </h3>
+<div class="w-full flex flex-col justify-between h-full">
+  <!-- Header & Context -->
+  <div class="mb-6">
+    <div class="flex items-center justify-between gap-2 mb-2">
+      <div class="flex items-center gap-2">
+        <span class="i-lucide-gauge size-5 text-emerald-500" aria-hidden="true" />
+        <h3 class="text-lg font-bold text-foreground">
+          Google Lighthouse
+        </h3>
+      </div>
+      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+        100/100 Perfect Score
+      </span>
+    </div>
+    <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+      Every site is engineered from the ground up for maximum speed, pristine Core Web Vitals, and strict accessibility standards.
+    </p>
   </div>
 
   <!-- Scores Grid -->
-  <div
-    class="lighthouse-scores mx-auto grid max-w-2xl grid-cols-2 gap-4xl sm:grid-cols-4"
-    role="list"
-    aria-label="Lighthouse scores"
-  >
+  <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-2" role="list" aria-label="Lighthouse scores">
     {
-      scores.map((score) => {
-        const radius = 54;
+      metrics.map((metric) => {
+        const radius = 42;
         const circumference = 2 * Math.PI * radius;
-        const offset = circumference - (score.value / 100) * circumference;
-        const color = score.value >= 90 ? "#0cce6b" : score.value >= 50 ? "#ffa400" : "#ff4e42";
+        const offset = circumference - (metric.value / 100) * circumference;
+        const color = metric.value >= 90 ? "#10b981" : metric.value >= 50 ? "#f59e0b" : "#ef4444";
 
         return (
-          <div
-            class="lighthouse-score group flex flex-col items-center"
-            role="listitem"
-          >
-              <svg
-                class="lighthouse-gauge size-24 sm:size-28 md:size-36"
-                width="120"
-                height="120"
-                viewBox="0 0 120 120"
-                aria-hidden="true"
-              >
+          <div class="flex flex-col items-center text-center p-2 rounded-xl bg-neutral-500/5" role="listitem">
+            <div class="relative flex items-center justify-center size-20 sm:size-24">
+              <svg class="size-full -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
                 <circle
-                  cx="60"
-                  cy="60"
+                  cx="50"
+                  cy="50"
                   r={radius}
                   fill="none"
-                  stroke="#e0e0e0"
-                  stroke-width="8"
+                  stroke="currentColor"
+                  stroke-width="6"
+                  class="text-neutral-200 dark:text-neutral-800"
                 />
                 <circle
-                  cx="60"
-                  cy="60"
+                  cx="50"
+                  cy="50"
                   r={radius}
                   fill="none"
                   stroke={color}
-                  stroke-width="8"
+                  stroke-width="6"
                   stroke-linecap="round"
                   stroke-dasharray={circumference}
                   stroke-dashoffset={offset}
-                  class="lighthouse-progress"
-                  transform="rotate(-90 60 60)"
+                  class="transition-all duration-1000 ease-out"
                 />
-                <text
-                  x="60"
-                  y="60"
-                  text-anchor="middle"
-                  dominant-baseline="central"
-                  class="lighthouse-number font-semibold font-sans text-3xl"
-                  fill={color}
-                >
-                  {score.value}
-                </text>
               </svg>
+              <span class="absolute font-bold text-xl sm:text-2xl text-foreground font-mono">
+                {metric.value}
+              </span>
+            </div>
 
-            <span class="text-muted-foreground mt-2xl text-center text-sm font-medium">
-              {score.label}
+            <span class="mt-2 text-xs font-bold text-foreground">
+              {metric.label}
             </span>
+            {showDetails && (
+              <span class="mt-1 text-[11px] text-muted-foreground leading-tight hidden sm:block">
+                {metric.desc}
+              </span>
+            )}
           </div>
         );
       })
     }
   </div>
 
-  <!-- Footer note -->
-  <p class="text-muted-foreground/60 mt-4xl text-center text-xs italic">
-    *Results represent the starting template. Changes to styling and features may affect final results.
-  </p>
+  <!-- Footnote -->
+  <div class="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
+    <span>Verified on modern mobile & desktop viewports</span>
+    <span class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+      <span class="i-lucide-check-circle-2 size-3.5" aria-hidden="true" /> Live Standard
+    </span>
+  </div>
 </div>
-
-<style>
-  /* Entrance animations */
-  .lighthouse-score {
-    animation: score-enter 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  .lighthouse-progress {
-    animation: progress-fill 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
-
-  /* Staggered delays via nth-child to avoid inline style attributes */
-  .lighthouse-score:nth-child(1) { animation-delay: 100ms; }
-  .lighthouse-score:nth-child(2) { animation-delay: 180ms; }
-  .lighthouse-score:nth-child(3) { animation-delay: 260ms; }
-  .lighthouse-score:nth-child(4) { animation-delay: 340ms; }
-
-  .lighthouse-progress:nth-child(1) { animation-delay: 200ms; }
-  .lighthouse-progress:nth-child(2) { animation-delay: 280ms; }
-  .lighthouse-progress:nth-child(3) { animation-delay: 360ms; }
-  .lighthouse-progress:nth-child(4) { animation-delay: 440ms; }
-
-  @keyframes score-enter {
-    from {
-      opacity: 0;
-      transform: scale(0.9) translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1) translateY(0);
-    }
-  }
-
-  @keyframes progress-fill {
-    from {
-      stroke-dashoffset: 339.292; /* Approximate circumference */
-    }
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .lighthouse-score,
-    .lighthouse-progress {
-      animation: none;
-    }
-
-    .lighthouse-progress {
-      stroke-dashoffset: 0;
-    }
-  }
-</style>
-
-<script>
-  // Run animations immediately
-  const initLighthouse = () => {
-    const scoresContainer = document.querySelector('.lighthouse-scores');
-    if (scoresContainer) {
-      const elements = scoresContainer.querySelectorAll<HTMLElement>('.lighthouse-score, .lighthouse-progress');
-      elements.forEach((el) => {
-        el.style.animationPlayState = 'running';
-      });
-    }
-  };
-
-  // Run on initial load
-  initLighthouse();
-
-  // Run on View Transitions navigate
-  document.addEventListener('astro:after-swap', initLighthouse);
-</script>
