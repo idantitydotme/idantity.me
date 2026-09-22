@@ -1,0 +1,55 @@
+---
+import { getTurnstileSiteKey } from "@rimelight/security";
+
+export interface Props {
+  siteKey?: string;
+  theme?: "auto" | "light" | "dark";
+  size?: "normal" | "compact" | "flexible";
+  class?: string;
+  responseFieldName?: string;
+  action?: string;
+  cdata?: string;
+  execution?: "render" | "execute";
+  appearance?: "always" | "execute" | "interaction-only";
+  injectScript?: boolean;
+}
+
+const {
+  siteKey: propSiteKey,
+  theme = "auto",
+  size = "normal",
+  class: className = "cf-turnstile my-2",
+  responseFieldName = "cf-turnstile-response",
+  action,
+  cdata,
+  execution,
+  appearance,
+  injectScript = true,
+  ...rest
+} = Astro.props;
+
+const env = (Astro.locals as any)?.runtime?.env;
+const resolvedSiteKey = propSiteKey || getTurnstileSiteKey(env) || import.meta.env["TURNSTILE_SITE_KEY"] || "";
+---
+
+{
+  resolvedSiteKey && (
+    <>
+      <div
+        class={className}
+        data-sitekey={resolvedSiteKey}
+        data-theme={theme}
+        data-size={size}
+        data-response-field-name={responseFieldName}
+        data-action={action}
+        data-cdata={cdata}
+        data-execution={execution}
+        data-appearance={appearance}
+        {...rest}
+      />
+      {injectScript && (
+        <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      )}
+    </>
+  )
+}

@@ -1,0 +1,79 @@
+---
+import BlankLayout from "#layouts/BlankLayout.astro";
+import RLACard from "@rimelight/ui/components/card/RLACard.astro";
+import RLAFormField from "@rimelight/ui/components/form-field/RLAFormField.astro";
+import RLAInput from "@rimelight/ui/components/input/RLAInput.astro";
+import RLAButton from "@rimelight/ui/components/button/RLAButton.astro";
+import RLACheckbox from "@rimelight/ui/components/checkbox/RLACheckbox.astro";
+import RLALogo from "@rimelight/ui/components/logo/RLALogo.astro";
+import { t } from "@rimelight/i18n";
+
+const redirect = Astro.url.searchParams.get("redirect") || "/";
+const isError = Astro.url.searchParams.get("error") === "invalid";
+---
+
+<BlankLayout
+  title={t("page_construction.meta_title")}
+  description={t("page_construction.meta_description")}
+  noindex={true}
+>
+  <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
+    <div class="w-full max-w-md space-y-6 text-center">
+      <div class="flex flex-col items-center gap-4">
+        <RLALogo class="h-12 w-auto" variant="logomark" />
+        <h1 class="m-0 text-3xl font-bold tracking-tight sm:text-4xl">
+          {t("page_construction.title")}
+        </h1>
+        <p class="m-0 text-neutral-400 text-sm">
+          {t("page_construction.description")}
+        </p>
+      </div>
+
+      <RLACard class="text-left w-full">
+        {isError && (
+          <div class="mb-4 rounded-md border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-400" role="alert">
+            Invalid credentials. Please try again.
+          </div>
+        )}
+
+        <!-- Native Server-Side Form POST (Zero Client JavaScript) -->
+        <form method="POST" action="/api/construction-guest" class="flex flex-col gap-4">
+          <input type="hidden" name="redirect" value={redirect} />
+
+          <RLAFormField
+            label={t("page_construction.form_passphrase_label")}
+            required
+          >
+            <RLAInput
+              id="construction-passphrase-input"
+              type="password"
+              name="passphrase"
+              placeholder={t("page_construction.form_passphrase_placeholder")}
+              class="w-full"
+              required
+              autofocus
+              autocomplete="current-password"
+            />
+          </RLAFormField>
+
+          <RLACheckbox
+            id="construction-remember-me-checkbox"
+            name="rememberMe"
+            label={t("page_construction.form_remember_me_label")}
+            checked
+          />
+
+          <RLAButton
+            type="submit"
+            color="primary"
+            variant="solid"
+            block
+            class="w-full mt-2"
+          >
+            {t("page_construction.form_sign_in_button")}
+          </RLAButton>
+        </form>
+      </RLACard>
+    </div>
+  </div>
+</BlankLayout>

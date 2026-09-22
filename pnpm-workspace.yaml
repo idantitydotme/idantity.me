@@ -6,7 +6,6 @@ minimumReleaseAgeExclude:
   - "@rimelight/*"
 overrides:
   # Vulnerability Fixes
-  esbuild: ">=0.25.0"
 allowBuilds:
   esbuild: true
   workerd: true

@@ -1,5 +1,5 @@
 ---
-import SecurityHead from "@rimelight/security/components/SecurityHead.astro";
+import { createSecurityHead } from "@rimelight/security";
 import SEOHead from "@rimelight/seo/components/SEOHead.astro";
 import UIHead from "@rimelight/ui/components/head/UIHead.astro";
 import AppHeader from '#components/app/AppHeader.astro';
@@ -52,7 +52,7 @@ const {
       languageAlternates={languageAlternates}
       ogImage={ogImageSrc ? { src: ogImageSrc, alt: ogImageAlt || '' } : undefined}
     />
-    <SecurityHead />
+    <Fragment set:html={createSecurityHead().html} />
     <UIHead />
     <Font cssVariable="--font-sans" />
     <Font cssVariable="--font-serif" />

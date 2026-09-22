@@ -1,0 +1,35 @@
+---
+import { createSecurityHead } from "@rimelight/security";
+import SEOHead from "@rimelight/seo/components/SEOHead.astro";
+import UIHead from "@rimelight/ui/components/head/UIHead.astro";
+import RLAMain from "@rimelight/ui/components/main/RLAMain.astro";
+import { siteConfig } from "virtual:rimelight/seo";
+import { Font } from 'astro:assets';
+import { getHtmlLang, getOgLocale } from '@rimelight/i18n';
+
+interface BlankLayoutProps {
+  title: string;
+  description: string;
+  noindex?: boolean;
+}
+
+const { title, description, noindex } = Astro.props as BlankLayoutProps;
+---
+
+<!doctype html>
+<html lang={getHtmlLang()}>
+  <head>
+    <SEOHead title={title} description={description} config={siteConfig} ogLocale={getOgLocale()} noindex={noindex} />
+    <Fragment set:html={createSecurityHead().html} />
+    <UIHead />
+    <Font cssVariable="--font-sans" preload={true} />
+    <Font cssVariable="--font-serif" preload={true} />
+    <Font cssVariable="--font-mono" preload={true} />
+    <slot name="head" />
+  </head>
+  <body>
+    <RLAMain>
+      <slot />
+    </RLAMain>
+  </body>
+</html>
