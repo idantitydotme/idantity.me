@@ -59,7 +59,7 @@
     "@astrojs/check": "0.9.10",
     "@iconify-json/logos": "1.2.14",
     "@iconify-json/lucide": "1.2.135",
-    "@rimelight/config": "0.0.24",
+    "@rimelight/config": "0.0.25",
     "@types/node": "26.6.2",
     "drizzle-kit": "0.31.11",
     "typescript": "6.0.3",
