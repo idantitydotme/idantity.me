@@ -1,99 +1,216 @@
 ---
 import AppLayout from "#layouts/AppLayout.astro";
 import RLAPageSection from "@rimelight/ui/components/page-section/RLAPageSection.astro";
-import RLACard from "@rimelight/ui/components/card/RLACard.astro";
+import RLATabs from "@rimelight/ui/components/tabs/RLATabs.astro";
+import MusicPlayer from "#components/music/MusicPlayer.tsx";
+import SpotifyFacade from "#components/music/SpotifyFacade.tsx";
 import { t } from "@rimelight/i18n";
 
+// Featured tracks & audio data
+const featuredTracks = [
+  {
+    id: "bishu-ikari",
+    title: t("page_music.tracks.bishu_ikari_title"),
+    artist: t("page_music.tracks.bishu_ikari_artist"),
+    genre: t("page_music.tracks.bishu_ikari_genre"),
+    categoryTag: t("page_music.tracks.bishu_ikari_category"),
+    bpm: 140,
+    keySignature: "F Minor",
+    audioSrc: "https://cdn.idantity.me/music/Bishu%20-%20ikari.mp3",
+    downloadUrl: "https://cdn.idantity.me/music/Bishu%20-%20ikari.mp3",
+    cuePoints: [
+      { time: 0, title: t("page_music.tracks.cue_intro") },
+      { time: 30, title: t("page_music.tracks.cue_drop1") },
+      { time: 65, title: t("page_music.tracks.cue_break") },
+      { time: 95, title: t("page_music.tracks.cue_drop2") }
+    ]
+  }
+];
 
+// Curated Spotify Playlists
 const spotifyPlaylists = [
   {
     id: "29kSyAiwnDXM59KoGEUAN9",
-    title: "Curated Mix 1"
+    title: t("page_music.playlists.pl1_title"),
+    description: t("page_music.playlists.pl1_desc"),
+    trackCount: "50+",
+    categoryBadge: "Bass / Trap"
   },
   {
     id: "1fK0wAI02tDpmpkZ53cTmF",
-    title: "Curated Mix 2"
+    title: t("page_music.playlists.pl2_title"),
+    description: t("page_music.playlists.pl2_desc"),
+    trackCount: "45+",
+    categoryBadge: "Melodic / Future"
   },
   {
     id: "0b7hixI5M1VQwD47KYWABj",
-    title: "Curated Mix 3"
+    title: t("page_music.playlists.pl3_title"),
+    description: t("page_music.playlists.pl3_desc"),
+    trackCount: "60+",
+    categoryBadge: "Chill / Downtempo"
   },
   {
     id: "271UvSiUmd238ZYkNi5U57",
-    title: "Curated Mix 4"
+    title: t("page_music.playlists.pl4_title"),
+    description: t("page_music.playlists.pl4_desc"),
+    trackCount: "40+",
+    categoryBadge: "Club / Festival"
   }
 ];
+
+const tabItems = [
+  { label: t("page_music.tab_all"), value: "all" },
+  { label: t("page_music.tab_productions"), value: "productions" },
+  { label: t("page_music.tab_playlists"), value: "playlists" }
+];
+
+const playerLabels = {
+  play: t("page_music.player_play"),
+  pause: t("page_music.player_pause"),
+  mute: t("page_music.player_mute"),
+  unmute: t("page_music.player_unmute"),
+  download: t("page_music.player_download"),
+  cuePoints: t("page_music.player_tracklist"),
+  speed: t("page_music.player_speed")
+};
 ---
 
 <AppLayout title={t("page_music.title")} description={t("page_music.description")}>
+  <!-- Hero Section -->
   <RLAPageSection
     variant="hero"
+    headline={t("page_music.hero_headline")}
     title={t("page_music.hero_title")}
     description={t("page_music.hero_description")}
     orientation="horizontal"
   />
 
-  <!-- Featured Audio Section -->
-  <RLAPageSection
-    title={t("page_music.section_mixes_title")}
-    orientation="vertical"
-  >
-    <div slot="body" class="max-w-4xl mx-auto w-full">
-      <RLACard class="p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 bg-default border border-neutral-200 dark:border-neutral-800 rounded-2xl shadow-sm">
-        <div class="relative w-36 h-36 shrink-0 rounded-xl overflow-hidden bg-primary-500/10 flex items-center justify-center border border-primary-500/20 shadow-inner">
-          <span class="i-lucide-disc-3 text-5xl text-primary-500 animate-spin-slow"></span>
-        </div>
-        <div class="flex-1 flex flex-col gap-3 w-full">
-          <div>
-            <span class="text-xs uppercase tracking-wider font-semibold text-primary-500">Original Track / Mix</span>
-            <h3 class="text-xl font-bold text-neutral-900 dark:text-neutral-100">Bishu - Ikari</h3>
-            <p class="text-sm text-neutral-500 dark:text-neutral-400">Electronic / Bass production</p>
-          </div>
-          <audio
-            controls
-            preload="metadata"
-            class="w-full h-10 rounded-lg outline-none"
-            src="https://cdn.idantity.me/music/Bishu%20-%20ikari.mp3"
-          >
-            Your browser does not support the audio element.
-          </audio>
-        </div>
-      </RLACard>
-    </div>
-  </RLAPageSection>
+  <!-- Main Tabs Section -->
+  <RLAPageSection orientation="vertical">
+    <div slot="body" class="max-w-6xl mx-auto w-full">
+      <RLATabs items={tabItems} variant="underline">
+        <!-- ALL TAB -->
+        <div role="tabpanel" data-value="all" class="flex flex-col gap-12">
+          <!-- Featured Production Section -->
+          <section class="flex flex-col gap-6">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2.5">
+                <span class="i-lucide-sparkles size-6 text-primary-500"></span>
+                {t("page_music.section_featured_title")}
+              </h2>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400">
+                {t("page_music.section_featured_desc")}
+              </p>
+            </div>
 
-  <!-- Curated Playlists Section -->
-  <RLAPageSection
-    title={t("page_music.section_playlists_title")}
-    orientation="vertical"
-  >
-    <div slot="body" class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto w-full">
-      {spotifyPlaylists.map((playlist) => (
-        <RLACard class="p-2 overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-default shadow-sm hover:shadow-md transition-shadow">
-          <iframe
-            src={`https://open.spotify.com/embed/playlist/${playlist.id}?utm_source=generator`}
-            width="100%"
-            height="352"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            class="w-full border-0 rounded-xl"
-          />
-        </RLACard>
-      ))}
+            <div class="grid grid-cols-1 gap-6">
+              {featuredTracks.map((track) => (
+                <MusicPlayer
+                  client:load
+                  title={track.title}
+                  artist={track.artist}
+                  genre={track.genre}
+                  bpm={track.bpm}
+                  keySignature={track.keySignature}
+                  audioSrc={track.audioSrc}
+                  categoryTag={track.categoryTag}
+                  downloadUrl={track.downloadUrl}
+                  cuePoints={track.cuePoints}
+                  labels={playerLabels}
+                />
+              ))}
+            </div>
+          </section>
+
+          <!-- Curated Playlists Grid -->
+          <section class="flex flex-col gap-6">
+            <div class="flex flex-col gap-1">
+              <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2.5">
+                <span class="i-lucide-disc-3 size-6 text-emerald-500"></span>
+                {t("page_music.section_playlists_title")}
+              </h2>
+              <p class="text-sm text-neutral-500 dark:text-neutral-400">
+                {t("page_music.section_playlists_desc")}
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {spotifyPlaylists.map((pl) => (
+                <SpotifyFacade
+                  client:visible
+                  id={pl.id}
+                  title={pl.title}
+                  description={pl.description}
+                  categoryBadge={pl.categoryBadge}
+                  trackCount={pl.trackCount}
+                  loadPlayerLabel={t("page_music.spotify_load")}
+                  openLabel={t("page_music.spotify_open")}
+                />
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <!-- PRODUCTIONS ONLY TAB -->
+        <div role="tabpanel" data-value="productions" class="flex flex-col gap-6">
+          <div class="flex flex-col gap-1">
+            <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2.5">
+              <span class="i-lucide-audio-waveform size-6 text-primary-500"></span>
+              {t("page_music.section_featured_title")}
+            </h2>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400">
+              {t("page_music.section_featured_desc")}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-6">
+            {featuredTracks.map((track) => (
+              <MusicPlayer
+                client:load
+                title={track.title}
+                artist={track.artist}
+                genre={track.genre}
+                bpm={track.bpm}
+                keySignature={track.keySignature}
+                audioSrc={track.audioSrc}
+                categoryTag={track.categoryTag}
+                downloadUrl={track.downloadUrl}
+                cuePoints={track.cuePoints}
+                labels={playerLabels}
+              />
+            ))}
+          </div>
+        </div>
+
+        <!-- PLAYLISTS ONLY TAB -->
+        <div role="tabpanel" data-value="playlists" class="flex flex-col gap-6">
+          <div class="flex flex-col gap-1">
+            <h2 class="text-2xl font-bold text-neutral-900 dark:text-neutral-100 flex items-center gap-2.5">
+              <span class="i-lucide-list-music size-6 text-emerald-500"></span>
+              {t("page_music.section_playlists_title")}
+            </h2>
+            <p class="text-sm text-neutral-500 dark:text-neutral-400">
+              {t("page_music.section_playlists_desc")}
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {spotifyPlaylists.map((pl) => (
+              <SpotifyFacade
+                client:visible
+                id={pl.id}
+                title={pl.title}
+                description={pl.description}
+                categoryBadge={pl.categoryBadge}
+                trackCount={pl.trackCount}
+                loadPlayerLabel={t("page_music.spotify_load")}
+                openLabel={t("page_music.spotify_open")}
+              />
+            ))}
+          </div>
+        </div>
+      </RLATabs>
     </div>
   </RLAPageSection>
 </AppLayout>
-
-<style>
-  @keyframes spin-slow {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  .animate-spin-slow {
-    animation: spin-slow 8s linear infinite;
-  }
-</style>

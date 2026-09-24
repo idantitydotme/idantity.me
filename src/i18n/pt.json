@@ -331,11 +331,50 @@
   },
   "page_music": {
     "title": "Música",
-    "description": "Sets de DJ, playlists selecionadas e produções musicais.",
-    "hero_title": "Música & Áudio",
-    "hero_description": "Ouça sets de DJ, produções originais e playlists selecionadas do Spotify.",
+    "description": "Sets de DJ, playlists selecionadas, faixas originais e produções musicais.",
+    "hero_headline": "Experiência Sonora",
+    "hero_title": "Música, Sets & Áudio",
+    "hero_description": "Produções originais de bass e música eletrônica, sets de DJ com faixas e capítulos interativos, e seleções selecionadas no Spotify.",
+    "tab_all": "Todo o Áudio",
+    "tab_mixes": "Sets & Mixes",
+    "tab_productions": "Originais & Faixas",
+    "tab_playlists": "Playlists Selecionadas",
+    "section_featured_title": "Produção em Destaque",
+    "section_featured_desc": "Produção de alta energia em música eletrônica e bass.",
     "section_mixes_title": "Sets & Mixes em Destaque",
-    "section_playlists_title": "Playlists Selecionadas"
+    "section_mixes_desc": "Sets completos com marcações interativas de capítulos.",
+    "section_playlists_title": "Playlists Selecionadas",
+    "section_playlists_desc": "Descubra paisagens sonoras selecionadas de bass, eletrônica melódica e ambient.",
+    "player_play": "Tocar",
+    "player_pause": "Pausar",
+    "player_mute": "Mutar",
+    "player_unmute": "Desmutar",
+    "player_download": "Baixar Áudio",
+    "player_tracklist": "Capítulos & Faixas",
+    "player_speed": "Velocidade",
+    "spotify_load": "Carregar Player Spotify",
+    "spotify_open": "Abrir no Spotify",
+    "spotify_badge": "Playlist Spotify",
+    "tracks": {
+      "bishu_ikari_title": "Bishu - Ikari",
+      "bishu_ikari_artist": "Bishu / idantity rework",
+      "bishu_ikari_genre": "Electronic / Bass",
+      "bishu_ikari_category": "Produção",
+      "cue_intro": "Intro & Construção de Synths",
+      "cue_drop1": "Primeiro Drop (Bass Pesado)",
+      "cue_break": "Breakdown Melódico",
+      "cue_drop2": "Segundo Drop (Outro Polirrítmico)"
+    },
+    "playlists": {
+      "pl1_title": "Bass & Pulso Eletrônico",
+      "pl1_desc": "Linhas de baixo pesadas, ritmos de trap e sound design eletrizante para foco e energia.",
+      "pl2_title": "Ondas Melódicas & Future",
+      "pl2_desc": "Acordes melódicos envolventes, sintetizadores wave e vocais emotivos.",
+      "pl3_title": "Late Night & Programação",
+      "pl3_desc": "Deep house, downtempo e batidas atmosféricas criadas para trabalho focado.",
+      "pl4_title": "Energia Máxima & Pista",
+      "pl4_desc": "Batidas aceleradas de pista e faixas eletrônicas prontas para festivais."
+    }
   },
   "blog": {
     "title": "Blog",
@@ -392,11 +431,5 @@
   "branding": {
     "title": "Identidade Visual",
     "description": "Diretrizes de marca de idantity.me"
-  },
-  "assets": {
-    "title": "Asset Manager",
-    "heading": "Assets",
-    "description": "A dedicated test environment for the new simplified asset management system.",
-    "devNotes": "Development Notes"
   }
 }

@@ -43,7 +43,7 @@ export default defineConfig(
     auth: true,
     security: true,
     i18n: {
-      locales: ["en", "es"],
+      locales: ["en", "pt"],
       defaultLocale: "en"
     },
     ui: {

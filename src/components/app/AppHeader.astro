@@ -60,6 +60,10 @@ const socials: ButtonProps[] = [
     href: "https://github.com/idantitydotme"
   }
 ];
+const allMobileLinks: NavigationMenuItem[] = [
+  ...leftLinks,
+  ...rightLinks
+];
 ---
 
 <RLAHeader
@@ -98,7 +102,7 @@ const socials: ButtonProps[] = [
         />
 
         <RLANavigationMenu
-          items={leftLinks}
+          items={allMobileLinks}
           orientation="vertical"
           variant="link"
           ui={{

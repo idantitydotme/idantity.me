@@ -350,10 +350,49 @@
   "page_music": {
     "title": "Music",
     "description": "DJ mixes, curated playlists, and musical productions.",
-    "hero_title": "Music & Audio",
-    "hero_description": "Listen to DJ sets, original productions, and curated Spotify playlists.",
+    "hero_headline": "Sonic Experience",
+    "hero_title": "Music, Mixes & Audio",
+    "hero_description": "Original bass and electronic productions, DJ mixes with timestamped tracklists, and hand-curated Spotify selections.",
+    "tab_all": "All Audio",
+    "tab_mixes": "Mixes & Sets",
+    "tab_productions": "Originals & Tracks",
+    "tab_playlists": "Curated Playlists",
+    "section_featured_title": "Featured Production",
+    "section_featured_desc": "High-energy electronic and bass production.",
     "section_mixes_title": "Featured Mixes & Sets",
-    "section_playlists_title": "Curated Playlists"
+    "section_mixes_desc": "Full-length mixes with interactive chapter timestamps.",
+    "section_playlists_title": "Curated Playlists",
+    "section_playlists_desc": "Discover curated soundscapes across bass, melodic, and ambient electronic music.",
+    "player_play": "Play",
+    "player_pause": "Pause",
+    "player_mute": "Mute",
+    "player_unmute": "Unmute",
+    "player_download": "Download Audio",
+    "player_tracklist": "Chapters & Tracklist",
+    "player_speed": "Speed",
+    "spotify_load": "Load Spotify Player",
+    "spotify_open": "Open in Spotify",
+    "spotify_badge": "Spotify Playlist",
+    "tracks": {
+      "bishu_ikari_title": "Bishu - Ikari",
+      "bishu_ikari_artist": "Bishu / idantity rework",
+      "bishu_ikari_genre": "Electronic / Bass",
+      "bishu_ikari_category": "Production",
+      "cue_intro": "Intro & Lead Synth Build",
+      "cue_drop1": "First Drop (Heavy Bass)",
+      "cue_break": "Melodic Breakdown",
+      "cue_drop2": "Second Drop (Polyrhythm Outro)"
+    },
+    "playlists": {
+      "pl1_title": "Bass & Electronic Pulse",
+      "pl1_desc": "Heavy basslines, trap rhythms, and high-octane sound design for focus and energy.",
+      "pl2_title": "Melodic & Future Waves",
+      "pl2_desc": "Lush melodic chords, wave synths, and emotive vocal chops.",
+      "pl3_title": "Late Night Coding & Drive",
+      "pl3_desc": "Deep house, downtempo, and atmospheric beats crafted for deep work.",
+      "pl4_title": "Peak Energy & Club Anthems",
+      "pl4_desc": "Fast-paced dance floor bangers and festival-ready electronic tracks."
+    }
   },
   "blog": {
     "title": "Blog",
@@ -410,11 +449,5 @@
   "branding": {
     "title": "Branding",
     "description": "idantity.me Branding Guidelines"
-  },
-  "assets": {
-    "title": "Asset Manager",
-    "heading": "Assets",
-    "description": "A dedicated test environment for the new simplified asset management system.",
-    "devNotes": "Development Notes"
   }
 }

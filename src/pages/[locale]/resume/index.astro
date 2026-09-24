@@ -14,25 +14,6 @@ import RLAProgress from "@rimelight/ui/components/progress/RLAProgress.astro";
 import RLATimeline from "@rimelight/ui/components/timeline/RLATimeline.astro";
 import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
 
-export type AvailabilityStatus = "available" | "busy" | "looking";
-
-export interface AvailabilityPreset {
-  labelKey: string;
-  colorClass: string;
-  ping: boolean;
-}
-
-export interface AboutDetail {
-  label: string;
-  value: string;
-}
-
-export interface SocialLink {
-  icon: string;
-  href: string;
-  ariaLabel: string;
-}
-
 export interface LanguageSkill {
   nameKey: string;
   levelKey: string;
@@ -100,36 +81,13 @@ export interface ResumeProject {
 
 const age = (d => d.getFullYear() - 1997 - (d.getMonth() < 3 || (d.getMonth() === 3 && d.getDate() < 30) ? 1 : 0))(new Date());
 
-const aboutDetails: AboutDetail[] = [
-  { label: t("page_resume.about_gender_label"), value: t("page_resume.about_gender_value") },
-  { label: t("page_resume.about_pronouns_label"), value: t("page_resume.about_pronouns_value") },
-  { label: t("page_resume.about_nationality_label"), value: t("page_resume.about_nationality_value") },
-  { label: t("page_resume.about_age_label"), value: `${age} ${t("page_resume.about_age_value")}` }
-];
+interface SocialLink {
+  icon: string;
+  href: string;
+  ariaLabel: string;
+}
 
-const availabilityStatus: AvailabilityStatus = "available";
-
-const availabilityConfig: Record<AvailabilityStatus, AvailabilityPreset> = {
-  available: {
-    labelKey: "sidebar_availability_available",
-    colorClass: "bg-success-500",
-    ping: true
-  },
-  busy: {
-    labelKey: "sidebar_availability_busy",
-    colorClass: "bg-error-500",
-    ping: false
-  },
-  looking: {
-    labelKey: "sidebar_availability_looking",
-    colorClass: "bg-warning-500",
-    ping: true
-  }
-};
-
-const currentAvailability = availabilityConfig[availabilityStatus];
-
-const socials: SocialLink[] = [
+const socialLinks: SocialLink[] = [
   {
     icon: "i-logos-linkedin-icon",
     href: "https://linkedin.com/daniel-marchi",
@@ -140,7 +98,41 @@ const socials: SocialLink[] = [
     href: "https://github.com/idantitydotme",
     ariaLabel: t("page_resume.aria_social_github") ?? "GitHub"
   }
-];
+]
+
+interface AboutDetail {
+  label: string;
+  leadingIcon?: string;
+  value: string;
+  trailingIcon?: string;
+  href?: string;
+}
+
+const aboutDetails: AboutDetail[] = [
+  {
+    label: t("page_resume.about_gender_label"),
+    value: t("page_resume.about_gender_value")
+  },
+  {
+    label: t("page_resume.about_pronouns_label"),
+    value: t("page_resume.about_pronouns_value")
+  },
+  {
+    label: t("page_resume.about_nationality_label"),
+    value: t("page_resume.about_nationality_value")
+  },
+  {
+    label: t("page_resume.about_age_label"),
+    value: `${age} ${t("page_resume.about_age_value")}`
+  },
+  {
+    label: t("page_resume.about_location_label"),
+    leadingIcon: "i-lucide-map-pin",
+    value: "Curitiba, Brazil",
+    trailingIcon: "i-lucide-external-link",
+    href: "https://en.wikipedia.org/wiki/Curitiba"
+  }
+]
 
 const languages: readonly LanguageSkill[] = [
   {
@@ -176,7 +168,7 @@ const heroLinks: ButtonProps[] = [
     href: "https://cdn.idantity.me/Documents/Daniel_Marchi_CV.pdf",
     leadingIcon: "i-lucide-download"
   }
-];
+]
 
 const skills: SkillItem[] = [
   {
@@ -194,7 +186,7 @@ const skills: SkillItem[] = [
     title: t("page_resume.skills_design"),
     description: t("page_resume.skills_design_desc")
   }
-];
+]
 
 const techGroups: TechGroup[] = [
   {
@@ -276,17 +268,11 @@ const techGroups: TechGroup[] = [
       }
     ]
   }
-];
+]
 
 const experiences = t.raw<ExperienceItem[]>("page_resume.experiences", []);
 
-// Chronological (oldest first) in source, reverse-chronological (most recent first) for display.
-const orderedExperiences = [...experiences].reverse();
-
 const education = t.raw<EducationItem[]>("page_resume.education", []);
-
-// Chronological (oldest first) in source, reverse-chronological (most recent first) for display.
-const orderedEducation = [...education].reverse();
 
 const certifications = t.raw<CertificationItem[]>("page_resume.certifications", []);
 const projects = t.raw<ResumeProject[]>("page_resume.projects", []);
@@ -297,7 +283,8 @@ const projects = t.raw<ResumeProject[]>("page_resume.projects", []);
     <RLAPage>
       <div class="flex flex-col md:flex-row gap-xl">
         <!-- Page Body -->
-        <div class="flex flex-col gap-xl py-8 md:py-16 flex-1">          <RLAPageSection
+        <div class="flex flex-col gap-xl py-8 md:py-16 flex-1">
+          <RLAPageSection
             variant="hero"
             orientation="horizontal"
             title={t("page_resume.hero_title")}
@@ -384,7 +371,7 @@ const projects = t.raw<ResumeProject[]>("page_resume.projects", []);
               orientation="vertical"
               size="xl"
               class="w-full"
-              items={orderedExperiences.map((exp) => ({
+              items={[...experiences].reverse().map((exp) => ({
                 ...exp,
                 date: exp.period,
                 title: `${exp.role} @ ${exp.company}`,
@@ -432,7 +419,7 @@ const projects = t.raw<ResumeProject[]>("page_resume.projects", []);
             <RLATimeline
               orientation="vertical"
               size="xl"
-              items={orderedEducation.map((edu) => ({
+              items={[...education].reverse().map((edu) => ({
                 date: edu.period,
                 title: edu.degree,
                 description: edu.school,
@@ -579,34 +566,16 @@ const projects = t.raw<ResumeProject[]>("page_resume.projects", []);
               </div>
             </header>
 
-            <!-- Availability Status Indicator -->
-            <RLAButton
-              href={getRelativeLocaleUrl("/contact")}
-              variant="ghost"
-              color="success"
-              class="w-full justify-center text-sm font-bold"
-            >
-              <span
-                aria-hidden="true"
-                class:list={[
-                  "relative inline-block size-2.5 rounded-full",
-                  currentAvailability.colorClass,
-                  { "before:content-[''] before:absolute before:inset-0 before:rounded-full before:animate-ping before:opacity-75 before:bg-inherit": currentAvailability.ping }
-                ]}
-              />
-              {t(`page_resume.${currentAvailability.labelKey}`)}
-            </RLAButton>
-
             <!-- Socials -->
             <ul class="flex gap-sm justify-center w-full">
-              {socials.map((social) => (
+              {socialLinks.map((socialLink) => (
                 <li>
                   <RLAButton
                     size="lg"
                     variant="ghost"
-                    leadingIcon={`${social.icon}?mask text-white hover:text-primary-500`}
-                    href={social.href}
-                    aria-label={social.ariaLabel}
+                    leadingIcon={`${socialLink.icon}?mask text-white hover:text-primary-500`}
+                    href={socialLink.href}
+                    aria-label={socialLink.ariaLabel}
                   />
                 </li>
               ))}
@@ -622,11 +591,20 @@ const projects = t.raw<ResumeProject[]>("page_resume.projects", []);
               </div>
               <hr aria-hidden="true" class="border-neutral-500" />
             </header>
+
             <dl class="flex flex-col gap-sm text-sm text-neutral-500">
-              {aboutDetails.map((item) => (
+              {aboutDetails.map((aboutDetail) => (
                 <div class="flex justify-between">
-                  <dt>{item.label}</dt>
-                  <dd>{item.value}</dd>
+                  <dt>{aboutDetail.label}</dt>
+                  <dd>
+                    {aboutDetail.leadingIcon &&
+                      <span class={aboutDetail.leadingIcon}/>
+                    }
+                    <span>{aboutDetail.value}</span>
+                    {aboutDetail.trailingIcon &&
+                      <span class={aboutDetail.trailingIcon}/>
+                    }
+                  </dd>
                 </div>
               ))}
               <div class="flex justify-between items-center pb-1.5">
