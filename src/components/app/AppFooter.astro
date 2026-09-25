@@ -8,7 +8,6 @@ import RLAThemeSelector from "@rimelight/ui/components/theme-selector/RLAThemeSe
 import RLALocaleSelector from "@rimelight/ui/components/locale-selector/RLALocaleSelector.astro";
 import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
 
-
 const columns = [
   {
     label: t("app_footer.links_resources_label"),
@@ -64,23 +63,26 @@ const targetLanguages = [
 ---
 
 <RLAFooter contain={false} class="bg-black z-50">
-  <div slot="left" class="flex flex-col items-center gap-xs lg:items-start">
+  <div slot="left" class="flex flex-col justify-between h-full gap-xs lg:items-start">
     <RLALogo variant="logotype" class="h-6 w-auto" />
-    <p class="text-sm text-white">Accessing me.</p>
-    <span class="text-sm text-white">© {new Date().getFullYear()} idantity.me</span>
+    <div>
+      <p class="text-sm text-white">Accessing me.</p>
+      <span class="text-sm text-white">© {new Date().getFullYear()} idantity.me</span>
+    </div>
   </div>
   <div slot="center" class="flex gap-12">
     {columns.map(column => (
       <RLALinkGroup
-        title={column.label}
+        label={column.label}
         links={column.children.map(child => ({ label: child.label, href: child.to }))}
-        theme="flat"
       />
     ))}
   </div>
-  <div slot="right" class="flex flex-col gap-sm lg:items-end">
-    <RLAThemeSelector />
-    <RLALocaleSelector locales={targetLanguages} />
+  <div slot="right" class="flex flex-col justify-between h-full gap-sm lg:items-end">
+    <div class="flex flex-col gap-sm">
+      <RLAThemeSelector />
+      <RLALocaleSelector locales={targetLanguages} />
+    </div>
     <div class="flex flex-row flex-wrap gap-sm lg:items-end">
       {socials.map((social) => (
           <RLAButton
