@@ -1,0 +1,94 @@
+import { type Component, For } from "solid-js"
+
+export interface HttpObservatoryProps {
+  grade?: string
+  score?: number
+  testsPassed?: number
+  totalTests?: number
+  host?: string
+}
+
+export const HttpObservatory: Component<HttpObservatoryProps> = (props) => {
+  const grade = () => props.grade ?? "A+"
+  const score = () => props.score ?? 145
+  const testsPassed = () => props.testsPassed ?? 10
+  const totalTests = () => props.totalTests ?? 10
+  const host = () => props.host ?? "idantity.me"
+
+  const securityFeatures = [
+    { name: "Content-Security-Policy", status: "Strict (Zero XSS/Injection)" },
+    { name: "HTTP Strict Transport Security", status: "HSTS Preloaded & Enforced" },
+    { name: "Anti-Clickjacking & Sniffing", status: "DENY & nosniff Active" },
+    { name: "Referrer & Permissions Policy", status: "Strict Origin Isolation" }
+  ]
+
+  return (
+    <div class="w-full flex flex-col justify-between h-full">
+      {/* Header & Context */}
+      <div class="mb-6">
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <div class="flex items-center gap-2">
+            <span class="i-lucide-shield-check size-5 text-emerald-500" aria-hidden="true" />
+            <h3 class="text-lg font-bold text-foreground">Mozilla HTTP Observatory</h3>
+          </div>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            Grade {grade()} Hardened
+          </span>
+        </div>
+        <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          Security is not an afterthought. Every deployment is configured with military-grade HTTP
+          headers and zero-trust perimeter policies.
+        </p>
+      </div>
+
+      {/* Content: Grade badge + Detailed Security Feature Matrix */}
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 py-2">
+        {/* Grade Box */}
+        <div class="flex sm:flex-col items-center justify-center p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center sm:min-w-[120px] shrink-0">
+          <span class="text-4xl sm:text-5xl font-extrabold text-emerald-600 dark:text-emerald-400 font-mono tracking-tight">
+            {grade()}
+          </span>
+          <div class="ml-3 sm:ml-0 sm:mt-1 flex flex-col items-start sm:items-center">
+            <span class="text-xs font-semibold text-foreground">Score {score()}/100</span>
+            <span class="text-[11px] text-muted-foreground">
+              {testsPassed()}/{totalTests()} Tests Passed
+            </span>
+          </div>
+        </div>
+
+        {/* Security Headers Checklist */}
+        <div class="flex-1 grid grid-cols-1 gap-2">
+          <For each={securityFeatures}>
+            {(feat) => (
+              <div class="flex items-center justify-between text-xs px-3 py-2 rounded-lg bg-neutral-500/5">
+                <span class="font-mono font-medium text-foreground/90 truncate mr-2">
+                  {feat.name}
+                </span>
+                <span class="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 shrink-0 flex items-center gap-1">
+                  <span class="i-lucide-check size-3" aria-hidden="true" />
+                  {feat.status}
+                </span>
+              </div>
+            )}
+          </For>
+        </div>
+      </div>
+
+      {/* Footnote with Live Link */}
+      <div class="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
+        <a
+          href={`https://developer.mozilla.org/en-US/observatory/analyze?host=${host()}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-1.5 text-primary-500 hover:text-primary-600 font-medium hover:underline transition"
+        >
+          <span>Verify scan on Mozilla Observatory</span>
+          <span class="i-lucide-external-link size-3" aria-hidden="true" />
+        </a>
+        <span class="text-xs text-muted-foreground/80">Zero Critical Findings</span>
+      </div>
+    </div>
+  )
+}
+
+export default HttpObservatory

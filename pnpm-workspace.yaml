@@ -8,5 +8,6 @@ overrides:
   # Vulnerability Fixes
   esbuild: ">=0.25.0"
 allowBuilds:
+  better-sqlite3: true
   esbuild: true
   workerd: true

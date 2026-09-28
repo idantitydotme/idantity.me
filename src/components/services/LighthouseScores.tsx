@@ -1,0 +1,132 @@
+import { type Component, For, Show } from "solid-js"
+
+export interface LighthouseScoresProps {
+  performance?: number
+  accessibility?: number
+  bestPractices?: number
+  seo?: number
+  showDetails?: boolean
+}
+
+export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
+  const performance = () => props.performance ?? 100
+  const accessibility = () => props.accessibility ?? 100
+  const bestPractices = () => props.bestPractices ?? 100
+  const seo = () => props.seo ?? 100
+  const showDetails = () => props.showDetails ?? true
+
+  const metrics = () => [
+    {
+      label: "Performance",
+      value: performance(),
+      desc: "Sub-second LCP & instantaneous edge delivery"
+    },
+    {
+      label: "Accessibility",
+      value: accessibility(),
+      desc: "WCAG 2.1 AA compliant, screen-reader optimized"
+    },
+    {
+      label: "Best Practices",
+      value: bestPractices(),
+      desc: "Modern web standards, HTTPS & zero console errors"
+    },
+    {
+      label: "SEO",
+      value: seo(),
+      desc: "Semantic metadata, structured data & discoverability"
+    }
+  ]
+
+  const radius = 42
+  const circumference = 2 * Math.PI * radius
+
+  return (
+    <div class="w-full flex flex-col justify-between h-full">
+      {/* Header & Context */}
+      <div class="mb-6">
+        <div class="flex items-center justify-between gap-2 mb-2">
+          <div class="flex items-center gap-2">
+            <span class="i-lucide-gauge size-5 text-emerald-500" aria-hidden="true" />
+            <h3 class="text-lg font-bold text-foreground">Google Lighthouse</h3>
+          </div>
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+            100/100 Perfect Score
+          </span>
+        </div>
+        <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+          Every site is engineered from the ground up for maximum speed, pristine Core Web Vitals,
+          and strict accessibility standards.
+        </p>
+      </div>
+
+      {/* Scores Grid */}
+      <div
+        class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-2"
+        role="list"
+        aria-label="Lighthouse scores"
+      >
+        <For each={metrics()}>
+          {(metric) => {
+            const offset = () => circumference - (metric.value / 100) * circumference
+            const color = () =>
+              metric.value >= 90 ? "#10b981" : metric.value >= 50 ? "#f59e0b" : "#ef4444"
+
+            return (
+              <div
+                class="flex flex-col items-center text-center p-2 rounded-xl bg-neutral-500/5"
+                role="listitem"
+              >
+                <div class="relative flex items-center justify-center size-20 sm:size-24">
+                  <svg class="size-full -rotate-90" viewBox="0 0 100 100" aria-hidden="true">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r={radius}
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="6"
+                      class="text-neutral-200 dark:text-neutral-800"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r={radius}
+                      fill="none"
+                      stroke={color()}
+                      stroke-width="6"
+                      stroke-linecap="round"
+                      stroke-dasharray={`${circumference}`}
+                      stroke-dashoffset={`${offset()}`}
+                      class="transition-all duration-1000 ease-out"
+                    />
+                  </svg>
+                  <span class="absolute font-bold text-xl sm:text-2xl text-foreground font-mono">
+                    {metric.value}
+                  </span>
+                </div>
+
+                <span class="mt-2 text-xs font-bold text-foreground">{metric.label}</span>
+                <Show when={showDetails()}>
+                  <span class="mt-1 text-[11px] text-muted-foreground leading-tight hidden sm:block">
+                    {metric.desc}
+                  </span>
+                </Show>
+              </div>
+            )
+          }}
+        </For>
+      </div>
+
+      {/* Footnote */}
+      <div class="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
+        <span>Verified on modern mobile & desktop viewports</span>
+        <span class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
+          <span class="i-lucide-check-circle-2 size-3.5" aria-hidden="true" /> Live Standard
+        </span>
+      </div>
+    </div>
+  )
+}
+
+export default LighthouseScores
