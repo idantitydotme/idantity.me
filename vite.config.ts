@@ -8,16 +8,8 @@ import { seo } from "@rimelight/seo/plugin"
 import { security } from "@rimelight/security/plugin"
 import { auth } from "@rimelight/auth/plugin"
 import { i18n } from "@rimelight/i18n/plugin"
-import { rimelightSolidConfig } from "@rimelight/config/solid"
 import en from "./src/i18n/en.json"
 import pt from "./src/i18n/pt.json"
-
-const site = rimelightSolidConfig({
-  domain: "idantity.me",
-  security: {
-    connectSrc: ["https://challenges.cloudflare.com"]
-  }
-})
 
 export default defineConfig({
   ...rimelightConfig(),
@@ -85,7 +77,10 @@ export default defineConfig({
       ]
     }),
 
-    security(site.securityOptions ?? {}),
+    security({
+      domain: "idantity.me",
+      connectSrc: ["https://challenges.cloudflare.com"]
+    }),
 
     auth(),
 
