@@ -32,7 +32,6 @@ const config = defineConfig({
       "EMAIL_DOMAIN": bindings.text("idantity.me"),
       "CONTACT_OWNER_EMAIL": bindings.text("owner@idantity.me"),
       "DB": bindings.d1({
-        name: "idantity-dot-me",
         id: "51076606-e3ee-4e09-bf45-04db8b0737f9",
         dev: {
           remote: true
