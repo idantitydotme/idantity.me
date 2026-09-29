@@ -62,8 +62,6 @@ const config = defineConfig({
         }
       }),
       "ASSETS": bindings.assets(),
-      "TURNSTILE_SITE_KEY": bindings.secret(),
-      "TURNSTILE_SECRET_KEY": bindings.secret(),
       "CONSTRUCTION_PASSPHRASE": bindings.secret()
     }
   }
