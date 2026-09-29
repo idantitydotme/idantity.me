@@ -4,7 +4,6 @@
   "private": true,
   "description": "Accessing me.",
   "keywords": [
-    "rimelight",
     "solid",
     "typescript"
   ],
@@ -62,7 +61,6 @@
   "devDependencies": {
     "@iconify-json/logos": "1.2.14",
     "@iconify-json/lucide": "1.2.135",
-    "@iconify-json/simple-icons": "1.2.53",
     "@rimelight/config": "0.0.29",
     "@types/node": "26.6.2",
     "cf": "1.0.0-beta.2",

@@ -43,5 +43,5 @@ server/db/drizzle/*.json
 server/db/drizzle/_journal.json
 server/db/drizzle/*_draft.sql
 
-# Generated Files
+# File Routes
 file-routes.d.ts
