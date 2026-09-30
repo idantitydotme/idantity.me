@@ -1,26 +1,26 @@
-import { type Component, For } from "solid-js"
+import { type Component, For } from "solid-js";
 
 export interface HttpObservatoryProps {
-  grade?: string
-  score?: number
-  testsPassed?: number
-  totalTests?: number
-  host?: string
+  grade?: string;
+  score?: number;
+  testsPassed?: number;
+  totalTests?: number;
+  host?: string;
 }
 
 export const HttpObservatory: Component<HttpObservatoryProps> = (props) => {
-  const grade = () => props.grade ?? "A+"
-  const score = () => props.score ?? 145
-  const testsPassed = () => props.testsPassed ?? 10
-  const totalTests = () => props.totalTests ?? 10
-  const host = () => props.host ?? "idantity.me"
+  const grade = () => props.grade ?? "A+";
+  const score = () => props.score ?? 145;
+  const testsPassed = () => props.testsPassed ?? 10;
+  const totalTests = () => props.totalTests ?? 10;
+  const host = () => props.host ?? "idantity.me";
 
   const securityFeatures = [
     { name: "Content-Security-Policy", status: "Strict (Zero XSS/Injection)" },
     { name: "HTTP Strict Transport Security", status: "HSTS Preloaded & Enforced" },
     { name: "Anti-Clickjacking & Sniffing", status: "DENY & nosniff Active" },
-    { name: "Referrer & Permissions Policy", status: "Strict Origin Isolation" }
-  ]
+    { name: "Referrer & Permissions Policy", status: "Strict Origin Isolation" },
+  ];
 
   return (
     <div class="w-full flex flex-col justify-between h-full">
@@ -88,7 +88,7 @@ export const HttpObservatory: Component<HttpObservatoryProps> = (props) => {
         <span class="text-xs text-muted-foreground/80">Zero Critical Findings</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HttpObservatory
+export default HttpObservatory;

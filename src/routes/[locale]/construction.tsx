@@ -1,13 +1,13 @@
-import { type Component, Show } from "solid-js"
-import { useSearchParams } from "@solidjs/router"
-import BlankLayout from "#layouts/BlankLayout"
-import { RLCard, RLFormField, RLInput, RLButton, RLCheckbox, RLLogo } from "@rimelight/ui"
-import { t } from "@rimelight/i18n"
+import { type Component, Show } from "solid-js";
+import { useSearchParams } from "@solidjs/router";
+import BlankLayout from "#layouts/BlankLayout";
+import { RLCard, RLFormField, RLInput, RLButton, RLCheckbox, RLLogo } from "@rimelight/ui";
+import { t } from "@rimelight/i18n";
 
 export const ConstructionPage: Component = () => {
-  const [searchParams] = useSearchParams()
-  const redirect = () => searchParams["redirect"] || "/"
-  const isError = () => searchParams["error"] === "invalid"
+  const [searchParams] = useSearchParams();
+  const redirect = () => searchParams["redirect"] || "/";
+  const isError = () => searchParams["error"] === "invalid";
 
   return (
     <BlankLayout
@@ -67,7 +67,7 @@ export const ConstructionPage: Component = () => {
         </div>
       </div>
     </BlankLayout>
-  )
-}
+  );
+};
 
-export default ConstructionPage
+export default ConstructionPage;

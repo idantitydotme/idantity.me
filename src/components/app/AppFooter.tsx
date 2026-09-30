@@ -1,4 +1,4 @@
-import { type Component, For } from "solid-js"
+import { type Component, For } from "solid-js";
 import {
   RLFooter,
   RLLogo,
@@ -7,9 +7,9 @@ import {
   RLThemeSelector,
   RLLocaleSelector,
   type RLButtonProps,
-  type RLLinkGroupProps
-} from "@rimelight/ui"
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
+  type RLLinkGroupProps,
+} from "@rimelight/ui";
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
 
 export const AppFooter: Component = () => {
   const columns = (): RLLinkGroupProps[] => [
@@ -18,52 +18,52 @@ export const AppFooter: Component = () => {
       links: [
         {
           label: t("app_footer.links_resources_branding"),
-          href: getRelativeLocaleUrl("/branding")
-        }
-      ]
+          href: getRelativeLocaleUrl("/branding"),
+        },
+      ],
     },
     {
       label: t("app_footer.links_legal_label"),
       links: [
         {
           label: t("app_footer.links_legal_privacy-policy"),
-          href: getRelativeLocaleUrl("/legal/privacy-policy")
+          href: getRelativeLocaleUrl("/legal/privacy-policy"),
         },
         {
           label: t("app_footer.links_legal_other-documents"),
-          href: getRelativeLocaleUrl("/legal")
-        }
-      ]
-    }
-  ]
+          href: getRelativeLocaleUrl("/legal"),
+        },
+      ],
+    },
+  ];
 
   const socials = (): RLButtonProps[] => [
     {
       leadingIcon: "i-logos-instagram-icon?mask text-white group-hover:text-primary-500",
-      href: "https://www.instagram.com/idantity.me"
+      href: "https://www.instagram.com/idantity.me",
     },
     {
       leadingIcon: "i-logos-discord-icon?mask text-white group-hover:text-primary-500",
-      href: "https://discord.com/users/682049695173836979"
+      href: "https://discord.com/users/682049695173836979",
     },
     {
       leadingIcon: "i-logos-spotify-icon?mask text-white group-hover:text-primary-500",
-      href: "https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222"
+      href: "https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222",
     },
     {
       leadingIcon: "i-logos-github-icon?mask text-white group-hover:text-primary-500",
-      href: "https://www.github.com/idantitydotme"
+      href: "https://www.github.com/idantitydotme",
     },
     {
       leadingIcon: "i-logos-linkedin-icon?mask text-white group-hover:text-primary-500",
-      href: "https://www.linkedin.com/daniel-marchi"
-    }
-  ]
+      href: "https://www.linkedin.com/daniel-marchi",
+    },
+  ];
 
   const targetLanguages = () => [
     { code: "en", label: "English", href: getRelativeLocaleUrl("/en") },
-    { code: "pt", label: "Português", href: getRelativeLocaleUrl("/pt") }
-  ]
+    { code: "pt", label: "Português", href: getRelativeLocaleUrl("/pt") },
+  ];
 
   return (
     <RLFooter
@@ -98,7 +98,7 @@ export const AppFooter: Component = () => {
         </div>
       }
     />
-  )
-}
+  );
+};
 
-export default AppFooter
+export default AppFooter;

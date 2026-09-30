@@ -1,4 +1,4 @@
-import { type Component, For, Show } from "solid-js"
+import { type Component, For, Show } from "solid-js";
 import {
   RLHeader,
   RLLogo,
@@ -7,61 +7,61 @@ import {
   RLSlideover,
   RLAvatar,
   RLPopover,
-  type RLButtonProps
-} from "@rimelight/ui"
-import type { NavigationMenuItem } from "@rimelight/ui/components/navigation-menu/navigation-menu.ts"
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
+  type RLButtonProps,
+} from "@rimelight/ui";
+import type { NavigationMenuItem } from "@rimelight/ui/components/navigation-menu/navigation-menu.ts";
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
 
 export interface AppHeaderProps {
-  session?: any
-  stackIndex?: number
+  session?: any;
+  stackIndex?: number;
 }
 
 export const AppHeader: Component<AppHeaderProps> = (props) => {
   const leftLinks = (): NavigationMenuItem[] => [
     {
       label: t("app_header.left-links_projects_label"),
-      to: getRelativeLocaleUrl("/projects")
+      to: getRelativeLocaleUrl("/projects"),
     },
     {
       label: t("app_header.left-links_music_label"),
-      to: getRelativeLocaleUrl("/music")
+      to: getRelativeLocaleUrl("/music"),
     },
     {
       label: t("app_header.left-links_blog_label"),
-      to: getRelativeLocaleUrl("/blog")
+      to: getRelativeLocaleUrl("/blog"),
     },
     {
       label: t("app_header.left-links_about_label"),
-      to: getRelativeLocaleUrl("/about")
-    }
-  ]
+      to: getRelativeLocaleUrl("/about"),
+    },
+  ];
 
   const rightLinks = (): NavigationMenuItem[] => [
     {
       label: t("app_header.right-links_services_label"),
-      to: getRelativeLocaleUrl("/services")
+      to: getRelativeLocaleUrl("/services"),
     },
     {
       label: t("app_header.right-links_resume_label"),
-      to: getRelativeLocaleUrl("/resume")
-    }
-  ]
+      to: getRelativeLocaleUrl("/resume"),
+    },
+  ];
 
   const socials = (): RLButtonProps[] => [
     {
       variant: "ghost",
       leadingIcon: "i-logos-instagram-icon?mask text-white group-hover:text-primary-500",
-      href: "https://instagram.com/idantity.me"
+      href: "https://instagram.com/idantity.me",
     },
     {
       variant: "ghost",
       leadingIcon: "i-logos-github-icon?mask text-white group-hover:text-primary-500",
-      href: "https://github.com/idantitydotme"
-    }
-  ]
+      href: "https://github.com/idantitydotme",
+    },
+  ];
 
-  const allMobileLinks = (): NavigationMenuItem[] => [...leftLinks(), ...rightLinks()]
+  const allMobileLinks = (): NavigationMenuItem[] => [...leftLinks(), ...rightLinks()];
 
   return (
     <RLHeader
@@ -79,7 +79,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
               variant="link"
               theme="flat"
               ui={{
-                link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400"
+                link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
               }}
             />
           </div>
@@ -104,7 +104,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
                 orientation="vertical"
                 variant="link"
                 ui={{
-                  link: "text-black dark:text-white flex justify-start items-center w-full text-left py-2 text-lg transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400"
+                  link: "text-black dark:text-white flex justify-start items-center w-full text-left py-2 text-lg transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
                 }}
               />
             </RLSlideover>
@@ -126,7 +126,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
               variant="link"
               theme="flat"
               ui={{
-                link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400"
+                link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
               }}
             />
             <For each={socials()}>{(buttonProps) => <RLButton {...buttonProps} />}</For>
@@ -185,7 +185,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
         </div>
       }
     />
-  )
-}
+  );
+};
 
-export default AppHeader
+export default AppHeader;

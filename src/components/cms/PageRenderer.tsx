@@ -1,49 +1,49 @@
-import { type Component, For, Show } from "solid-js"
-import { RLCard, RLIcon } from "@rimelight/ui"
+import { type Component, For, Show } from "solid-js";
+import { RLCard, RLIcon } from "@rimelight/ui";
 
 function inlinesToMarkdown(inlines: any): string {
-  if (!inlines) return ""
-  if (typeof inlines === "string") return inlines
+  if (!inlines) return "";
+  if (typeof inlines === "string") return inlines;
   if (!Array.isArray(inlines)) {
-    return inlines.en || ""
+    return inlines.en || "";
   }
 
   return inlines
     .map((node: any) => {
       if (node.type === "text") {
-        let text = node.text || ""
-        const marks = node.marks || []
-        if (marks.includes("code")) text = `\`${text}\``
-        if (marks.includes("bold")) text = `**${text}**`
-        if (marks.includes("italic")) text = `*${text}*`
-        if (marks.includes("strikethrough")) text = `~~${text}~~`
-        return text
+        let text = node.text || "";
+        const marks = node.marks || [];
+        if (marks.includes("code")) text = `\`${text}\``;
+        if (marks.includes("bold")) text = `**${text}**`;
+        if (marks.includes("italic")) text = `*${text}*`;
+        if (marks.includes("strikethrough")) text = `~~${text}~~`;
+        return text;
       }
       if (node.type === "link") {
-        const linkText = (node.children || []).map((c: any) => c.text).join("") || node.url
-        return `[${linkText}](${node.url})`
+        const linkText = (node.children || []).map((c: any) => c.text).join("") || node.url;
+        return `[${linkText}](${node.url})`;
       }
       if (node.type === "page_mention") {
-        const title = node.displayTitle || node.pageSlug || "Page"
-        return `[${title}](/${node.pageSlug || ""})`
+        const title = node.displayTitle || node.pageSlug || "Page";
+        return `[${title}](/${node.pageSlug || ""})`;
       }
-      return ""
+      return "";
     })
-    .join("")
+    .join("");
 }
 
 interface PageRendererProps {
-  blocks?: any[]
-  locale?: string
-  session?: any
-  class?: string
+  blocks?: any[];
+  locale?: string;
+  session?: any;
+  class?: string;
 }
 
 export const BlockRenderer: Component<{ block: any; locale?: string | undefined }> = (props) => {
-  const b = () => props.block || {}
-  const type = () => b().type
-  const p = () => b().props || {}
-  const children = () => b().children || p().children || []
+  const b = () => props.block || {};
+  const type = () => b().type;
+  const p = () => b().props || {};
+  const children = () => b().children || p().children || [];
 
   return (
     <Show when={b().type}>
@@ -130,7 +130,7 @@ export const BlockRenderer: Component<{ block: any; locale?: string | undefined 
             "CodeBlock",
             "CardsBlock",
             "CardBlock",
-            "ImageBlock"
+            "ImageBlock",
           ].includes(type())
         }
       >
@@ -142,11 +142,11 @@ export const BlockRenderer: Component<{ block: any; locale?: string | undefined 
         </For>
       </Show>
     </Show>
-  )
-}
+  );
+};
 
 export const PageRenderer: Component<PageRendererProps> = (props) => {
-  const blockList = () => props.blocks || []
+  const blockList = () => props.blocks || [];
 
   return (
     <article class={`rimelight-cms-page ${props.class || ""}`}>
@@ -154,7 +154,7 @@ export const PageRenderer: Component<PageRendererProps> = (props) => {
         {(block) => <BlockRenderer block={block} locale={props.locale} />}
       </For>
     </article>
-  )
-}
+  );
+};
 
-export default PageRenderer
+export default PageRenderer;

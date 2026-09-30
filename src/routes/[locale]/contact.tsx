@@ -1,79 +1,79 @@
-import { type Component, createSignal } from "solid-js"
-import AppLayout from "#layouts/AppLayout"
-import { RLPageSection, RLCard, RLButton } from "@rimelight/ui"
-import Turnstile from "#components/Turnstile"
-import { t } from "@rimelight/i18n"
-import { api } from "#api/client"
+import { type Component, createSignal } from "solid-js";
+import AppLayout from "#layouts/AppLayout";
+import { RLPageSection, RLCard, RLButton } from "@rimelight/ui";
+import Turnstile from "#components/Turnstile";
+import { t } from "@rimelight/i18n";
+import { api } from "#api/client";
 
 export const ContactPage: Component = () => {
   const [contactStatus, setContactStatus] = createSignal<{ text: string; error?: boolean } | null>(
-    null
-  )
+    null,
+  );
   const [uploadStatus, setUploadStatus] = createSignal<{ text: string; error?: boolean } | null>(
-    null
-  )
+    null,
+  );
 
-  let contactFormRef!: HTMLFormElement
-  let uploadFormRef!: HTMLFormElement
+  let contactFormRef!: HTMLFormElement;
+  let uploadFormRef!: HTMLFormElement;
 
   const handleContactSubmit = async (e: Event) => {
-    e.preventDefault()
-    if (!contactFormRef) return
+    e.preventDefault();
+    if (!contactFormRef) return;
 
-    setContactStatus({ text: "Sending message..." })
+    setContactStatus({ text: "Sending message..." });
 
     try {
       const res = await api.contact.$post({
-        form: new FormData(contactFormRef) as any
-      })
-      const result = await res.json()
+        form: new FormData(contactFormRef) as any,
+      });
+      const result = await res.json();
 
       if (!res.ok || !result.success) {
         const errorMsg =
           !result.success && "error" in result
             ? (result as any).error
-            : "Please check form fields and try again."
+            : "Please check form fields and try again.";
         setContactStatus({
           text: errorMsg || "Please check form fields and try again.",
-          error: true
-        })
-        return
+          error: true,
+        });
+        return;
       }
 
-      setContactStatus({ text: "Message sent successfully! ✅", error: false })
-      contactFormRef.reset()
+      setContactStatus({ text: "Message sent successfully! ✅", error: false });
+      contactFormRef.reset();
       // @ts-ignore
-      window.turnstile?.reset?.()
+      window.turnstile?.reset?.();
     } catch {
-      setContactStatus({ text: "Failed to send message. Please try again.", error: true })
+      setContactStatus({ text: "Failed to send message. Please try again.", error: true });
     }
-  }
+  };
 
   const handleUploadSubmit = async (e: Event) => {
-    e.preventDefault()
-    if (!uploadFormRef) return
+    e.preventDefault();
+    if (!uploadFormRef) return;
 
-    setUploadStatus({ text: "Uploading file..." })
+    setUploadStatus({ text: "Uploading file..." });
 
     try {
       const res = await api.upload.$post({
-        form: new FormData(uploadFormRef) as any
-      })
-      const result = await res.json()
+        form: new FormData(uploadFormRef) as any,
+      });
+      const result = await res.json();
 
       if (!res.ok || !result.success) {
         const errorMsg =
-          !result.success && "error" in result ? (result as any).error : "Failed to upload file."
-        setUploadStatus({ text: errorMsg || "Failed to upload file.", error: true })
-        return
+          !result.success && "error" in result ? (result as any).error : "Failed to upload file.";
+        setUploadStatus({ text: errorMsg || "Failed to upload file.", error: true });
+        return;
       }
 
-      setUploadStatus({ text: `File uploaded! Key: ${result.key} ✅`, error: false })
-      uploadFormRef.reset()
+      setUploadStatus({ text: `File uploaded! Key: ${result.key} ✅`, error: false });
+      uploadFormRef.reset();
     } catch {
-      setUploadStatus({ text: "Failed to upload file.", error: true })
+      setUploadStatus({ text: "Failed to upload file.", error: true });
     }
-  }
+  };
 
   return (
     <AppLayout title={t("page_contact.title")} description={t("page_contact.description")}>
@@ -262,7 +262,7 @@ export const ContactPage: Component = () => {
         }
       />
     </AppLayout>
-  )
-}
+  );
+};
 
-export default ContactPage
+export default ContactPage;

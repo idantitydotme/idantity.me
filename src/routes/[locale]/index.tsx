@@ -1,62 +1,62 @@
-import { type Component, For, Show } from "solid-js"
-import { createAsyncData } from "#utils/async"
-import AppLayout from "#layouts/AppLayout"
-import { t, getLocale, getRelativeLocaleUrl } from "@rimelight/i18n"
-import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost } from "@rimelight/ui"
-import type { ButtonProps } from "@rimelight/ui/components/button/button.ts"
+import { type Component, For, Show } from "solid-js";
+import { createAsyncData } from "#utils/async";
+import AppLayout from "#layouts/AppLayout";
+import { t, getLocale, getRelativeLocaleUrl } from "@rimelight/i18n";
+import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost } from "@rimelight/ui";
+import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
 
 function getLocalizedText(val: unknown, locale: string): string {
   if (typeof val === "object" && val !== null) {
-    const record = val as Record<string, string>
-    return record[locale] || record["en"] || ""
+    const record = val as Record<string, string>;
+    return record[locale] || record["en"] || "";
   }
-  return typeof val === "string" ? val : ""
+  return typeof val === "string" ? val : "";
 }
 
 export const HomePage: Component = () => {
-  const activeLocale = () => getLocale()
+  const activeLocale = () => getLocale();
 
   const latestPosts = createAsyncData(
     () => activeLocale(),
     async () => {
       try {
-        const res = await fetch("/api/cms/pages")
-        if (!res.ok) return []
-        const data = (await res.json()) as any
-        const pagesList = (data.pages || []) as any[]
+        const res = await fetch("/api/cms/pages");
+        if (!res.ok) return [];
+        const data = (await res.json()) as any;
+        const pagesList = (data.pages || []) as any[];
 
-        return pagesList.filter((page) => page.type === "blog").slice(0, 3)
+        return pagesList.filter((page) => page.type === "blog").slice(0, 3);
       } catch {
-        return []
+        return [];
       }
     },
-    []
-  )
+    [],
+  );
 
   const heroLinks = (): ButtonProps[] => [
     {
       label: t("playground.heroLink"),
       href: getRelativeLocaleUrl("/blog"),
       color: "primary",
-      variant: "solid"
-    }
-  ]
+      variant: "solid",
+    },
+  ];
 
   const ctaLinks = (): ButtonProps[] => [
     {
       label: t("playground.ctaStart"),
       href: getRelativeLocaleUrl("/blog"),
       color: "primary",
-      variant: "solid"
+      variant: "solid",
     },
     {
       label: t("playground.ctaContribute"),
       href: getRelativeLocaleUrl("/"),
       color: "primary",
       variant: "outline",
-      trailingIcon: "i-lucide-arrow-right"
-    }
-  ]
+      trailingIcon: "i-lucide-arrow-right",
+    },
+  ];
 
   return (
     <AppLayout title="idantity" description="Welcome to my website!">
@@ -80,11 +80,13 @@ export const HomePage: Component = () => {
               <For each={latestPosts() || []}>
                 {(post) => {
                   const content =
-                    typeof post.content === "string" ? JSON.parse(post.content) : post.content || {}
-                  const title = getLocalizedText(post.title, activeLocale())
-                  const description = content.properties?.description || ""
-                  const heroImage = content.properties?.heroImage
-                  const postDate = post.postedAt || post.createdAt
+                    typeof post.content === "string"
+                      ? JSON.parse(post.content)
+                      : post.content || {};
+                  const title = getLocalizedText(post.title, activeLocale());
+                  const description = content.properties?.description || "";
+                  const heroImage = content.properties?.heroImage;
+                  const postDate = post.postedAt || post.createdAt;
                   return (
                     <RLPost
                       variant="ghost"
@@ -94,7 +96,7 @@ export const HomePage: Component = () => {
                       description={description}
                       to={getRelativeLocaleUrl(`/blog/${post.slug}/`)}
                     />
-                  )
+                  );
                 }}
               </For>
             </RLGrid>
@@ -120,7 +122,7 @@ export const HomePage: Component = () => {
         links={ctaLinks()}
       />
     </AppLayout>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

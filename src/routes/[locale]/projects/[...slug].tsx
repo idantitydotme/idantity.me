@@ -1,57 +1,57 @@
-import { type Component, Show } from "solid-js"
-import { useParams } from "@solidjs/router"
-import { createAsyncData } from "#utils/async"
-import AppLayout from "#layouts/AppLayout"
-import PageRenderer from "#components/cms/PageRenderer"
-import { getLocale } from "@rimelight/i18n"
+import { type Component, Show } from "solid-js";
+import { useParams } from "@solidjs/router";
+import { createAsyncData } from "#utils/async";
+import AppLayout from "#layouts/AppLayout";
+import PageRenderer from "#components/cms/PageRenderer";
+import { getLocale } from "@rimelight/i18n";
 
 function getLocalizedText(val: unknown, locale: string): string {
   if (typeof val === "object" && val !== null) {
-    const record = val as Record<string, string>
-    return record[locale] || record["en"] || ""
+    const record = val as Record<string, string>;
+    return record[locale] || record["en"] || "";
   }
-  return typeof val === "string" ? val : ""
+  return typeof val === "string" ? val : "";
 }
 
 export const ProjectDetailPage: Component = () => {
-  const params = useParams<{ locale: string; slug: string }>()
-  const activeLocale = () => getLocale()
+  const params = useParams<{ locale: string; slug: string }>();
+  const activeLocale = () => getLocale();
 
   const pageData = createAsyncData(
     () => params["slug"],
     async (slug) => {
-      if (!slug) return null
+      if (!slug) return null;
       try {
-        const res = await fetch("/api/cms/pages")
-        if (!res.ok) return null
-        const data = (await res.json()) as any
-        const pagesList = (data.pages || []) as any[]
-        const found = pagesList.find((p) => p.slug === slug && p.type === "projects")
-        return found || null
+        const res = await fetch("/api/cms/pages");
+        if (!res.ok) return null;
+        const data = (await res.json()) as any;
+        const pagesList = (data.pages || []) as any[];
+        const found = pagesList.find((p) => p.slug === slug && p.type === "projects");
+        return found || null;
       } catch {
-        return null
+        return null;
       }
-    }
-  )
+    },
+  );
 
   const title = () =>
-    pageData() ? getLocalizedText(pageData()!.title, activeLocale()) || "Project" : "Project"
+    pageData() ? getLocalizedText(pageData()!.title, activeLocale()) || "Project" : "Project";
   const description = () => {
-    const p = pageData()
-    if (!p) return ""
-    const content = typeof p.content === "string" ? JSON.parse(p.content) : p.content || {}
-    return getLocalizedText(p.description, activeLocale()) || content.properties?.description || ""
-  }
+    const p = pageData();
+    if (!p) return "";
+    const content = typeof p.content === "string" ? JSON.parse(p.content) : p.content || {};
+    return getLocalizedText(p.description, activeLocale()) || content.properties?.description || "";
+  };
 
   const content = () => {
-    const p = pageData()
-    if (!p) return {}
-    return typeof p.content === "string" ? JSON.parse(p.content) : p.content || {}
-  }
+    const p = pageData();
+    if (!p) return {};
+    return typeof p.content === "string" ? JSON.parse(p.content) : p.content || {};
+  };
 
-  const heroImage = () => content().properties?.heroImage || (pageData() as any)?.banner?.src
-  const category = () => content().properties?.category
-  const postDate = () => pageData()?.postedAt || pageData()?.createdAt
+  const heroImage = () => content().properties?.heroImage || (pageData() as any)?.banner?.src;
+  const category = () => content().properties?.category;
+  const postDate = () => pageData()?.postedAt || pageData()?.createdAt;
 
   return (
     <AppLayout title={title()} description={description()}>
@@ -83,7 +83,7 @@ export const ProjectDetailPage: Component = () => {
                   {new Date(postDate()!).toLocaleDateString(activeLocale(), {
                     year: "numeric",
                     month: "long",
-                    day: "numeric"
+                    day: "numeric",
                   })}
                 </time>
               </div>
@@ -96,7 +96,7 @@ export const ProjectDetailPage: Component = () => {
         </Show>
       </div>
     </AppLayout>
-  )
-}
+  );
+};
 
-export default ProjectDetailPage
+export default ProjectDetailPage;

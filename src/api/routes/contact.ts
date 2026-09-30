@@ -1,6 +1,6 @@
-import { Hono } from "hono"
-import { env as cfEnv } from "cloudflare:workers"
-import { verifyTurnstile } from "@rimelight/security"
+import { Hono } from "hono";
+import { env as cfEnv } from "cloudflare:workers";
+import { verifyTurnstile } from "@rimelight/security";
 
 function sanitize(str: string): string {
   return str
@@ -8,54 +8,56 @@ function sanitize(str: string): string {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;")
+    .replace(/'/g, "&#039;");
 }
 
 const api = new Hono().post("/", async (c) => {
   try {
-    const formData = await c.req.formData()
-    const name = (formData.get("name") as string | null)?.trim() ?? ""
-    const email = (formData.get("email") as string | null)?.trim() ?? ""
-    const subject = (formData.get("subject") as string | null)?.trim() || undefined
-    const message = (formData.get("message") as string | null)?.trim() ?? ""
-    const turnstileToken = (formData.get("cf-turnstile-response") as string | null) || undefined
+    const formData = await c.req.formData();
+    const name = (formData.get("name") as string | null)?.trim() ?? "";
+    const email = (formData.get("email") as string | null)?.trim() ?? "";
+    const subject = (formData.get("subject") as string | null)?.trim() || undefined;
+    const message = (formData.get("message") as string | null)?.trim() ?? "";
+    const turnstileToken = (formData.get("cf-turnstile-response") as string | null) || undefined;
 
     if (!name) {
-      return c.json({ success: false, error: "Please enter your name." }, 400)
+      return c.json({ success: false, error: "Please enter your name." }, 400);
     }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      return c.json({ success: false, error: "Please enter a valid email address." }, 400)
+      return c.json({ success: false, error: "Please enter a valid email address." }, 400);
     }
     if (!message || message.length < 10) {
       return c.json(
         { success: false, error: "Your message should be at least 10 characters." },
-        400
-      )
+        400,
+      );
     }
 
     const env =
-      (c.env as Record<string, any> | undefined) ?? (cfEnv as Record<string, any> | undefined) ?? {}
-    const clientIP = c.req.header("CF-Connecting-IP") || undefined
+      (c.env as Record<string, any> | undefined) ??
+      (cfEnv as Record<string, any> | undefined) ??
+      {};
+    const clientIP = c.req.header("CF-Connecting-IP") || undefined;
 
-    const verification = await verifyTurnstile(turnstileToken, env, clientIP)
+    const verification = await verifyTurnstile(turnstileToken, env, clientIP);
     if (!verification.success) {
       return c.json(
         {
           success: false,
-          error: verification.error || "Anti-bot verification failed. Please try again."
+          error: verification.error || "Anti-bot verification failed. Please try again.",
         },
-        400
-      )
+        400,
+      );
     }
 
-    const domain = env["EMAIL_DOMAIN"] || "idantity.me"
-    const ownerEmail = env["CONTACT_OWNER_EMAIL"] || `owner@${domain}`
+    const domain = env["EMAIL_DOMAIN"] || "idantity.me";
+    const ownerEmail = env["CONTACT_OWNER_EMAIL"] || `owner@${domain}`;
     const mailSubject =
       subject && subject.length > 0
         ? `[Contact Form] ${subject}`
-        : `[Contact Form] New message from ${name}`
+        : `[Contact Form] New message from ${name}`;
 
-    const textBody = `Name: ${name}\nEmail: ${email}\n${subject ? `Subject: ${subject}\n` : ""}\nMessage:\n${message}`
+    const textBody = `Name: ${name}\nEmail: ${email}\n${subject ? `Subject: ${subject}\n` : ""}\nMessage:\n${message}`;
 
     const htmlBody = `
 <!DOCTYPE html>
@@ -80,19 +82,19 @@ ${sanitize(message)}
     </div>
   </div>
 </body>
-</html>`.trim()
+</html>`.trim();
 
-    const emailBinding = env["EMAIL"]
+    const emailBinding = env["EMAIL"];
     if (!emailBinding) {
       if (import.meta.env.DEV) {
         console.warn(
           "[contact] Dev mode: EMAIL binding missing. Message logged to console:\n",
-          textBody
-        )
-        return c.json({ success: true })
+          textBody,
+        );
+        return c.json({ success: true });
       }
-      console.error("[contact] EMAIL binding not available")
-      return c.json({ success: false, error: "Email service is temporarily unavailable." }, 500)
+      console.error("[contact] EMAIL binding not available");
+      return c.json({ success: false, error: "Email service is temporarily unavailable." }, 500);
     }
 
     await emailBinding.send({
@@ -101,20 +103,20 @@ ${sanitize(message)}
       subject: mailSubject,
       text: textBody,
       html: htmlBody,
-      replyTo: email
-    })
+      replyTo: email,
+    });
 
-    return c.json({ success: true })
+    return c.json({ success: true });
   } catch (err: unknown) {
-    console.error("[contact API error]", err)
+    console.error("[contact API error]", err);
     return c.json(
       {
         success: false,
-        error: "Could not send your contact message. Please try again later."
+        error: "Could not send your contact message. Please try again later.",
       },
-      500
-    )
+      500,
+    );
   }
-})
+});
 
-export default api
+export default api;

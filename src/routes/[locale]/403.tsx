@@ -1,6 +1,6 @@
-import type { Component } from "solid-js"
-import AppLayout from "#layouts/AppLayout"
-import AppError from "#components/app/AppError"
+import type { Component } from "solid-js";
+import AppLayout from "#layouts/AppLayout";
+import AppError from "#components/app/AppError";
 
 export const Error403Page: Component = () => {
   return (
@@ -20,12 +20,12 @@ export const Error403Page: Component = () => {
             href: "/",
             variant: "solid",
             color: "primary",
-            icon: "i-lucide-home"
-          }
+            icon: "i-lucide-home",
+          },
         ]}
       />
     </AppLayout>
-  )
-}
+  );
+};
 
-export default Error403Page
+export default Error403Page;

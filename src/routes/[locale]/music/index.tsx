@@ -1,12 +1,12 @@
-import { type Component, For, createSignal } from "solid-js"
-import AppLayout from "#layouts/AppLayout"
-import { RLPageSection, RLTabs } from "@rimelight/ui"
-import MusicPlayer from "#components/music/MusicPlayer.tsx"
-import SpotifyFacade from "#components/music/SpotifyFacade.tsx"
-import { t } from "@rimelight/i18n"
+import { type Component, For, createSignal } from "solid-js";
+import AppLayout from "#layouts/AppLayout";
+import { RLPageSection, RLTabs } from "@rimelight/ui";
+import MusicPlayer from "#components/music/MusicPlayer.tsx";
+import SpotifyFacade from "#components/music/SpotifyFacade.tsx";
+import { t } from "@rimelight/i18n";
 
 export const MusicPage: Component = () => {
-  const [activeTab, setActiveTab] = createSignal("all")
+  const [activeTab, setActiveTab] = createSignal("all");
 
   // Featured tracks & audio data
   const featuredTracks = () => [
@@ -24,10 +24,10 @@ export const MusicPage: Component = () => {
         { time: 0, title: t("page_music.tracks.cue_intro") },
         { time: 30, title: t("page_music.tracks.cue_drop1") },
         { time: 65, title: t("page_music.tracks.cue_break") },
-        { time: 95, title: t("page_music.tracks.cue_drop2") }
-      ]
-    }
-  ]
+        { time: 95, title: t("page_music.tracks.cue_drop2") },
+      ],
+    },
+  ];
 
   // Curated Spotify Playlists
   const spotifyPlaylists = () => [
@@ -36,36 +36,36 @@ export const MusicPage: Component = () => {
       title: t("page_music.playlists.pl1_title"),
       description: t("page_music.playlists.pl1_desc"),
       trackCount: "50+",
-      categoryBadge: "Bass / Trap"
+      categoryBadge: "Bass / Trap",
     },
     {
       id: "1fK0wAI02tDpmpkZ53cTmF",
       title: t("page_music.playlists.pl2_title"),
       description: t("page_music.playlists.pl2_desc"),
       trackCount: "45+",
-      categoryBadge: "Melodic / Future"
+      categoryBadge: "Melodic / Future",
     },
     {
       id: "0b7hixI5M1VQwD47KYWABj",
       title: t("page_music.playlists.pl3_title"),
       description: t("page_music.playlists.pl3_desc"),
       trackCount: "60+",
-      categoryBadge: "Chill / Downtempo"
+      categoryBadge: "Chill / Downtempo",
     },
     {
       id: "271UvSiUmd238ZYkNi5U57",
       title: t("page_music.playlists.pl4_title"),
       description: t("page_music.playlists.pl4_desc"),
       trackCount: "40+",
-      categoryBadge: "Club / Festival"
-    }
-  ]
+      categoryBadge: "Club / Festival",
+    },
+  ];
 
   const tabItems = () => [
     { label: t("page_music.tab_all"), value: "all" },
     { label: t("page_music.tab_productions"), value: "productions" },
-    { label: t("page_music.tab_playlists"), value: "playlists" }
-  ]
+    { label: t("page_music.tab_playlists"), value: "playlists" },
+  ];
 
   const playerLabels = () => ({
     play: t("page_music.player_play"),
@@ -74,8 +74,8 @@ export const MusicPage: Component = () => {
     unmute: t("page_music.player_unmute"),
     download: t("page_music.player_download"),
     cuePoints: t("page_music.player_tracklist"),
-    speed: t("page_music.player_speed")
-  })
+    speed: t("page_music.player_speed"),
+  });
 
   return (
     <AppLayout title={t("page_music.title")} description={t("page_music.description")}>
@@ -236,7 +236,7 @@ export const MusicPage: Component = () => {
         }
       />
     </AppLayout>
-  )
-}
+  );
+};
 
-export default MusicPage
+export default MusicPage;

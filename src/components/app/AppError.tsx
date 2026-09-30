@@ -1,31 +1,31 @@
-import { type Component, For, Show } from "solid-js"
-import { RLBadge, RLButton, RLIcon } from "@rimelight/ui"
-import type { ButtonProps } from "@rimelight/ui/components/button/button.ts"
-import type { BadgeProps } from "@rimelight/ui/components/badge/badge.ts"
-import type { ThemeColor } from "@rimelight/ui/types.ts"
+import { type Component, For, Show } from "solid-js";
+import { RLBadge, RLButton, RLIcon } from "@rimelight/ui";
+import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
+import type { BadgeProps } from "@rimelight/ui/components/badge/badge.ts";
+import type { ThemeColor } from "@rimelight/ui/types.ts";
 
 export interface Action {
-  label: string
-  href: string
-  variant?: ButtonProps["variant"]
-  color?: ThemeColor
-  icon?: string
+  label: string;
+  href: string;
+  variant?: ButtonProps["variant"];
+  color?: ThemeColor;
+  icon?: string;
 }
 
 export interface AppErrorProps {
-  code: number
-  title: string
-  description: string
-  userEmail?: string
-  requiredRole?: string
-  actions?: Action[]
+  code: number;
+  title: string;
+  description: string;
+  userEmail?: string;
+  requiredRole?: string;
+  actions?: Action[];
 }
 
 interface StatusThemeConfig {
-  icon: string
-  iconBoxClass: string
-  dotClass: string
-  badgeColor: BadgeProps["color"]
+  icon: string;
+  iconBoxClass: string;
+  dotClass: string;
+  badgeColor: BadgeProps["color"];
 }
 
 const statusConfig: Record<number, StatusThemeConfig> = {
@@ -33,43 +33,43 @@ const statusConfig: Record<number, StatusThemeConfig> = {
     icon: "i-lucide-alert-circle",
     iconBoxClass: "border-warning/30 bg-warning/10 text-warning",
     dotClass: "bg-warning",
-    badgeColor: "warning"
+    badgeColor: "warning",
   },
   401: {
     icon: "i-lucide-lock",
     iconBoxClass: "border-warning/30 bg-warning/10 text-warning",
     dotClass: "bg-warning",
-    badgeColor: "warning"
+    badgeColor: "warning",
   },
   403: {
     icon: "i-lucide-shield-alert",
     iconBoxClass: "border-error/30 bg-error/10 text-error",
     dotClass: "bg-error",
-    badgeColor: "error"
+    badgeColor: "error",
   },
   404: {
     icon: "i-lucide-file-question",
     iconBoxClass: "border-primary/30 bg-primary/10 text-primary",
     dotClass: "bg-primary",
-    badgeColor: "primary"
+    badgeColor: "primary",
   },
   500: {
     icon: "i-lucide-server-crash",
     iconBoxClass: "border-error/30 bg-error/10 text-error",
     dotClass: "bg-error",
-    badgeColor: "error"
-  }
-}
+    badgeColor: "error",
+  },
+};
 
 const defaultConfig: StatusThemeConfig = {
   icon: "i-lucide-shield-alert",
   iconBoxClass: "border-error/30 bg-error/10 text-error",
   dotClass: "bg-error",
-  badgeColor: "error"
-}
+  badgeColor: "error",
+};
 
 export const AppError: Component<AppErrorProps> = (props) => {
-  const config = () => statusConfig[props.code] || defaultConfig
+  const config = () => statusConfig[props.code] || defaultConfig;
   const actions = () =>
     props.actions || [
       {
@@ -77,9 +77,9 @@ export const AppError: Component<AppErrorProps> = (props) => {
         href: "/",
         variant: "solid",
         color: "primary",
-        icon: "i-lucide-home"
-      }
-    ]
+        icon: "i-lucide-home",
+      },
+    ];
 
   return (
     <div class="relative min-h-[calc(100vh-8rem)] w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 overflow-hidden">
@@ -157,7 +157,7 @@ export const AppError: Component<AppErrorProps> = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AppError
+export default AppError;

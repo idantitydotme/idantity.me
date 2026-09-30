@@ -1,45 +1,45 @@
-import { type Component, For, Show } from "solid-js"
+import { type Component, For, Show } from "solid-js";
 
 export interface LighthouseScoresProps {
-  performance?: number
-  accessibility?: number
-  bestPractices?: number
-  seo?: number
-  showDetails?: boolean
+  performance?: number;
+  accessibility?: number;
+  bestPractices?: number;
+  seo?: number;
+  showDetails?: boolean;
 }
 
 export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
-  const performance = () => props.performance ?? 100
-  const accessibility = () => props.accessibility ?? 100
-  const bestPractices = () => props.bestPractices ?? 100
-  const seo = () => props.seo ?? 100
-  const showDetails = () => props.showDetails ?? true
+  const performance = () => props.performance ?? 100;
+  const accessibility = () => props.accessibility ?? 100;
+  const bestPractices = () => props.bestPractices ?? 100;
+  const seo = () => props.seo ?? 100;
+  const showDetails = () => props.showDetails ?? true;
 
   const metrics = () => [
     {
       label: "Performance",
       value: performance(),
-      desc: "Sub-second LCP & instantaneous edge delivery"
+      desc: "Sub-second LCP & instantaneous edge delivery",
     },
     {
       label: "Accessibility",
       value: accessibility(),
-      desc: "WCAG 2.1 AA compliant, screen-reader optimized"
+      desc: "WCAG 2.1 AA compliant, screen-reader optimized",
     },
     {
       label: "Best Practices",
       value: bestPractices(),
-      desc: "Modern web standards, HTTPS & zero console errors"
+      desc: "Modern web standards, HTTPS & zero console errors",
     },
     {
       label: "SEO",
       value: seo(),
-      desc: "Semantic metadata, structured data & discoverability"
-    }
-  ]
+      desc: "Semantic metadata, structured data & discoverability",
+    },
+  ];
 
-  const radius = 42
-  const circumference = 2 * Math.PI * radius
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius;
 
   return (
     <div class="w-full flex flex-col justify-between h-full">
@@ -68,9 +68,9 @@ export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
       >
         <For each={metrics()}>
           {(metric) => {
-            const offset = () => circumference - (metric.value / 100) * circumference
+            const offset = () => circumference - (metric.value / 100) * circumference;
             const color = () =>
-              metric.value >= 90 ? "#10b981" : metric.value >= 50 ? "#f59e0b" : "#ef4444"
+              metric.value >= 90 ? "#10b981" : metric.value >= 50 ? "#f59e0b" : "#ef4444";
 
             return (
               <div
@@ -113,7 +113,7 @@ export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
                   </span>
                 </Show>
               </div>
-            )
+            );
           }}
         </For>
       </div>
@@ -126,7 +126,7 @@ export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
         </span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LighthouseScores
+export default LighthouseScores;

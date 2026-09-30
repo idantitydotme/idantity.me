@@ -1,2 +1,2 @@
-export * from "./search.ts"
-export * from "@rimelight/cms/schema/sqlite"
+export * from "./search.ts";
+export * from "@rimelight/cms/schema/sqlite";

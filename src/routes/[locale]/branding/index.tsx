@@ -1,6 +1,6 @@
-import type { Component } from "solid-js"
-import AppLayout from "#layouts/AppLayout"
-import { t } from "@rimelight/i18n"
+import type { Component } from "solid-js";
+import AppLayout from "#layouts/AppLayout";
+import { t } from "@rimelight/i18n";
 
 export const BrandingPage: Component = () => {
   return (
@@ -12,7 +12,7 @@ export const BrandingPage: Component = () => {
         <p class="text-muted text-base">{t("branding.description")}</p>
       </div>
     </AppLayout>
-  )
-}
+  );
+};
 
-export default BrandingPage
+export default BrandingPage;

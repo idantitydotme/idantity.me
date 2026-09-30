@@ -1,139 +1,139 @@
-import { createSignal, onCleanup, For, Show } from "solid-js"
+import { createSignal, onCleanup, For, Show } from "solid-js";
 
 export interface CuePoint {
-  time: number // in seconds
-  title: string
-  artist?: string
+  time: number; // in seconds
+  title: string;
+  artist?: string;
 }
 
 export interface MusicPlayerProps {
-  title: string
-  artist: string
-  genre?: string
-  bpm?: number | string
-  keySignature?: string
-  audioSrc: string
-  coverImage?: string
-  categoryTag?: string
-  cuePoints?: CuePoint[]
-  downloadUrl?: string
+  title: string;
+  artist: string;
+  genre?: string;
+  bpm?: number | string;
+  keySignature?: string;
+  audioSrc: string;
+  coverImage?: string;
+  categoryTag?: string;
+  cuePoints?: CuePoint[];
+  downloadUrl?: string;
   labels?: {
-    play?: string
-    pause?: string
-    mute?: string
-    unmute?: string
-    download?: string
-    cuePoints?: string
-    speed?: string
-  }
+    play?: string;
+    pause?: string;
+    mute?: string;
+    unmute?: string;
+    download?: string;
+    cuePoints?: string;
+    speed?: string;
+  };
 }
 
 function formatTime(seconds: number): string {
-  if (isNaN(seconds) || seconds < 0) return "0:00"
-  const mins = Math.floor(seconds / 60)
-  const secs = Math.floor(seconds % 60)
-  return `${mins}:${secs < 10 ? "0" : ""}${secs}`
+  if (isNaN(seconds) || seconds < 0) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
 }
 
 export default function MusicPlayer(props: MusicPlayerProps) {
-  let audioElement: HTMLAudioElement | undefined = undefined
+  let audioElement: HTMLAudioElement | undefined = undefined;
 
-  const [isPlaying, setIsPlaying] = createSignal(false)
-  const [currentTime, setCurrentTime] = createSignal(0)
-  const [duration, setDuration] = createSignal(0)
-  const [volume, setVolume] = createSignal(0.85)
-  const [isMuted, setIsMuted] = createSignal(false)
-  const [playbackRate, setPlaybackRate] = createSignal(1)
-  const [showSpeedMenu, setShowSpeedMenu] = createSignal(false)
-  const [showCuePoints, setShowCuePoints] = createSignal(false)
+  const [isPlaying, setIsPlaying] = createSignal(false);
+  const [currentTime, setCurrentTime] = createSignal(0);
+  const [duration, setDuration] = createSignal(0);
+  const [volume, setVolume] = createSignal(0.85);
+  const [isMuted, setIsMuted] = createSignal(false);
+  const [playbackRate, setPlaybackRate] = createSignal(1);
+  const [showSpeedMenu, setShowSpeedMenu] = createSignal(false);
+  const [showCuePoints, setShowCuePoints] = createSignal(false);
 
   const togglePlay = () => {
-    if (!audioElement) return
+    if (!audioElement) return;
     if (isPlaying()) {
-      audioElement.pause()
+      audioElement.pause();
     } else {
       audioElement.play().catch((err) => {
-        console.warn("Audio playback interrupted or blocked:", err)
-      })
+        console.warn("Audio playback interrupted or blocked:", err);
+      });
     }
-  }
+  };
 
   const onTimeUpdate = () => {
     if (audioElement) {
-      setCurrentTime(audioElement.currentTime)
+      setCurrentTime(audioElement.currentTime);
     }
-  }
+  };
 
   const onLoadedMetadata = () => {
     if (audioElement) {
-      setDuration(audioElement.duration || 0)
-      audioElement.volume = isMuted() ? 0 : volume()
-      audioElement.playbackRate = playbackRate()
+      setDuration(audioElement.duration || 0);
+      audioElement.volume = isMuted() ? 0 : volume();
+      audioElement.playbackRate = playbackRate();
     }
-  }
+  };
 
   const onSeek = (e: Event) => {
-    const target = e.target as HTMLInputElement
-    const seekTime = parseFloat(target.value)
-    setCurrentTime(seekTime)
+    const target = e.target as HTMLInputElement;
+    const seekTime = parseFloat(target.value);
+    setCurrentTime(seekTime);
     if (audioElement) {
-      audioElement.currentTime = seekTime
+      audioElement.currentTime = seekTime;
     }
-  }
+  };
 
   const onVolumeChange = (e: Event) => {
-    const target = e.target as HTMLInputElement
-    const newVol = parseFloat(target.value)
-    setVolume(newVol)
+    const target = e.target as HTMLInputElement;
+    const newVol = parseFloat(target.value);
+    setVolume(newVol);
     if (audioElement) {
-      audioElement.volume = newVol
+      audioElement.volume = newVol;
       if (newVol > 0 && isMuted()) {
-        setIsMuted(false)
+        setIsMuted(false);
       }
     }
-  }
+  };
 
   const toggleMute = () => {
-    if (!audioElement) return
+    if (!audioElement) return;
     if (isMuted()) {
-      setIsMuted(false)
-      audioElement.volume = volume()
+      setIsMuted(false);
+      audioElement.volume = volume();
     } else {
-      setIsMuted(true)
-      audioElement.volume = 0
+      setIsMuted(true);
+      audioElement.volume = 0;
     }
-  }
+  };
 
   const setSpeed = (rate: number) => {
-    setPlaybackRate(rate)
+    setPlaybackRate(rate);
     if (audioElement) {
-      audioElement.playbackRate = rate
+      audioElement.playbackRate = rate;
     }
-    setShowSpeedMenu(false)
-  }
+    setShowSpeedMenu(false);
+  };
 
   const seekToCuePoint = (seconds: number) => {
     if (audioElement) {
-      audioElement.currentTime = seconds
-      setCurrentTime(seconds)
+      audioElement.currentTime = seconds;
+      setCurrentTime(seconds);
       if (!isPlaying()) {
-        audioElement.play().catch(() => {})
+        audioElement.play().catch(() => {});
       }
     }
-  }
+  };
 
   const progressPercent = () => {
-    if (duration() === 0) return 0
-    return (currentTime() / duration()) * 100
-  }
+    if (duration() === 0) return 0;
+    return (currentTime() / duration()) * 100;
+  };
 
   onCleanup(() => {
     if (audioElement) {
-      audioElement.pause()
+      audioElement.pause();
     }
-  })
+  });
 
-  const speedOptions = [0.75, 1, 1.25, 1.5, 2]
+  const speedOptions = [0.75, 1, 1.25, 1.5, 2];
 
   return (
     <div class="relative w-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/80 backdrop-blur-md p-5 md:p-6 shadow-md transition-all hover:shadow-lg">
@@ -214,7 +214,7 @@ export default function MusicPlayer(props: MusicPlayerProps) {
                     height: isPlaying()
                       ? `${Math.max(20, Math.sin((currentTime() * 4 + barIndex) * 0.8) * 100)}%`
                       : "20%",
-                    opacity: isPlaying() ? "0.9" : "0.35"
+                    opacity: isPlaying() ? "0.9" : "0.35",
                   }}
                 />
               )}
@@ -292,7 +292,7 @@ export default function MusicPlayer(props: MusicPlayerProps) {
             onInput={onSeek}
             class="w-full h-2 rounded-lg appearance-none cursor-pointer bg-neutral-200 dark:bg-neutral-800 accent-primary-500 focus:outline-none"
             style={{
-              background: `linear-gradient(to right, rgb(var(--color-primary-500, 234 88 12)) ${progressPercent()}%, rgba(150, 150, 150, 0.25) ${progressPercent()}%)`
+              background: `linear-gradient(to right, rgb(var(--color-primary-500, 234 88 12)) ${progressPercent()}%, rgba(150, 150, 150, 0.25) ${progressPercent()}%)`,
             }}
           />
         </div>
@@ -347,11 +347,11 @@ export default function MusicPlayer(props: MusicPlayerProps) {
           <ul class="flex flex-col gap-1.5 max-h-48 overflow-y-auto pr-1">
             <For each={props.cuePoints}>
               {(cue, idx) => {
-                const points = () => props.cuePoints || []
+                const points = () => props.cuePoints || [];
                 const isCurrent = () => {
-                  const nextCue = points()[idx() + 1]
-                  return currentTime() >= cue.time && (!nextCue || currentTime() < nextCue.time)
-                }
+                  const nextCue = points()[idx() + 1];
+                  return currentTime() >= cue.time && (!nextCue || currentTime() < nextCue.time);
+                };
                 return (
                   <li>
                     <button
@@ -370,12 +370,12 @@ export default function MusicPlayer(props: MusicPlayerProps) {
                       </span>
                     </button>
                   </li>
-                )
+                );
               }}
             </For>
           </ul>
         </div>
       </Show>
     </div>
-  )
+  );
 }

@@ -1,64 +1,64 @@
-import { type Component, For, createSignal } from "solid-js"
-import { createAsyncData } from "#utils/async"
-import AppLayout from "#layouts/AppLayout"
-import { t, getRelativeLocaleUrl, getLocale } from "@rimelight/i18n"
-import { RLPageSection, RLTabs, RLGrid, RLPost } from "@rimelight/ui"
+import { type Component, For, createSignal } from "solid-js";
+import { createAsyncData } from "#utils/async";
+import AppLayout from "#layouts/AppLayout";
+import { t, getRelativeLocaleUrl, getLocale } from "@rimelight/i18n";
+import { RLPageSection, RLTabs, RLGrid, RLPost } from "@rimelight/ui";
 
 function getPageTitle(title: unknown, locale: string): string {
   if (typeof title === "object" && title !== null) {
-    const titleRecord = title as Record<string, string>
-    return titleRecord[locale] || titleRecord["en"] || ""
+    const titleRecord = title as Record<string, string>;
+    return titleRecord[locale] || titleRecord["en"] || "";
   }
-  return typeof title === "string" ? title : ""
+  return typeof title === "string" ? title : "";
 }
 
 export const ProjectsIndexPage: Component = () => {
-  const activeLocale = () => getLocale()
-  const [activeTab, setActiveTab] = createSignal("all")
+  const activeLocale = () => getLocale();
+  const [activeTab, setActiveTab] = createSignal("all");
 
   const projectPages = createAsyncData(
     () => true,
     async () => {
       try {
-        const res = await fetch("/api/cms/pages")
-        if (!res.ok) return []
-        const data = (await res.json()) as any
-        const pagesList = (data.pages || []) as any[]
-        return pagesList.filter((page) => page.type === "projects")
+        const res = await fetch("/api/cms/pages");
+        if (!res.ok) return [];
+        const data = (await res.json()) as any;
+        const pagesList = (data.pages || []) as any[];
+        return pagesList.filter((page) => page.type === "projects");
       } catch {
-        return []
+        return [];
       }
     },
-    []
-  )
+    [],
+  );
 
   const categoryMessages = () => ({
     website: t("projects.categories_website"),
     app: t("projects.categories_app"),
-    other: t("projects.categories_other")
-  })
+    other: t("projects.categories_other"),
+  });
 
   const badgeColorMap: Record<string, string> = {
     website: "info",
     app: "primary",
-    other: "success"
-  }
+    other: "success",
+  };
 
   const tabsItems = () => [
     { label: "All", value: "all" },
     { label: categoryMessages().website || "Website", value: "website" },
     { label: categoryMessages().app || "App", value: "app" },
-    { label: categoryMessages().other || "Other", value: "other" }
-  ]
+    { label: categoryMessages().other || "Other", value: "other" },
+  ];
 
   const filteredProjects = () => {
-    const all = projectPages() || []
-    if (activeTab() === "all") return all
+    const all = projectPages() || [];
+    if (activeTab() === "all") return all;
     return all.filter((page) => {
-      const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content
-      return (content?.properties?.category || "other") === activeTab()
-    })
-  }
+      const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content;
+      return (content?.properties?.category || "other") === activeTab();
+    });
+  };
 
   return (
     <AppLayout title={t("projects.title")} description={t("projects.description")}>
@@ -75,10 +75,10 @@ export const ProjectsIndexPage: Component = () => {
             <For each={filteredProjects()}>
               {(page, index) => {
                 const content =
-                  typeof page.content === "string" ? JSON.parse(page.content) : page.content
-                const titleVal = getPageTitle(page.title, activeLocale())
-                const category = content?.properties?.category || "other"
-                const postDate = page.postedAt || page.createdAt
+                  typeof page.content === "string" ? JSON.parse(page.content) : page.content;
+                const titleVal = getPageTitle(page.title, activeLocale());
+                const category = content?.properties?.category || "other";
+                const postDate = page.postedAt || page.createdAt;
                 return (
                   <RLPost
                     variant="ghost"
@@ -95,14 +95,14 @@ export const ProjectsIndexPage: Component = () => {
                     }
                     badgeColor={badgeColorMap[category] || "primary"}
                   />
-                )
+                );
               }}
             </For>
           </RLGrid>
         </div>
       </RLPageSection>
     </AppLayout>
-  )
-}
+  );
+};
 
-export default ProjectsIndexPage
+export default ProjectsIndexPage;

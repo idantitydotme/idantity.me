@@ -1,7 +1,7 @@
-import type { Component } from "solid-js"
-import AppLayout from "#layouts/AppLayout"
-import { RLPageSection, RLImage } from "@rimelight/ui"
-import { t } from "@rimelight/i18n"
+import type { Component } from "solid-js";
+import AppLayout from "#layouts/AppLayout";
+import { RLPageSection, RLImage } from "@rimelight/ui";
+import { t } from "@rimelight/i18n";
 
 export const AboutPage: Component = () => {
   return (
@@ -47,7 +47,7 @@ export const AboutPage: Component = () => {
         <RLImage src="https://cdn.idantity.me/images/placeholder.webp" alt="Daniel Marchi" />
       </RLPageSection>
     </AppLayout>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;

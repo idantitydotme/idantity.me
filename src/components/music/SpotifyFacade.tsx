@@ -1,20 +1,20 @@
-import { createSignal, Show } from "solid-js"
+import { createSignal, Show } from "solid-js";
 
 export interface SpotifyFacadeProps {
-  id: string
-  title: string
-  description?: string
-  categoryBadge?: string
-  trackCount?: string | number
-  openLabel?: string
-  loadPlayerLabel?: string
+  id: string;
+  title: string;
+  description?: string;
+  categoryBadge?: string;
+  trackCount?: string | number;
+  openLabel?: string;
+  loadPlayerLabel?: string;
 }
 
 export default function SpotifyFacade(props: SpotifyFacadeProps) {
-  const [isLoaded, setIsLoaded] = createSignal(false)
+  const [isLoaded, setIsLoaded] = createSignal(false);
 
-  const playlistUrl = `https://open.spotify.com/playlist/${props.id}`
-  const embedUrl = `https://open.spotify.com/embed/playlist/${props.id}?utm_source=generator&theme=0`
+  const playlistUrl = `https://open.spotify.com/playlist/${props.id}`;
+  const embedUrl = `https://open.spotify.com/embed/playlist/${props.id}?utm_source=generator&theme=0`;
 
   return (
     <div class="relative w-full rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/80 backdrop-blur-md overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
@@ -80,5 +80,5 @@ export default function SpotifyFacade(props: SpotifyFacadeProps) {
         />
       </Show>
     </div>
-  )
+  );
 }

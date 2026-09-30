@@ -1,9 +1,9 @@
-import { type Component, For } from "solid-js"
-import AppLayout from "#layouts/AppLayout"
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
-import { RLPageSection, RLAccordion } from "@rimelight/ui"
-import LighthouseScores from "#components/services/LighthouseScores.tsx"
-import HttpObservatory from "#components/services/HttpObservatory.tsx"
+import { type Component, For } from "solid-js";
+import AppLayout from "#layouts/AppLayout";
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
+import { RLPageSection, RLAccordion } from "@rimelight/ui";
+import LighthouseScores from "#components/services/LighthouseScores.tsx";
+import HttpObservatory from "#components/services/HttpObservatory.tsx";
 
 export const ServicesPage: Component = () => {
   const heroLinks = () => [
@@ -12,16 +12,16 @@ export const ServicesPage: Component = () => {
       href: getRelativeLocaleUrl("/contact"),
       color: "primary" as const,
       variant: "solid" as const,
-      leadingIcon: "i-lucide-mail"
+      leadingIcon: "i-lucide-mail",
     },
     {
       label: t("page_services.cta_view_work"),
       href: getRelativeLocaleUrl("/projects"),
       color: "primary" as const,
       variant: "outline" as const,
-      trailingIcon: "i-lucide-arrow-right"
-    }
-  ]
+      trailingIcon: "i-lucide-arrow-right",
+    },
+  ];
 
   const ctaLinks = () => [
     {
@@ -29,9 +29,9 @@ export const ServicesPage: Component = () => {
       href: getRelativeLocaleUrl("/contact"),
       color: "primary" as const,
       variant: "solid" as const,
-      trailingIcon: "i-lucide-arrow-right"
-    }
-  ]
+      trailingIcon: "i-lucide-arrow-right",
+    },
+  ];
 
   const services = () => [
     {
@@ -42,8 +42,8 @@ export const ServicesPage: Component = () => {
       features: [
         t("page_services.service_1_feat_1"),
         t("page_services.service_1_feat_2"),
-        t("page_services.service_1_feat_3")
-      ]
+        t("page_services.service_1_feat_3"),
+      ],
     },
     {
       icon: "i-lucide-shield-check",
@@ -53,8 +53,8 @@ export const ServicesPage: Component = () => {
       features: [
         t("page_services.service_2_feat_1"),
         t("page_services.service_2_feat_2"),
-        t("page_services.service_2_feat_3")
-      ]
+        t("page_services.service_2_feat_3"),
+      ],
     },
     {
       icon: "i-lucide-server",
@@ -64,8 +64,8 @@ export const ServicesPage: Component = () => {
       features: [
         t("page_services.service_3_feat_1"),
         t("page_services.service_3_feat_2"),
-        t("page_services.service_3_feat_3")
-      ]
+        t("page_services.service_3_feat_3"),
+      ],
     },
     {
       icon: "i-lucide-gauge",
@@ -75,37 +75,37 @@ export const ServicesPage: Component = () => {
       features: [
         t("page_services.service_4_feat_1"),
         t("page_services.service_4_feat_2"),
-        t("page_services.service_4_feat_3")
-      ]
-    }
-  ]
+        t("page_services.service_4_feat_3"),
+      ],
+    },
+  ];
 
   const workflowSteps = () => [
     {
       num: t("page_services.step_1_num"),
       icon: "i-lucide-compass",
       title: t("page_services.step_1_title"),
-      description: t("page_services.step_1_desc")
+      description: t("page_services.step_1_desc"),
     },
     {
       num: t("page_services.step_2_num"),
       icon: "i-lucide-code-2",
       title: t("page_services.step_2_title"),
-      description: t("page_services.step_2_desc")
+      description: t("page_services.step_2_desc"),
     },
     {
       num: t("page_services.step_3_num"),
       icon: "i-lucide-activity",
       title: t("page_services.step_3_title"),
-      description: t("page_services.step_3_desc")
+      description: t("page_services.step_3_desc"),
     },
     {
       num: t("page_services.step_4_num"),
       icon: "i-lucide-rocket",
       title: t("page_services.step_4_title"),
-      description: t("page_services.step_4_desc")
-    }
-  ]
+      description: t("page_services.step_4_desc"),
+    },
+  ];
 
   const techStack = [
     { name: "SolidJS", category: "UI Library", icon: "i-logos-solidjs-icon" },
@@ -114,31 +114,31 @@ export const ServicesPage: Component = () => {
     { name: "Hono", category: "Edge API", icon: "i-logos-hono" },
     { name: "Cloudflare", category: "Infrastructure", icon: "i-logos-cloudflare-icon" },
     { name: "D1 Database", category: "Serverless Database", icon: "i-logos-cloudflare-icon" },
-    { name: "UnoCSS", category: "Styling Engine", icon: "i-logos-unocss" }
-  ]
+    { name: "UnoCSS", category: "Styling Engine", icon: "i-logos-unocss" },
+  ];
 
   const faqItems = () => [
     {
       label: t("page_services.faq_q1"),
       content: t("page_services.faq_a1"),
-      icon: "i-lucide-help-circle"
+      icon: "i-lucide-help-circle",
     },
     {
       label: t("page_services.faq_q2"),
       content: t("page_services.faq_a2"),
-      icon: "i-lucide-help-circle"
+      icon: "i-lucide-help-circle",
     },
     {
       label: t("page_services.faq_q3"),
       content: t("page_services.faq_a3"),
-      icon: "i-lucide-help-circle"
+      icon: "i-lucide-help-circle",
     },
     {
       label: t("page_services.faq_q4"),
       content: t("page_services.faq_a4"),
-      icon: "i-lucide-help-circle"
-    }
-  ]
+      icon: "i-lucide-help-circle",
+    },
+  ];
 
   return (
     <AppLayout title={t("page_services.title")} description={t("page_services.description")}>
@@ -310,7 +310,7 @@ export const ServicesPage: Component = () => {
         links={ctaLinks()}
       />
     </AppLayout>
-  )
-}
+  );
+};
 
-export default ServicesPage
+export default ServicesPage;

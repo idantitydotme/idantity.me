@@ -1,6 +1,6 @@
-import { type Component, For, Show } from "solid-js"
-import AppLayout from "#layouts/AppLayout"
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n"
+import { type Component, For, Show } from "solid-js";
+import AppLayout from "#layouts/AppLayout";
+import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
 import {
   RLContainer,
   RLPage,
@@ -12,177 +12,177 @@ import {
   RLIcon,
   RLProgress,
   RLTimeline,
-  RLLink
-} from "@rimelight/ui"
-import type { ButtonProps } from "@rimelight/ui/components/button/button.ts"
+  RLLink,
+} from "@rimelight/ui";
+import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
 
 export interface LanguageSkill {
-  nameKey: string
-  levelKey: string
-  score: number
+  nameKey: string;
+  levelKey: string;
+  score: number;
 }
 
 export interface SkillItem {
-  icon: string
-  title: string
-  description: string
+  icon: string;
+  title: string;
+  description: string;
 }
 
 export interface TechItem {
-  label: string
-  icon: string
-  href: string
+  label: string;
+  icon: string;
+  href: string;
 }
 
 export interface TechCategory {
-  title: string
-  items: TechItem[]
+  title: string;
+  items: TechItem[];
 }
 
 export interface TechGroup {
-  title: string
-  categories: TechCategory[]
+  title: string;
+  categories: TechCategory[];
 }
 
 export interface ExperienceItem {
-  role: string
-  company: string
-  companyUrl?: string
-  image?: string
-  period: string
-  location?: string
-  summary?: string
-  responsibilities?: string[]
-  tags?: string[]
+  role: string;
+  company: string;
+  companyUrl?: string;
+  image?: string;
+  period: string;
+  location?: string;
+  summary?: string;
+  responsibilities?: string[];
+  tags?: string[];
 }
 
 export interface EducationItem {
-  degree: string
-  school: string
-  period: string
+  degree: string;
+  school: string;
+  period: string;
 }
 
 export interface CertificationItem {
-  title: string
-  issuer: string
-  credentialId?: string
+  title: string;
+  issuer: string;
+  credentialId?: string;
 }
 
-export type DatePeriod = string | { start: string; end?: string }
+export type DatePeriod = string | { start: string; end?: string };
 
 export interface ResumeProject {
-  name: string
-  role?: string
-  period: DatePeriod
-  href?: string
-  imageSrc?: string
-  summary?: string
-  highlights?: string[]
-  tags?: string[]
+  name: string;
+  role?: string;
+  period: DatePeriod;
+  href?: string;
+  imageSrc?: string;
+  summary?: string;
+  highlights?: string[];
+  tags?: string[];
 }
 
 export const ResumePage: Component = () => {
   const age = () => {
-    const d = new Date()
+    const d = new Date();
     return (
       d.getFullYear() -
       1997 -
       (d.getMonth() < 3 || (d.getMonth() === 3 && d.getDate() < 30) ? 1 : 0)
-    )
-  }
+    );
+  };
 
   const socialLinks = () => [
     {
       icon: "i-logos-linkedin-icon",
       href: "https://linkedin.com/daniel-marchi",
-      ariaLabel: t("page_resume.aria_social_linkedin") ?? "LinkedIn"
+      ariaLabel: t("page_resume.aria_social_linkedin") ?? "LinkedIn",
     },
     {
       icon: "i-logos-github-icon",
       href: "https://github.com/idantitydotme",
-      ariaLabel: t("page_resume.aria_social_github") ?? "GitHub"
-    }
-  ]
+      ariaLabel: t("page_resume.aria_social_github") ?? "GitHub",
+    },
+  ];
 
   const aboutDetails = () => [
     {
       label: t("page_resume.about_gender_label"),
-      value: t("page_resume.about_gender_value")
+      value: t("page_resume.about_gender_value"),
     },
     {
       label: t("page_resume.about_pronouns_label"),
-      value: t("page_resume.about_pronouns_value")
+      value: t("page_resume.about_pronouns_value"),
     },
     {
       label: t("page_resume.about_nationality_label"),
-      value: t("page_resume.about_nationality_value")
+      value: t("page_resume.about_nationality_value"),
     },
     {
       label: t("page_resume.about_age_label"),
-      value: `${age()} ${t("page_resume.about_age_value")}`
+      value: `${age()} ${t("page_resume.about_age_value")}`,
     },
     {
       label: t("page_resume.about_location_label"),
       leadingIcon: "i-lucide-map-pin",
       value: "Curitiba, Brazil",
       trailingIcon: "i-lucide-external-link",
-      href: "https://en.wikipedia.org/wiki/Curitiba"
-    }
-  ]
+      href: "https://en.wikipedia.org/wiki/Curitiba",
+    },
+  ];
 
   const languages: readonly LanguageSkill[] = [
     {
       nameKey: "lang_portuguese",
       levelKey: "level_fluent",
-      score: 100
+      score: 100,
     },
     {
       nameKey: "lang_english",
       levelKey: "level_fluent",
-      score: 100
+      score: 100,
     },
     {
       nameKey: "lang_spanish",
       levelKey: "level_intermediate",
-      score: 50
+      score: 50,
     },
     {
       nameKey: "lang_romanian",
       levelKey: "level_basic",
-      score: 25
-    }
-  ]
+      score: 25,
+    },
+  ];
 
   const heroLinks = (): ButtonProps[] => [
     {
       label: t("page_resume.hero_action_hire") ?? "",
-      href: getRelativeLocaleUrl("/contact")
+      href: getRelativeLocaleUrl("/contact"),
     },
     {
       variant: "outline",
       label: t("page_resume.hero_action_downloadCv") ?? "",
       href: "https://cdn.idantity.me/Documents/Daniel_Marchi_CV.pdf",
-      leadingIcon: "i-lucide-download"
-    }
-  ]
+      leadingIcon: "i-lucide-download",
+    },
+  ];
 
   const skills = (): SkillItem[] => [
     {
       icon: "i-lucide-code-2",
       title: t("page_resume.skills_webDev"),
-      description: t("page_resume.skills_webDev_desc")
+      description: t("page_resume.skills_webDev_desc"),
     },
     {
       icon: "i-lucide-gamepad-2",
       title: t("page_resume.skills_gameDev"),
-      description: t("page_resume.skills_gameDev_desc")
+      description: t("page_resume.skills_gameDev_desc"),
     },
     {
       icon: "i-lucide-palette",
       title: t("page_resume.skills_design"),
-      description: t("page_resume.skills_design_desc")
-    }
-  ]
+      description: t("page_resume.skills_design_desc"),
+    },
+  ];
 
   const techGroups = (): TechGroup[] => [
     {
@@ -194,17 +194,17 @@ export const ResumePage: Component = () => {
             {
               label: "TypeScript",
               icon: "i-logos-typescript-icon",
-              href: "https://www.typescriptlang.org/"
+              href: "https://www.typescriptlang.org/",
             },
             {
               label: "Astro",
               icon: "i-logos-astro-icon?mask text-white",
-              href: "https://astro.build/"
+              href: "https://astro.build/",
             },
             { label: "Vue", icon: "i-logos-vue", href: "https://vuejs.org/" },
             { label: "SolidJS", icon: "i-logos-solidjs-icon", href: "https://www.solidjs.com/" },
-            { label: "UnoCSS", icon: "i-logos-unocss", href: "https://unocss.dev/" }
-          ]
+            { label: "UnoCSS", icon: "i-logos-unocss", href: "https://unocss.dev/" },
+          ],
         },
         {
           title: t("page_resume.tech_cat_environment"),
@@ -212,9 +212,9 @@ export const ResumePage: Component = () => {
             {
               label: "WebStorm",
               icon: "i-logos-webstorm",
-              href: "https://www.jetbrains.com/webstorm/"
-            }
-          ]
+              href: "https://www.jetbrains.com/webstorm/",
+            },
+          ],
         },
         {
           title: t("page_resume.tech_cat_build"),
@@ -222,10 +222,10 @@ export const ResumePage: Component = () => {
             {
               label: "Vite-plus",
               icon: "i-logos-vite-icon-dark",
-              href: "https://viteplus.dev/"
+              href: "https://viteplus.dev/",
             },
-            { label: "pnpm", icon: "i-logos-pnpm", href: "https://pnpm.io/" }
-          ]
+            { label: "pnpm", icon: "i-logos-pnpm", href: "https://pnpm.io/" },
+          ],
         },
         {
           title: t("page_resume.tech_cat_deployment"),
@@ -233,11 +233,11 @@ export const ResumePage: Component = () => {
             {
               label: "Cloudflare",
               icon: "i-logos-cloudflare-icon",
-              href: "https://cloudflare.com/"
-            }
-          ]
-        }
-      ]
+              href: "https://cloudflare.com/",
+            },
+          ],
+        },
+      ],
     },
     {
       title: t("page_resume.tech_group_gameDev"),
@@ -249,9 +249,9 @@ export const ResumePage: Component = () => {
             {
               label: "Verse",
               icon: "i-simple-icons-fortnite",
-              href: "https://dev.epicgames.com/documentation/en-us/uefn/verse-language-reference"
-            }
-          ]
+              href: "https://dev.epicgames.com/documentation/en-us/uefn/verse-language-reference",
+            },
+          ],
         },
         {
           title: t("page_resume.tech_cat_environment"),
@@ -259,12 +259,12 @@ export const ResumePage: Component = () => {
             {
               label: "Unreal Engine",
               icon: "i-logos-unrealengine-icon?mask text-white",
-              href: "https://www.unrealengine.com/"
+              href: "https://www.unrealengine.com/",
             },
-            { label: "Rider", icon: "i-logos-rider", href: "https://www.jetbrains.com/rider/" }
-          ]
-        }
-      ]
+            { label: "Rider", icon: "i-logos-rider", href: "https://www.jetbrains.com/rider/" },
+          ],
+        },
+      ],
     },
     {
       title: t("page_resume.tech_group_shared"),
@@ -275,14 +275,14 @@ export const ResumePage: Component = () => {
             {
               label: "PostgreSQL",
               icon: "i-logos-postgresql",
-              href: "https://www.postgresql.org/"
+              href: "https://www.postgresql.org/",
             },
             {
               label: "Drizzle",
               icon: "i-catppuccin-drizzle-orm",
-              href: "https://orm.drizzle.team/"
-            }
-          ]
+              href: "https://orm.drizzle.team/",
+            },
+          ],
         },
         {
           title: t("page_resume.tech_cat_auth"),
@@ -290,9 +290,9 @@ export const ResumePage: Component = () => {
             {
               label: "Cloudflare Access",
               icon: "i-simple-icons-cloudflare",
-              href: "https://cloudflare.com/"
-            }
-          ]
+              href: "https://cloudflare.com/",
+            },
+          ],
         },
         {
           title: t("page_resume.tech_cat_project"),
@@ -301,23 +301,23 @@ export const ResumePage: Component = () => {
             {
               label: "Lore",
               icon: "i-simple-icons-epicgames?mask text-white",
-              href: "https://dev.epicgames.com/documentation/en-us/uefn/unreal-revision-control-in-unreal-editor-for-fortnite"
+              href: "https://dev.epicgames.com/documentation/en-us/uefn/unreal-revision-control-in-unreal-editor-for-fortnite",
             },
             {
               label: "YouTrack",
               icon: "i-logos-youtrack",
-              href: "https://www.jetbrains.com/youtrack/"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+              href: "https://www.jetbrains.com/youtrack/",
+            },
+          ],
+        },
+      ],
+    },
+  ];
 
-  const experiences = () => t.raw<ExperienceItem[]>("page_resume.experiences", [])
-  const education = () => t.raw<EducationItem[]>("page_resume.education", [])
-  const certifications = () => t.raw<CertificationItem[]>("page_resume.certifications", [])
-  const projects = () => t.raw<ResumeProject[]>("page_resume.projects", [])
+  const experiences = () => t.raw<ExperienceItem[]>("page_resume.experiences", []);
+  const education = () => t.raw<EducationItem[]>("page_resume.education", []);
+  const certifications = () => t.raw<CertificationItem[]>("page_resume.certifications", []);
+  const projects = () => t.raw<ResumeProject[]>("page_resume.projects", []);
 
   return (
     <AppLayout title={t("page_resume.meta_title")} description={t("page_resume.meta_description")}>
@@ -436,12 +436,12 @@ export const ResumePage: Component = () => {
                     ...(exp.image
                       ? { avatar: { src: exp.image, alt: exp.company } }
                       : { icon: "i-lucide-briefcase" }),
-                    exp
+                    exp,
                   }))}
                 >
                   {(ctx) => {
                     const exp =
-                      (ctx as { exp?: ExperienceItem }).exp ?? (ctx as unknown as ExperienceItem)
+                      (ctx as { exp?: ExperienceItem }).exp ?? (ctx as unknown as ExperienceItem);
                     return (
                       <div class="flex flex-col gap-2">
                         <Show when={exp.location}>
@@ -473,7 +473,7 @@ export const ResumePage: Component = () => {
                           </div>
                         </Show>
                       </div>
-                    )
+                    );
                   }}
                 </RLTimeline>
               </section>
@@ -493,7 +493,7 @@ export const ResumePage: Component = () => {
                     date: edu.period,
                     title: edu.degree,
                     description: edu.school,
-                    icon: "i-lucide-graduation-cap"
+                    icon: "i-lucide-graduation-cap",
                   }))}
                 />
               </section>
@@ -571,7 +571,7 @@ export const ResumePage: Component = () => {
                               ui={{
                                 root: "w-full block",
                                 trigger: "w-full aspect-video",
-                                triggerImage: "w-full h-full max-w-none object-cover"
+                                triggerImage: "w-full h-full max-w-none object-cover",
                               }}
                             />
                           )}
@@ -753,7 +753,7 @@ export const ResumePage: Component = () => {
         </RLPage>
       </RLContainer>
     </AppLayout>
-  )
-}
+  );
+};
 
-export default ResumePage
+export default ResumePage;
