@@ -32,6 +32,9 @@ app.onError((err, c) => {
   return c.json({ error: "Internal Server Error", message: err.message }, 500);
 });
 
+// Return 404 for missing static assets instead of rendering the SSR HTML document
+app.all("/assets/*", () => new Response("Not Found", { status: 404 }));
+
 // Fall through all unmatched requests to Solid's SSR page renderer
 app.all("*", (c) => handleRequest(c.req.raw));
 
