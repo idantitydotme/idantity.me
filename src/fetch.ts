@@ -8,6 +8,15 @@ import api from "#api";
 
 const app = new Hono<{ Bindings: Env }>();
 
+// 1. Serve static assets via Cloudflare ASSETS binding before middleware
+app.use("*", async (c, next) => {
+  if (c.env?.ASSETS) {
+    const res = await c.env.ASSETS.fetch(c.req.raw);
+    if (res.status < 400) return res;
+  }
+  return next();
+});
+
 app.use(security());
 app.use(devOnly);
 app.use(ratelimit());
@@ -32,17 +41,22 @@ app.onError((err, c) => {
   return c.json({ error: "Internal Server Error", message: err.message }, 500);
 });
 
-// Serve static assets via Cloudflare ASSETS binding
-app.use("/assets/*", async (c) => {
-  if (c.env?.ASSETS) {
-    const res = await c.env.ASSETS.fetch(c.req.raw);
-    if (res.status < 400) return res;
+// Fall through unmatched document requests to Solid's SSR page renderer.
+// Subresources (static files, chunks, scripts) not found in ASSETS return a clean 404
+// rather than an HTML document to adhere to strict MIME type checking.
+app.all("*", (c) => {
+  const url = new URL(c.req.url);
+  if (/\.[a-zA-Z0-9]{2,8}$/.test(url.pathname)) {
+    return new Response("Not Found", {
+      status: 404,
+      headers: {
+        "Content-Type": "text/plain; charset=utf-8",
+        "Cache-Control": "no-store",
+      },
+    });
   }
-  return new Response("Not Found", { status: 404 });
+  return handleRequest(c.req.raw);
 });
-
-// Fall through all unmatched requests to Solid's SSR page renderer
-app.all("*", (c) => handleRequest(c.req.raw));
 
 export default {
   fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
