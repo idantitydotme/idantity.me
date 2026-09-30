@@ -38,7 +38,7 @@ export default defineConfig({
       extensions: [".jsx", ".tsx"],
     }),
 
-    fileRoutes({ types: true }),
+    fileRoutes({ types: true, codeSplitting: false }),
 
     ui({
       logos: {
