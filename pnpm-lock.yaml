@@ -268,8 +268,8 @@ importers:
         specifier: 0.0.28
         version: 0.0.28(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))
       '@rimelight/security':
-        specifier: 0.0.34
-        version: 0.0.34(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))
+        specifier: 0.0.35
+        version: 0.0.35(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))
       '@rimelight/seo':
         specifier: 0.0.26
         version: 0.0.26(csstype@3.2.3)(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))
@@ -1484,8 +1484,8 @@ packages:
     peerDependencies:
       vite-plus: ^1.0.0
 
-  '@rimelight/security@0.0.34':
-    resolution: {integrity: sha512-OKs47LDS52Wb2MJ7QvcFxTY8idsDdZAsSzXTRBaYYnX/1u3GNF1rrRAs5wvW8ZT4jz5qWFr01XKO9BBTi83QKw==}
+  '@rimelight/security@0.0.35':
+    resolution: {integrity: sha512-j4FL8phRrcVjHM0X3DNOqVyqApbR0WscJmFunjYH6TgjSo/fiiFwBP7dQDBDCkbYF3EksuYkHZFwvEYhY/FBLg==}
     engines: {node: '>=26.6.0'}
     peerDependencies:
       vite-plus: ^1.0.0
@@ -4057,7 +4057,7 @@ snapshots:
     dependencies:
       vite-plus: 1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1)
 
-  '@rimelight/security@0.0.34(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))':
+  '@rimelight/security@0.0.35(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))':
     dependencies:
       vite-plus: 1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1)
 
