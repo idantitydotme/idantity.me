@@ -21,6 +21,14 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   plugins: [
+    solid({
+      start: {
+        devtools: false,
+      },
+      ssr: true,
+      extensions: [".jsx", ".tsx"],
+    }),
+
     cloudflare({
       viteEnvironment: {
         name: "ssr",
@@ -28,14 +36,6 @@ export default defineConfig({
       experimental: {
         newConfig: true,
       },
-    }),
-
-    solid({
-      start: {
-        devtools: false,
-      },
-      ssr: true,
-      extensions: [".jsx", ".tsx"],
     }),
 
     fileRoutes({ types: true, codeSplitting: false }),
