@@ -44,7 +44,7 @@ app.onError((err, c) => {
 // Fall through unmatched document requests to Solid's SSR page renderer.
 // Subresources (static files, chunks, scripts) not found in ASSETS return a clean 404
 // rather than an HTML document to adhere to strict MIME type checking.
-app.all("*", (c) => {
+app.all("*", async (c) => {
   const url = new URL(c.req.url);
   if (/\.[a-zA-Z0-9]{2,8}$/.test(url.pathname)) {
     return new Response("Not Found", {
@@ -55,7 +55,9 @@ app.all("*", (c) => {
       },
     });
   }
-  return handleRequest(c.req.raw);
+  const response = await handleRequest(c.req.raw);
+  c.res = response;
+  return response;
 });
 
 export default {
