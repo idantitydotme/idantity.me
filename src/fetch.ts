@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { handleRequest } from "virtual:solid-ssr-handler";
 // import { security, devOnly, ratelimit, construction } from "@rimelight/security/middleware";
 // import { auth } from "@rimelight/auth/middleware";
-// import { i18n } from "@rimelight/i18n/middleware";
+import { i18n } from "@rimelight/i18n/middleware";
 import { getRelativeLocaleUrl } from "@rimelight/i18n";
 import api from "#api";
 
@@ -30,7 +30,7 @@ app.use("*", async (c, next) => {
 // );
 
 app.route("/api", api);
-// app.use(i18n());
+app.use(i18n());
 
 app.onError((err, c) => {
   console.error("[Hono Server Error]", err);
