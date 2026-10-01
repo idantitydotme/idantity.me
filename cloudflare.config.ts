@@ -1,4 +1,4 @@
-import { bindings, defineConfig, type InferEnv } from "cf/config";
+import { bindings, defineConfig, triggers, type InferEnv } from "cf/config";
 
 const config = defineConfig({
   worker: {
@@ -19,7 +19,10 @@ const config = defineConfig({
         enabled: true,
       },
     },
-    domains: ["idantity.me", "www.idantity.me"],
+    triggers: [
+      triggers.fetch({ pattern: "idantity.me/*", zone: "idantity.me" }),
+      triggers.fetch({ pattern: "www.idantity.me/*", zone: "idantity.me" }),
+    ],
     env: {
       CONSTRUCTION_MODE: bindings.text("true"),
       EMAIL_DOMAIN: bindings.text("idantity.me"),
@@ -38,11 +41,6 @@ const config = defineConfig({
       }),
       BLOB: bindings.r2({
         name: "idantity-dot-me",
-        dev: {
-          remote: true,
-        },
-      }),
-      EMAIL: bindings.sendEmail({
         dev: {
           remote: true,
         },
