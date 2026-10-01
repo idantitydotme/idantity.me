@@ -3,7 +3,6 @@ import { HydrationScript, NoHydration } from "@solidjs/web";
 import { createUiHead } from "@rimelight/ui/head";
 import { createSecurityHead } from "@rimelight/security/head";
 import { createSeoHead } from "@rimelight/seo/head";
-import "virtual:uno.css";
 
 const seoHead = createSeoHead();
 const securityHead = createSecurityHead();
