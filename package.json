@@ -35,6 +35,7 @@
     "dev": "vp dev",
     "build": "vp build",
     "preview": "vp preview",
+    "deploy": "vp build && wrangler deploy",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "cf d1 migrations apply idantity-dot-me --dir ./drizzle --local",
     "db:migrate:remote": "cf d1 migrations apply idantity-dot-me --dir ./drizzle",
