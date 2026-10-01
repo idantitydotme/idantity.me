@@ -274,8 +274,8 @@ importers:
         specifier: 0.0.26
         version: 0.0.26(csstype@3.2.3)(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))
       '@rimelight/ui':
-        specifier: 0.0.74
-        version: 0.0.74(cac@7.0.0)(rolldown@1.2.8)(solid-js@2.0.0-rc.11)(srvx@1.0.5)(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
+        specifier: 0.0.75
+        version: 0.0.75(cac@7.0.0)(rolldown@1.2.8)(solid-js@2.0.0-rc.11)(srvx@1.0.5)(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       '@solidjs/meta':
         specifier: 1.0.0-next.2
         version: 1.0.0-next.2(@solidjs/web@2.0.0-rc.11(solid-js@2.0.0-rc.11))(solid-js@2.0.0-rc.11)
@@ -1503,8 +1503,8 @@ packages:
       solid-js: '>=2.0.0-rc.11'
       vite-plus: ^1.0.0
 
-  '@rimelight/ui@0.0.74':
-    resolution: {integrity: sha512-1wVGwldcK2M4D84XffIaExdnjhng5+BjqhZlAuX39kspEyR1W806uPB0o9PW5HQcGOPYEjF3LcedmJRzLbDMVA==}
+  '@rimelight/ui@0.0.75':
+    resolution: {integrity: sha512-XCuRseC0og3MkD1YCZWTDnrAgO6gST5zudnAYhZTKNzLhmkqEnxrQAkQF0stPyRSOBt3QP2y3cBmshBMS5yxrQ==}
     engines: {node: '>=26.6.0'}
     peerDependencies:
       solid-js: '>=2.0.0-rc.11'
@@ -4089,7 +4089,7 @@ snapshots:
       - srvx
       - vite
 
-  '@rimelight/ui@0.0.74(cac@7.0.0)(rolldown@1.2.8)(solid-js@2.0.0-rc.11)(srvx@1.0.5)(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
+  '@rimelight/ui@0.0.75(cac@7.0.0)(rolldown@1.2.8)(solid-js@2.0.0-rc.11)(srvx@1.0.5)(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))':
     dependencies:
       '@unocss/vite': 66.10.5(cac@7.0.0)(srvx@1.0.5)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.2)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
       solid-js: 2.0.0-rc.11
