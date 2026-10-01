@@ -1,5 +1,5 @@
 import type { ParentProps } from "solid-js";
-import { Hydration, HydrationScript, NoHydration } from "@solidjs/web";
+import { HydrationScript, NoHydration } from "@solidjs/web";
 import { createUiHead } from "@rimelight/ui/head";
 import { createSecurityHead } from "@rimelight/security/head";
 import { createSeoHead } from "@rimelight/seo/head";
@@ -13,9 +13,9 @@ const headTags = [...seoHead.tags, ...securityHead.tags, ...uiHead.tags];
 
 export default function Document(props: ParentProps) {
   return (
-    <NoHydration>
-      <html lang="en">
-        <head>
+    <html lang="en">
+      <head>
+        <NoHydration>
           {headTags.map((tag) => {
             if (tag.tag === "title") {
               return <title>{tag.children}</title>;
@@ -48,12 +48,10 @@ export default function Document(props: ParentProps) {
             }
             return null;
           })}
-          <HydrationScript />
-        </head>
-        <body>
-          <Hydration>{props.children}</Hydration>
-        </body>
-      </html>
-    </NoHydration>
+        </NoHydration>
+        <HydrationScript />
+      </head>
+      <body>{props.children}</body>
+    </html>
   );
 }
