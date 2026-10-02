@@ -49,7 +49,6 @@
     "@rimelight/security": "0.0.36",
     "@rimelight/seo": "0.0.27",
     "@rimelight/ui": "0.0.76",
-    "@solidjs/meta": "1.0.0-next.2",
     "@solidjs/router": "2.0.0-next.30",
     "@solidjs/signals": "2.0.0-rc.11",
     "@solidjs/vite-plugin": "3.0.0-next.47",

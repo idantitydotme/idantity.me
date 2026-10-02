@@ -1,6 +1,7 @@
-import { type ParentComponent, Show } from "solid-js";
+import { type ParentComponent } from "solid-js";
 import { useParams } from "@solidjs/router";
-import { Title, Meta } from "@solidjs/meta";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { RLMain } from "@rimelight/ui";
 import { currentLocale } from "@rimelight/i18n";
 
@@ -16,13 +17,17 @@ const BlankLayout: ParentComponent<BlankLayoutProps> = (props) => {
     currentLocale.set(params.locale);
   }
 
+  useHead(
+    () =>
+      createSeoHead({
+        title: `${props.title} | idantity`,
+        description: props.description,
+        noindex: props.noindex,
+      }).tags,
+  );
+
   return (
     <>
-      <Title>{props.title} | idantity</Title>
-      <Meta name="description" content={props.description} />
-      <Show when={props.noindex}>
-        <Meta name="robots" content="noindex, nofollow" />
-      </Show>
       <RLMain>{props.children}</RLMain>
     </>
   );
