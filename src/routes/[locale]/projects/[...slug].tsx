@@ -2,15 +2,7 @@ import { type Component, Show, createMemo } from "solid-js";
 import { useParams } from "@solidjs/router";
 import AppLayout from "#layouts/AppLayout";
 import PageRenderer from "#components/cms/PageRenderer";
-import { getLocale } from "@rimelight/i18n";
-
-function getLocalizedText(val: unknown, locale: string): string {
-  if (typeof val === "object" && val !== null) {
-    const record = val as Record<string, string>;
-    return record[locale] || record["en"] || "";
-  }
-  return typeof val === "string" ? val : "";
-}
+import { getLocale, getLocalizedText } from "@rimelight/i18n";
 
 export const ProjectDetailPage: Component = () => {
   const params = useParams<{ locale: string; slug: string }>();

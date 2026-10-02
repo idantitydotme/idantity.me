@@ -3,16 +3,7 @@ import { useParams } from "@solidjs/router";
 import AppLayout from "#layouts/AppLayout";
 import PageRenderer from "#components/cms/PageRenderer";
 import { RLContainer, RLDate } from "@rimelight/ui";
-import { t, getLocale } from "@rimelight/i18n";
-
-function getLocalizedText(val: unknown, locale: string): string {
-  if (typeof val === "string") return val;
-  if (typeof val === "object" && val !== null) {
-    const record = val as Record<string, string>;
-    return record[locale] || record["en"] || "";
-  }
-  return typeof val === "number" || typeof val === "boolean" ? String(val) : "";
-}
+import { t, getLocale, getLocalizedText } from "@rimelight/i18n";
 
 export const LegalDocumentPage: Component = () => {
   const params = useParams<{ locale: string; slug: string }>();
