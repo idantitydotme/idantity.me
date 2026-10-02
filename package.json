@@ -54,7 +54,7 @@
     "@solidjs/signals": "2.0.0-rc.11",
     "@solidjs/vite-plugin": "3.0.0-next.47",
     "@solidjs/web": "2.0.0-rc.11",
-    "drizzle-orm": "0.45.3",
+    "drizzle-orm": "1.0.0-rc.4",
     "hono": "4.13.12",
     "solid-js": "2.0.0-rc.11",
     "zod": "4.6.5"
@@ -65,7 +65,7 @@
     "@rimelight/config": "0.0.32",
     "@types/node": "26.6.3",
     "cf": "1.0.0-beta.9",
-    "drizzle-kit": "0.31.11",
+    "drizzle-kit": "1.0.0-rc.4",
     "filesystem-routing": "0.4.0",
     "typescript": "7.0.2",
     "unocss": "66.10.5",
