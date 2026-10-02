@@ -1,5 +1,4 @@
-import { type Component, For, Show } from "solid-js";
-import { createAsyncData } from "#utils/async";
+import { type Component, For, Show, createMemo } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
 import { t, getLocale, getRelativeLocaleUrl } from "@rimelight/i18n";
 import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost } from "@rimelight/ui";
@@ -16,8 +15,7 @@ function getLocalizedText(val: unknown, locale: string): string {
 export const HomePage: Component = () => {
   const activeLocale = () => getLocale();
 
-  const latestPosts = createAsyncData(
-    () => activeLocale(),
+  const latestPosts = createMemo<any[]>(
     async () => {
       try {
         const res = await fetch("/api/cms/pages");
@@ -25,12 +23,12 @@ export const HomePage: Component = () => {
         const data = (await res.json()) as any;
         const pagesList = (data.pages || []) as any[];
 
-        return pagesList.filter((page) => page.type === "blog").slice(0, 3);
+        return pagesList.filter((page: any) => page.type === "blog").slice(0, 3);
       } catch {
         return [];
       }
     },
-    [],
+    { loadingValue: [] },
   );
 
   const heroLinks = (): ButtonProps[] => [

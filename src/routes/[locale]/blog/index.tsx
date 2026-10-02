@@ -1,5 +1,4 @@
-import { type Component, For, createSignal } from "solid-js";
-import { createAsyncData } from "#utils/async";
+import { type Component, For, createSignal, createMemo } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
 import { t, getRelativeLocaleUrl, getLocale } from "@rimelight/i18n";
 import { RLPageSection, RLTabs, RLGrid, RLPost } from "@rimelight/ui";
@@ -16,20 +15,19 @@ export const BlogIndexPage: Component = () => {
   const activeLocale = () => getLocale();
   const [activeTab, setActiveTab] = createSignal("all");
 
-  const blogPages = createAsyncData(
-    () => true,
+  const blogPages = createMemo<any[]>(
     async () => {
       try {
         const res = await fetch("/api/cms/pages");
         if (!res.ok) return [];
         const data = (await res.json()) as any;
         const pagesList = (data.pages || []) as any[];
-        return pagesList.filter((page) => page.type === "blog");
+        return pagesList.filter((page: any) => page.type === "blog");
       } catch {
         return [];
       }
     },
-    [],
+    { loadingValue: [] },
   );
 
   const categoryMessages = () => ({
@@ -46,7 +44,7 @@ export const BlogIndexPage: Component = () => {
   const filteredPosts = () => {
     const all = blogPages() || [];
     if (activeTab() === "all") return all;
-    return all.filter((page) => {
+    return all.filter((page: any) => {
       const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content;
       return (content?.properties?.category || "other") === activeTab();
     });

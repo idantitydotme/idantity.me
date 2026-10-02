@@ -1,6 +1,5 @@
-import { type Component, Show } from "solid-js";
+import { type Component, Show, createMemo } from "solid-js";
 import { useParams } from "@solidjs/router";
-import { createAsyncData } from "#utils/async";
 import AppLayout from "#layouts/AppLayout";
 import PageRenderer from "#components/cms/PageRenderer";
 import { getLocale } from "@rimelight/i18n";
@@ -17,9 +16,9 @@ export const ProjectDetailPage: Component = () => {
   const params = useParams<{ locale: string; slug: string }>();
   const activeLocale = () => getLocale();
 
-  const pageData = createAsyncData(
-    () => params["slug"],
-    async (slug) => {
+  const pageData = createMemo<any>(
+    async () => {
+      const slug = params["slug"];
       if (!slug) return null;
       try {
         const res = await fetch("/api/cms/pages");
@@ -32,6 +31,7 @@ export const ProjectDetailPage: Component = () => {
         return null;
       }
     },
+    { loadingValue: null },
   );
 
   const title = () =>
