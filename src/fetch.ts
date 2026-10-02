@@ -8,15 +8,6 @@ import api from "#api";
 
 const app = new Hono<{ Bindings: Env }>();
 
-// 1. Serve static assets via Cloudflare ASSETS binding before middleware
-app.use("*", async (c, next) => {
-  if (c.env?.ASSETS) {
-    const res = await c.env.ASSETS.fetch(c.req.raw);
-    if (res.status < 400) return res;
-  }
-  return next();
-});
-
 app.use(security());
 app.use(devOnly);
 app.use(ratelimit());
@@ -41,27 +32,8 @@ app.onError((err, c) => {
   return c.json({ error: "Internal Server Error", message: err.message }, 500);
 });
 
-// Fall through unmatched document requests to Solid's SSR page renderer.
-// Subresources (static files, chunks, scripts) not found in ASSETS return a clean 404
-// rather than an HTML document to adhere to strict MIME type checking.
-app.all("*", async (c) => {
-  const url = new URL(c.req.url);
-  if (/\.[a-zA-Z0-9]{2,8}$/.test(url.pathname)) {
-    return new Response("Not Found", {
-      status: 404,
-      headers: {
-        "Content-Type": "text/plain; charset=utf-8",
-        "Cache-Control": "no-store",
-      },
-    });
-  }
-  const response = await handleRequest(c.req.raw);
-  c.res = response;
-  return response;
-});
+app.all("*", (c) => handleRequest(c.req.raw));
 
 export default {
-  fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    return Promise.resolve(app.fetch(request, env, ctx));
-  },
+  fetch: app.fetch,
 };
