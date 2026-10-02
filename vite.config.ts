@@ -89,7 +89,11 @@ export default defineConfig({
       connectSrc: ["https://challenges.cloudflare.com"],
     }),
 
-    auth(),
+    auth({
+      roleGuards: {
+        "/admin": ["admin", "owner"],
+      },
+    }),
 
     i18n({
       locales: ["en", "pt"],
