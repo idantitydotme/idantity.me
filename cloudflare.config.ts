@@ -40,6 +40,11 @@ export default defineConfig({
           remote: true,
         },
       }),
+      EMAIL: bindings.sendEmail({
+        dev: {
+          remote: true,
+        },
+      }),
       MY_RATE_LIMITER: bindings.rateLimit({
         namespace: "1001",
         simple: {
