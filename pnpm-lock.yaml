@@ -272,9 +272,6 @@ importers:
       '@rimelight/ui':
         specifier: 0.0.76
         version: 0.0.76(cac@7.0.0)(rolldown@1.2.8)(solid-js@2.0.0-rc.11)(srvx@1.0.5)(vite-plus@1.0.0(@types/node@26.6.3)(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.13)(typescript@7.0.2)(yaml@2.9.1))(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1))
-      '@solidjs/meta':
-        specifier: 1.0.0-next.2
-        version: 1.0.0-next.2(@solidjs/web@2.0.0-rc.11(solid-js@2.0.0-rc.11))(solid-js@2.0.0-rc.11)
       '@solidjs/router':
         specifier: 2.0.0-next.30
         version: 2.0.0-next.30(@solidjs/web@2.0.0-rc.11(solid-js@2.0.0-rc.11))(filesystem-routing@0.4.0(supports-color@10.2.2)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)))(solid-js@2.0.0-rc.11)
@@ -309,9 +306,6 @@ importers:
       '@rimelight/config':
         specifier: 0.0.32
         version: 0.0.32
-      '@types/node':
-        specifier: 26.6.3
-        version: 26.6.3
       cf:
         specifier: 1.0.0-beta.9
         version: 1.0.0-beta.9(@types/node@26.6.3)
@@ -1793,12 +1787,6 @@ packages:
 
   '@solidjs/compiler@2.0.0-rc.13':
     resolution: {integrity: sha512-OveR/xhLKo8MTJO/53jgjHuBW54c6/a9B/jiSjDrBeQ3JSbODUxQ8t58WBSlHaxyowPd27TwhVkLo3zeT1YqMQ==}
-
-  '@solidjs/meta@1.0.0-next.2':
-    resolution: {integrity: sha512-4aqPczFqDdep4JTAUXfh4nyfq7InbTgimd7NuN6ZWWE29UPv0uR5dyr53yFcf2YgVXjFdX+JGhXtsE0njGL+fA==}
-    peerDependencies:
-      '@solidjs/web': ^2.0.0-rc.0
-      solid-js: ^2.0.0-rc.0
 
   '@solidjs/router@2.0.0-next.30':
     resolution: {integrity: sha512-Nl7i8Y00yn8HAQBc34WtJYabvzNK6t35lb2sXqBQKCBL6qrBGbSFXFUeakyRA8Toh0gErWcDsKTMEGeyozTJkQ==}
@@ -4528,11 +4516,6 @@ snapshots:
       '@solidjs/compiler-wasm32-wasi': 2.0.0-rc.13
       '@solidjs/compiler-win32-x64-msvc': 2.0.0-rc.13
 
-  '@solidjs/meta@1.0.0-next.2(@solidjs/web@2.0.0-rc.11(solid-js@2.0.0-rc.11))(solid-js@2.0.0-rc.11)':
-    dependencies:
-      '@solidjs/web': 2.0.0-rc.11(solid-js@2.0.0-rc.11)
-      solid-js: 2.0.0-rc.11
-
   '@solidjs/router@2.0.0-next.30(@solidjs/web@2.0.0-rc.11(solid-js@2.0.0-rc.11))(filesystem-routing@0.4.0(supports-color@10.2.2)(vite@8.3.0(@types/node@26.6.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.1)))(solid-js@2.0.0-rc.11)':
     dependencies:
       '@solidjs/web': 2.0.0-rc.11(solid-js@2.0.0-rc.11)
@@ -4638,6 +4621,7 @@ snapshots:
   '@types/node@26.6.3':
     dependencies:
       undici-types: 8.9.0
+    optional: true
 
   '@typescript/typescript-aix-ppc64@7.0.2':
     optional: true
@@ -5781,7 +5765,8 @@ snapshots:
       quansync: 1.0.0
       unconfig-core: 7.5.0
 
-  undici-types@8.9.0: {}
+  undici-types@8.9.0:
+    optional: true
 
   undici@7.29.1: {}
 
