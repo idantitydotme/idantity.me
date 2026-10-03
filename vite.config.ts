@@ -22,11 +22,8 @@ export default defineConfig({
   },
   plugins: [
     solid({
-      start: {
-        devtools: false,
-      },
+      start: true,
       ssr: true,
-      extensions: [".jsx", ".tsx"],
     }),
 
     cloudflare({
