@@ -1,12 +1,12 @@
 import { defineConfig } from "vite-plus";
-import { fileRoutes } from "filesystem-routing/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import solid from "@solidjs/vite-plugin";
-import { ui } from "@rimelight/ui/plugin";
+import { fileRoutes } from "filesystem-routing/vite";
 import { seo } from "@rimelight/seo/plugin";
 import { security } from "@rimelight/security/plugin";
 import { auth } from "@rimelight/auth/plugin";
 import { i18n } from "@rimelight/i18n/plugin";
+import { ui } from "@rimelight/ui/plugin";
 import en from "./src/i18n/en.json";
 import pt from "./src/i18n/pt.json";
 
@@ -21,11 +21,6 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   plugins: [
-    solid({
-      start: true,
-      ssr: true,
-    }),
-
     cloudflare({
       viteEnvironment: {
         name: "ssr",
@@ -35,22 +30,12 @@ export default defineConfig({
       },
     }),
 
-    fileRoutes({ types: true, codeSplitting: false }),
-
-    ui({
-      logos: {
-        logomark: {
-          color: "https://cdn.idantity.me/logos/logomark_color.svg",
-          white: "https://cdn.idantity.me/logos/logomark_white.svg",
-          black: "https://cdn.idantity.me/logos/logomark_black.svg",
-        },
-        logotype: {
-          color: "https://cdn.idantity.me/logos/logotype_color.svg",
-          white: "https://cdn.idantity.me/logos/logotype_white.svg",
-          black: "https://cdn.idantity.me/logos/logotype_black.svg",
-        },
-      },
+    solid({
+      start: true,
+      ssr: true,
     }),
+
+    fileRoutes({ types: ".cloudflare/types/file-routes.d.ts" }),
 
     seo({
       id: "idantity.me",
@@ -96,6 +81,21 @@ export default defineConfig({
       locales: ["en", "pt"],
       defaultLocale: "en",
       translations: { en, pt },
+    }),
+
+    ui({
+      logos: {
+        logomark: {
+          color: "https://cdn.idantity.me/logos/logomark_color.svg",
+          white: "https://cdn.idantity.me/logos/logomark_white.svg",
+          black: "https://cdn.idantity.me/logos/logomark_black.svg",
+        },
+        logotype: {
+          color: "https://cdn.idantity.me/logos/logotype_color.svg",
+          white: "https://cdn.idantity.me/logos/logotype_white.svg",
+          black: "https://cdn.idantity.me/logos/logotype_black.svg",
+        },
+      },
     }),
   ],
 });
