@@ -341,11 +341,7 @@
     "contact_form_placeholder_name": "Daniel Marchi",
     "contact_form_placeholder_email": "daniel@example.com",
     "contact_form_placeholder_subject": "How can I help you?",
-    "contact_form_placeholder_message": "Write your message here...",
-    "upload_form_title": "Upload an Attachment",
-    "upload_form_description": "Share documents or images directly (PNG, JPEG, WEBP, or PDF up to 5 MB).",
-    "upload_form_file_label": "Select File",
-    "upload_form_upload_button": "Upload Attachment"
+    "contact_form_placeholder_message": "Write your message here..."
   },
   "page_music": {
     "title": "Music",
