@@ -7,8 +7,6 @@ import { security } from "@rimelight/security/plugin";
 import { auth } from "@rimelight/auth/plugin";
 import { i18n } from "@rimelight/i18n/plugin";
 import { ui } from "@rimelight/ui/plugin";
-import en from "./src/i18n/en.json";
-import pt from "./src/i18n/pt.json";
 
 export default defineConfig({
   lint: {
@@ -18,6 +16,7 @@ export default defineConfig({
     },
   },
   staged: {
+    "{package.json,pnpm-workspace.yaml,pnpm-lock.yaml}": () => "pnpm audit",
     "*": "vp check --fix",
   },
   plugins: [
@@ -77,11 +76,7 @@ export default defineConfig({
       },
     }),
 
-    i18n({
-      locales: ["en", "pt"],
-      defaultLocale: "en",
-      translations: { en, pt },
-    }),
+    i18n(),
 
     ui({
       logos: {
