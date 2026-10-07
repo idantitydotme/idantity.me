@@ -3,11 +3,11 @@ import { useParams } from "@solidjs/router";
 import AppLayout from "#layouts/AppLayout";
 import PageRenderer from "#components/cms/PageRenderer";
 import { RLContainer, RLDate } from "@rimelight/ui";
-import { t, getLocale, getLocalizedText } from "@rimelight/i18n";
+import { t, getCurrentLocale, getLocalizedText } from "@rimelight/i18n";
 
 export const LegalDocumentPage: Component = () => {
   const params = useParams<{ locale: string; slug: string }>();
-  const activeLocale = () => getLocale();
+  const activeLocale = () => getCurrentLocale();
 
   const pageData = createMemo<any>(
     async () => {

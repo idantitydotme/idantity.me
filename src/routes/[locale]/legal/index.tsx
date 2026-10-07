@@ -1,10 +1,10 @@
 import { type Component, For, createMemo } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
-import { t, getRelativeLocaleUrl, getLocale, getLocalizedText } from "@rimelight/i18n";
+import { t, getRelativeLocaleUrl, getCurrentLocale, getLocalizedText } from "@rimelight/i18n";
 import { RLContainer } from "@rimelight/ui";
 
 export const LegalIndexPage: Component = () => {
-  const activeLocale = () => getLocale();
+  const activeLocale = () => getCurrentLocale();
 
   const legalPages = createMemo<any[]>(
     async () => {

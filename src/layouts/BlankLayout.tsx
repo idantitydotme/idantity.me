@@ -1,9 +1,7 @@
 import { type ParentComponent } from "solid-js";
-import { useParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { RLMain } from "@rimelight/ui";
-import { currentLocale } from "@rimelight/i18n";
 
 interface BlankLayoutProps {
   title: string;
@@ -12,11 +10,6 @@ interface BlankLayoutProps {
 }
 
 const BlankLayout: ParentComponent<BlankLayoutProps> = (props) => {
-  const params = useParams<{ locale?: string }>();
-  if (params.locale && ["en", "pt"].includes(params.locale)) {
-    currentLocale.set(params.locale);
-  }
-
   useHead(
     () =>
       createSeoHead({

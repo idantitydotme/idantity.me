@@ -9,7 +9,6 @@ import {
   RLPopover,
   type RLButtonProps,
 } from "@rimelight/ui";
-import type { NavigationMenuItem } from "@rimelight/ui/components/navigation-menu/navigation-menu.ts";
 import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
 
 export interface AppHeaderProps {
@@ -18,7 +17,7 @@ export interface AppHeaderProps {
 }
 
 export const AppHeader: Component<AppHeaderProps> = (props) => {
-  const leftLinks = (): NavigationMenuItem[] => [
+  const leftLinks = () => [
     {
       label: t("app_header.left-links_projects_label"),
       to: getRelativeLocaleUrl("/projects"),
@@ -37,7 +36,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
     },
   ];
 
-  const rightLinks = (): NavigationMenuItem[] => [
+  const rightLinks = () => [
     {
       label: t("app_header.right-links_services_label"),
       to: getRelativeLocaleUrl("/services"),
@@ -61,7 +60,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
     },
   ];
 
-  const allMobileLinks = (): NavigationMenuItem[] => [...leftLinks(), ...rightLinks()];
+  const allMobileLinks = () => [...leftLinks(), ...rightLinks()];
 
   return (
     <RLHeader

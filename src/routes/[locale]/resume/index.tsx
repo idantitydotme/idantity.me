@@ -13,8 +13,8 @@ import {
   RLProgress,
   RLTimeline,
   RLLink,
+  type RLButtonProps,
 } from "@rimelight/ui";
-import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
 
 export interface LanguageSkill {
   nameKey: string;
@@ -153,7 +153,7 @@ export const ResumePage: Component = () => {
     },
   ];
 
-  const heroLinks = (): ButtonProps[] => [
+  const heroLinks = (): RLButtonProps[] => [
     {
       label: t("page_resume.hero_action_hire") ?? "",
       href: getRelativeLocaleUrl("/contact"),

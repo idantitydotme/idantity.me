@@ -2,11 +2,11 @@ import { type Component, Show, createMemo } from "solid-js";
 import { useParams } from "@solidjs/router";
 import AppLayout from "#layouts/AppLayout";
 import PageRenderer from "#components/cms/PageRenderer";
-import { getLocale, getLocalizedText } from "@rimelight/i18n";
+import { getLocalizedText, getCurrentLocale } from "@rimelight/i18n";
 
 export const BlogPostPage: Component = () => {
   const params = useParams<{ locale: string; slug: string }>();
-  const activeLocale = () => getLocale();
+  const activeLocale = () => getCurrentLocale();
 
   const pageData = createMemo<any>(
     async () => {

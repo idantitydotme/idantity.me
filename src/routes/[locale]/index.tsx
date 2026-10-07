@@ -1,11 +1,10 @@
 import { type Component, For, Show, createMemo } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
-import { t, getLocale, getRelativeLocaleUrl, getLocalizedText } from "@rimelight/i18n";
-import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost } from "@rimelight/ui";
-import type { ButtonProps } from "@rimelight/ui/components/button/button.ts";
+import { t, getCurrentLocale, getRelativeLocaleUrl, getLocalizedText } from "@rimelight/i18n";
+import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost, type RLButtonProps } from "@rimelight/ui";
 
 export const HomePage: Component = () => {
-  const activeLocale = () => getLocale();
+  const activeLocale = () => getCurrentLocale();
 
   const latestPosts = createMemo<any[]>(
     async () => {
@@ -23,7 +22,7 @@ export const HomePage: Component = () => {
     { loadingValue: [] },
   );
 
-  const heroLinks = (): ButtonProps[] => [
+  const heroLinks = (): RLButtonProps[] => [
     {
       label: t("playground.heroLink"),
       href: getRelativeLocaleUrl("/blog"),
@@ -32,7 +31,7 @@ export const HomePage: Component = () => {
     },
   ];
 
-  const ctaLinks = (): ButtonProps[] => [
+  const ctaLinks = (): RLButtonProps[] => [
     {
       label: t("playground.ctaStart"),
       href: getRelativeLocaleUrl("/blog"),
