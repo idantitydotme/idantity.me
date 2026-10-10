@@ -2,11 +2,10 @@ import { type Component, Show, createMemo } from "solid-js";
 import { useParams } from "@solidjs/router";
 import AppLayout from "#layouts/AppLayout";
 import PageRenderer from "#components/cms/PageRenderer";
-import { getLocalizedText, getCurrentLocale } from "@rimelight/i18n";
+import { t, getCurrentLocale } from "@rimelight/i18n";
 
 export const ProjectDetailPage: Component = () => {
   const params = useParams<{ locale: string; slug: string }>();
-  const activeLocale = () => getCurrentLocale();
 
   const pageData = createMemo<any>(
     async () => {
@@ -26,13 +25,12 @@ export const ProjectDetailPage: Component = () => {
     { loadingValue: null },
   );
 
-  const title = () =>
-    pageData() ? getLocalizedText(pageData()!.title, activeLocale()) || "Project" : "Project";
+  const title = () => (pageData() ? t.localize(pageData()!.title) || "Project" : "Project");
   const description = () => {
     const p = pageData();
     if (!p) return "";
     const content = typeof p.content === "string" ? JSON.parse(p.content) : p.content || {};
-    return getLocalizedText(p.description, activeLocale()) || content.properties?.description || "";
+    return t.localize(p.description) || content.properties?.description || "";
   };
 
   const content = () => {
@@ -72,7 +70,7 @@ export const ProjectDetailPage: Component = () => {
             <Show when={postDate()}>
               <div class="flex items-center gap-4 text-xs text-neutral-500 mt-6">
                 <time datetime={new Date(postDate()!).toISOString()}>
-                  {new Date(postDate()!).toLocaleDateString(activeLocale(), {
+                  {new Date(postDate()!).toLocaleDateString(getCurrentLocale(), {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
@@ -83,7 +81,7 @@ export const ProjectDetailPage: Component = () => {
           </header>
 
           <article class="cms-article">
-            <PageRenderer blocks={content().blocks || []} locale={activeLocale()} />
+            <PageRenderer blocks={content().blocks || []} locale={getCurrentLocale()} />
           </article>
         </Show>
       </div>

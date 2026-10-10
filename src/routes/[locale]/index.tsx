@@ -1,11 +1,9 @@
 import { type Component, For, Show, createMemo } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
-import { t, getCurrentLocale, getRelativeLocaleUrl, getLocalizedText } from "@rimelight/i18n";
+import { t, getLocaleUrl } from "@rimelight/i18n";
 import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost, type RLButtonProps } from "@rimelight/ui";
 
 export const HomePage: Component = () => {
-  const activeLocale = () => getCurrentLocale();
-
   const latestPosts = createMemo<any[]>(
     async () => {
       try {
@@ -25,7 +23,7 @@ export const HomePage: Component = () => {
   const heroLinks = (): RLButtonProps[] => [
     {
       label: t("playground.heroLink"),
-      href: getRelativeLocaleUrl("/blog"),
+      href: getLocaleUrl("/blog"),
       color: "primary",
       variant: "solid",
     },
@@ -34,13 +32,13 @@ export const HomePage: Component = () => {
   const ctaLinks = (): RLButtonProps[] => [
     {
       label: t("playground.ctaStart"),
-      href: getRelativeLocaleUrl("/blog"),
+      href: getLocaleUrl("/blog"),
       color: "primary",
       variant: "solid",
     },
     {
       label: t("playground.ctaContribute"),
-      href: getRelativeLocaleUrl("/"),
+      href: getLocaleUrl("/"),
       color: "primary",
       variant: "outline",
       trailingIcon: "i-lucide-arrow-right",
@@ -72,7 +70,7 @@ export const HomePage: Component = () => {
                     typeof post.content === "string"
                       ? JSON.parse(post.content)
                       : post.content || {};
-                  const title = getLocalizedText(post.title, activeLocale());
+                  const title = t.localize(post.title);
                   const description = content.properties?.description || "";
                   const heroImage = content.properties?.heroImage;
                   const postDate = post.postedAt || post.createdAt;
@@ -83,7 +81,7 @@ export const HomePage: Component = () => {
                       date={postDate}
                       title={title}
                       description={description}
-                      to={getRelativeLocaleUrl(`/blog/${post.slug}/`)}
+                      to={getLocaleUrl(`/blog/${post.slug}/`)}
                     />
                   );
                 }}
@@ -93,7 +91,7 @@ export const HomePage: Component = () => {
             <Show when={(latestPosts() || []).length > 0}>
               <RLButton
                 label={t("playground.viewAllPosts")}
-                href={getRelativeLocaleUrl("/blog")}
+                href={getLocaleUrl("/blog")}
                 color="primary"
                 variant="link"
                 trailingIcon="i-lucide-arrow-right"

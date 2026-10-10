@@ -9,7 +9,7 @@ import {
   RLPopover,
   type RLButtonProps,
 } from "@rimelight/ui";
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
+import { t, getLocaleUrl } from "@rimelight/i18n";
 
 export interface AppHeaderProps {
   session?: any;
@@ -20,30 +20,30 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
   const leftLinks = () => [
     {
       label: t("app_header.left-links_projects_label"),
-      to: getRelativeLocaleUrl("/projects"),
+      to: getLocaleUrl("/projects"),
     },
     {
       label: t("app_header.left-links_music_label"),
-      to: getRelativeLocaleUrl("/music"),
+      to: getLocaleUrl("/music"),
     },
     {
       label: t("app_header.left-links_blog_label"),
-      to: getRelativeLocaleUrl("/blog"),
+      to: getLocaleUrl("/blog"),
     },
     {
       label: t("app_header.left-links_about_label"),
-      to: getRelativeLocaleUrl("/about"),
+      to: getLocaleUrl("/about"),
     },
   ];
 
   const rightLinks = () => [
     {
       label: t("app_header.right-links_services_label"),
-      to: getRelativeLocaleUrl("/services"),
+      to: getLocaleUrl("/services"),
     },
     {
       label: t("app_header.right-links_resume_label"),
-      to: getRelativeLocaleUrl("/resume"),
+      to: getLocaleUrl("/resume"),
     },
   ];
 

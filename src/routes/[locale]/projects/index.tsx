@@ -1,18 +1,13 @@
 import { type Component, For, createSignal, createMemo } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
-import { t, getRelativeLocaleUrl, getCurrentLocale } from "@rimelight/i18n";
+import { t, getLocaleUrl } from "@rimelight/i18n";
 import { RLPageSection, RLTabs, RLGrid, RLPost } from "@rimelight/ui";
 
-function getPageTitle(title: unknown, locale: string): string {
-  if (typeof title === "object" && title !== null) {
-    const titleRecord = title as Record<string, string>;
-    return titleRecord[locale] || titleRecord["en"] || "";
-  }
-  return typeof title === "string" ? title : "";
+function getPageTitle(title: unknown): string {
+  return t.localize(title);
 }
 
 export const ProjectsIndexPage: Component = () => {
-  const activeLocale = () => getCurrentLocale();
   const [activeTab, setActiveTab] = createSignal("all");
 
   const projectPages = createMemo<any[]>(
@@ -74,7 +69,7 @@ export const ProjectsIndexPage: Component = () => {
               {(page, index) => {
                 const content =
                   typeof page.content === "string" ? JSON.parse(page.content) : page.content;
-                const titleVal = getPageTitle(page.title, activeLocale());
+                const titleVal = getPageTitle(page.title);
                 const category = content?.properties?.category || "other";
                 const postDate = page.postedAt || page.createdAt;
                 return (
@@ -86,7 +81,7 @@ export const ProjectsIndexPage: Component = () => {
                     date={postDate}
                     title={titleVal}
                     description={content?.properties?.description}
-                    to={getRelativeLocaleUrl(`/projects/${page.slug}/`)}
+                    to={getLocaleUrl(`/projects/${page.slug}/`)}
                     badge={
                       categoryMessages()[category as keyof ReturnType<typeof categoryMessages>] ??
                       category

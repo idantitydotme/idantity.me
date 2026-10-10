@@ -1,6 +1,6 @@
 import { type Component, For, Show } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
-import { t, getRelativeLocaleUrl } from "@rimelight/i18n";
+import { t, getLocaleUrl } from "@rimelight/i18n";
 import {
   RLContainer,
   RLPage,
@@ -156,7 +156,7 @@ export const ResumePage: Component = () => {
   const heroLinks = (): RLButtonProps[] => [
     {
       label: t("page_resume.hero_action_hire") ?? "",
-      href: getRelativeLocaleUrl("/contact"),
+      href: getLocaleUrl("/contact"),
     },
     {
       variant: "outline",

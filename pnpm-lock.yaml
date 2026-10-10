@@ -184,8 +184,8 @@ importers:
         specifier: 0.0.33
         version: 0.0.33(cac@7.0.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.13)(srvx@1.0.5)(vite-plus@1.0.0(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(typescript@7.0.2))(vite@8.3.3(esbuild@0.28.1)(jiti@2.7.0))(zod@4.6.5)
       '@rimelight/i18n':
-        specifier: 0.0.31
-        version: 0.0.31(vite-plus@1.0.0(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(typescript@7.0.2))
+        specifier: 0.1.0
+        version: 0.1.0(vite-plus@1.0.0(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(typescript@7.0.2))
       '@rimelight/security':
         specifier: 0.0.38
         version: 0.0.38(vite-plus@1.0.0(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(typescript@7.0.2))
@@ -1596,8 +1596,8 @@ packages:
     resolution: {integrity: sha512-eXEJqjvi4HW6UsKL+bZj1VUvUx74WLRdf7+W0N+38BsESVJYCP2YKE9Hf6XweSCrIo1fwOW7Jz1T8b/JigOIzQ==}
     engines: {node: '>=26.10.0'}
 
-  '@rimelight/i18n@0.0.31':
-    resolution: {integrity: sha512-gMgcHZLyAOMsYdsVcHK9Bj+mAlUv+Ku8wtq0zYy+kkhog35VcVB41RlAor1jCFvykHjOdMbZlAtmuTNDeSIgaQ==}
+  '@rimelight/i18n@0.1.0':
+    resolution: {integrity: sha512-ack4/IApxEyJsNzSnsGcd7BJr3o1/Blhgv4yts7zwIB0Qj43GdSeP/+p+EHO+mG8wzCn0wroQ6jIvlSLCkWWmA==}
     engines: {node: '>=26.10.0'}
     hasBin: true
     peerDependencies:
@@ -4350,7 +4350,7 @@ snapshots:
 
   '@rimelight/config@0.0.35': {}
 
-  '@rimelight/i18n@0.0.31(vite-plus@1.0.0(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(typescript@7.0.2))':
+  '@rimelight/i18n@0.1.0(vite-plus@1.0.0(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(typescript@7.0.2))':
     dependencies:
       vite-plus: 1.0.0(@vitest/ui@5.0.1)(esbuild@0.28.1)(jiti@2.7.0)(typescript@7.0.2)
 

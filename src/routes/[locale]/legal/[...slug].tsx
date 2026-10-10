@@ -3,11 +3,10 @@ import { useParams } from "@solidjs/router";
 import AppLayout from "#layouts/AppLayout";
 import PageRenderer from "#components/cms/PageRenderer";
 import { RLContainer, RLDate } from "@rimelight/ui";
-import { t, getCurrentLocale, getLocalizedText } from "@rimelight/i18n";
+import { t, getCurrentLocale } from "@rimelight/i18n";
 
 export const LegalDocumentPage: Component = () => {
   const params = useParams<{ locale: string; slug: string }>();
-  const activeLocale = () => getCurrentLocale();
 
   const pageData = createMemo<any>(
     async () => {
@@ -28,13 +27,11 @@ export const LegalDocumentPage: Component = () => {
   );
 
   const title = () =>
-    pageData()
-      ? getLocalizedText(pageData()!.title, activeLocale()) || "Legal Document"
-      : "Legal Document";
+    pageData() ? t.localize(pageData()!.title) || "Legal Document" : "Legal Document";
   const description = () => {
     const p = pageData();
     if (!p) return "";
-    return getLocalizedText(p.description, activeLocale());
+    return t.localize(p.description);
   };
 
   const content = () => {
@@ -66,7 +63,7 @@ export const LegalDocumentPage: Component = () => {
                 <h1 class="text-4xl font-extrabold text-white mb-4">{title()}</h1>
                 <hr class="border-neutral-800" />
               </div>
-              <PageRenderer blocks={content().blocks || []} locale={activeLocale()} />
+              <PageRenderer blocks={content().blocks || []} locale={getCurrentLocale()} />
             </div>
           </article>
         </Show>
