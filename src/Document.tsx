@@ -4,6 +4,7 @@ import { createUiHead } from "@rimelight/ui/head";
 import { createSecurityHead } from "@rimelight/security/head";
 import { createSeoHead } from "@rimelight/seo/head";
 import { getCurrentLocale } from "@rimelight/i18n";
+import "virtual:uno.css";
 
 export default function Document(props: ParentProps) {
   useHead([...createSeoHead().tags, ...createSecurityHead().tags, ...createUiHead().tags]);
