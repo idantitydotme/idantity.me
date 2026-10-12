@@ -31,6 +31,7 @@ export default defineConfig({
     }),
 
     solid({
+      exclude: ["src/fetch.ts"],
       start: true,
       ssr: true,
     }),
