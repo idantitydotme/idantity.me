@@ -21,16 +21,13 @@ export default defineConfig({
     "*": "vp check --fix",
   },
   plugins: [
-    cloudflare({
-      viteEnvironment: {
-        name: "ssr",
-      },
-    }),
+    cloudflare(),
 
     solid({
       exclude: ["src/fetch.ts"],
       start: true,
       ssr: true,
+      serverFunctions: true,
     }),
 
     fileRoutes({ types: ".cloudflare/types/file-routes.d.ts" }),
