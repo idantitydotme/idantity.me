@@ -25,9 +25,6 @@ export default defineConfig({
       viteEnvironment: {
         name: "ssr",
       },
-      experimental: {
-        newConfig: true,
-      },
     }),
 
     solid({
