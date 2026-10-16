@@ -35,7 +35,7 @@
     "dev": "vp dev",
     "build": "vp build",
     "preview": "vp preview",
-    "deploy": "vp build && wrangler deploy",
+    "deploy": "cf deploy",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "cf d1 migrations apply idantity-dot-me --dir ./drizzle --local",
     "db:migrate:remote": "cf d1 migrations apply idantity-dot-me --dir ./drizzle",
@@ -66,8 +66,7 @@
     "filesystem-routing": "0.4.0",
     "typescript": "7.0.2",
     "unocss": "66.11.0",
-    "vite-plus": "1.2.0",
-    "wrangler": "4.151.0"
+    "vite-plus": "1.2.0"
   },
   "packageManager": "pnpm@12.11.2"
 }

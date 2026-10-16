@@ -34,7 +34,6 @@ logs/
 
 # Cloudflare
 .cloudflare/
-.wrangler/
 .cache/
 .dev.vars*
 !.dev.vars.example
