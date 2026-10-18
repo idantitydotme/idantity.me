@@ -1,12 +1,6 @@
 import { type Component, For, Show } from "solid-js";
-import {
-  RLBadge,
-  RLButton,
-  RLIcon,
-  type RLButtonProps,
-  type RLBadgeProps,
-  type ThemeColor,
-} from "@rimelight/ui";
+import { RLBadge, RLButton, RLIcon, type RLButtonProps, type RLBadgeProps } from "@rimelight/ui";
+import type { ThemeColor } from "@rimelight/ui/types";
 
 export interface Action {
   label: string;

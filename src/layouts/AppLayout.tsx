@@ -18,17 +18,16 @@ export interface AppLayoutProps {
 }
 
 export const AppLayout: Component<AppLayoutProps> = (props) => {
-  useHead(
-    () =>
-      createSeoHead({
-        title: props.title,
-        description: props.description,
-        noindex: props.noindex,
-        robots: props.robots,
-        ogImage: props.ogImageSrc
-          ? { src: props.ogImageSrc, alt: props.ogImageAlt ?? "" }
-          : undefined,
-      }).tags,
+  useHead(() =>
+    createSeoHead({
+      title: props.title,
+      description: props.description,
+      noindex: props.noindex,
+      robots: props.robots,
+      ogImage: props.ogImageSrc
+        ? { src: props.ogImageSrc, alt: props.ogImageAlt ?? "" }
+        : undefined,
+    }),
   );
   return (
     <>

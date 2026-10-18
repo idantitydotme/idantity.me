@@ -1,5 +1,4 @@
 import { type Component, Show, onSettled } from "solid-js";
-import { getTurnstileSiteKey } from "@rimelight/security";
 
 export interface TurnstileProps {
   siteKey?: string;
@@ -18,7 +17,7 @@ export interface TurnstileProps {
 export const Turnstile: Component<TurnstileProps> = (props) => {
   const resolvedSiteKey = () =>
     props.siteKey ||
-    getTurnstileSiteKey() ||
+    (import.meta as any).env?.["VITE_TURNSTILE_SITE_KEY"] ||
     (import.meta as any).env?.["TURNSTILE_SITE_KEY"] ||
     "";
 

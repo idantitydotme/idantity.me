@@ -10,13 +10,12 @@ interface BlankLayoutProps {
 }
 
 const BlankLayout: ParentComponent<BlankLayoutProps> = (props) => {
-  useHead(
-    () =>
-      createSeoHead({
-        title: `${props.title} | idantity`,
-        description: props.description,
-        noindex: props.noindex,
-      }).tags,
+  useHead(() =>
+    createSeoHead({
+      title: `${props.title} | idantity`,
+      description: props.description,
+      noindex: props.noindex,
+    }),
   );
 
   return (
