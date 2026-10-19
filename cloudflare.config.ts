@@ -28,12 +28,6 @@ export default defineConfig({
           remote: true,
         },
       }),
-      "idantity-dot-me_translations": bindings.kv({
-        id: "4600654d2fa04084b7914fa36609e6f5",
-        dev: {
-          remote: true,
-        },
-      }),
       BLOB: bindings.r2({
         name: "idantity-dot-me",
         dev: {
