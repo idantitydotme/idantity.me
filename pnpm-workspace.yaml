@@ -8,6 +8,13 @@ minimumReleaseAgeExclude:
 allowBuilds:
   esbuild: true
   workerd: true
+permissions:
+  "@solidjs/web":
+    skills: true
+  drizzle-kit:
+    skills: true
+  solid-js:
+    skills: true
 auditConfig:
   ignoreGhsas:
     - GHSA-vfj7-8cjw-p6xm
