@@ -19,17 +19,16 @@ export default defineConfig({
       triggers.fetch({ pattern: "www.idantity.me/*", zone: "idantity.me" }),
     ],
     env: {
-      CONSTRUCTION_MODE: bindings.text("true"),
-      EMAIL_DOMAIN: bindings.text("idantity.me"),
-      CONTACT_OWNER_EMAIL: bindings.text("owner@idantity.me"),
-      DB: bindings.d1({
-        id: "51076606-e3ee-4e09-bf45-04db8b0737f9",
+      ASSETS: bindings.assets(),
+      IMAGES: bindings.images(),
+      BLOB: bindings.r2({
+        name: "idantity-dot-me",
         dev: {
           remote: true,
         },
       }),
-      BLOB: bindings.r2({
-        name: "idantity-dot-me",
+      DB: bindings.d1({
+        id: "51076606-e3ee-4e09-bf45-04db8b0737f9",
         dev: {
           remote: true,
         },
@@ -39,15 +38,17 @@ export default defineConfig({
           remote: true,
         },
       }),
-      MY_RATE_LIMITER: bindings.rateLimit({
+      RATE_LIMIT: bindings.rateLimit({
         namespace: "1001",
         simple: {
           limit: 100,
           period: 60,
         },
       }),
-      ASSETS: bindings.assets(),
       CONSTRUCTION_PASSPHRASE: bindings.secret(),
+      CONSTRUCTION_MODE: bindings.text("true"),
+      EMAIL_DOMAIN: bindings.text("idantity.me"),
+      CONTACT_OWNER_EMAIL: bindings.text("owner@idantity.me"),
     },
   },
 });
