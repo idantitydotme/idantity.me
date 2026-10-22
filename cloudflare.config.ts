@@ -47,7 +47,6 @@ export default defineConfig({
       }),
       CONSTRUCTION_MODE: bindings.secret(),
       CONSTRUCTION_PASSPHRASE: bindings.secret(),
-      EMAIL_DOMAIN: bindings.text("idantity.me"),
       CONTACT_OWNER_EMAIL: bindings.text("owner@idantity.me"),
     },
   },
