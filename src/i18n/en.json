@@ -1,446 +1,668 @@
 {
-  "app_header": {
-    "links_projects_label": "Projects",
-    "links_music_label": "Music",
-    "links_blog_label": "Blog",
-    "links_services_label": "Services",
-    "links_about_label": "About",
-    "links_resume_label": "Resume",
-    "left-links_projects_label": "me.projects",
-    "left-links_music_label": "me.music",
-    "left-links_blog_label": "me.blog",
-    "left-links_about_label": "me.about",
-    "right-links_services_label": "me.services",
-    "right-links_resume_label": "me.resume",
-    "socials_instagram_label": "Instagram",
-    "socials_github_label": "GitHub"
-  },
-  "app_footer": {
-    "links_resources_label": "Resources",
-    "links_resources_branding": "Branding",
-    "links_legal_label": "Legal",
-    "links_legal_privacy-policy": "Privacy Policy",
-    "links_legal_other-documents": "Other Documents"
-  },
-  "page_construction": {
-    "meta_title": "Under Construction",
-    "meta_description": "This website is under construction.",
-    "title": "THIS WEBSITE IS UNDER CONSTRUCTION",
-    "description": "If you have access, please enter the passphrase.",
-    "description_no_auth": "Please return at a later stage.",
-    "form_passphrase_label": "Passphrase",
-    "form_passphrase_placeholder": "Enter passphrase...",
-    "form_remember_me_label": "Remember me",
-    "form_sign_in_button": "Sign In"
-  },
-  "page_about": {
-    "title": "About",
-    "description": "About idantity.me",
-    "heading": "About Me"
-  },
-  "page_services": {
-    "title": "Services",
-    "description": "High-performance web development, security hardening, full-stack edge engineering, and architectural audits.",
-    "hero_headline": "Engineering Standards",
-    "hero_title": "Fast, Secure & Resilient Web Solutions",
-    "hero_description": "I build modern web applications, scalable edge backends, and performance-first architectures tailored for reliability, accessibility, and speed.",
-    "cta_discuss_project": "Discuss a Project",
-    "cta_view_work": "View Projects",
-    "benchmarks_headline": "Proven Quality",
-    "benchmarks_title": "Verified Performance & Security",
-    "benchmarks_description": "Every project is engineered to meet strict web standards, guaranteeing perfect Lighthouse metrics and hardened HTTP security headers out of the box.",
-    "services_headline": "What I Deliver",
-    "services_title": "Web Engineering Services",
-    "services_description": "End-to-end web development services from conception to production deployment.",
-    "service_1_title": "Modern Web Applications & Sites",
-    "service_1_desc": "Custom-built, lightning-fast web applications designed with modern edge architectures, responsive layouts, and zero unnecessary bloat.",
-    "service_1_feat_1": "Sub-second load times & 100/100 Core Web Vitals",
-    "service_1_feat_2": "Accessible (WCAG 2.1 AA) and mobile-first responsive design",
-    "service_1_feat_3": "Seamless internationalization (i18n) and SEO optimization",
-    "service_2_title": "Security Hardening & Best Practices",
-    "service_2_desc": "Proactive security posture integration to safeguard your web assets against common vulnerabilities, data leakage, and bot spam.",
-    "service_2_feat_1": "Mozilla Observatory A+ grade HTTP security headers & strict CSP",
-    "service_2_feat_2": "Cloudflare Turnstile bot deterrence & rate-limiting",
-    "service_2_feat_3": "Safe input sanitization, CSRF mitigation, and TLS/SSL hardening",
-    "service_3_title": "Full-Stack Edge & API Architecture",
-    "service_3_desc": "Serverless APIs and database layers built on lightweight edge runtimes, ensuring global low latency and rock-solid scalability.",
-    "service_3_feat_1": "Ultra-fast RESTful APIs with Hono & Cloudflare Workers",
-    "service_3_feat_2": "Scalable serverless databases with PlanetScale & MySQL edge drivers",
-    "service_3_feat_3": "Headless CMS, authentication & third-party integrations",
-    "service_4_title": "Performance Auditing & Modernization",
-    "service_4_desc": "Diagnostic evaluation and systematic refactoring of slow or legacy web codebases to modernize their stack and slash page weight.",
-    "service_4_feat_1": "Comprehensive bottleneck diagnosis and code teardown",
-    "service_4_feat_2": "Asset pipeline optimization (AVIF/WEBP, font subsets, tree-shaking)",
-    "service_4_feat_3": "Migration from heavy legacy frameworks to clean modern stacks",
-    "process_headline": "Workflow",
-    "process_title": "How We Work Together",
-    "process_description": "A transparent, structured engineering process that prioritizes clarity, milestones, and high-quality deliverables.",
-    "step_1_num": "01",
-    "step_1_title": "Discovery & Architecture",
-    "step_1_desc": "We analyze your project goals, technical requirements, and define the data models, UX structure, and edge stack.",
-    "step_2_num": "02",
-    "step_2_title": "Implementation & Clean Code",
-    "step_2_desc": "Iterative development using strict TypeScript, modular components, and constant progress visibility.",
-    "step_3_num": "03",
-    "step_3_title": "Benchmarking & Hardening",
-    "step_3_desc": "Rigorous automated testing for accessibility, responsive viewports, Lighthouse metrics, and security headers.",
-    "step_4_num": "04",
-    "step_4_title": "Deployment & Handover",
-    "step_4_desc": "Zero-downtime global rollout, automated CI/CD pipelines, documentation, and seamless handover.",
-    "tech_headline": "Technologies",
-    "tech_title": "Modern Edge & Web Tooling",
-    "tech_description": "Built on top of modern, battle-tested web technologies.",
-    "faq_headline": "FAQ",
-    "faq_title": "Frequently Asked Questions",
-    "faq_description": "Common questions about project scope, collaboration, and timelines.",
-    "faq_q1": "What web technologies do you specialize in?",
-    "faq_a1": "I primarily build with modern web frameworks and tools including Astro, TypeScript, UnoCSS, and SolidJS on the frontend, with Vite+, Hono, Cloudflare, and PlanetScale on the backend. This produces fast, lightweight, and cost-efficient edge deployments.",
-    "faq_q2": "Can you audit or optimize my existing website?",
-    "faq_a2": "Yes. I provide in-depth performance and security audits identifying bottleneck assets, unoptimized bundles, and missing security headers, along with direct code refactoring to bring your scores to 100/100 and A+.",
-    "faq_q3": "How are projects scoped and priced?",
-    "faq_a3": "Engagements can be structured as fixed-scope project milestones for well-defined builds, or on a flexible sprint/retainer basis for ongoing development and advisory. Every project includes clear deliverables and timelines upfront.",
-    "faq_q4": "How do we get started?",
-    "faq_a4": "Reach out through the contact form with a brief summary of your project or requirements. I'll get back to you within 24–48 hours to discuss specifications, timeline, and next steps.",
-    "cta_final_title": "Ready to bring your web project to life?",
-    "cta_final_desc": "Let's build something fast, secure, and built to last. Reach out and let's discuss your requirements.",
-    "cta_final_button": "Get in Touch"
-  },
-  "page_resume": {
-    "meta_title": "idantity.me | me.portfolio",
-    "meta_description": "My professional portfolio and resume.",
-    "sidebar_name": "Daniel Marchi",
-    "sidebar_title": "Software Developer",
-    "sidebar_location": "Curitiba, Brazil",
-    "sidebar_availability_available": "Available for Hire",
-    "sidebar_availability_busy": "Busy / Unavailable",
-    "sidebar_availability_looking": "Open to Opportunities",
-    "about_heading": "About Me",
-    "about_gender_label": "Gender",
-    "about_gender_value": "Male",
-    "about_pronouns_label": "Pronouns",
-    "about_pronouns_value": "He / Him",
-    "about_nationality_label": "Nationality",
-    "about_nationality_value": "Brazilian",
-    "about_location_label": "Location",
-    "about_age_label": "Age",
-    "about_age_value": "Years Old",
-    "languages_heading": "Languages",
-    "lang_portuguese": "Portuguese",
-    "lang_english": "English",
-    "lang_spanish": "Spanish",
-    "lang_romanian": "Romanian",
-    "level_fluent": "Fluent",
-    "level_intermediate": "Intermediate",
-    "level_basic": "Basic",
-    "hero_title": "Hey! I'm Daniel Marchi",
-    "hero_description": "I'm a Web and Game Developer specializing in large-scale Live-Service titles.",
-    "hero_action_hire": "Hire Me",
-    "hero_action_downloadCv": "Download CV",
-    "skills_heading": "Skills",
-    "skills_webDev": "Web Development",
-    "skills_webDev_desc": "Building fast, responsive, and secure web applications using modern standard architectures, framework integration, and performance optimization techniques.",
-    "skills_gameDev": "Game Development",
-    "skills_gameDev_desc": "Developing real-time virtual experiences, game logic, and gameplay loops in game engines with standard clean coding practices and performant structures.",
-    "skills_design": "Design Philosophies",
-    "skills_design_desc": "Focusing on accessible user experiences, interface detail, smooth interactive feedback loops, and visually consistent modular systems.",
-    "tech_heading": "Technologies & Tools",
-    "tech_cat_languages": "Languages & Frameworks",
-    "tech_cat_environment": "Development Environment",
-    "tech_cat_build": "Build & Package",
-    "tech_cat_deployment": "Deployment",
-    "tech_cat_data": "Data Management",
-    "tech_cat_auth": "Authentication",
-    "tech_cat_project": "Project Management",
-    "tech_group_webDev": "Web Development",
-    "tech_group_gameDev": "Game Development",
-    "tech_group_shared": "Shared Technologies",
-    "education_heading": "Education",
-    "education": [
-      {
-        "degree": "Bachelor of Music",
-        "school": "UFPR - Universidade Federal do Paraná",
-        "period": "2018 - 2022"
+  "app": {
+    "header": {
+      "links": {
+        "projects": {
+          "label": "Projects"
+        },
+        "music": {
+          "label": "Music"
+        },
+        "blog": {
+          "label": "Blog"
+        },
+        "services": {
+          "label": "Services"
+        },
+        "about": {
+          "label": "About"
+        },
+        "resume": {
+          "label": "Resume"
+        }
       },
-      {
-        "degree": "Technologist of Digital Games",
-        "school": "PUCPR - Pontifícia Universidade Católica do Paraná",
-        "period": "2020 - 2022"
+      "left-links": {
+        "projects": {
+          "label": "me.projects"
+        },
+        "music": {
+          "label": "me.music"
+        },
+        "blog": {
+          "label": "me.blog"
+        },
+        "about": {
+          "label": "me.about"
+        }
+      },
+      "right-links": {
+        "services": {
+          "label": "me.services"
+        },
+        "resume": {
+          "label": "me.resume"
+        }
+      },
+      "socials": {
+        "instagram": {
+          "label": "Instagram"
+        },
+        "github": {
+          "label": "GitHub"
+        }
       }
-    ],
-    "experience_heading": "Experience",
-    "exp_summary_label": "Summary",
-    "exp_responsibilities_label": "Responsibilities",
-    "experiences": [
-      {
-        "role": "Intern Game Programmer",
-        "company": "Compass.UOL",
-        "companyUrl": "https://compass.uol",
-        "period": "Feb 2022 - Jun 2022",
-        "location": "Curitiba, Brazil · Remote",
-        "summary": "Engaged in training exercises and problem-solving activities using Unreal Engine and C++.",
-        "responsibilities": ["Training exercises and problem solving activities in Unreal Engine."],
-        "tags": ["Unreal Engine", "C++", "Blueprints"]
-      },
-      {
-        "role": "Trainee Game Programmer",
-        "company": "Compass.UOL",
-        "companyUrl": "https://compass.uol",
-        "period": "Jun 2022 - Oct 2022",
-        "location": "Curitiba, Brazil · Remote",
-        "summary": "Developed real-time 3D virtual experiences for E-Commerce using Unreal Engine and Blueprints.",
-        "responsibilities": [
-          "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine."
-        ],
-        "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce"]
-      },
-      {
-        "role": "Junior Game Programmer",
-        "company": "Compass.UOL",
-        "companyUrl": "https://compass.uol",
-        "period": "Oct 2022 - Mar 2023",
-        "location": "Curitiba, Brazil · Remote",
-        "summary": "Developed real-time 3D virtual experiences and E-Commerce solutions in Unreal Engine with UI mockups and technical documentation.",
-        "responsibilities": [
-          "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine.",
-          "Elaboration high-fidelity interface mockups.",
-          "Project documentation and comparative analytical breakdowns for stakeholders."
-        ],
-        "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce", "UI Design", "Documentation"]
-      },
-      {
-        "role": "Customer Services Agent",
-        "company": "Concentrix - Copa Energia (SAC)",
-        "companyUrl": "https://concentrix.com",
-        "period": "Jun 2026 - Sep 2026",
-        "location": "Curitiba, Brazil · On Site",
-        "summary": "Lorem Ipsum",
-        "responsibilities": [
-          "Provided support for supervision and general technological support.",
-          "Lorem Ipsum",
-          "Lorem Ipsum"
-        ],
-        "tags": ["Customer Service", "Customer Experience"]
-      },
-      {
-        "role": "Customer Services Agent",
-        "company": "Concentrix - Copa Energia (RA)",
-        "companyUrl": "https://concentrix.com",
-        "period": "Sep 2026 - Current",
-        "location": "Curitiba, Brazil · On Site",
-        "summary": "Processed and resolved consumer complaints via Brazil's leading consumer advocacy platform.",
-        "responsibilities": ["Lorem Ipsum from start to finish.", "Lorem Ipsum", "Lorem Ipsum"],
-        "tags": ["Customer Service", "Customer Experience"]
-      }
-    ],
-    "projects_heading": "Projects",
-    "project_view_button": "View",
-    "period_present": "Present",
-    "projects": [
-      {
-        "name": "Grand Tale",
-        "role": "Lorem Ipsum",
-        "period": "2025",
-        "href": "https://rimelight.com/franchises/grand-tale",
-        "imageSrc": "https://cdn.idantity.me/images/placeholder.webp",
-        "summary": "Lorem Ipsum",
-        "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
-        "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
-      },
-      {
-        "name": "Rimelight Entertainment",
-        "role": "Lorem Ipsum",
-        "period": "2025",
-        "href": "https://rimelight.com",
-        "imageSrc": "https://cdn.idantity.me/images/placeholder.webp",
-        "summary": "Lorem Ipsum",
-        "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
-        "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
-      },
-      {
-        "name": "idantity.me",
-        "role": "Lorem Ipsum",
-        "period": "2025",
-        "href": "https://idantity.me",
-        "imageSrc": "https://cdn.idantity.me/images/placeholder.webp",
-        "summary": "Lorem Ipsum",
-        "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
-        "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
-      },
-      {
-        "name": "Queer Kit",
-        "role": "Lorem Ipsum",
-        "period": "2025",
-        "href": "https://queerkit.com",
-        "imageSrc": "https://cdn.idantity.me/images/placeholder.webp",
-        "summary": "Lorem Ipsum",
-        "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
-        "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
-      },
-      {
-        "name": "marcelocfilho.com",
-        "role": "Lorem Ipsum",
-        "period": "2025",
-        "href": "https://marcelocfilho.com",
-        "imageSrc": "https://cdn.idantity.me/images/placeholder.webp",
-        "summary": "Lorem Ipsum",
-        "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
-        "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
-      }
-    ],
-    "certifications_heading": "Certifications",
-    "certifications_id_label": "Certificate ID",
-    "certifications_copy_id": "Copy ID",
-    "certifications_copied": "Copied!",
-    "certifications": [
-      {
-        "title": "HTML Essential Training",
-        "issuer": "LinkedIn Learning",
-        "credentialId": "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
-      },
-      {
-        "title": "CSS Essential Training",
-        "issuer": "LinkedIn Learning",
-        "credentialId": "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
-      },
-      {
-        "title": "TypeScript Essential Training",
-        "issuer": "LinkedIn Learning",
-        "credentialId": "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
-      },
-      {
-        "title": "PostgreSQL Essential Training",
-        "issuer": "LinkedIn Learning",
-        "credentialId": "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
-      },
-      {
-        "title": "Git Essential Training",
-        "issuer": "LinkedIn Learning",
-        "credentialId": "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
-      },
-      {
-        "title": "Unreal Engine 5 Essential Training",
-        "issuer": "LinkedIn Learning",
-        "credentialId": "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
-      }
-    ],
-    "aria_sidebar_profile": "Profile",
-    "aria_social_linkedin": "LinkedIn profile",
-    "aria_social_github": "GitHub profile"
-  },
-  "page_contact": {
-    "title": "Contact Us",
-    "description": "Get in touch with me directly.",
-    "hero_title": "Get in Touch",
-    "hero_description": "Have a question, proposal, or want to collaborate? Send me a message directly.",
-    "contact_form_title": "Send a Message",
-    "contact_form_name_label": "Your Name *",
-    "contact_form_email_label": "Email Address *",
-    "contact_form_subject_label": "Subject (Optional)",
-    "contact_form_message_label": "Message *",
-    "contact_form_send_button": "Send Message",
-    "contact_form_placeholder_name": "Daniel Marchi",
-    "contact_form_placeholder_email": "daniel@example.com",
-    "contact_form_placeholder_subject": "How can I help you?",
-    "contact_form_placeholder_message": "Write your message here..."
-  },
-  "page_music": {
-    "title": "Music",
-    "description": "DJ mixes, curated playlists, and musical productions.",
-    "hero_headline": "Sonic Experience",
-    "hero_title": "Music, Mixes & Audio",
-    "hero_description": "Original bass and electronic productions, DJ mixes with timestamped tracklists, and hand-curated Spotify selections.",
-    "tab_all": "All Audio",
-    "tab_mixes": "Mixes & Sets",
-    "tab_productions": "Originals & Tracks",
-    "tab_playlists": "Curated Playlists",
-    "section_featured_title": "Featured Production",
-    "section_featured_desc": "High-energy electronic and bass production.",
-    "section_mixes_title": "Featured Mixes & Sets",
-    "section_mixes_desc": "Full-length mixes with interactive chapter timestamps.",
-    "section_playlists_title": "Curated Playlists",
-    "section_playlists_desc": "Discover curated soundscapes across bass, melodic, and ambient electronic music.",
-    "player_play": "Play",
-    "player_pause": "Pause",
-    "player_mute": "Mute",
-    "player_unmute": "Unmute",
-    "player_download": "Download Audio",
-    "player_tracklist": "Chapters & Tracklist",
-    "player_speed": "Speed",
-    "spotify_load": "Load Spotify Player",
-    "spotify_open": "Open in Spotify",
-    "spotify_badge": "Spotify Playlist",
-    "tracks": {
-      "bishu_ikari_title": "Bishu - Ikari",
-      "bishu_ikari_artist": "Bishu / idantity rework",
-      "bishu_ikari_genre": "Electronic / Bass",
-      "bishu_ikari_category": "Production",
-      "cue_intro": "Intro & Lead Synth Build",
-      "cue_drop1": "First Drop (Heavy Bass)",
-      "cue_break": "Melodic Breakdown",
-      "cue_drop2": "Second Drop (Polyrhythm Outro)"
     },
-    "playlists": {
-      "pl1_title": "Bass & Electronic Pulse",
-      "pl1_desc": "Heavy basslines, trap rhythms, and high-octane sound design for focus and energy.",
-      "pl2_title": "Melodic & Future Waves",
-      "pl2_desc": "Lush melodic chords, wave synths, and emotive vocal chops.",
-      "pl3_title": "Late Night Coding & Drive",
-      "pl3_desc": "Deep house, downtempo, and atmospheric beats crafted for deep work.",
-      "pl4_title": "Peak Energy & Club Anthems",
-      "pl4_desc": "Fast-paced dance floor bangers and festival-ready electronic tracks."
+    "footer": {
+      "links": {
+        "resources": {
+          "label": "Resources",
+          "branding": "Branding"
+        },
+        "legal": {
+          "label": "Legal",
+          "privacy-policy": "Privacy Policy",
+          "other-documents": "Other Documents"
+        }
+      }
+    }
+  },
+  "page": {
+    "construction": {
+      "meta": {
+        "title": "Under Construction",
+        "description": "This website is under construction."
+      },
+      "title": "THIS WEBSITE IS UNDER CONSTRUCTION",
+      "description": {
+        "no": {
+          "auth": "Please return at a later stage."
+        }
+      },
+      "form": {
+        "passphrase": {
+          "label": "Passphrase",
+          "placeholder": "Enter passphrase..."
+        },
+        "remember": {
+          "me": {
+            "label": "Remember me"
+          }
+        },
+        "sign": {
+          "in": {
+            "button": "Sign In"
+          }
+        }
+      }
+    },
+    "about": {
+      "title": "About",
+      "description": "About idantity.me",
+      "heading": "About Me"
+    },
+    "services": {
+      "title": "Services",
+      "description": "High-performance web development, security hardening, full-stack edge engineering, and architectural audits.",
+      "hero": {
+        "headline": "Engineering Standards",
+        "title": "Fast, Secure & Resilient Web Solutions",
+        "description": "I build modern web applications, scalable edge backends, and performance-first architectures tailored for reliability, accessibility, and speed."
+      },
+      "cta": {
+        "discuss": {
+          "project": "Discuss a Project"
+        },
+        "view": {
+          "work": "View Projects"
+        },
+        "final": {
+          "title": "Ready to bring your web project to life?",
+          "desc": "Let's build something fast, secure, and built to last. Reach out and let's discuss your requirements.",
+          "button": "Get in Touch"
+        }
+      },
+      "benchmarks": {
+        "headline": "Proven Quality",
+        "title": "Verified Performance & Security",
+        "description": "Every project is engineered to meet strict web standards, guaranteeing perfect Lighthouse metrics and hardened HTTP security headers out of the box."
+      },
+      "services-section": {
+        "headline": "What I Deliver",
+        "title": "Web Engineering Services",
+        "description": "End-to-end web development services from conception to production deployment."
+      },
+      "service": {
+        "1": {
+          "title": "Modern Web Applications & Sites",
+          "desc": "Custom-built, lightning-fast web applications designed with modern edge architectures, responsive layouts, and zero unnecessary bloat.",
+          "feat": {
+            "1": "Sub-second load times & 100/100 Core Web Vitals",
+            "2": "Accessible (WCAG 2.1 AA) and mobile-first responsive design",
+            "3": "Seamless internationalization (i18n) and SEO optimization"
+          }
+        },
+        "2": {
+          "title": "Security Hardening & Best Practices",
+          "desc": "Proactive security posture integration to safeguard your web assets against common vulnerabilities, data leakage, and bot spam.",
+          "feat": {
+            "1": "Mozilla Observatory A+ grade HTTP security headers & strict CSP",
+            "2": "Cloudflare Turnstile bot deterrence & rate-limiting",
+            "3": "Safe input sanitization, CSRF mitigation, and TLS/SSL hardening"
+          }
+        },
+        "3": {
+          "title": "Full-Stack Edge & API Architecture",
+          "desc": "Serverless APIs and database layers built on lightweight edge runtimes, ensuring global low latency and rock-solid scalability.",
+          "feat": {
+            "1": "Ultra-fast RESTful APIs with Hono & Cloudflare Workers",
+            "2": "Scalable serverless databases with PlanetScale & MySQL edge drivers",
+            "3": "Headless CMS, authentication & third-party integrations"
+          }
+        },
+        "4": {
+          "title": "Performance Auditing & Modernization",
+          "desc": "Diagnostic evaluation and systematic refactoring of slow or legacy web codebases to modernize their stack and slash page weight.",
+          "feat": {
+            "1": "Comprehensive bottleneck diagnosis and code teardown",
+            "2": "Asset pipeline optimization (AVIF/WEBP, font subsets, tree-shaking)",
+            "3": "Migration from heavy legacy frameworks to clean modern stacks"
+          }
+        }
+      },
+      "process": {
+        "headline": "Workflow",
+        "title": "How We Work Together",
+        "description": "A transparent, structured engineering process that prioritizes clarity, milestones, and high-quality deliverables."
+      },
+      "step": {
+        "1": {
+          "num": "01",
+          "title": "Discovery & Architecture",
+          "desc": "We analyze your project goals, technical requirements, and define the data models, UX structure, and edge stack."
+        },
+        "2": {
+          "num": "02",
+          "title": "Implementation & Clean Code",
+          "desc": "Iterative development using strict TypeScript, modular components, and constant progress visibility."
+        },
+        "3": {
+          "num": "03",
+          "title": "Benchmarking & Hardening",
+          "desc": "Rigorous automated testing for accessibility, responsive viewports, Lighthouse metrics, and security headers."
+        },
+        "4": {
+          "num": "04",
+          "title": "Deployment & Handover",
+          "desc": "Zero-downtime global rollout, automated CI/CD pipelines, documentation, and seamless handover."
+        }
+      },
+      "tech": {
+        "headline": "Technologies",
+        "title": "Modern Edge & Web Tooling",
+        "description": "Built on top of modern, battle-tested web technologies."
+      },
+      "faq": {
+        "headline": "FAQ",
+        "title": "Frequently Asked Questions",
+        "description": "Common questions about project scope, collaboration, and timelines.",
+        "q1": "What web technologies do you specialize in?",
+        "a1": "I primarily build with modern web frameworks and tools including Astro, TypeScript, UnoCSS, and SolidJS on the frontend, with Vite+, Hono, Cloudflare, and PlanetScale on the backend. This produces fast, lightweight, and cost-efficient edge deployments.",
+        "q2": "Can you audit or optimize my existing website?",
+        "a2": "Yes. I provide in-depth performance and security audits identifying bottleneck assets, unoptimized bundles, and missing security headers, along with direct code refactoring to bring your scores to 100/100 and A+.",
+        "q3": "How are projects scoped and priced?",
+        "a3": "Engagements can be structured as fixed-scope project milestones for well-defined builds, or on a flexible sprint/retainer basis for ongoing development and advisory. Every project includes clear deliverables and timelines upfront.",
+        "q4": "How do we get started?",
+        "a4": "Reach out through the contact form with a brief summary of your project or requirements. I'll get back to you within 24–48 hours to discuss specifications, timeline, and next steps."
+      }
+    },
+    "resume": {
+      "meta": {
+        "title": "idantity.me | me.portfolio",
+        "description": "My professional portfolio and resume."
+      },
+      "sidebar": {
+        "name": "Daniel Marchi",
+        "title": "Software Developer",
+        "location": "Curitiba, Brazil",
+        "availability": {
+          "available": "Available for Hire",
+          "busy": "Busy / Unavailable",
+          "looking": "Open to Opportunities"
+        }
+      },
+      "about": {
+        "heading": "About Me",
+        "gender": {
+          "label": "Gender",
+          "value": "Male"
+        },
+        "pronouns": {
+          "label": "Pronouns",
+          "value": "He / Him"
+        },
+        "nationality": {
+          "label": "Nationality",
+          "value": "Brazilian"
+        },
+        "location": {
+          "label": "Location"
+        },
+        "age": {
+          "label": "Age",
+          "value": "Years Old"
+        }
+      },
+      "languages": {
+        "heading": "Languages"
+      },
+      "lang": {
+        "portuguese": "Portuguese",
+        "english": "English",
+        "spanish": "Spanish",
+        "romanian": "Romanian"
+      },
+      "level": {
+        "fluent": "Fluent",
+        "intermediate": "Intermediate",
+        "basic": "Basic"
+      },
+      "hero": {
+        "title": "Hey! I'm Daniel Marchi",
+        "description": "I'm a Web and Game Developer specializing in large-scale Live-Service titles.",
+        "action": {
+          "hire": "Hire Me",
+          "download-cv": "Download CV"
+        }
+      },
+      "skills": {
+        "heading": "Skills",
+        "web-dev": {
+          "desc": "Building fast, responsive, and secure web applications using modern standard architectures, framework integration, and performance optimization techniques."
+        },
+        "game-dev": {
+          "desc": "Developing real-time virtual experiences, game logic, and gameplay loops in game engines with standard clean coding practices and performant structures."
+        },
+        "design": {
+          "desc": "Focusing on accessible user experiences, interface detail, smooth interactive feedback loops, and visually consistent modular systems."
+        }
+      },
+      "tech": {
+        "heading": "Technologies & Tools",
+        "cat": {
+          "languages": "Languages & Frameworks",
+          "environment": "Development Environment",
+          "build": "Build & Package",
+          "deployment": "Deployment",
+          "data": "Data Management",
+          "auth": "Authentication",
+          "project": "Project Management"
+        },
+        "group": {
+          "web-dev": "Web Development",
+          "game-dev": "Game Development",
+          "shared": "Shared Technologies"
+        }
+      },
+      "education": [
+        {
+          "degree": "Bachelor of Music",
+          "school": "UFPR - Universidade Federal do Paraná",
+          "period": "2018 - 2022"
+        },
+        {
+          "degree": "Technologist of Digital Games",
+          "school": "PUCPR - Pontifícia Universidade Católica do Paraná",
+          "period": "2020 - 2022"
+        }
+      ],
+      "experience": {
+        "heading": "Experience"
+      },
+      "exp": {
+        "summary": {
+          "label": "Summary"
+        },
+        "responsibilities": {
+          "label": "Responsibilities"
+        }
+      },
+      "experiences": [
+        {
+          "role": "Intern Game Programmer",
+          "company": "Compass.UOL",
+          "compan-rl": "https://compass.uol",
+          "period": "Feb 2022 - Jun 2022",
+          "location": "Curitiba, Brazil · Remote",
+          "summary": "Engaged in training exercises and problem-solving activities using Unreal Engine and C++.",
+          "responsibilities": [
+            "Training exercises and problem solving activities in Unreal Engine."
+          ],
+          "tags": ["Unreal Engine", "C++", "Blueprints"]
+        },
+        {
+          "role": "Trainee Game Programmer",
+          "company": "Compass.UOL",
+          "compan-rl": "https://compass.uol",
+          "period": "Jun 2022 - Oct 2022",
+          "location": "Curitiba, Brazil · Remote",
+          "summary": "Developed real-time 3D virtual experiences for E-Commerce using Unreal Engine and Blueprints.",
+          "responsibilities": [
+            "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine."
+          ],
+          "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce"]
+        },
+        {
+          "role": "Junior Game Programmer",
+          "company": "Compass.UOL",
+          "compan-rl": "https://compass.uol",
+          "period": "Oct 2022 - Mar 2023",
+          "location": "Curitiba, Brazil · Remote",
+          "summary": "Developed real-time 3D virtual experiences and E-Commerce solutions in Unreal Engine with UI mockups and technical documentation.",
+          "responsibilities": [
+            "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine.",
+            "Elaboration high-fidelity interface mockups.",
+            "Project documentation and comparative analytical breakdowns for stakeholders."
+          ],
+          "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce", "UI Design", "Documentation"]
+        },
+        {
+          "role": "Customer Services Agent",
+          "company": "Concentrix - Copa Energia (SAC)",
+          "compan-rl": "https://concentrix.com",
+          "period": "Jun 2026 - Sep 2026",
+          "location": "Curitiba, Brazil · On Site",
+          "summary": "Lorem Ipsum",
+          "responsibilities": [
+            "Provided support for supervision and general technological support.",
+            "Lorem Ipsum",
+            "Lorem Ipsum"
+          ],
+          "tags": ["Customer Service", "Customer Experience"]
+        },
+        {
+          "role": "Customer Services Agent",
+          "company": "Concentrix - Copa Energia (RA)",
+          "compan-rl": "https://concentrix.com",
+          "period": "Sep 2026 - Current",
+          "location": "Curitiba, Brazil · On Site",
+          "summary": "Processed and resolved consumer complaints via Brazil's leading consumer advocacy platform.",
+          "responsibilities": ["Lorem Ipsum from start to finish.", "Lorem Ipsum", "Lorem Ipsum"],
+          "tags": ["Customer Service", "Customer Experience"]
+        }
+      ],
+      "projects": [
+        {
+          "name": "Grand Tale",
+          "role": "Lorem Ipsum",
+          "period": "2025",
+          "href": "https://rimelight.com/franchises/grand-tale",
+          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "summary": "Lorem Ipsum",
+          "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
+          "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
+        },
+        {
+          "name": "Rimelight Entertainment",
+          "role": "Lorem Ipsum",
+          "period": "2025",
+          "href": "https://rimelight.com",
+          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "summary": "Lorem Ipsum",
+          "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
+          "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
+        },
+        {
+          "name": "idantity.me",
+          "role": "Lorem Ipsum",
+          "period": "2025",
+          "href": "https://idantity.me",
+          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "summary": "Lorem Ipsum",
+          "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
+          "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
+        },
+        {
+          "name": "Queer Kit",
+          "role": "Lorem Ipsum",
+          "period": "2025",
+          "href": "https://queerkit.com",
+          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "summary": "Lorem Ipsum",
+          "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
+          "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
+        },
+        {
+          "name": "marcelocfilho.com",
+          "role": "Lorem Ipsum",
+          "period": "2025",
+          "href": "https://marcelocfilho.com",
+          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "summary": "Lorem Ipsum",
+          "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
+          "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
+        }
+      ],
+      "project": {
+        "view": {
+          "button": "View"
+        }
+      },
+      "period": {
+        "present": "Present"
+      },
+      "certifications": [
+        {
+          "title": "HTML Essential Training",
+          "issuer": "LinkedIn Learning",
+          "credentia-d": "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
+        },
+        {
+          "title": "CSS Essential Training",
+          "issuer": "LinkedIn Learning",
+          "credentia-d": "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
+        },
+        {
+          "title": "TypeScript Essential Training",
+          "issuer": "LinkedIn Learning",
+          "credentia-d": "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
+        },
+        {
+          "title": "PostgreSQL Essential Training",
+          "issuer": "LinkedIn Learning",
+          "credentia-d": "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
+        },
+        {
+          "title": "Git Essential Training",
+          "issuer": "LinkedIn Learning",
+          "credentia-d": "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
+        },
+        {
+          "title": "Unreal Engine 5 Essential Training",
+          "issuer": "LinkedIn Learning",
+          "credentia-d": "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
+        }
+      ],
+      "aria": {
+        "sidebar": {
+          "profile": "Profile"
+        },
+        "social": {
+          "linkedin": "LinkedIn profile",
+          "github": "GitHub profile"
+        }
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "Get in touch with me directly.",
+      "hero": {
+        "title": "Get in Touch",
+        "description": "Have a question, proposal, or want to collaborate? Send me a message directly."
+      },
+      "form": {
+        "title": "Send a Message",
+        "name": {
+          "label": "Your Name *"
+        },
+        "email": {
+          "label": "Email Address *"
+        },
+        "subject": {
+          "label": "Subject (Optional)"
+        },
+        "message": {
+          "label": "Message *"
+        },
+        "send": {
+          "button": "Send Message"
+        },
+        "placeholder": {
+          "name": "Daniel Marchi",
+          "email": "daniel@example.com",
+          "subject": "How can I help you?",
+          "message": "Write your message here..."
+        }
+      }
+    },
+    "music": {
+      "title": "Music",
+      "description": "DJ mixes, curated playlists, and musical productions.",
+      "hero": {
+        "headline": "Sonic Experience",
+        "title": "Music, Mixes & Audio",
+        "description": "Original bass and electronic productions, DJ mixes with timestamped tracklists, and hand-curated Spotify selections."
+      },
+      "tab": {
+        "all": "All Audio",
+        "mixes": "Mixes & Sets",
+        "productions": "Originals & Tracks",
+        "playlists": "Curated Playlists"
+      },
+      "section": {
+        "featured": {
+          "title": "Featured Production",
+          "desc": "High-energy electronic and bass production."
+        },
+        "mixes": {
+          "title": "Featured Mixes & Sets",
+          "desc": "Full-length mixes with interactive chapter timestamps."
+        },
+        "playlists": {
+          "title": "Curated Playlists",
+          "desc": "Discover curated soundscapes across bass, melodic, and ambient electronic music."
+        }
+      },
+      "player": {
+        "play": "Play",
+        "pause": "Pause",
+        "mute": "Mute",
+        "unmute": "Unmute",
+        "download": "Download Audio",
+        "tracklist": "Chapters & Tracklist",
+        "speed": "Speed"
+      },
+      "spotify": {
+        "load": "Load Spotify Player",
+        "open": "Open in Spotify",
+        "badge": "Spotify Playlist"
+      },
+      "tracks": {
+        "bishu": {
+          "ikari": {
+            "title": "Bishu - Ikari",
+            "artist": "Bishu / idantity rework",
+            "genre": "Electronic / Bass",
+            "category": "Production"
+          }
+        },
+        "cue": {
+          "intro": "Intro & Lead Synth Build",
+          "drop1": "First Drop (Heavy Bass)",
+          "break": "Melodic Breakdown",
+          "drop2": "Second Drop (Polyrhythm Outro)"
+        }
+      },
+      "playlists": {
+        "pl1": {
+          "title": "Bass & Electronic Pulse",
+          "desc": "Heavy basslines, trap rhythms, and high-octane sound design for focus and energy."
+        },
+        "pl2": {
+          "title": "Melodic & Future Waves",
+          "desc": "Lush melodic chords, wave synths, and emotive vocal chops."
+        },
+        "pl3": {
+          "title": "Late Night Coding & Drive",
+          "desc": "Deep house, downtempo, and atmospheric beats crafted for deep work."
+        },
+        "pl4": {
+          "title": "Peak Energy & Club Anthems",
+          "desc": "Fast-paced dance floor bangers and festival-ready electronic tracks."
+        }
+      }
     }
   },
   "blog": {
     "title": "Blog",
     "description": "Articles, development logs, and more.",
-    "categories_development-log": "Development Log",
-    "categories_other": "Other",
-    "lastUpdatedOn": "Last updated on"
+    "categories": {
+      "development-log": "Development Log",
+      "other": "Other"
+    },
+    "last-updated-on": "Last updated on"
   },
   "legal": {
     "title": "Legal",
     "heading": "Legal Documents",
-    "lastUpdated": "Last updated:",
-    "lastUpdatedOn": "Last updated on"
+    "last-updated": "Last updated:",
+    "last-updated-on": "Last updated on"
   },
   "projects": {
     "title": "Projects",
     "description": "Personal projects and creations.",
-    "categories_website": "Website",
-    "categories_app": "App",
-    "categories_other": "Other",
-    "lastUpdatedOn": "Last updated on"
+    "categories": {
+      "website": "Website",
+      "app": "App",
+      "other": "Other"
+    },
+    "last-updated-on": "Last updated on"
   },
   "cms": {
-    "nav_dashboard": "Dashboard",
-    "nav_templates": "Templates",
-    "nav_pages": "Pages",
-    "nav_categories": "Categories",
-    "nav_tags": "Tags",
-    "nav_bylines": "Bylines",
-    "nav_versions": "Versions",
-    "nav_settings": "Settings",
-    "sidebar_app_name": "CMS Admin"
+    "nav": {
+      "dashboard": "Dashboard",
+      "templates": "Templates",
+      "pages": "Pages",
+      "categories": "Categories",
+      "tags": "Tags",
+      "bylines": "Bylines",
+      "versions": "Versions",
+      "settings": "Settings"
+    },
+    "sidebar": {
+      "app": {
+        "name": "CMS Admin"
+      }
+    }
   },
   "errors": {
-    "notFound": "Page Not Found",
-    "notFoundDesc": "The page you are looking for does not exist.",
-    "goHome": "Go Home",
-    "serverError": "Server Error",
-    "unknownError": "Unknown error"
+    "not-found": "Page Not Found",
+    "not-found-desc": "The page you are looking for does not exist.",
+    "go-home": "Go Home",
+    "server-error": "Server Error",
+    "unknown-error": "Unknown error"
   },
   "playground": {
-    "heroTitle": "idantity.me",
-    "heroSubtitle": "",
-    "heroDesc": "",
-    "heroLink": "Read Blog",
-    "ctaTitle": "Explore More",
-    "ctaDesc": "",
-    "ctaStart": "Read Blog",
-    "ctaContribute": "Learn More",
-    "postsTitle": "Latest Posts",
-    "postsDesc": "Check out recent blog updates.",
-    "viewAllPosts": "View All Posts"
+    "hero-title": "idantity.me",
+    "hero-subtitle": "",
+    "hero-desc": "",
+    "hero-link": "Read Blog",
+    "cta-title": "Explore More",
+    "cta-desc": "",
+    "cta-start": "Read Blog",
+    "cta-contribute": "Learn More",
+    "posts-title": "Latest Posts",
+    "posts-desc": "Check out recent blog updates.",
+    "view-all-posts": "View All Posts"
   },
   "branding": {
     "title": "Branding",

@@ -56,7 +56,7 @@ export const LegalDocumentPage: Component = () => {
                   </Show>
                   <Show when={updatedDate()}>
                     <div class="last-updated-on text-xs text-neutral-500 mt-1">
-                      {t("legal.lastUpdatedOn")} <RLDate date={updatedDate()!} />
+                      {t("legal.last-updated-on")} <RLDate date={updatedDate()!} />
                     </div>
                   </Show>
                 </div>

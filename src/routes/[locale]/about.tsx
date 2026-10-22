@@ -5,7 +5,7 @@ import { t } from "@rimelight/i18n";
 
 export const AboutPage: Component = () => {
   return (
-    <AppLayout title={t("page_about.title")} description={t("page_about.description")}>
+    <AppLayout title={t("page.about.title")} description={t("page.about.description")}>
       <RLPageSection variant="hero" title="About Me" orientation="horizontal">
         <RLImage src="https://cdn.idantity.me/images/placeholder.webp" alt="Daniel Marchi" />
       </RLPageSection>

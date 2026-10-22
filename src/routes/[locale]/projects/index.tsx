@@ -26,9 +26,9 @@ export const ProjectsIndexPage: Component = () => {
   );
 
   const categoryMessages = () => ({
-    website: t("projects.categories_website"),
-    app: t("projects.categories_app"),
-    other: t("projects.categories_other"),
+    website: t("projects.categories.website"),
+    app: t("projects.categories.app"),
+    other: t("projects.categories.other"),
   });
 
   const badgeColorMap: Record<string, string> = {

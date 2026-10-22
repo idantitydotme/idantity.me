@@ -19,30 +19,30 @@ export interface AppHeaderProps {
 export const AppHeader: Component<AppHeaderProps> = (props) => {
   const leftLinks = () => [
     {
-      label: t("app_header.left-links_projects_label"),
+      label: t("app.header.left-links.projects.label"),
       to: getLocaleUrl("/projects"),
     },
     {
-      label: t("app_header.left-links_music_label"),
+      label: t("app.header.left-links.music.label"),
       to: getLocaleUrl("/music"),
     },
     {
-      label: t("app_header.left-links_blog_label"),
+      label: t("app.header.left-links.blog.label"),
       to: getLocaleUrl("/blog"),
     },
     {
-      label: t("app_header.left-links_about_label"),
+      label: t("app.header.left-links.about.label"),
       to: getLocaleUrl("/about"),
     },
   ];
 
   const rightLinks = () => [
     {
-      label: t("app_header.right-links_services_label"),
+      label: t("app.header.right-links.services.label"),
       to: getLocaleUrl("/services"),
     },
     {
-      label: t("app_header.right-links_resume_label"),
+      label: t("app.header.right-links.resume.label"),
       to: getLocaleUrl("/resume"),
     },
   ];

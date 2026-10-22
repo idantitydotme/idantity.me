@@ -22,7 +22,7 @@ export const HomePage: Component = () => {
 
   const heroLinks = (): RLButtonProps[] => [
     {
-      label: t("playground.heroLink"),
+      label: t("playground.hero-link"),
       href: getLocaleUrl("/blog"),
       color: "primary",
       variant: "solid",
@@ -31,13 +31,13 @@ export const HomePage: Component = () => {
 
   const ctaLinks = (): RLButtonProps[] => [
     {
-      label: t("playground.ctaStart"),
+      label: t("playground.cta-start"),
       href: getLocaleUrl("/blog"),
       color: "primary",
       variant: "solid",
     },
     {
-      label: t("playground.ctaContribute"),
+      label: t("playground.cta-contribute"),
       href: getLocaleUrl("/"),
       color: "primary",
       variant: "outline",
@@ -50,8 +50,8 @@ export const HomePage: Component = () => {
       <RLPageSection
         variant="hero"
         reverse={true}
-        title={t("playground.heroTitle")}
-        description={t("playground.heroDesc")}
+        title={t("playground.hero-title")}
+        description={t("playground.hero-desc")}
         links={heroLinks()}
       >
         <RLLogo class="pointer-events-none h-64 w-auto" variant="logomark" />
@@ -59,8 +59,8 @@ export const HomePage: Component = () => {
 
       <RLPageSection
         orientation="vertical"
-        title={t("playground.postsTitle")}
-        description={t("playground.postsDesc")}
+        title={t("playground.posts-title")}
+        description={t("playground.posts-desc")}
         body={
           <div class="flex flex-col gap-xl">
             <RLGrid>
@@ -90,7 +90,7 @@ export const HomePage: Component = () => {
 
             <Show when={(latestPosts() || []).length > 0}>
               <RLButton
-                label={t("playground.viewAllPosts")}
+                label={t("playground.view-all-posts")}
                 href={getLocaleUrl("/blog")}
                 color="primary"
                 variant="link"
@@ -104,8 +104,8 @@ export const HomePage: Component = () => {
       <RLPageSection
         variant="cta"
         ctaVariant="solid"
-        title={t("playground.ctaTitle")}
-        description={t("playground.ctaDesc")}
+        title={t("playground.cta-title")}
+        description={t("playground.cta-desc")}
         links={ctaLinks()}
       />
     </AppLayout>

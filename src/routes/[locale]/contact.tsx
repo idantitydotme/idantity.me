@@ -51,47 +51,47 @@ export const ContactPage: Component = () => {
   };
 
   return (
-    <AppLayout title={t("page_contact.title")} description={t("page_contact.description")}>
+    <AppLayout title={t("page.contact.title")} description={t("page.contact.description")}>
       <RLPageSection
         variant="hero"
         reverse={true}
         orientation="horizontal"
-        title={t("page_contact.hero_title")}
-        description={t("page_contact.hero_description")}
+        title={t("page.contact.hero.title")}
+        description={t("page.contact.hero.description")}
       >
         <RLCard class="p-6 md:p-8 w-full">
           <form onSubmit={onSubmit} class="flex flex-col gap-4">
-            <Field label={t("page_contact.contact_form_name_label")}>
+            <Field label={t("page.contact.form.name.label")}>
               <input
                 name="name"
                 required
                 class={inputClass}
-                placeholder={t("page_contact.contact_form_placeholder_name")}
+                placeholder={t("page.contact.form.placeholder.name")}
               />
             </Field>
-            <Field label={t("page_contact.contact_form_email_label")}>
+            <Field label={t("page.contact.form.email.label")}>
               <input
                 name="email"
                 type="email"
                 required
                 class={inputClass}
-                placeholder={t("page_contact.contact_form_placeholder_email")}
+                placeholder={t("page.contact.form.placeholder.email")}
               />
             </Field>
-            <Field label={t("page_contact.contact_form_subject_label")}>
+            <Field label={t("page.contact.form.subject.label")}>
               <input
                 name="subject"
                 class={inputClass}
-                placeholder={t("page_contact.contact_form_placeholder_subject")}
+                placeholder={t("page.contact.form.placeholder.subject")}
               />
             </Field>
-            <Field label={t("page_contact.contact_form_message_label")}>
+            <Field label={t("page.contact.form.message.label")}>
               <textarea
                 name="message"
                 rows={5}
                 required
                 class={`${inputClass} resize-y min-h-[120px]`}
-                placeholder={t("page_contact.contact_form_placeholder_message")}
+                placeholder={t("page.contact.form.placeholder.message")}
               />
             </Field>
 
@@ -103,7 +103,7 @@ export const ContactPage: Component = () => {
               variant="solid"
               block={true}
               leadingIcon="i-lucide-send"
-              label={t("page_contact.contact_form_send_button")}
+              label={t("page.contact.form.send.button")}
               class="mt-2"
             />
 
