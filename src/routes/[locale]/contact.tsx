@@ -1,7 +1,7 @@
 import { type Component, createSignal, Show } from "solid-js";
 import AppLayout from "#layouts/AppLayout";
 import { RLPageSection, RLCard, RLButton } from "@rimelight/ui";
-import Turnstile from "#components/Turnstile";
+import Turnstile from "#components/app/Turnstile";
 import { t } from "@rimelight/i18n";
 import { api } from "#api/client";
 
