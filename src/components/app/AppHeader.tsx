@@ -1,18 +1,15 @@
-import { type Component, For, Show } from "solid-js";
+import { type Component, For } from "solid-js";
 import {
   RLHeader,
   RLLogo,
   RLNavigationMenu,
   RLButton,
   RLSlideover,
-  RLAvatar,
-  RLPopover,
   type RLButtonProps,
 } from "@rimelight/ui";
 import { t, getLocaleUrl } from "@rimelight/i18n";
 
 export interface AppHeaderProps {
-  session?: any;
   stackIndex?: number;
 }
 
@@ -129,34 +126,6 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
               }}
             />
             <For each={socials()}>{(buttonProps) => <RLButton {...buttonProps} />}</For>
-
-            <Show when={props.session}>
-              <RLPopover
-                placement="bottom-end"
-                class="relative group/popover ml-2"
-                trigger={
-                  <div class="flex items-center gap-xs cursor-pointer text-white hover:text-primary-400 transition-colors py-1 px-2 rounded-lg">
-                    <div class="relative">
-                      <RLAvatar src={props.session.avatar} alt={props.session.name} size="sm" />
-                      <span class="absolute bottom-0 right-0 block h-2.5 w-2.5 rounded-full ring-2 ring-black bg-success-500" />
-                    </div>
-                    <span class="hidden md:inline text-sm font-medium">{props.session.name}</span>
-                  </div>
-                }
-              >
-                <div class="flex flex-col gap-2 min-w-[240px] text-neutral-900 dark:text-neutral-100">
-                  <div class="flex items-center gap-sm pb-2 border-b border-neutral-200 dark:border-neutral-800">
-                    <RLAvatar src={props.session.avatar} alt={props.session.name} size="md" />
-                    <div class="flex flex-col">
-                      <span class="font-semibold text-sm">{props.session.name}</span>
-                      <span class="text-xs text-neutral-500 truncate max-w-[150px]">
-                        {props.session.email}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </RLPopover>
-            </Show>
           </div>
 
           <div class="block md:hidden">

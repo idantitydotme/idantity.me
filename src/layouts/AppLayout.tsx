@@ -3,7 +3,14 @@ import { type JSX, useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import AppHeader from "#components/app/AppHeader";
 import AppFooter from "#components/app/AppFooter";
-import { RLMain, RLScrollToTop, RLToaster } from "@rimelight/ui";
+import {
+  RLMain,
+  RLScrollToTop,
+  RLShortcuts,
+  RLToaster,
+  RLRouteAnnouncer,
+  RLLayoutGrid,
+} from "@rimelight/ui";
 
 export interface AppLayoutProps {
   title?: string | undefined;
@@ -14,7 +21,6 @@ export interface AppLayoutProps {
   ogImageSrc?: string | undefined;
   ogImageAlt?: string | undefined;
   children?: JSX.Element | undefined;
-  session?: any;
 }
 
 export const AppLayout: Component<AppLayoutProps> = (props) => {
@@ -30,20 +36,16 @@ export const AppLayout: Component<AppLayoutProps> = (props) => {
     }),
   );
   return (
-    <>
-      <div class="isolate flex flex-col min-h-screen">
-        <AppHeader stackIndex={1} session={props.session} />
-
-        <RLMain id="main-content" class="flex-1">
-          {props.children}
-        </RLMain>
-
-        <AppFooter />
-
-        <RLScrollToTop showProgress={true} />
-        <RLToaster />
-      </div>
-    </>
+    <div class="isolate flex flex-col min-h-screen">
+      <AppHeader />
+      <RLMain>{props.children}</RLMain>
+      <AppFooter />
+      <RLScrollToTop />
+      <RLShortcuts />
+      <RLToaster />
+      <RLRouteAnnouncer />
+      <RLLayoutGrid />
+    </div>
   );
 };
 
