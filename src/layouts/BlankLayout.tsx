@@ -1,27 +1,30 @@
-import { type ParentComponent } from "solid-js";
-import { useHead } from "@solidjs/web";
+import type { Component } from "solid-js";
+import { type JSX, useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { RLMain } from "@rimelight/ui";
 
-interface BlankLayoutProps {
-  title: string;
-  description: string;
+export interface BlankLayoutProps {
+  title?: string;
+  description?: string;
   noindex?: boolean;
+  id?: string;
+  class?: string;
+  children?: JSX.Element;
 }
 
-const BlankLayout: ParentComponent<BlankLayoutProps> = (props) => {
+export const BlankLayout: Component<BlankLayoutProps> = (props) => {
   useHead(() =>
     createSeoHead({
-      title: `${props.title} | idantity`,
+      title: props.title,
       description: props.description,
       noindex: props.noindex,
     }),
   );
 
   return (
-    <>
-      <RLMain>{props.children}</RLMain>
-    </>
+    <RLMain id={props.id} class={props.class}>
+      {props.children}
+    </RLMain>
   );
 };
 
