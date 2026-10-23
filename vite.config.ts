@@ -84,6 +84,6 @@ export default defineConfig({
       },
     }),
 
-    cms(),
+    cms({ autoMigrate: true }),
   ],
 });
