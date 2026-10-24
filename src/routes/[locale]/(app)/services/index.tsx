@@ -1,5 +1,6 @@
 import { type Component, For } from "solid-js";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { t, getLocaleUrl } from "@rimelight/i18n";
 import { RLPageSection, RLAccordion } from "@rimelight/ui";
 import LighthouseScores from "#components/services/LighthouseScores.tsx";
@@ -140,8 +141,15 @@ export const ServicesPage: Component = () => {
     },
   ];
 
+  useHead(() =>
+    createSeoHead({
+      title: t("page.services.title"),
+      description: t("page.services.description"),
+    }),
+  );
+
   return (
-    <AppLayout title={t("page.services.title")} description={t("page.services.description")}>
+    <>
       {/* 1. Hero Section */}
       <RLPageSection
         variant="hero"
@@ -309,7 +317,7 @@ export const ServicesPage: Component = () => {
         description={t("page.services.cta.final.desc")}
         links={ctaLinks()}
       />
-    </AppLayout>
+    </>
   );
 };
 

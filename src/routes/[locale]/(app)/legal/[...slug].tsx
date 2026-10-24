@@ -1,6 +1,7 @@
 import { type Component, Show, createMemo } from "solid-js";
 import { useParams } from "@solidjs/router";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import PageRenderer from "#components/cms/PageRenderer";
 import { RLContainer, RLDate } from "@rimelight/ui";
 import { t, getCurrentLocale } from "@rimelight/i18n";
@@ -43,32 +44,37 @@ export const LegalDocumentPage: Component = () => {
   const pubDate = () => pageData()?.postedAt || pageData()?.createdAt;
   const updatedDate = () => pageData()?.updatedAt;
 
+  useHead(() =>
+    createSeoHead({
+      title: title(),
+      description: description(),
+    }),
+  );
+
   return (
-    <AppLayout title={title()} description={description()}>
-      <RLContainer class="py-16 max-w-3xl">
-        <Show when={pageData()} fallback={<div class="p-8 text-center text-muted">Loading...</div>}>
-          <article>
-            <div class="prose max-w-none">
-              <div class="title mb-8">
-                <div class="date text-neutral-400 mb-2 text-sm">
-                  <Show when={pubDate()}>
-                    <RLDate date={pubDate()!} />
-                  </Show>
-                  <Show when={updatedDate()}>
-                    <div class="last-updated-on text-xs text-neutral-500 mt-1">
-                      {t("legal.last-updated-on")} <RLDate date={updatedDate()!} />
-                    </div>
-                  </Show>
-                </div>
-                <h1 class="text-4xl font-extrabold text-white mb-4">{title()}</h1>
-                <hr class="border-neutral-800" />
+    <RLContainer class="py-16 max-w-3xl">
+      <Show when={pageData()} fallback={<div class="p-8 text-center text-muted">Loading...</div>}>
+        <article>
+          <div class="prose max-w-none">
+            <div class="title mb-8">
+              <div class="date text-neutral-400 mb-2 text-sm">
+                <Show when={pubDate()}>
+                  <RLDate date={pubDate()!} />
+                </Show>
+                <Show when={updatedDate()}>
+                  <div class="last-updated-on text-xs text-neutral-500 mt-1">
+                    {t("legal.last-updated-on")} <RLDate date={updatedDate()!} />
+                  </div>
+                </Show>
               </div>
-              <PageRenderer blocks={content().blocks || []} locale={getCurrentLocale()} />
+              <h1 class="text-4xl font-extrabold text-white mb-4">{title()}</h1>
+              <hr class="border-neutral-800" />
             </div>
-          </article>
-        </Show>
-      </RLContainer>
-    </AppLayout>
+            <PageRenderer blocks={content().blocks || []} locale={getCurrentLocale()} />
+          </div>
+        </article>
+      </Show>
+    </RLContainer>
   );
 };
 

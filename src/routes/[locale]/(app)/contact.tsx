@@ -1,5 +1,6 @@
 import { type Component, createSignal, Show } from "solid-js";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { RLPageSection, RLCard, RLButton } from "@rimelight/ui";
 import Turnstile from "#components/app/Turnstile";
 import { t } from "@rimelight/i18n";
@@ -50,8 +51,15 @@ export const ContactPage: Component = () => {
     (window as any).turnstile?.reset?.();
   };
 
+  useHead(() =>
+    createSeoHead({
+      title: t("page.contact.title"),
+      description: t("page.contact.description"),
+    }),
+  );
+
   return (
-    <AppLayout title={t("page.contact.title")} description={t("page.contact.description")}>
+    <>
       <RLPageSection
         variant="hero"
         reverse={true}
@@ -120,7 +128,7 @@ export const ContactPage: Component = () => {
           </form>
         </RLCard>
       </RLPageSection>
-    </AppLayout>
+    </>
   );
 };
 

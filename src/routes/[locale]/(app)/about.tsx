@@ -1,11 +1,19 @@
 import type { Component } from "solid-js";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { RLPageSection, RLImage } from "@rimelight/ui";
 import { t } from "@rimelight/i18n";
 
 export const AboutPage: Component = () => {
+  useHead(() =>
+    createSeoHead({
+      title: t("page.about.title"),
+      description: t("page.about.description"),
+    }),
+  );
+
   return (
-    <AppLayout title={t("page.about.title")} description={t("page.about.description")}>
+    <>
       <RLPageSection variant="hero" title="About Me" orientation="horizontal">
         <RLImage src="https://cdn.idantity.me/images/placeholder.webp" alt="Daniel Marchi" />
       </RLPageSection>
@@ -46,7 +54,7 @@ export const AboutPage: Component = () => {
       >
         <RLImage src="https://cdn.idantity.me/images/placeholder.webp" alt="Daniel Marchi" />
       </RLPageSection>
-    </AppLayout>
+    </>
   );
 };
 

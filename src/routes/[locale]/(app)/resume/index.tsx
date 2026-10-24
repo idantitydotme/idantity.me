@@ -1,5 +1,6 @@
 import { type Component, For, Show } from "solid-js";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { t, getLocaleUrl } from "@rimelight/i18n";
 import {
   RLContainer,
@@ -319,8 +320,15 @@ export const ResumePage: Component = () => {
   const certifications = () => t.raw<CertificationItem[]>("page_resume.certifications", []);
   const projects = () => t.raw<ResumeProject[]>("page_resume.projects", []);
 
+  useHead(() =>
+    createSeoHead({
+      title: t("page_resume.meta_title"),
+      description: t("page_resume.meta_description"),
+    }),
+  );
+
   return (
-    <AppLayout title={t("page_resume.meta_title")} description={t("page_resume.meta_description")}>
+    <>
       <RLContainer class="max-w-none">
         <RLPage>
           <div class="flex flex-col md:flex-row gap-xl">
@@ -752,7 +760,7 @@ export const ResumePage: Component = () => {
           </div>
         </RLPage>
       </RLContainer>
-    </AppLayout>
+    </>
   );
 };
 

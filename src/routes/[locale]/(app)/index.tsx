@@ -1,5 +1,6 @@
 import { type Component, For, Show, createMemo } from "solid-js";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { t, getLocaleUrl } from "@rimelight/i18n";
 import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost, type RLButtonProps } from "@rimelight/ui";
 
@@ -45,8 +46,15 @@ export const HomePage: Component = () => {
     },
   ];
 
+  useHead(() =>
+    createSeoHead({
+      title: "idantity",
+      description: "Welcome to my website!",
+    }),
+  );
+
   return (
-    <AppLayout title="idantity" description="Welcome to my website!">
+    <>
       <RLPageSection
         variant="hero"
         reverse={true}
@@ -108,7 +116,7 @@ export const HomePage: Component = () => {
         description={t("playground.cta-desc")}
         links={ctaLinks()}
       />
-    </AppLayout>
+    </>
   );
 };
 

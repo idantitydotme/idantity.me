@@ -1,5 +1,6 @@
 import { type Component, For, createSignal } from "solid-js";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { RLPageSection, RLTabs } from "@rimelight/ui";
 import MusicPlayer from "#components/music/MusicPlayer.tsx";
 import SpotifyFacade from "#components/music/SpotifyFacade.tsx";
@@ -77,8 +78,15 @@ export const MusicPage: Component = () => {
     speed: t("page.music.player.speed"),
   });
 
+  useHead(() =>
+    createSeoHead({
+      title: t("page.music.title"),
+      description: t("page.music.description"),
+    }),
+  );
+
   return (
-    <AppLayout title={t("page.music.title")} description={t("page.music.description")}>
+    <>
       {/* Hero Section */}
       <RLPageSection
         variant="hero"
@@ -235,7 +243,7 @@ export const MusicPage: Component = () => {
           </div>
         }
       />
-    </AppLayout>
+    </>
   );
 };
 

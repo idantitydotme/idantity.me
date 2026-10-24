@@ -1,6 +1,7 @@
 import { type Component, Show } from "solid-js";
 import { useSearchParams } from "@solidjs/router";
-import BlankLayout from "#layouts/BlankLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { RLCard, RLFormField, RLInput, RLButton, RLCheckbox, RLLogo } from "@rimelight/ui";
 import { t } from "@rimelight/i18n";
 
@@ -9,13 +10,16 @@ export const ConstructionPage: Component = () => {
   const redirect = () => searchParams["redirect"] || "/";
   const isError = () => searchParams["error"] === "invalid";
 
+  useHead(() =>
+    createSeoHead({
+      title: t("page.construction.meta.title"),
+      description: t("page.construction.meta.description"),
+      noindex: true,
+    }),
+  );
+
   return (
-    <BlankLayout
-      title={t("page.construction.meta.title")}
-      description={t("page.construction.meta.description")}
-      noindex={true}
-    >
-      <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
+    <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
         <div class="w-full max-w-md space-y-6 text-center">
           <div class="flex flex-col items-center gap-4">
             <RLLogo class="h-12 w-auto" variant="logomark" />
@@ -66,7 +70,6 @@ export const ConstructionPage: Component = () => {
           </RLCard>
         </div>
       </div>
-    </BlankLayout>
   );
 };
 

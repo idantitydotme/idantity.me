@@ -1,5 +1,6 @@
 import { type Component, For, createSignal, createMemo } from "solid-js";
-import AppLayout from "#layouts/AppLayout";
+import { useHead } from "@solidjs/web";
+import { createSeoHead } from "@rimelight/seo/head";
 import { t, getLocaleUrl } from "@rimelight/i18n";
 import { RLPageSection, RLTabs, RLGrid, RLPost } from "@rimelight/ui";
 
@@ -7,17 +8,17 @@ function getPageTitle(title: unknown): string {
   return t.localize(title);
 }
 
-export const BlogIndexPage: Component = () => {
+export const ProjectsIndexPage: Component = () => {
   const [activeTab, setActiveTab] = createSignal("all");
 
-  const blogPages = createMemo<any[]>(
+  const projectPages = createMemo<any[]>(
     async () => {
       try {
         const res = await fetch("/api/cms/pages");
         if (!res.ok) return [];
         const data = (await res.json()) as any;
         const pagesList = (data.pages || []) as any[];
-        return pagesList.filter((page: any) => page.type === "blog");
+        return pagesList.filter((page: any) => page.type === "projects");
       } catch {
         return [];
       }
@@ -26,18 +27,26 @@ export const BlogIndexPage: Component = () => {
   );
 
   const categoryMessages = () => ({
-    "development-log": t("blog.categories.development-log"),
-    other: t("blog.categories.other"),
+    website: t("projects.categories.website"),
+    app: t("projects.categories.app"),
+    other: t("projects.categories.other"),
   });
+
+  const badgeColorMap: Record<string, string> = {
+    website: "info",
+    app: "primary",
+    other: "success",
+  };
 
   const tabsItems = () => [
     { label: "All", value: "all" },
-    { label: categoryMessages()["development-log"] || "Dev Log", value: "development-log" },
-    { label: categoryMessages()["other"] || "Other", value: "other" },
+    { label: categoryMessages().website || "Website", value: "website" },
+    { label: categoryMessages().app || "App", value: "app" },
+    { label: categoryMessages().other || "Other", value: "other" },
   ];
 
-  const filteredPosts = () => {
-    const all = blogPages() || [];
+  const filteredProjects = () => {
+    const all = projectPages() || [];
     if (activeTab() === "all") return all;
     return all.filter((page: any) => {
       const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content;
@@ -45,9 +54,16 @@ export const BlogIndexPage: Component = () => {
     });
   };
 
+  useHead(() =>
+    createSeoHead({
+      title: t("projects.title"),
+      description: t("projects.description"),
+    }),
+  );
+
   return (
-    <AppLayout title={t("blog.title")} description={t("blog.description")}>
-      <RLPageSection title={t("blog.title")} description={t("blog.description")}>
+    <>
+      <RLPageSection title={t("projects.title")} description={t("projects.description")}>
         <RLTabs
           items={tabsItems()}
           variant="underline"
@@ -57,7 +73,7 @@ export const BlogIndexPage: Component = () => {
 
         <div class="mt-6">
           <RLGrid cols={4}>
-            <For each={filteredPosts()}>
+            <For each={filteredProjects()}>
               {(page, index) => {
                 const content =
                   typeof page.content === "string" ? JSON.parse(page.content) : page.content;
@@ -73,12 +89,12 @@ export const BlogIndexPage: Component = () => {
                     date={postDate}
                     title={titleVal}
                     description={content?.properties?.description}
-                    to={getLocaleUrl(`/blog/${page.slug}/`)}
+                    to={getLocaleUrl(`/projects/${page.slug}/`)}
                     badge={
                       categoryMessages()[category as keyof ReturnType<typeof categoryMessages>] ??
                       category
                     }
-                    badgeColor={category === "development-log" ? "info" : "primary"}
+                    badgeColor={badgeColorMap[category] || "primary"}
                   />
                 );
               }}
@@ -86,8 +102,8 @@ export const BlogIndexPage: Component = () => {
           </RLGrid>
         </div>
       </RLPageSection>
-    </AppLayout>
+    </>
   );
 };
 
-export default BlogIndexPage;
+export default ProjectsIndexPage;
