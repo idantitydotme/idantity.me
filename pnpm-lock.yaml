@@ -191,8 +191,8 @@ importers:
         specifier: 0.0.44
         version: 0.0.44(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2))
       '@rimelight/seo':
-        specifier: 0.0.33
-        version: 0.0.33(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2))
+        specifier: 0.0.34
+        version: 0.0.34(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2))
       '@rimelight/ui':
         specifier: 0.0.83
         version: 0.0.83(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.0.2))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2))
@@ -1389,8 +1389,8 @@ packages:
       hono: ^5.0.0-rc.1
       vite-plus: ^1.0.0
 
-  '@rimelight/seo@0.0.33':
-    resolution: {integrity: sha512-XYItZKLNbV2fsqwkxDPs4Xx84Q2eyaBFdRgn8TEU51Fh2Y7BX4ntTkhNN+FpCppHZjad9PRlq35G1g+1+jDKfQ==}
+  '@rimelight/seo@0.0.34':
+    resolution: {integrity: sha512-XZ/rXuJl2jxxSAKhHdcY0Bk83J17nc07m2Hec196rKOD8bErvAnH3C2ji96YTN4q7oitxDIJVTOeIgCQ+Xt/6A==}
     engines: {node: '>=26.10.0'}
     peerDependencies:
       '@solidjs/web': '>=2.0.0-rc.15'
@@ -4030,7 +4030,7 @@ snapshots:
       hono: 5.0.0-rc.1
       vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2)
 
-  '@rimelight/seo@0.0.33(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2))':
+  '@rimelight/seo@0.0.34(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.0.2))':
     dependencies:
       '@solidjs/web': 2.0.0-rc.18(solid-js@2.0.0-rc.18)
       hono: 5.0.0-rc.1
