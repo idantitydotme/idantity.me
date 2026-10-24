@@ -20,56 +20,56 @@ export const ConstructionPage: Component = () => {
 
   return (
     <div class="flex min-h-screen flex-col items-center justify-center px-4 py-12">
-        <div class="w-full max-w-md space-y-6 text-center">
-          <div class="flex flex-col items-center gap-4">
-            <RLLogo class="h-12 w-auto" variant="logomark" />
-            <h1 class="m-0 text-3xl font-bold tracking-tight sm:text-4xl">
-              {t("page.construction.title")}
-            </h1>
-            <p class="m-0 text-neutral-400 text-sm">{t("page.construction.description")}</p>
-          </div>
-
-          <RLCard class="text-left w-full">
-            <Show when={isError()}>
-              <div
-                class="mb-4 rounded-md border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-400"
-                role="alert"
-              >
-                Invalid credentials. Please try again.
-              </div>
-            </Show>
-
-            {/* Native Server-Side Form POST */}
-            <form method="post" action="/api/construction-guest" class="flex flex-col gap-4">
-              <input type="hidden" name="redirect" value={redirect()} />
-
-              <RLFormField label={t("page.construction.form.passphrase.label")} required>
-                <RLInput
-                  id="construction-passphrase-input"
-                  type="password"
-                  name="passphrase"
-                  placeholder={t("page.construction.form.passphrase.placeholder")}
-                  class="w-full"
-                  required
-                  autofocus
-                  autocomplete="current-password"
-                />
-              </RLFormField>
-
-              <RLCheckbox
-                id="construction-remember-me-checkbox"
-                name="rememberMe"
-                label={t("page.construction.form.remember.me.label")}
-                checked
-              />
-
-              <RLButton type="submit" color="primary" variant="solid" block class="w-full mt-2">
-                {t("page.construction.form.sign.in.button")}
-              </RLButton>
-            </form>
-          </RLCard>
+      <div class="w-full max-w-md space-y-6 text-center">
+        <div class="flex flex-col items-center gap-4">
+          <RLLogo class="h-12 w-auto" variant="logomark" />
+          <h1 class="m-0 text-3xl font-bold tracking-tight sm:text-4xl">
+            {t("page.construction.title")}
+          </h1>
+          <p class="m-0 text-neutral-400 text-sm">{t("page.construction.description")}</p>
         </div>
+
+        <RLCard class="text-left w-full">
+          <Show when={isError()}>
+            <div
+              class="mb-4 rounded-md border border-red-500/40 bg-red-500/10 p-3 text-sm text-red-400"
+              role="alert"
+            >
+              Invalid credentials. Please try again.
+            </div>
+          </Show>
+
+          {/* Native Server-Side Form POST */}
+          <form method="post" action="/api/construction-guest" class="flex flex-col gap-4">
+            <input type="hidden" name="redirect" value={redirect()} />
+
+            <RLFormField label={t("page.construction.form.passphrase.label")} required>
+              <RLInput
+                id="construction-passphrase-input"
+                type="password"
+                name="passphrase"
+                placeholder={t("page.construction.form.passphrase.placeholder")}
+                class="w-full"
+                required
+                autofocus
+                autocomplete="current-password"
+              />
+            </RLFormField>
+
+            <RLCheckbox
+              id="construction-remember-me-checkbox"
+              name="rememberMe"
+              label={t("page.construction.form.remember.me.label")}
+              checked
+            />
+
+            <RLButton type="submit" color="primary" variant="solid" block class="w-full mt-2">
+              {t("page.construction.form.sign.in.button")}
+            </RLButton>
+          </form>
+        </RLCard>
       </div>
+    </div>
   );
 };
 
