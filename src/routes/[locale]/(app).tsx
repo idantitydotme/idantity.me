@@ -9,13 +9,16 @@ import {
   RLToaster,
   RLRouteAnnouncer,
   RLLayoutGrid,
+  RLErrorBoundary,
 } from "@rimelight/ui";
 
 export const AppRouteLayout: Component<RouteSectionProps> = (props) => {
   return (
     <div class="isolate flex flex-col min-h-screen">
       <AppHeader />
-      <RLMain>{props.children}</RLMain>
+      <RLMain>
+        <RLErrorBoundary resetKey={props.location.pathname}>{props.children}</RLErrorBoundary>
+      </RLMain>
       <AppFooter />
       <RLScrollToTop />
       <RLShortcuts />

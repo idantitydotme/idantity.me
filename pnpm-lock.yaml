@@ -185,8 +185,8 @@ importers:
         specifier: 0.0.40
         version: 0.0.40(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/i18n':
-        specifier: 0.1.13
-        version: 0.1.13(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.1.14
+        version: 0.1.14(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/security':
         specifier: 0.0.45
         version: 0.0.45(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
@@ -194,8 +194,8 @@ importers:
         specifier: 0.0.35
         version: 0.0.35(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/ui':
-        specifier: 0.0.84
-        version: 0.0.84(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.0.85
+        version: 0.0.85(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(hono@5.0.0-rc.1)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@solidjs/router':
         specifier: 2.0.0-next.42
         version: 2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18)
@@ -1374,8 +1374,8 @@ packages:
     peerDependencies:
       vite-plus: ^1.0.0
 
-  '@rimelight/i18n@0.1.13':
-    resolution: {integrity: sha512-RhkhJXAkXZSgZylSz61z/hEKUOtmOt2XGU+pZz/jzBjGimtlCZpj9LlBo0WmhQV2QNUI/htj8HLyqKdQpX8cfg==}
+  '@rimelight/i18n@0.1.14':
+    resolution: {integrity: sha512-gJSMVPiOqX+7FDgOoJM+YHBdedHJUea37os7KJT5vO5YTW3Bab6FCTUEKr/E8kx6AwQvt09T6vq1SfaGpUmTGg==}
     engines: {node: '>=26.10.0'}
     hasBin: true
     peerDependencies:
@@ -1399,6 +1399,18 @@ packages:
 
   '@rimelight/ui@0.0.84':
     resolution: {integrity: sha512-doR+WpovOzTpBIR1R99fLAk/sOaTfI0EwtPAd8H/QlissXc7UqnyWTtiQ7cjbYp/vco/Gy/2pkKTxg5I6qnugg==}
+    engines: {node: '>=26.10.0'}
+    peerDependencies:
+      '@solidjs/router': '>=2.0.0-next.40'
+      '@solidjs/web': '>=2.0.0-rc.15'
+      solid-js: '>=2.0.0-rc.15'
+      vite-plus: ^1.0.0
+    peerDependenciesMeta:
+      '@solidjs/router':
+        optional: true
+
+  '@rimelight/ui@0.0.85':
+    resolution: {integrity: sha512-IlvcHLC1gEzzOqizBf5lgAKX0SHCzD1d1CNdFmYYFjr8h04XwqAdC6tzS2zP2+j8/PgHhyQxfVU+J/05gBbFEg==}
     engines: {node: '>=26.10.0'}
     peerDependencies:
       '@solidjs/router': '>=2.0.0-next.40'
@@ -4026,7 +4038,7 @@ snapshots:
     dependencies:
       vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
 
-  '@rimelight/i18n@0.1.13(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/i18n@0.1.14(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
       hono: 5.0.0-rc.1
       vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
@@ -4064,8 +4076,9 @@ snapshots:
       - srvx
       - vite
 
-  '@rimelight/ui@0.0.84(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/ui@0.0.85(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(hono@5.0.0-rc.1)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
+      '@rimelight/i18n': 0.1.14(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@solidjs/web': 2.0.0-rc.18(solid-js@2.0.0-rc.18)
       '@unocss/vite': 66.11.0(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(srvx@1.0.5)
       solid-js: 2.0.0-rc.18
@@ -4080,6 +4093,7 @@ snapshots:
       - '@unocss/postcss'
       - '@unocss/webpack'
       - cac
+      - hono
       - ocache
       - rolldown
       - rollup

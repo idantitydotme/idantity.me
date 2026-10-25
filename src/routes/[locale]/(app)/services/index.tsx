@@ -1,7 +1,7 @@
 import { type Component, For } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { t, getLocaleUrl } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 import { RLPageSection, RLAccordion } from "@rimelight/ui";
 import LighthouseScores from "#components/services/LighthouseScores.tsx";
 import HttpObservatory from "#components/services/HttpObservatory.tsx";
@@ -10,14 +10,14 @@ export const ServicesPage: Component = () => {
   const heroLinks = () => [
     {
       label: t("page.services.cta.discuss.project"),
-      href: getLocaleUrl("/contact"),
+      href: "/contact",
       color: "primary" as const,
       variant: "solid" as const,
       leadingIcon: "i-lucide-mail",
     },
     {
       label: t("page.services.cta.view.work"),
-      href: getLocaleUrl("/projects"),
+      href: "/projects",
       color: "primary" as const,
       variant: "outline" as const,
       trailingIcon: "i-lucide-arrow-right",
@@ -27,7 +27,7 @@ export const ServicesPage: Component = () => {
   const ctaLinks = () => [
     {
       label: t("page.services.cta.final.button"),
-      href: getLocaleUrl("/contact"),
+      href: "/contact",
       color: "primary" as const,
       variant: "solid" as const,
       trailingIcon: "i-lucide-arrow-right",

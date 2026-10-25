@@ -1,7 +1,7 @@
 import { type Component, For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { t, getLocaleUrl } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost, type RLButtonProps } from "@rimelight/ui";
 
 export const HomePage: Component = () => {
@@ -24,7 +24,7 @@ export const HomePage: Component = () => {
   const heroLinks = (): RLButtonProps[] => [
     {
       label: t("playground.hero-link"),
-      href: getLocaleUrl("/blog"),
+      href: "/blog",
       color: "primary",
       variant: "solid",
     },
@@ -33,13 +33,13 @@ export const HomePage: Component = () => {
   const ctaLinks = (): RLButtonProps[] => [
     {
       label: t("playground.cta-start"),
-      href: getLocaleUrl("/blog"),
+      href: "/blog",
       color: "primary",
       variant: "solid",
     },
     {
       label: t("playground.cta-contribute"),
-      href: getLocaleUrl("/"),
+      href: "/",
       color: "primary",
       variant: "outline",
       trailingIcon: "i-lucide-arrow-right",
@@ -89,7 +89,7 @@ export const HomePage: Component = () => {
                       date={postDate}
                       title={title}
                       description={description}
-                      to={getLocaleUrl(`/blog/${post.slug}/`)}
+                      to={`/blog/${post.slug}/`}
                     />
                   );
                 }}
@@ -99,7 +99,7 @@ export const HomePage: Component = () => {
             <Show when={(latestPosts() || []).length > 0}>
               <RLButton
                 label={t("playground.view-all-posts")}
-                href={getLocaleUrl("/blog")}
+                href="/blog"
                 color="primary"
                 variant="link"
                 trailingIcon="i-lucide-arrow-right"

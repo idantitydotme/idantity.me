@@ -1,4 +1,4 @@
-{
+﻿{
   "app": {
     "header": {
       "links": {
@@ -6,19 +6,19 @@
           "label": "Projetos"
         },
         "music": {
-          "label": "Música"
+          "label": "MÃºsica"
         },
         "blog": {
           "label": "Blog"
         },
         "services": {
-          "label": "Serviços"
+          "label": "ServiÃ§os"
         },
         "about": {
           "label": "Sobre"
         },
         "resume": {
-          "label": "Currículo"
+          "label": "CurrÃ­culo"
         }
       }
     }
@@ -26,10 +26,10 @@
   "page": {
     "construction": {
       "meta": {
-        "title": "Em Construção",
-        "description": "Este site está atualmente em construção."
+        "title": "Em ConstruÃ§Ã£o",
+        "description": "Este site estÃ¡ atualmente em construÃ§Ã£o."
       },
-      "title": "ESTE SITE ESTÁ EM CONSTRUÇÃO",
+      "title": "ESTE SITE ESTÃ EM CONSTRUÃ‡ÃƒO",
       "description": {
         "no": {
           "auth": "Por favor, volte mais tarde."
@@ -53,12 +53,12 @@
       }
     },
     "services": {
-      "title": "Serviços",
-      "description": "Desenvolvimento web de alta performance, reforço de segurança, engenharia edge full-stack e auditorias arquiteturais.",
+      "title": "ServiÃ§os",
+      "description": "Desenvolvimento web de alta performance, reforÃ§o de seguranÃ§a, engenharia edge full-stack e auditorias arquiteturais.",
       "hero": {
-        "headline": "Padrões de Engenharia",
-        "title": "Soluções Web Rápidas, Seguras e Resilientes",
-        "description": "Construo aplicações web modernas, backends escaláveis na edge e arquiteturas com foco em performance, acessibilidade e velocidade."
+        "headline": "PadrÃµes de Engenharia",
+        "title": "SoluÃ§Ãµes Web RÃ¡pidas, Seguras e Resilientes",
+        "description": "Construo aplicaÃ§Ãµes web modernas, backends escalÃ¡veis na edge e arquiteturas com foco em performance, acessibilidade e velocidade."
       },
       "cta": {
         "discuss": {
@@ -69,123 +69,123 @@
         },
         "final": {
           "title": "Pronto para dar vida ao seu projeto web?",
-          "desc": "Vamos construir algo rápido, seguro e duradouro. Entre em contato e vamos conversar sobre seu projeto.",
+          "desc": "Vamos construir algo rÃ¡pido, seguro e duradouro. Entre em contato e vamos conversar sobre seu projeto.",
           "button": "Entrar em Contato"
         }
       },
       "benchmarks": {
         "headline": "Qualidade Comprovada",
-        "title": "Performance e Segurança Verificadas",
-        "description": "Cada projeto é desenvolvido para atender a rigorosos padrões web, garantindo métricas perfeitas no Lighthouse e cabeçalhos de segurança HTTP A+ por padrão."
+        "title": "Performance e SeguranÃ§a Verificadas",
+        "description": "Cada projeto Ã© desenvolvido para atender a rigorosos padrÃµes web, garantindo mÃ©tricas perfeitas no Lighthouse e cabeÃ§alhos de seguranÃ§a HTTP A+ por padrÃ£o."
       },
       "services-section": {
         "headline": "O Que Entrego",
-        "title": "Serviços de Engenharia Web",
-        "description": "Serviços de desenvolvimento web de ponta a ponta, da concepção à implantação em produção."
+        "title": "ServiÃ§os de Engenharia Web",
+        "description": "ServiÃ§os de desenvolvimento web de ponta a ponta, da concepÃ§Ã£o Ã  implantaÃ§Ã£o em produÃ§Ã£o."
       },
       "service": {
         "1": {
-          "title": "Aplicações e Sites Web Modernos",
-          "desc": "Aplicações web customizadas e ultrarrápidas projetadas com arquiteturas edge modernas, layouts responsivos e sem excesso de dependências.",
+          "title": "AplicaÃ§Ãµes e Sites Web Modernos",
+          "desc": "AplicaÃ§Ãµes web customizadas e ultrarrÃ¡pidas projetadas com arquiteturas edge modernas, layouts responsivos e sem excesso de dependÃªncias.",
           "feat": {
-            "1": "Carregamento sub-segundo & Core Web Vitals 100/100",
-            "2": "Design acessível (WCAG 2.1 AA) e responsivo mobile-first",
-            "3": "Internacionalização (i18n) completa e otimização para SEO"
+            "1": "Carregamento sub-segundo \u0026 Core Web Vitals 100/100",
+            "2": "Design acessÃ­vel (WCAG 2.1 AA) e responsivo mobile-first",
+            "3": "InternacionalizaÃ§Ã£o (i18n) completa e otimizaÃ§Ã£o para SEO"
           }
         },
         "2": {
-          "title": "Reforço de Segurança e Boas Práticas",
-          "desc": "Integração proativa de postura de segurança para proteger seus sistemas contra vulnerabilidades comuns, vazamento de dados e bots.",
+          "title": "ReforÃ§o de SeguranÃ§a e Boas PrÃ¡ticas",
+          "desc": "IntegraÃ§Ã£o proativa de postura de seguranÃ§a para proteger seus sistemas contra vulnerabilidades comuns, vazamento de dados e bots.",
           "feat": {
-            "1": "Cabeçalhos de segurança HTTP nota A+ no Mozilla Observatory & CSP estrita",
-            "2": "Proteção contra bots e limitação de taxa com Cloudflare Turnstile",
-            "3": "Higienização segura de dados, mitigação de CSRF e criptografia TLS/SSL"
+            "1": "CabeÃ§alhos de seguranÃ§a HTTP nota A+ no Mozilla Observatory \u0026 CSP estrita",
+            "2": "ProteÃ§Ã£o contra bots e limitaÃ§Ã£o de taxa com Cloudflare Turnstile",
+            "3": "HigienizaÃ§Ã£o segura de dados, mitigaÃ§Ã£o de CSRF e criptografia TLS/SSL"
           }
         },
         "3": {
           "title": "Arquitetura Edge e APIs Full-Stack",
-          "desc": "APIs serverless e camadas de dados construídas em runtimes edge leves, garantindo baixa latência global e alta escalabilidade.",
+          "desc": "APIs serverless e camadas de dados construÃ­das em runtimes edge leves, garantindo baixa latÃªncia global e alta escalabilidade.",
           "feat": {
-            "1": "APIs RESTful ultrarrápidas com Hono e Cloudflare Workers",
-            "2": "Bancos de dados serverless escaláveis com PlanetScale e drivers MySQL edge",
-            "3": "Integrações com CMS Headless, autenticação e serviços de terceiros"
+            "1": "APIs RESTful ultrarrÃ¡pidas com Hono e Cloudflare Workers",
+            "2": "Bancos de dados serverless escalÃ¡veis com PlanetScale e drivers MySQL edge",
+            "3": "IntegraÃ§Ãµes com CMS Headless, autenticaÃ§Ã£o e serviÃ§os de terceiros"
           }
         },
         "4": {
-          "title": "Auditoria de Performance e Modernização",
-          "desc": "Avaliação diagnóstica e refatoração sistemática de bases de código web lentas ou legadas para modernizar a stack e reduzir o peso das páginas.",
+          "title": "Auditoria de Performance e ModernizaÃ§Ã£o",
+          "desc": "AvaliaÃ§Ã£o diagnÃ³stica e refatoraÃ§Ã£o sistemÃ¡tica de bases de cÃ³digo web lentas ou legadas para modernizar a stack e reduzir o peso das pÃ¡ginas.",
           "feat": {
-            "1": "Diagnóstico aprofundado de gargalos e análise de código",
-            "2": "Otimização de assets (AVIF/WEBP, subconjuntos de fontes, tree-shaking)",
-            "3": "Migração de frameworks monolíticos pesados para stacks modernas e leves"
+            "1": "DiagnÃ³stico aprofundado de gargalos e anÃ¡lise de cÃ³digo",
+            "2": "OtimizaÃ§Ã£o de assets (AVIF/WEBP, subconjuntos de fontes, tree-shaking)",
+            "3": "MigraÃ§Ã£o de frameworks monolÃ­ticos pesados para stacks modernas e leves"
           }
         }
       },
       "process": {
         "headline": "Fluxo de Trabalho",
         "title": "Como Trabalhamos Juntos",
-        "description": "Um processo de engenharia transparente e estruturado que prioriza clareza, marcos bem definidos e entregas de excelência."
+        "description": "Um processo de engenharia transparente e estruturado que prioriza clareza, marcos bem definidos e entregas de excelÃªncia."
       },
       "step": {
         "1": {
           "num": "01",
-          "title": "Descoberta & Arquitetura",
-          "desc": "Analisamos os objetivos do projeto, requisitos técnicos e definimos modelos de dados, estrutura de UX e a stack edge ideal."
+          "title": "Descoberta \u0026 Arquitetura",
+          "desc": "Analisamos os objetivos do projeto, requisitos tÃ©cnicos e definimos modelos de dados, estrutura de UX e a stack edge ideal."
         },
         "2": {
           "num": "02",
-          "title": "Implementação & Código Limpo",
+          "title": "ImplementaÃ§Ã£o \u0026 CÃ³digo Limpo",
           "desc": "Desenvolvimento iterativo usando TypeScript rigoroso, componentes modulares e visibilidade constante do progresso."
         },
         "3": {
           "num": "03",
-          "title": "Testes & Otimização",
-          "desc": "Testes rigorosos de acessibilidade, visualização responsiva, métricas do Lighthouse e cabeçalhos de segurança."
+          "title": "Testes \u0026 OtimizaÃ§Ã£o",
+          "desc": "Testes rigorosos de acessibilidade, visualizaÃ§Ã£o responsiva, mÃ©tricas do Lighthouse e cabeÃ§alhos de seguranÃ§a."
         },
         "4": {
           "num": "04",
-          "title": "Implantação & Entrega",
-          "desc": "Lançamento global com zero downtime, pipelines automatizados de CI/CD, documentação e transferência completa."
+          "title": "ImplantaÃ§Ã£o \u0026 Entrega",
+          "desc": "LanÃ§amento global com zero downtime, pipelines automatizados de CI/CD, documentaÃ§Ã£o e transferÃªncia completa."
         }
       },
       "tech": {
         "headline": "Tecnologias",
-        "title": "Ferramental Web & Edge Moderno",
-        "description": "Construído sobre tecnologias modernas e consolidadas da web."
+        "title": "Ferramental Web \u0026 Edge Moderno",
+        "description": "ConstruÃ­do sobre tecnologias modernas e consolidadas da web."
       },
       "faq": {
         "headline": "FAQ",
         "title": "Perguntas Frequentes",
-        "description": "Dúvidas comuns sobre escopo de projetos, colaboração e prazos.",
-        "q1": "Em quais tecnologias web você é especializado?",
-        "a1": "Desenvolvo principalmente com tecnologias modernas como Astro, TypeScript, UnoCSS e SolidJS no frontend, com Vite+, Hono, Cloudflare e PlanetScale no backend. Isso garante aplicações rápidas, leves e econômicas.",
-        "q2": "Você pode auditar ou otimizar meu site existente?",
-        "a2": "Sim. Realizo auditorias detalhadas de performance e segurança identificando gargalos, bundles pesados e cabeçalhos ausentes, fornecendo refatoração direta de código para atingir notas máximas.",
-        "q3": "Como funcionam o escopo e a precificação?",
-        "a3": "Os projetos podem ser estruturados por marcos de escopo fechado ou em modelo flexível de sprints/retainer para desenvolvimento contínuo. Todos incluem escopo claro e prazos definidos.",
-        "q4": "Como podemos começar?",
-        "a4": "Basta entrar em contato pelo formulário com um resumo do seu projeto. Retornarei em 24 a 48 horas para alinharmos especificações, cronograma e próximos passos."
+        "description": "DÃºvidas comuns sobre escopo de projetos, colaboraÃ§Ã£o e prazos.",
+        "q1": "Em quais tecnologias web vocÃª Ã© especializado?",
+        "a1": "Desenvolvo principalmente com tecnologias modernas como Astro, TypeScript, UnoCSS e SolidJS no frontend, com Vite+, Hono, Cloudflare e PlanetScale no backend. Isso garante aplicaÃ§Ãµes rÃ¡pidas, leves e econÃ´micas.",
+        "q2": "VocÃª pode auditar ou otimizar meu site existente?",
+        "a2": "Sim. Realizo auditorias detalhadas de performance e seguranÃ§a identificando gargalos, bundles pesados e cabeÃ§alhos ausentes, fornecendo refatoraÃ§Ã£o direta de cÃ³digo para atingir notas mÃ¡ximas.",
+        "q3": "Como funcionam o escopo e a precificaÃ§Ã£o?",
+        "a3": "Os projetos podem ser estruturados por marcos de escopo fechado ou em modelo flexÃ­vel de sprints/retainer para desenvolvimento contÃ­nuo. Todos incluem escopo claro e prazos definidos.",
+        "q4": "Como podemos comeÃ§ar?",
+        "a4": "Basta entrar em contato pelo formulÃ¡rio com um resumo do seu projeto. Retornarei em 24 a 48 horas para alinharmos especificaÃ§Ãµes, cronograma e prÃ³ximos passos."
       }
     },
     "resume": {
       "meta": {
         "title": "idantity.me | me.portfolio",
-        "description": "Meu portfólio profissional e currículo."
+        "description": "Meu portfÃ³lio profissional e currÃ­culo."
       },
       "sidebar": {
         "name": "Daniel Marchi",
         "title": "Desenvolvedor de Software",
         "location": "Curitiba, Brasil",
         "availability": {
-          "available": "Disponível para Contratação",
-          "busy": "Ocupado / Indisponível",
+          "available": "DisponÃ­vel para ContrataÃ§Ã£o",
+          "busy": "Ocupado / IndisponÃ­vel",
           "looking": "Aberto a Oportunidades"
         }
       },
       "about": {
         "heading": "Sobre Mim",
         "gender": {
-          "label": "Gênero",
+          "label": "GÃªnero",
           "value": "Masculino"
         },
         "pronouns": {
@@ -197,7 +197,7 @@
           "value": "Brasileiro"
         },
         "location": {
-          "label": "Localização"
+          "label": "LocalizaÃ§Ã£o"
         },
         "age": {
           "label": "Idade",
@@ -208,19 +208,19 @@
         "heading": "Idiomas"
       },
       "lang": {
-        "portuguese": "Português",
-        "english": "Inglês",
+        "portuguese": "PortuguÃªs",
+        "english": "InglÃªs",
         "spanish": "Espanhol",
         "romanian": "Romeno"
       },
       "level": {
         "fluent": "Fluente",
-        "intermediate": "Intermediário",
-        "basic": "Básico"
+        "intermediate": "IntermediÃ¡rio",
+        "basic": "BÃ¡sico"
       },
       "hero": {
-        "title": "Olá! Eu sou Daniel Marchi",
-        "description": "Desenvolvedor Web e de Jogos especializado em títulos Live-Service de grande porte.",
+        "title": "OlÃ¡! Eu sou Daniel Marchi",
+        "description": "Desenvolvedor Web e de Jogos especializado em tÃ­tulos Live-Service de grande porte.",
         "action": {
           "hire": "Contrate-me",
           "download-cv": "Baixar CV"
@@ -229,24 +229,24 @@
       "skills": {
         "heading": "Habilidades",
         "web-dev": {
-          "desc": "Construção de aplicações web rápidas, responsivas e seguras utilizando arquiteturas modernas, integração de frameworks e técnicas de otimização de performance."
+          "desc": "ConstruÃ§Ã£o de aplicaÃ§Ãµes web rÃ¡pidas, responsivas e seguras utilizando arquiteturas modernas, integraÃ§Ã£o de frameworks e tÃ©cnicas de otimizaÃ§Ã£o de performance."
         },
         "game-dev": {
-          "desc": "Desenvolvimento de experiências virtuais em tempo real, lógica de jogo e gameplay loops em game engines com boas práticas de código limpo e estruturas performáticas."
+          "desc": "Desenvolvimento de experiÃªncias virtuais em tempo real, lÃ³gica de jogo e gameplay loops em game engines com boas prÃ¡ticas de cÃ³digo limpo e estruturas performÃ¡ticas."
         },
         "design": {
-          "desc": "Foco em experiências acessíveis, detalhamento de interface, ciclos suaves de feedback interativo e sistemas modulares visualmente consistentes."
+          "desc": "Foco em experiÃªncias acessÃ­veis, detalhamento de interface, ciclos suaves de feedback interativo e sistemas modulares visualmente consistentes."
         }
       },
       "tech": {
-        "heading": "Tecnologias & Ferramentas",
+        "heading": "Tecnologias \u0026 Ferramentas",
         "cat": {
-          "languages": "Linguagens & Frameworks",
+          "languages": "Linguagens \u0026 Frameworks",
           "environment": "Ambiente de Desenvolvimento",
-          "build": "Build & Empacotamento",
-          "deployment": "Implantação",
+          "build": "Build \u0026 Empacotamento",
+          "deployment": "ImplantaÃ§Ã£o",
           "data": "Gerenciamento de Dados",
-          "auth": "Autenticação",
+          "auth": "AutenticaÃ§Ã£o",
           "project": "Gerenciamento de Projetos"
         },
         "group": {
@@ -257,18 +257,18 @@
       },
       "education": [
         {
-          "degree": "Bacharel em Música",
-          "school": "UFPR - Universidade Federal do Paraná",
+          "degree": "Bacharel em MÃºsica",
+          "school": "UFPR - Universidade Federal do ParanÃ¡",
           "period": "2018 - 2022"
         },
         {
-          "degree": "Tecnólogo em Jogos Digitais",
-          "school": "PUCPR - Pontifícia Universidade Católica do Paraná",
+          "degree": "TecnÃ³logo em Jogos Digitais",
+          "school": "PUCPR - PontifÃ­cia Universidade CatÃ³lica do ParanÃ¡",
           "period": "2020 - 2022"
         }
       ],
       "experience": {
-        "heading": "Experiência"
+        "heading": "ExperiÃªncia"
       },
       "exp": {
         "summary": {
@@ -280,14 +280,14 @@
       },
       "experiences": [
         {
-          "role": "Programador de Jogos Estagiário",
+          "role": "Programador de Jogos EstagiÃ¡rio",
           "company": "Compass.UOL",
           "compan-rl": "https://compass.uol",
           "period": "Fev 2021 - Jun 2021",
-          "location": "Curitiba, Brasil · Remoto",
-          "summary": "Participação em exercícios de treinamento e atividades de resolução de problemas no Unreal Engine e C++.",
+          "location": "Curitiba, Brasil Â· Remoto",
+          "summary": "ParticipaÃ§Ã£o em exercÃ­cios de treinamento e atividades de resoluÃ§Ã£o de problemas no Unreal Engine e C++.",
           "responsibilities": [
-            "Exercícios de treinamento e atividades de resolução de problemas no Unreal Engine."
+            "ExercÃ­cios de treinamento e atividades de resoluÃ§Ã£o de problemas no Unreal Engine."
           ],
           "tags": ["Unreal Engine", "C++", "Blueprints"]
         },
@@ -296,36 +296,43 @@
           "company": "Compass.UOL",
           "compan-rl": "https://compass.uol",
           "period": "Jul 2021 - Out 2021",
-          "location": "Curitiba, Brasil · Remoto",
-          "summary": "Desenvolvimento de experiências virtuais 3D em tempo real para E-Commerce utilizando Unreal Engine e Blueprints.",
+          "location": "Curitiba, Brasil Â· Remoto",
+          "summary": "Desenvolvimento de experiÃªncias virtuais 3D em tempo real para E-Commerce utilizando Unreal Engine e Blueprints.",
           "responsibilities": [
-            "Desenvolvimento de experiências virtuais 3D em tempo real voltadas para E-Commerce no Unreal Engine."
+            "Desenvolvimento de experiÃªncias virtuais 3D em tempo real voltadas para E-Commerce no Unreal Engine."
           ],
           "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce"]
         },
         {
-          "role": "Programador de Jogos Júnior",
+          "role": "Programador de Jogos JÃºnior",
           "company": "Compass.UOL",
           "compan-rl": "https://compass.uol",
           "period": "Nov 2022 - Mar 2023",
-          "location": "Curitiba, Brasil · Remoto",
-          "summary": "Desenvolvimento de experiências virtuais 3D em tempo real e soluções de E-Commerce no Unreal Engine com mockups de interface e documentação técnica.",
+          "location": "Curitiba, Brasil Â· Remoto",
+          "summary": "Desenvolvimento de experiÃªncias virtuais 3D em tempo real e soluÃ§Ãµes de E-Commerce no Unreal Engine com mockups de interface e documentaÃ§Ã£o tÃ©cnica.",
           "responsibilities": [
-            "Desenvolvimento de experiências virtuais 3D em tempo real voltadas para E-Commerce no Unreal Engine.",
-            "Elaboração de mockups de interface de alta fidelidade.",
-            "Documentação de projeto e análises comparativas para stakeholders."
+            "Desenvolvimento de experiÃªncias virtuais 3D em tempo real voltadas para E-Commerce no Unreal Engine.",
+            "ElaboraÃ§Ã£o de mockups de interface de alta fidelidade.",
+            "DocumentaÃ§Ã£o de projeto e anÃ¡lises comparativas para stakeholders."
           ],
-          "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce", "UI Design", "Documentação"]
+          "tags": [
+            "Unreal Engine",
+            "C++",
+            "Blueprints",
+            "E-Commerce",
+            "UI Design",
+            "DocumentaÃ§Ã£o"
+          ]
         },
         {
           "role": "Agente de Atendimento ao Cliente",
           "company": "Concentrix - Copa Energia (SAC)",
           "compan-rl": "https://concentrix.com",
           "period": "Jun 2026 - Set 2026",
-          "location": "Curitiba, Brasil · Presencial",
+          "location": "Curitiba, Brasil Â· Presencial",
           "summary": "Lorem Ipsum",
           "responsibilities": [
-            "Suporte à supervisão e suporte tecnológico geral.",
+            "Suporte Ã  supervisÃ£o e suporte tecnolÃ³gico geral.",
             "Lorem Ipsum",
             "Lorem Ipsum"
           ],
@@ -336,9 +343,9 @@
           "company": "Concentrix - Copa Energia (RA)",
           "compan-rl": "https://concentrix.com",
           "period": "Set 2026 - Atual",
-          "location": "Curitiba, Brasil · Presencial",
+          "location": "Curitiba, Brasil Â· Presencial",
           "summary": "Lorem Ipsum",
-          "responsibilities": ["Lorem Ipsum do início ao fim.", "Lorem Ipsum", "Lorem Ipsum"],
+          "responsibilities": ["Lorem Ipsum do inÃ­cio ao fim.", "Lorem Ipsum", "Lorem Ipsum"],
           "tags": ["Customer Service", "Customer Experience"]
         }
       ],
@@ -449,7 +456,7 @@
       "description": "Entre em contato comigo diretamente.",
       "hero": {
         "title": "Entre em Contato",
-        "description": "Tem uma dúvida, proposta ou quer colaborar? Envie-me uma mensagem diretamente."
+        "description": "Tem uma dÃºvida, proposta ou quer colaborar? Envie-me uma mensagem diretamente."
       },
       "form": {
         "title": "Enviar uma Mensagem",
@@ -457,7 +464,7 @@
           "label": "Seu Nome *"
         },
         "email": {
-          "label": "Endereço de E-mail *"
+          "label": "EndereÃ§o de E-mail *"
         },
         "subject": {
           "label": "Assunto (Opcional)"
@@ -477,31 +484,31 @@
       }
     },
     "music": {
-      "title": "Música",
-      "description": "Sets de DJ, playlists selecionadas, faixas originais e produções musicais.",
+      "title": "MÃºsica",
+      "description": "Sets de DJ, playlists selecionadas, faixas originais e produÃ§Ãµes musicais.",
       "hero": {
-        "headline": "Experiência Sonora",
-        "title": "Música, Sets & Áudio",
-        "description": "Produções originais de bass e música eletrônica, sets de DJ com faixas e capítulos interativos, e seleções selecionadas no Spotify."
+        "headline": "ExperiÃªncia Sonora",
+        "title": "MÃºsica, Sets \u0026 Ãudio",
+        "description": "ProduÃ§Ãµes originais de bass e mÃºsica eletrÃ´nica, sets de DJ com faixas e capÃ­tulos interativos, e seleÃ§Ãµes selecionadas no Spotify."
       },
       "tab": {
-        "all": "Todo o Áudio",
-        "mixes": "Sets & Mixes",
-        "productions": "Originais & Faixas",
+        "all": "Todo o Ãudio",
+        "mixes": "Sets \u0026 Mixes",
+        "productions": "Originais \u0026 Faixas",
         "playlists": "Playlists Selecionadas"
       },
       "section": {
         "featured": {
-          "title": "Produção em Destaque",
-          "desc": "Produção de alta energia em música eletrônica e bass."
+          "title": "ProduÃ§Ã£o em Destaque",
+          "desc": "ProduÃ§Ã£o de alta energia em mÃºsica eletrÃ´nica e bass."
         },
         "mixes": {
-          "title": "Sets & Mixes em Destaque",
-          "desc": "Sets completos com marcações interativas de capítulos."
+          "title": "Sets \u0026 Mixes em Destaque",
+          "desc": "Sets completos com marcaÃ§Ãµes interativas de capÃ­tulos."
         },
         "playlists": {
           "title": "Playlists Selecionadas",
-          "desc": "Descubra paisagens sonoras selecionadas de bass, eletrônica melódica e ambient."
+          "desc": "Descubra paisagens sonoras selecionadas de bass, eletrÃ´nica melÃ³dica e ambient."
         }
       },
       "player": {
@@ -509,8 +516,8 @@
         "pause": "Pausar",
         "mute": "Mutar",
         "unmute": "Desmutar",
-        "download": "Baixar Áudio",
-        "tracklist": "Capítulos & Faixas",
+        "download": "Baixar Ãudio",
+        "tracklist": "CapÃ­tulos \u0026 Faixas",
         "speed": "Velocidade"
       },
       "spotify": {
@@ -524,32 +531,32 @@
             "title": "Bishu - Ikari",
             "artist": "Bishu / idantity rework",
             "genre": "Electronic / Bass",
-            "category": "Produção"
+            "category": "ProduÃ§Ã£o"
           }
         },
         "cue": {
-          "intro": "Intro & Construção de Synths",
+          "intro": "Intro \u0026 ConstruÃ§Ã£o de Synths",
           "drop1": "Primeiro Drop (Bass Pesado)",
-          "break": "Breakdown Melódico",
-          "drop2": "Segundo Drop (Outro Polirrítmico)"
+          "break": "Breakdown MelÃ³dico",
+          "drop2": "Segundo Drop (Outro PolirrÃ­tmico)"
         }
       },
       "playlists": {
         "pl1": {
-          "title": "Bass & Pulso Eletrônico",
+          "title": "Bass \u0026 Pulso EletrÃ´nico",
           "desc": "Linhas de baixo pesadas, ritmos de trap e sound design eletrizante para foco e energia."
         },
         "pl2": {
-          "title": "Ondas Melódicas & Future",
-          "desc": "Acordes melódicos envolventes, sintetizadores wave e vocais emotivos."
+          "title": "Ondas MelÃ³dicas \u0026 Future",
+          "desc": "Acordes melÃ³dicos envolventes, sintetizadores wave e vocais emotivos."
         },
         "pl3": {
-          "title": "Late Night & Programação",
-          "desc": "Deep house, downtempo e batidas atmosféricas criadas para trabalho focado."
+          "title": "Late Night \u0026 ProgramaÃ§Ã£o",
+          "desc": "Deep house, downtempo e batidas atmosfÃ©ricas criadas para trabalho focado."
         },
         "pl4": {
-          "title": "Energia Máxima & Pista",
-          "desc": "Batidas aceleradas de pista e faixas eletrônicas prontas para festivais."
+          "title": "Energia MÃ¡xima \u0026 Pista",
+          "desc": "Batidas aceleradas de pista e faixas eletrÃ´nicas prontas para festivais."
         }
       }
     }
@@ -561,47 +568,40 @@
       "development-log": "Registro de Desenvolvimento",
       "other": "Outros"
     },
-    "last-updated-on": "Última atualização em"
+    "last-updated-on": "Ãšltima atualizaÃ§Ã£o em"
   },
   "legal": {
     "title": "Legal",
     "heading": "Documentos Legais",
-    "last-updated": "Última atualização:",
-    "last-updated-on": "Última atualização em"
+    "last-updated": "Ãšltima atualizaÃ§Ã£o:",
+    "last-updated-on": "Ãšltima atualizaÃ§Ã£o em"
   },
   "projects": {
     "title": "Projetos",
-    "description": "Projetos pessoais e criações.",
+    "description": "Projetos pessoais e criaÃ§Ãµes.",
     "categories": {
       "website": "Website",
       "app": "Aplicativo",
       "other": "Outros"
     },
-    "last-updated-on": "Última atualização em"
+    "last-updated-on": "Ãšltima atualizaÃ§Ã£o em"
   },
   "cms": {
     "nav": {
       "dashboard": "Painel",
       "templates": "Modelos",
-      "pages": "Páginas",
+      "pages": "PÃ¡ginas",
       "categories": "Categorias",
       "tags": "Tags",
       "bylines": "Autores",
-      "versions": "Versões",
-      "settings": "Configurações"
+      "versions": "VersÃµes",
+      "settings": "ConfiguraÃ§Ãµes"
     },
     "sidebar": {
       "app": {
         "name": "CMS Admin"
       }
     }
-  },
-  "errors": {
-    "not-found": "Página Não Encontrada",
-    "not-found-desc": "A página que você está procurando não existe.",
-    "go-home": "Ir para o Início",
-    "server-error": "Erro no Servidor",
-    "unknown-error": "Erro desconhecido"
   },
   "playground": {
     "hero-title": "idantity.me",
@@ -612,9 +612,9 @@
     "cta-desc": "",
     "cta-start": "Ler Blog",
     "cta-contribute": "Saiba Mais",
-    "posts-title": "Últimas Publicações",
-    "posts-desc": "Confira as atualizações recentes do blog.",
-    "view-all-posts": "Ver Todas as Publicações"
+    "posts-title": "Ãšltimas PublicaÃ§Ãµes",
+    "posts-desc": "Confira as atualizaÃ§Ãµes recentes do blog.",
+    "view-all-posts": "Ver Todas as PublicaÃ§Ãµes"
   },
   "branding": {
     "title": "Identidade Visual",

@@ -1,7 +1,7 @@
 import { type Component, For, createSignal, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { t, getLocaleUrl } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 import { RLPageSection, RLTabs, RLGrid, RLPost } from "@rimelight/ui";
 
 function getPageTitle(title: unknown): string {
@@ -81,7 +81,7 @@ export const BlogIndexPage: Component = () => {
                     date={postDate}
                     title={titleVal}
                     description={content?.properties?.description}
-                    to={getLocaleUrl(`/blog/${page.slug}/`)}
+                    to={`/blog/${page.slug}/`}
                     badge={
                       categoryMessages()[category as keyof ReturnType<typeof categoryMessages>] ??
                       category

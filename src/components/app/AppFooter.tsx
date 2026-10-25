@@ -9,7 +9,7 @@ import {
   type RLButtonProps,
   type RLLinkGroupProps,
 } from "@rimelight/ui";
-import { t, getLocaleUrl } from "@rimelight/i18n";
+import { t } from "@rimelight/i18n";
 
 export const AppFooter: Component = () => {
   const columns = (): RLLinkGroupProps[] => [
@@ -18,7 +18,7 @@ export const AppFooter: Component = () => {
       links: [
         {
           label: t("app.footer.links.resources.branding"),
-          href: getLocaleUrl("/branding"),
+          href: "/branding",
         },
       ],
     },
@@ -27,11 +27,11 @@ export const AppFooter: Component = () => {
       links: [
         {
           label: t("app.footer.links.legal.privacy-policy"),
-          href: getLocaleUrl("/legal/privacy-policy"),
+          href: "/legal/privacy-policy",
         },
         {
           label: t("app.footer.links.legal.other-documents"),
-          href: getLocaleUrl("/legal"),
+          href: "/legal",
         },
       ],
     },
@@ -60,11 +60,6 @@ export const AppFooter: Component = () => {
     },
   ];
 
-  const targetLanguages = () => [
-    { code: "en", label: "English", href: getLocaleUrl("/en") },
-    { code: "pt", label: "Português", href: getLocaleUrl("/pt") },
-  ];
-
   return (
     <RLFooter
       contain={false}
@@ -88,7 +83,7 @@ export const AppFooter: Component = () => {
         <div class="flex flex-col justify-between h-full gap-sm lg:items-end">
           <div class="flex flex-col gap-sm items-center lg:items-end">
             <RLThemeSelector class="min-w-44" />
-            <RLLocaleSelector locales={targetLanguages()} class="min-w-44" />
+            <RLLocaleSelector class="min-w-44" />
           </div>
           <div class="flex flex-row flex-wrap gap-sm justify-center lg:justify-end items-center lg:items-end">
             <For each={socials()}>
