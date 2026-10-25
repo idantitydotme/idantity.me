@@ -179,23 +179,23 @@ importers:
         specifier: 2.0.0-beta.v.4
         version: 2.0.0-beta.v.4(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(workerd@1.20261019.1)
       '@rimelight/auth':
-        specifier: 0.0.29
-        version: 0.0.29(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.0.30
+        version: 0.0.30(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/cms':
-        specifier: 0.0.39
-        version: 0.0.39(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.0.40
+        version: 0.0.40(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/i18n':
-        specifier: 0.1.12
-        version: 0.1.12(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.1.13
+        version: 0.1.13(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/security':
-        specifier: 0.0.44
-        version: 0.0.44(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.0.45
+        version: 0.0.45(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/seo':
-        specifier: 0.0.34
-        version: 0.0.34(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.0.35
+        version: 0.0.35(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/ui':
-        specifier: 0.0.83
-        version: 0.0.83(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.0.84
+        version: 0.0.84(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@solidjs/router':
         specifier: 2.0.0-next.42
         version: 2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18)
@@ -225,8 +225,8 @@ importers:
         specifier: 1.2.147
         version: 1.2.147
       '@rimelight/config':
-        specifier: 0.0.40
-        version: 0.0.40(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+        specifier: 0.0.41
+        version: 0.0.41(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       cf:
         specifier: 1.0.0-beta.21
         version: 1.0.0-beta.21
@@ -1352,15 +1352,15 @@ packages:
   '@quansync/fs@1.1.0':
     resolution: {integrity: sha512-qAPG/t3HqML1TlN7sY/pTbEjzFVAKsMjNNMGheyDosro+kT4iw2KCUoHcVdmliwWjorm4elZbgNQyU2eD97eDg==}
 
-  '@rimelight/auth@0.0.29':
-    resolution: {integrity: sha512-pbd21ak5+e3Rii1M5QNpgnxNzAF0lB6lg112aMG59FaPHX1dhXSAlHqs9Ijd4tpd0vlQ4Bj13nTTLUv8PBcl8Q==}
+  '@rimelight/auth@0.0.30':
+    resolution: {integrity: sha512-BiyQB1XUrE4HXT/dan4yENPlr43bYxk5ooO8qBMAIv8Q5gmgo0scsHszSMdzxxlwQF3IM59QEy8hBDRSw8CRwA==}
     engines: {node: '>=26.10.0'}
     peerDependencies:
       hono: ^5.0.0-rc.1
       vite-plus: ^1.0.0
 
-  '@rimelight/cms@0.0.39':
-    resolution: {integrity: sha512-8gBLcWRG/0CenrtV+UiW/8yCMQoYLygpjq+IsuKTPAG+appMLrCwtZ5UIA2lJhLpl4oD4bkGuCPbhWtxgEm52A==}
+  '@rimelight/cms@0.0.40':
+    resolution: {integrity: sha512-JhT/B8R/D3kp1BAKq7ddHmnRS7XcnpVEUz1EzF4WDuFq/xVFrG5Dr+SNGnCigz6Ykb1D6f2UWGE2Nnrq40/91g==}
     engines: {node: '>=26.10.0'}
     hasBin: true
     peerDependencies:
@@ -1368,37 +1368,37 @@ packages:
       solid-js: '>=2.0.0-rc.15'
       vite-plus: ^1.0.0
 
-  '@rimelight/config@0.0.40':
-    resolution: {integrity: sha512-uqPlQMZIoqX0GbL6zhfZehVvitAc1Tr1qiDfkgdWaGLiiXCOftDHlhFmAyfcLAF099z3AFSFOCrAJowATnXHbw==}
+  '@rimelight/config@0.0.41':
+    resolution: {integrity: sha512-tzO8ePxxLFV/sQ+ELFCC3/cHwKAhO5WImVUQCc8fk/fiIKeIlpYNNRMRU/slEHiUB9x8rZqSALITjw5HEZ7upg==}
     engines: {node: '>=26.10.0'}
     peerDependencies:
       vite-plus: ^1.0.0
 
-  '@rimelight/i18n@0.1.12':
-    resolution: {integrity: sha512-gd3Ip5UZdFn/PJBqhCKuhJyEuiR9kg1ftSKSa0h7ZDIaBloz1YzOHbXYZvuZQcYCUf207SOU8P33n2+im42/9w==}
+  '@rimelight/i18n@0.1.13':
+    resolution: {integrity: sha512-RhkhJXAkXZSgZylSz61z/hEKUOtmOt2XGU+pZz/jzBjGimtlCZpj9LlBo0WmhQV2QNUI/htj8HLyqKdQpX8cfg==}
     engines: {node: '>=26.10.0'}
     hasBin: true
     peerDependencies:
       hono: ^5.0.0-rc.1
       vite-plus: ^1.0.0
 
-  '@rimelight/security@0.0.44':
-    resolution: {integrity: sha512-gl0t3UzkNF72X7ffUK+0Qt+MkhhYh0XPNZBNbB85CdtzoJuJs0nWHdyxqq1Hf3snZ1qKzgJ+xuOgXeQ6f1NCmQ==}
+  '@rimelight/security@0.0.45':
+    resolution: {integrity: sha512-J5468T1KMCbRB8WdxIo/vBd+IY8x2pw4rkvMmxQYBKanVGzojhPyhiVfbK6oD80GCyioyeboQPXAdxDlFHsn9g==}
     engines: {node: '>=26.10.0'}
     peerDependencies:
       hono: ^5.0.0-rc.1
       vite-plus: ^1.0.0
 
-  '@rimelight/seo@0.0.34':
-    resolution: {integrity: sha512-XZ/rXuJl2jxxSAKhHdcY0Bk83J17nc07m2Hec196rKOD8bErvAnH3C2ji96YTN4q7oitxDIJVTOeIgCQ+Xt/6A==}
+  '@rimelight/seo@0.0.35':
+    resolution: {integrity: sha512-jVHMMUGRbzmu3uk4c3xlFfAVC5TowVsDrPf2j1NCN0V+Dy5QEL3yL0r0rH/+jjcz4mkPIL/AM42aDA9ejTvKWw==}
     engines: {node: '>=26.10.0'}
     peerDependencies:
       '@solidjs/web': '>=2.0.0-rc.15'
       hono: ^5.0.0-rc.1
       vite-plus: ^1.0.0
 
-  '@rimelight/ui@0.0.83':
-    resolution: {integrity: sha512-JWCWQ09fdHORW5Qqd/8toBzCkGz7ZwUmoijhNYia7CYTWj9CWc9RISXzNnjgF6O2EsUQS1wxT2brChchN2bxbw==}
+  '@rimelight/ui@0.0.84':
+    resolution: {integrity: sha512-doR+WpovOzTpBIR1R99fLAk/sOaTfI0EwtPAd8H/QlissXc7UqnyWTtiQ7cjbYp/vco/Gy/2pkKTxg5I6qnugg==}
     engines: {node: '>=26.10.0'}
     peerDependencies:
       '@solidjs/router': '>=2.0.0-next.40'
@@ -3946,16 +3946,16 @@ snapshots:
     dependencies:
       quansync: 1.0.0
 
-  '@rimelight/auth@0.0.29(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/auth@0.0.30(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
       hono: 5.0.0-rc.1
       vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
 
-  '@rimelight/cms@0.0.39(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/cms@0.0.40(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
       '@neondatabase/serverless': 1.2.0
-      '@rimelight/auth': 0.0.29(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
-      '@rimelight/ui': 0.0.83(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.15(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+      '@rimelight/auth': 0.0.30(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
+      '@rimelight/ui': 0.0.84(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.15(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@solidjs/router': 2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18)
       '@solidjs/web': 2.0.0-rc.15(solid-js@2.0.0-rc.18)
       drizzle-orm: 1.0.0-rc.4(@neondatabase/serverless@1.2.0)(zod@4.6.7)
@@ -4022,30 +4022,28 @@ snapshots:
       - valibot
       - vite
 
-  '@rimelight/config@0.0.40(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/config@0.0.41(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
       vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
 
-  '@rimelight/i18n@0.1.12(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
-    dependencies:
-      hono: 5.0.0-rc.1
-      vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
-
-  '@rimelight/security@0.0.44(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/i18n@0.1.13(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
       hono: 5.0.0-rc.1
       vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
 
-  '@rimelight/seo@0.0.34(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/security@0.0.45(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+    dependencies:
+      hono: 5.0.0-rc.1
+      vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
+
+  '@rimelight/seo@0.0.35(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(hono@5.0.0-rc.1)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
       '@solidjs/web': 2.0.0-rc.18(solid-js@2.0.0-rc.18)
       hono: 5.0.0-rc.1
       vite-plus: 1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
 
-  '@rimelight/ui@0.0.83(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.15(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/ui@0.0.84(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.15(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
-      '@iconify-json/logos': 1.2.17
-      '@iconify-json/lucide': 1.2.147
       '@solidjs/web': 2.0.0-rc.15(solid-js@2.0.0-rc.18)
       '@unocss/vite': 66.11.0(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(srvx@1.0.5)
       solid-js: 2.0.0-rc.18
@@ -4066,10 +4064,8 @@ snapshots:
       - srvx
       - vite
 
-  '@rimelight/ui@0.0.83(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
+  '@rimelight/ui@0.0.84(@oxc-project/types@0.155.0)(@solidjs/router@2.0.0-next.42(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(filesystem-routing@0.4.1(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.18))(@solidjs/web@2.0.0-rc.18(solid-js@2.0.0-rc.18))(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.12)(solid-js@2.0.0-rc.18)(srvx@1.0.5)(vite-plus@1.4.0(@vitest/ui@5.0.5)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))':
     dependencies:
-      '@iconify-json/logos': 1.2.17
-      '@iconify-json/lucide': 1.2.147
       '@solidjs/web': 2.0.0-rc.18(solid-js@2.0.0-rc.18)
       '@unocss/vite': 66.11.0(@voidzero-dev/vite-plus-core@1.4.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(srvx@1.0.5)
       solid-js: 2.0.0-rc.18
