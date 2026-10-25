@@ -559,6 +559,13 @@
           "desc": "Batidas aceleradas de pista e faixas eletrÃ´nicas prontas para festivais."
         }
       }
+    },
+    "legal": {
+      "meta": {
+        "title": "Documentos legais",
+        "description": "Políticas e acordos."
+      },
+      "empty": "Ainda não há documentos legais."
     }
   },
   "blog": {

@@ -600,6 +600,13 @@
           "desc": "Fast-paced dance floor bangers and festival-ready electronic tracks."
         }
       }
+    },
+    "legal": {
+      "meta": {
+        "title": "Legal Documents",
+        "description": "Policies and agreements."
+      },
+      "empty": "No legal documents yet."
     }
   },
   "blog": {

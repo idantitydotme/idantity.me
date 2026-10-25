@@ -46,7 +46,6 @@ export default defineConfig({
         colors: { themeColor: "#ffffff", backgroundColor: "#ffffff" },
       },
       titleTemplate: "%s | idantity",
-      locales: { en: "en-US", pt: "pt-BR" },
       og: {
         routes: {
           "*/blog/*": "./src/components/og/BlogOgCard.tsx",

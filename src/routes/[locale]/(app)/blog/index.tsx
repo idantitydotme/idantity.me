@@ -1,50 +1,40 @@
-import { type Component, For, createSignal, createMemo } from "solid-js";
+import { type Component, For, Show, createMemo } from "solid-js";
+import { useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { t } from "@rimelight/i18n";
-import { RLPageSection, RLTabs, RLGrid, RLPost } from "@rimelight/ui";
+import { t, getCurrentLocale } from "@rimelight/i18n";
+import { RLPageSection, RLGrid } from "@rimelight/ui";
+import { content, type PublicEntry, type PublicTerm } from "@rimelight/cms/solid";
+import { BlogPostCard } from "#components/blog/BlogPostCard";
 
-function getPageTitle(title: unknown): string {
-  return t.localize(title);
-}
-
+/**
+ * Published blog posts, newest first, filterable by category. Categories are CMS taxonomy
+ * terms (managed in the dashboard under Taxonomies → category, or via MCP) — nothing is
+ * hardcoded here. The active filter lives in the URL (`?category=engineering`) so it's linkable.
+ */
 export const BlogIndexPage: Component = () => {
-  const [activeTab, setActiveTab] = createSignal("all");
+  const [search, setSearch] = useSearchParams<{ category?: string }>();
+  const active = () => search.category || "";
+  const locale = () => getCurrentLocale();
+  const label = (l: PublicTerm["label"]) => (typeof l === "string" ? l : t.localize(l));
 
-  const blogPages = createMemo<any[]>(
-    async () => {
-      try {
-        const res = await fetch("/api/cms/pages");
-        if (!res.ok) return [];
-        const data = (await res.json()) as any;
-        const pagesList = (data.pages || []) as any[];
-        return pagesList.filter((page: any) => page.type === "blog");
-      } catch {
-        return [];
-      }
-    },
+  /** Only categories that have published posts. */
+  const categories = createMemo<PublicTerm[]>(
+    async () => (await content.terms("category")).filter((c) => c.count > 0),
     { loadingValue: [] },
   );
 
-  const categoryMessages = () => ({
-    "development-log": t("blog.categories.development-log"),
-    other: t("blog.categories.other"),
-  });
-
-  const tabsItems = () => [
-    { label: "All", value: "all" },
-    { label: categoryMessages()["development-log"] || "Dev Log", value: "development-log" },
-    { label: categoryMessages()["other"] || "Other", value: "other" },
-  ];
-
-  const filteredPosts = () => {
-    const all = blogPages() || [];
-    if (activeTab() === "all") return all;
-    return all.filter((page: any) => {
-      const content = typeof page.content === "string" ? JSON.parse(page.content) : page.content;
-      return (content?.properties?.category || "other") === activeTab();
-    });
-  };
+  const posts = createMemo<PublicEntry[]>(
+    async () =>
+      (
+        await content.entries("blog", {
+          limit: 50,
+          locale: locale(),
+          ...(active() ? { taxonomy: "category", term: active() } : {}),
+        })
+      ).entries,
+    { loadingValue: [] },
+  );
 
   useHead(() =>
     createSeoHead({
@@ -53,48 +43,43 @@ export const BlogIndexPage: Component = () => {
     }),
   );
 
-  return (
-    <>
-      <RLPageSection title={t("blog.title")} description={t("blog.description")}>
-        <RLTabs
-          items={tabsItems()}
-          variant="underline"
-          value={activeTab()}
-          onChange={(val: string) => setActiveTab(val)}
-        />
+  const chip = (slug: string, text: string, count?: number) => (
+    <button
+      type="button"
+      aria-pressed={active() === slug ? "true" : "false"}
+      class={`rounded-full border px-4 py-1.5 text-sm transition-colors ${
+        active() === slug
+          ? "border-primary-500 bg-primary-500/15 text-primary-300"
+          : "border-neutral-800 text-neutral-400 hover:border-neutral-600 hover:text-neutral-200"
+      }`}
+      onClick={() => setSearch({ category: slug || undefined })}
+    >
+      {text}
+      <Show when={count !== undefined}>
+        <span class="ml-1.5 text-xs opacity-60">{count}</span>
+      </Show>
+    </button>
+  );
 
-        <div class="mt-6">
-          <RLGrid cols={4}>
-            <For each={filteredPosts()}>
-              {(page, index) => {
-                const content =
-                  typeof page.content === "string" ? JSON.parse(page.content) : page.content;
-                const titleVal = getPageTitle(page.title);
-                const category = content?.properties?.category || "other";
-                const postDate = page.postedAt || page.createdAt;
-                return (
-                  <RLPost
-                    variant="ghost"
-                    orientation={index() === 0 ? "horizontal" : "vertical"}
-                    class={index() === 0 ? "col-span-full mb-6" : ""}
-                    image={content?.properties?.heroImage}
-                    date={postDate}
-                    title={titleVal}
-                    description={content?.properties?.description}
-                    to={`/blog/${page.slug}/`}
-                    badge={
-                      categoryMessages()[category as keyof ReturnType<typeof categoryMessages>] ??
-                      category
-                    }
-                    badgeColor={category === "development-log" ? "info" : "primary"}
-                  />
-                );
-              }}
-            </For>
-          </RLGrid>
-        </div>
-      </RLPageSection>
-    </>
+  return (
+    <RLPageSection title={t("blog.title")} description={t("blog.description")} class="py-16">
+      <div class="max-w-7xl mx-auto w-full px-4 mt-8">
+        <Show when={categories().length > 0}>
+          <nav aria-label="Categories" class="mb-10 flex flex-wrap justify-center gap-2">
+            {chip("", "All")}
+            <For each={categories()}>{(c) => chip(c.slug, label(c.label), c.count)}</For>
+          </nav>
+        </Show>
+
+        <RLGrid cols={3}>
+          <For each={posts() || []}>{(post) => <BlogPostCard post={post} />}</For>
+        </RLGrid>
+
+        <Show when={!posts() || posts()!.length === 0}>
+          <p class="text-center text-neutral-500 py-12">No blog posts available yet.</p>
+        </Show>
+      </div>
+    </RLPageSection>
   );
 };
 

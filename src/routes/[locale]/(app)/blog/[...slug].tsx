@@ -1,99 +1,60 @@
 import { type Component, Show, createMemo } from "solid-js";
-import { useParams } from "@solidjs/router";
+import { useParams, useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { PageRenderer } from "@rimelight/cms/solid";
+import { PageRenderer, content, type PublicEntry } from "@rimelight/cms/solid";
+import { RLDate } from "@rimelight/ui";
 import { t, getCurrentLocale } from "@rimelight/i18n";
 
+/**
+ * A blog post, read from the CMS delivery API (`/api/content/collections/blog/:slug`). Mentions
+ * arrive already resolved (colour + link), so PageRenderer needs no extra setup. `?preview=`
+ * (from the dashboard's "Open draft preview") shows the draft instead of the published version.
+ */
 export const BlogPostPage: Component = () => {
-  const params = useParams<{ locale: string; slug: string }>();
+  const params = useParams<{ locale: string; slug?: string }>();
+  const [search] = useSearchParams<{ preview?: string }>();
+  const activeLocale = () => getCurrentLocale();
 
-  const pageData = createMemo<any>(
+  const post = createMemo<PublicEntry | null>(
     async () => {
-      const slug = params["slug"];
+      const slug = params.slug?.replace(/\/+$/, "");
       if (!slug) return null;
-      try {
-        const res = await fetch("/api/cms/pages");
-        if (!res.ok) return null;
-        const data = (await res.json()) as any;
-        const pagesList = (data.pages || []) as any[];
-        const found = pagesList.find((p) => p.slug === slug && p.type === "blog");
-        return found || null;
-      } catch {
-        return null;
-      }
+      return content.entry("blog", slug, search.preview);
     },
     { loadingValue: null },
   );
 
-  const title = () => (pageData() ? t.localize(pageData()!.title) || "Blog Post" : "Blog Post");
+  const title = () => {
+    const p = post();
+    return p ? t.localize(p.title) || "Blog Post" : "Blog Post";
+  };
   const description = () => {
-    const p = pageData();
-    if (!p) return "";
-    const content = typeof p.content === "string" ? JSON.parse(p.content) : p.content || {};
-    return t.localize(p.description) || content.properties?.description || "";
+    const p = post();
+    return p ? t.localize(p.description ?? {}) || p.properties?.["excerpt"] || "" : "";
   };
 
-  const content = () => {
-    const p = pageData();
-    if (!p) return {};
-    return typeof p.content === "string" ? JSON.parse(p.content) : p.content || {};
-  };
-
-  const heroImage = () => content().properties?.heroImage || (pageData() as any)?.banner?.src;
-  const category = () => content().properties?.category;
-  const postDate = () => pageData()?.postedAt || pageData()?.createdAt;
-
-  useHead(() =>
-    createSeoHead({
-      title: title(),
-      description: description(),
-    }),
-  );
+  useHead(() => createSeoHead({ title: title(), description: description() }));
 
   return (
-    <>
-      <div class="max-w-4xl mx-auto px-4 py-8 sm:py-12">
-        <Show when={pageData()} fallback={<div class="p-8 text-center text-muted">Loading...</div>}>
-          <Show when={heroImage()}>
-            <div class="mb-8 rounded-2xl overflow-hidden border border-neutral-200 dark:border-neutral-800 shadow-sm aspect-[21/9]">
-              <img src={heroImage()} alt={title()} class="w-full h-full object-cover" />
-            </div>
-          </Show>
+    <Show
+      when={post()}
+      fallback={<div class="p-16 text-center text-neutral-400">Loading post...</div>}
+    >
+      <article class="max-w-4xl mx-auto px-4 py-16">
+        <header class="mb-12">
+          <div class="text-sm text-primary-400 mb-2">
+            <RLDate date={post()?.publishedAt || post()?.updatedAt || new Date()} />
+          </div>
+          <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+            {title()}
+          </h1>
+          <p class="text-xl text-neutral-400 leading-relaxed">{description()}</p>
+        </header>
 
-          <header class="border-b border-neutral-200 dark:border-neutral-800 pb-8 mb-8">
-            <Show when={category()}>
-              <span class="inline-block px-2.5 py-1 text-xs font-semibold rounded-full bg-info-500/10 text-info-500 mb-3 uppercase tracking-wider">
-                {category()}
-              </span>
-            </Show>
-            <h1 class="text-3xl sm:text-5xl font-extrabold text-neutral-900 dark:text-white tracking-tight leading-tight">
-              {title()}
-            </h1>
-            <Show when={description()}>
-              <p class="text-lg sm:text-xl text-neutral-500 dark:text-neutral-400 mt-4 leading-relaxed">
-                {description()}
-              </p>
-            </Show>
-            <Show when={postDate()}>
-              <div class="flex items-center gap-4 text-xs text-neutral-500 mt-6">
-                <time datetime={new Date(postDate()!).toISOString()}>
-                  {new Date(postDate()!).toLocaleDateString(getCurrentLocale(), {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </time>
-              </div>
-            </Show>
-          </header>
-
-          <article class="cms-article">
-            <PageRenderer blocks={content().blocks || []} locale={getCurrentLocale()} />
-          </article>
-        </Show>
-      </div>
-    </>
+        <PageRenderer blocks={post()?.blocks ?? []} locale={activeLocale()} />
+      </article>
+    </Show>
   );
 };
 

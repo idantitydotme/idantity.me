@@ -1,23 +1,14 @@
 import { type Component, For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { t } from "@rimelight/i18n";
-import { RLPageSection, RLLogo, RLButton, RLGrid, RLPost, type RLButtonProps } from "@rimelight/ui";
+import { t, getCurrentLocale } from "@rimelight/i18n";
+import { RLPageSection, RLLogo, RLButton, RLGrid, type RLButtonProps } from "@rimelight/ui";
+import { content, type PublicEntry } from "@rimelight/cms/solid";
+import { BlogPostCard } from "#components/blog/BlogPostCard";
 
 export const HomePage: Component = () => {
-  const latestPosts = createMemo<any[]>(
-    async () => {
-      try {
-        const res = await fetch("/api/cms/pages");
-        if (!res.ok) return [];
-        const data = (await res.json()) as any;
-        const pagesList = (data.pages || []) as any[];
-
-        return pagesList.filter((page: any) => page.type === "blog").slice(0, 3);
-      } catch {
-        return [];
-      }
-    },
+  const latestPosts = createMemo<PublicEntry[]>(
+    async () => (await content.entries("blog", { limit: 3, locale: getCurrentLocale() })).entries,
     { loadingValue: [] },
   );
 
@@ -72,28 +63,7 @@ export const HomePage: Component = () => {
         body={
           <div class="flex flex-col gap-xl">
             <RLGrid>
-              <For each={latestPosts() || []}>
-                {(post) => {
-                  const content =
-                    typeof post.content === "string"
-                      ? JSON.parse(post.content)
-                      : post.content || {};
-                  const title = t.localize(post.title);
-                  const description = content.properties?.description || "";
-                  const heroImage = content.properties?.heroImage;
-                  const postDate = post.postedAt || post.createdAt;
-                  return (
-                    <RLPost
-                      variant="ghost"
-                      image={heroImage}
-                      date={postDate}
-                      title={title}
-                      description={description}
-                      to={`/blog/${post.slug}/`}
-                    />
-                  );
-                }}
-              </For>
+              <For each={latestPosts() || []}>{(post) => <BlogPostCard post={post} />}</For>
             </RLGrid>
 
             <Show when={(latestPosts() || []).length > 0}>

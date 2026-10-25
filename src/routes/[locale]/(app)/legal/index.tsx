@@ -1,18 +1,20 @@
-import { type Component, For, createMemo } from "solid-js";
+import { type Component, For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
-import { t, getLocaleUrl } from "@rimelight/i18n";
-import { RLContainer } from "@rimelight/ui";
+import { t, getLocaleUrl, getCurrentLocale } from "@rimelight/i18n";
+import { RLPageSection, RLGrid, RLPost } from "@rimelight/ui";
+import { content } from "@rimelight/cms/solid";
 
+/** Legal documents from the CMS `legal` collection, for the current locale. */
 export const LegalIndexPage: Component = () => {
-  const legalPages = createMemo<any[]>(
+  const activeLocale = () => getCurrentLocale();
+
+  const legalPages = createMemo(
     async () => {
       try {
-        const res = await fetch("/api/cms/pages");
-        if (!res.ok) return [];
-        const data = (await res.json()) as any;
-        const pagesList = (data.pages || []) as any[];
-        return pagesList.filter((page: any) => page.type === "legal");
+        const loc = activeLocale();
+        const { entries } = await content.entries("legal");
+        return entries.filter((e) => (e.properties["locale"] ?? "en") === loc);
       } catch {
         return [];
       }
@@ -22,42 +24,42 @@ export const LegalIndexPage: Component = () => {
 
   useHead(() =>
     createSeoHead({
-      title: t("legal.title"),
-      description: "Legal documents and policies",
+      title: t("page.legal.meta.title"),
+      description: t("page.legal.meta.description"),
     }),
   );
 
   return (
-    <RLContainer class="py-16 max-w-3xl">
-      <section class="legal-section">
-        <h1 class="text-3xl font-extrabold text-white mb-8">{t("legal.heading")}</h1>
-        <ul class="legal-list flex flex-col gap-6">
-          <For each={legalPages()}>
-            {(doc) => {
-              const title = t.localize(doc.title);
-              const description = t.localize(doc.description);
-              const pubDate = doc.postedAt || doc.createdAt;
+    <RLPageSection
+      title={t("page.legal.meta.title")}
+      description={t("page.legal.meta.description")}
+      class="py-16"
+    >
+      <div class="max-w-5xl mx-auto w-full px-4 mt-8">
+        <RLGrid cols={2}>
+          <For each={legalPages() || []}>
+            {(post) => {
+              const title = t.localize(post.title);
+              const description = t.localize(post.description ?? undefined) || "";
+              const postDate = post.publishedAt ?? undefined;
               return (
-                <li class="legal-item border-b border-neutral-800 pb-6 last:border-b-0">
-                  <h3 class="text-xl font-bold text-white mb-2">
-                    <a
-                      class="text-primary-400 hover:text-primary-300 transition-colors"
-                      href={getLocaleUrl(`/legal/${doc.slug}/`)}
-                    >
-                      {title}
-                    </a>
-                  </h3>
-                  <p class="text-neutral-400 mb-2 text-sm">{description}</p>
-                  <span class="date text-xs text-neutral-500">
-                    {t("legal.last-updated")} {new Date(pubDate).toLocaleDateString()}
-                  </span>
-                </li>
+                <RLPost
+                  title={title}
+                  description={description}
+                  {...(postDate ? { date: postDate } : {})}
+                  to={getLocaleUrl(`/legal/${post.slug}/`)}
+                  variant="ghost"
+                />
               );
             }}
           </For>
-        </ul>
-      </section>
-    </RLContainer>
+        </RLGrid>
+
+        <Show when={!legalPages() || legalPages()!.length === 0}>
+          <p class="text-center text-neutral-500 py-12">{t("page.legal.empty")}</p>
+        </Show>
+      </div>
+    </RLPageSection>
   );
 };
 
