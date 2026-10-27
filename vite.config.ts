@@ -51,18 +51,6 @@ export default defineConfig({
           "*/blog/*": "./src/components/og/BlogOgCard.tsx",
         },
       },
-      privatePathPrefixes: [
-        "/dashboard",
-        "/admin",
-        "/cms",
-        "/internal",
-        "/api",
-        "/dev",
-        "/og",
-        "/open-graph",
-        "/auth",
-        "/cdn-cgi",
-      ],
     }),
 
     security({
