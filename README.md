@@ -4,7 +4,7 @@ The personal website of Daniel Marchi (idantity): portfolio, blog, projects, mus
 
 ## Features
 
-- **Portfolio**: projects with covers, excerpts, categories, and featured flags, managed in the CMS (`cms.config.ts`).
+- **Portfolio**: projects with covers, excerpts, categories, and featured flags, managed in the CMS.
 - **Blog**: posts with Open Graph cards per post.
 - **Pages**: about, services, music, resume, contact, legal, and branding.
 - **Contact form**: protected by Cloudflare Turnstile and rate limiting, and sent by email.
@@ -36,7 +36,6 @@ The personal website of Daniel Marchi (idantity): portfolio, blog, projects, mus
 │   └── fetch.ts            # Worker entry: middleware chain and SSR handler
 ├── .dev.vars.example
 ├── cloudflare.config.ts    # Worker name, bindings, routes
-├── cms.config.ts           # CMS collections
 ├── drizzle.config.ts
 ├── vite.config.ts
 ├── package.json
