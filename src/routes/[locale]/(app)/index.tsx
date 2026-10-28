@@ -1,4 +1,4 @@
-import { type Component, For, Show, createMemo } from "solid-js";
+import { For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { t, getCurrentLocale } from "@rimelight/i18n";
@@ -6,7 +6,7 @@ import { RLPageSection, RLLogo, RLButton, RLGrid, type RLButtonProps } from "@ri
 import { content, type PublicEntry } from "@rimelight/cms/solid";
 import { BlogPostCard } from "#components/blog/BlogPostCard";
 
-export const HomePage: Component = () => {
+export default function HomePage() {
   const latestPosts = createMemo<PublicEntry[]>(
     async () => (await content.entries("blog", { limit: 3, locale: getCurrentLocale() })).entries,
     { loadingValue: [] },
@@ -88,6 +88,4 @@ export const HomePage: Component = () => {
       />
     </>
   );
-};
-
-export default HomePage;
+}

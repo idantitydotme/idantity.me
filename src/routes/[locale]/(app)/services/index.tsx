@@ -1,4 +1,4 @@
-import { type Component, For } from "solid-js";
+import { For } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
@@ -6,7 +6,7 @@ import { RLPageSection, RLAccordion } from "@rimelight/ui";
 import LighthouseScores from "#components/services/LighthouseScores.tsx";
 import HttpObservatory from "#components/services/HttpObservatory.tsx";
 
-export const ServicesPage: Component = () => {
+export default function ServicesPage() {
   const heroLinks = () => [
     {
       label: t("page.services.cta.discuss.project"),
@@ -319,6 +319,4 @@ export const ServicesPage: Component = () => {
       />
     </>
   );
-};
-
-export default ServicesPage;
+}

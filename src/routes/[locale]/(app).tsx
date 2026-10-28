@@ -1,5 +1,4 @@
 import type { RouteSectionProps } from "@solidjs/router";
-import type { Component } from "solid-js";
 import AppHeader from "#components/app/AppHeader";
 import AppFooter from "#components/app/AppFooter";
 import {
@@ -12,7 +11,7 @@ import {
   RLErrorBoundary,
 } from "@rimelight/ui";
 
-export const AppRouteLayout: Component<RouteSectionProps> = (props) => {
+export default function AppRouteLayout(props: RouteSectionProps) {
   return (
     <div class="isolate flex flex-col min-h-screen">
       <AppHeader />
@@ -27,6 +26,4 @@ export const AppRouteLayout: Component<RouteSectionProps> = (props) => {
       <RLLayoutGrid />
     </div>
   );
-};
-
-export default AppRouteLayout;
+}

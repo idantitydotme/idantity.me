@@ -1,4 +1,4 @@
-import { type Component, For, Show } from "solid-js";
+import { For, Show } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
@@ -82,7 +82,7 @@ export interface ResumeProject {
   tags?: string[];
 }
 
-export const ResumePage: Component = () => {
+export default function ResumePage() {
   const age = () => {
     const d = new Date();
     return (
@@ -765,6 +765,4 @@ export const ResumePage: Component = () => {
       </RLContainer>
     </>
   );
-};
-
-export default ResumePage;
+}

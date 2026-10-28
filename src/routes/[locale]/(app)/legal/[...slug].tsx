@@ -1,4 +1,4 @@
-import { type Component, Show, createMemo } from "solid-js";
+import { Show, createMemo } from "solid-js";
 import { useParams, useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
@@ -10,7 +10,7 @@ import { t, getCurrentLocale } from "@rimelight/i18n";
  * A legal document from the CMS `legal` collection. `?preview=` (from the dashboard's
  * "Open draft preview") shows the draft instead of the published version.
  */
-export const LegalDocumentPage: Component = () => {
+export default function LegalDocumentPage() {
   const params = useParams<{ locale: string; slug?: string }>();
   const [search] = useSearchParams<{ preview?: string }>();
   const activeLocale = () => getCurrentLocale();
@@ -49,6 +49,4 @@ export const LegalDocumentPage: Component = () => {
       </article>
     </Show>
   );
-};
-
-export default LegalDocumentPage;
+}

@@ -1,4 +1,4 @@
-import { type Component, For, createSignal } from "solid-js";
+import { For, createSignal } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { RLPageSection, RLTabs } from "@rimelight/ui";
@@ -6,7 +6,7 @@ import MusicPlayer from "#components/music/MusicPlayer.tsx";
 import SpotifyFacade from "#components/music/SpotifyFacade.tsx";
 import { t } from "@rimelight/i18n";
 
-export const MusicPage: Component = () => {
+export default function MusicPage() {
   const [activeTab, setActiveTab] = createSignal("all");
 
   // Featured tracks & audio data
@@ -245,6 +245,4 @@ export const MusicPage: Component = () => {
       />
     </>
   );
-};
-
-export default MusicPage;
+}

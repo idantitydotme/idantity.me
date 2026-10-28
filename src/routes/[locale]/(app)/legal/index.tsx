@@ -1,4 +1,4 @@
-import { type Component, For, Show, createMemo } from "solid-js";
+import { For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
 import { t, getLocaleUrl, getCurrentLocale } from "@rimelight/i18n";
@@ -6,7 +6,7 @@ import { RLPageSection, RLGrid, RLPost } from "@rimelight/ui";
 import { content } from "@rimelight/cms/solid";
 
 /** Legal documents from the CMS `legal` collection, for the current locale. */
-export const LegalIndexPage: Component = () => {
+export default function LegalIndexPage() {
   const activeLocale = () => getCurrentLocale();
 
   const legalPages = createMemo(
@@ -61,6 +61,4 @@ export const LegalIndexPage: Component = () => {
       </div>
     </RLPageSection>
   );
-};
-
-export default LegalIndexPage;
+}

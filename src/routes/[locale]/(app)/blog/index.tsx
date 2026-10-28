@@ -1,4 +1,4 @@
-import { type Component, For, Show, createMemo } from "solid-js";
+import { For, Show, createMemo } from "solid-js";
 import { useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
 import { createSeoHead } from "@rimelight/seo/head";
@@ -12,7 +12,7 @@ import { BlogPostCard } from "#components/blog/BlogPostCard";
  * terms (managed in the dashboard under Taxonomies → category, or via MCP) — nothing is
  * hardcoded here. The active filter lives in the URL (`?category=engineering`) so it's linkable.
  */
-export const BlogIndexPage: Component = () => {
+export default function BlogIndexPage() {
   const [search, setSearch] = useSearchParams<{ category?: string }>();
   const active = () => search.category || "";
   const locale = () => getCurrentLocale();
@@ -88,6 +88,4 @@ export const BlogIndexPage: Component = () => {
       </div>
     </RLPageSection>
   );
-};
-
-export default BlogIndexPage;
+}

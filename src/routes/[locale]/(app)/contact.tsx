@@ -25,7 +25,7 @@ const toneClass = {
 
 type ContactResponse = { success: boolean; error?: string };
 
-export const ContactPage: Component = () => {
+export default function ContactPage() {
   const [status, setStatus] = createSignal<Status>();
 
   const onSubmit = async (e: SubmitEvent) => {
@@ -130,6 +130,4 @@ export const ContactPage: Component = () => {
       </RLPageSection>
     </>
   );
-};
-
-export default ContactPage;
+}
