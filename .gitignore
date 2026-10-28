@@ -41,4 +41,3 @@ logs/
 # Drizzle
 server/db/drizzle/*.json
 server/db/drizzle/_journal.json
-server/db/drizzle/*_draft.sql
