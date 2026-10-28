@@ -1,67 +1,123 @@
-# Astro Starter Kit: Blog
+# idantity.me
 
-```sh
-pnpm create astro@latest -- --template blog
-```
+The personal website of Daniel Marchi (idantity): portfolio, blog, projects, music, services, resume, and contact. Bilingual (English and Portuguese), with content managed through `@rimelight/cms`.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Features
 
-Features:
+- **Portfolio**: projects with covers, excerpts, categories, and featured flags, managed in the CMS (`cms.config.ts`).
+- **Blog**: posts with Open Graph cards per post.
+- **Pages**: about, services, music, resume, contact, legal, and branding.
+- **Contact form**: protected by Cloudflare Turnstile and rate limiting, and sent by email.
+- **Search**: a search API used by the site.
+- **SEO**: sitemap, robots, RSS, web manifest, `llms.txt`, and Open Graph images.
+- **Localization**: English and Portuguese, with locale-prefixed URLs.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+## Stack
 
-## 🚀 Project Structure
+- Solid 2.0 with SSR (`solid-js`, `@solidjs/router`, `@solidjs/web`)
+- Vite+ (`vp`) and Vite, with `@cloudflare/vite-plugin`
+- Hono on Cloudflare Workers
+- Cloudflare D1 (SQLite) with Drizzle ORM, R2 for media, Images, Email, and Rate Limiting
+- Rimelight packages: `@rimelight/auth`, `@rimelight/cms`, `@rimelight/i18n`, `@rimelight/security`, `@rimelight/seo`, `@rimelight/ui`
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
-├── public/
+├── .cloudflare/            # Generated Worker types
+├── drizzle/                # SQL migrations (D1)
 ├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
+│   ├── api/                # Hono API routes (contact, search), mounted under /api
+│   ├── components/         # UI components: app, blog, music, og, projects, services
+│   ├── db/                 # Drizzle schema and client
+│   ├── i18n/               # en.json, pt.json
+│   ├── routes/[locale]/    # File-based routes, prefixed with the locale
+│   ├── App.tsx             # Root component
+│   ├── Document.tsx        # HTML shell
+│   └── fetch.ts            # Worker entry: middleware chain and SSR handler
+├── .dev.vars.example
+├── cloudflare.config.ts    # Worker name, bindings, routes
+├── cms.config.ts           # CMS collections
+├── drizzle.config.ts
+├── vite.config.ts
 ├── package.json
 └── tsconfig.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Prerequisites
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+- Node.js 26.12.1 (see `.node-version`)
+- pnpm 12.15.0
+- A Cloudflare account
 
-Any static assets, like images, can be placed in the `public/` directory.
+### Setup
 
-### Internationalization (i18n)
+```sh
+pnpm install
+cp .dev.vars.example .dev.vars   # fill in the values
+pnpm generate-types
+pnpm db:migrate
+pnpm dev
+```
 
-Translations are handled through [Nanostores i18n](https://github.com/nanostores/i18n).
+## Environment Variables
 
-## 🧞 Commands
+Set these in `.dev.vars` for local development, and as Worker secrets in production. Never commit `.dev.vars`.
 
-All commands are run from the root of the project, from a terminal:
+| Variable                  | Description                                                       |
+| ------------------------- | ----------------------------------------------------------------- |
+| `CONSTRUCTION_MODE`       | Set to `true` to hold the site behind the construction passphrase |
+| `CONSTRUCTION_PASSPHRASE` | Passphrase that unlocks a site in construction mode               |
+| `TURNSTILE_SITE_KEY`      | Cloudflare Turnstile site key (client-side widget)                |
+| `TURNSTILE_SECRET_KEY`    | Cloudflare Turnstile secret key (server-side verification)        |
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `pnpm install`         | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+## Cloudflare Bindings
 
-## 👀 Want to learn more?
+Defined in `cloudflare.config.ts`:
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Binding               | Type        | Purpose                            |
+| --------------------- | ----------- | ---------------------------------- |
+| `ASSETS`              | Assets      | Static assets                      |
+| `IMAGES`              | Images      | Image transformation               |
+| `BLOB`                | R2 bucket   | Media storage                      |
+| `DB`                  | D1 database | Site data                          |
+| `EMAIL`               | Email       | Contact form delivery              |
+| `RATE_LIMIT`          | Rate limit  | Request limiting                   |
+| `CONTACT_OWNER_EMAIL` | Variable    | Recipient of contact form messages |
 
-## Credit
+## Scripts
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+| Command                  | Action                                                                                    |
+| ------------------------ | ----------------------------------------------------------------------------------------- |
+| `pnpm dev`               | Start the local dev server (`vp dev`)                                                     |
+| `pnpm build`             | Build for production (`vp build`)                                                         |
+| `pnpm preview`           | Preview the production build                                                              |
+| `pnpm deploy`            | Deploy the Worker with `cf deploy`                                                        |
+| `pnpm generate-types`    | Generate Worker binding types                                                             |
+| `pnpm check`             | Audit dependencies, regenerate types, and run `vp check --fix` (lint, format, type check) |
+| `pnpm db:generate`       | Generate Drizzle migrations from `src/db/schema`                                          |
+| `pnpm db:migrate`        | Apply migrations to the local D1 database                                                 |
+| `pnpm db:migrate:remote` | Apply migrations to the remote D1 database                                                |
+
+## Database
+
+The schema is in `src/db/schema`, and migrations are in `drizzle/`. To change the schema, edit it, run `pnpm db:generate`, commit the migration, then run `pnpm db:migrate` locally. Run `pnpm db:migrate:remote` before deploying schema changes.
+
+## Deployment
+
+```sh
+pnpm build
+pnpm db:migrate:remote   # if the schema changed
+pnpm deploy
+```
+
+The Worker is served on `idantity.me` and `www.idantity.me`, as set in `cloudflare.config.ts`.
+
+## Construction Mode
+
+With `CONSTRUCTION_MODE=true`, visitors need `CONSTRUCTION_PASSPHRASE` to see the site. Passing `?preview=<passphrase>` sets an access cookie. See [`@rimelight/security`](https://github.com/Rimelight-Entertainment/rimelight/tree/main/packages/security#construction-mode) for details.
+
+## License
+
+MIT. Copyright (c) 2026 idantity.me. See [LICENSE](LICENSE).
