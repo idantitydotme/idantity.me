@@ -29,3 +29,31 @@ release. Add a tool name to select part of the graph. For example, run
 - [ ] If setup, runtime, or package-manager behavior looks wrong, run `vp env doctor` and include its output when asking for help.
 
 <!--VITE PLUS END-->
+
+## Git
+
+- Never commit, push, or create branches unless I explicitly ask. If I ask for a changeset, create only the .changeset file.
+- When I say merge to main, commit directly to or merge into main. Do not leave the work on a side branch.
+
+## Working Rules
+
+- Do exactly what was asked. If I ask for a proposal, review, or explanation, do NOT edit code until I approve.
+- Fix issues at the narrowest correct layer. Do not change shared theme/UI packages or package-wide config for a page-specific bug without asking.
+- Prefer config settings over new middleware, helpers, or adapters.
+
+## Debugging
+
+- Verify before claiming a fix. Reproduce the issue, then confirm it is gone (server log, browser console, or test). Never say "fixed" on theory alone.
+- When a page is blank or broken, first diff it against a working sibling project (idantity.me is the reference) for routes, entry files, and config before forming theories.
+- Check for stale dist/ builds and Vite/worker caches early. Rebuild linked packages before testing UI changes.
+- Before blaming unrelated code for a regression (e.g. a hang), check whether my own recent changes caused it.
+
+## Testing / Verification
+
+- Use the built-in t3-code preview tools (preview_navigate/evaluate/snapshot). Do not install Playwright.
+- Wait for data to load before reading the page, and re-install console hooks after reloads.
+- Don't start extra dev servers or browsers if one is already running. Ask me to verify visually when that's faster. Kill leftover dev/build processes when done.
+
+## Environment
+
+- Shell is Git Bash on Windows. Use MSYS_NO_PATHCONV=1 for path args, and avoid Python one-liners for edits (use the Edit tool).
