@@ -38,8 +38,8 @@ export const BlogIndexPage: Component = () => {
 
   useHead(() =>
     createSeoHead({
-      title: t("blog.title"),
-      description: t("blog.description"),
+      title: t("page.blog.meta.title"),
+      description: t("page.blog.meta.description"),
     }),
   );
 
@@ -62,10 +62,17 @@ export const BlogIndexPage: Component = () => {
   );
 
   return (
-    <RLPageSection title={t("blog.title")} description={t("blog.description")} class="py-16">
+    <RLPageSection
+      title={t("page.blog.meta.title")}
+      description={t("page.blog.meta.description")}
+      class="py-16"
+    >
       <div class="max-w-7xl mx-auto w-full px-4 mt-8">
         <Show when={categories().length > 0}>
-          <nav aria-label="Categories" class="mb-10 flex flex-wrap justify-center gap-2">
+          <nav
+            aria-label={t("page.blog.categories.aria-label")}
+            class="mb-10 flex flex-wrap justify-center gap-2"
+          >
             {chip("", "All")}
             <For each={categories()}>{(c) => chip(c.slug, label(c.label), c.count)}</For>
           </nav>
@@ -76,7 +83,7 @@ export const BlogIndexPage: Component = () => {
         </RLGrid>
 
         <Show when={!posts() || posts()!.length === 0}>
-          <p class="text-center text-neutral-500 py-12">No blog posts available yet.</p>
+          <p class="text-center text-neutral-500 py-12">{t("page.blog.empty")}</p>
         </Show>
       </div>
     </RLPageSection>

@@ -1,7 +1,7 @@
 {
   "app": {
     "header": {
-      "links": {
+      "left-links": {
         "projects": {
           "label": "Projetos"
         },
@@ -11,50 +11,79 @@
         "blog": {
           "label": "Blog"
         },
-        "services": {
-          "label": "Serviços"
-        },
         "about": {
           "label": "Sobre"
+        }
+      },
+      "right-links": {
+        "services": {
+          "label": "Serviços"
         },
         "resume": {
           "label": "Currículo"
         }
+      },
+      "menu": {
+        "title": "Menu",
+        "open": "Abrir menu"
+      },
+      "actions": {
+        "title": "Ações",
+        "open": "Abrir ações"
       }
+    },
+    "footer": {
+      "links": {
+        "resources": {
+          "label": "Recursos",
+          "branding": "Identidade Visual"
+        },
+        "legal": {
+          "label": "Aviso legal",
+          "privacy-policy": "Política de Privacidade",
+          "other-documents": "Outros Documentos"
+        }
+      },
+      "accessing": "Acessando o meu perfil."
+    },
+    "loading": {
+      "post": "Carregando publicação...",
+      "document": "Carregando documento...",
+      "project": "Carregando projeto...",
+      "page": "Carregando."
+    },
+    "text": {
+      "performance": "Performance",
+      "accessibility": "Accessibility",
+      "best-practices": "Best Practices",
+      "seo": "SEO",
+      "welcome-to-my-website": "Welcome to my website!",
+      "verse": "Verse",
+      "lore": "Lore",
+      "typescript": "TypeScript",
+      "astro": "Astro",
+      "vue": "Vue",
+      "solidjs": "SolidJS",
+      "unocss": "UnoCSS",
+      "webstorm": "WebStorm",
+      "vite-plus": "Vite-plus",
+      "cloudflare": "Cloudflare",
+      "c": "C++",
+      "unreal-engine": "Unreal Engine",
+      "rider": "Rider",
+      "postgresql": "PostgreSQL",
+      "drizzle": "Drizzle",
+      "cloudflare-access": "Cloudflare Access",
+      "git": "Git",
+      "youtrack": "YouTrack"
     }
   },
   "page": {
-    "construction": {
-      "meta": {
-        "title": "Em Construção",
-        "description": "Este site está atualmente em construção."
-      },
-      "title": "ESTE SITE ESTÃ EM CONSTRUÃ‡ÃƒO",
-      "description": {
-        "no": {
-          "auth": "Por favor, volte mais tarde."
-        }
-      },
-      "form": {
-        "passphrase": {
-          "label": "Frase-passe",
-          "placeholder": "Digite a frase-passe..."
-        },
-        "remember": {
-          "me": {
-            "label": "Lembrar-me"
-          }
-        },
-        "sign": {
-          "in": {
-            "button": "Entrar"
-          }
-        }
-      }
-    },
     "services": {
-      "title": "Serviços",
-      "description": "Desenvolvimento web de alta performance, reforço de segurança, engenharia edge full-stack e auditorias arquiteturais.",
+      "meta": {
+        "title": "Serviços",
+        "description": "Desenvolvimento web de alta performance, reforço de segurança, engenharia edge full-stack e auditorias arquiteturais."
+      },
       "hero": {
         "headline": "Padrões de Engenharia",
         "title": "Soluções Web Rápidas, Seguras e Resilientes",
@@ -83,71 +112,77 @@
         "title": "Serviços de Engenharia Web",
         "description": "Serviços de desenvolvimento web de ponta a ponta, da concepção à implantação em produção."
       },
-      "service": {
-        "1": {
+      "service": [
+        null,
+        {
           "title": "Aplicações e Sites Web Modernos",
           "desc": "Aplicações web customizadas e ultrarrápidas projetadas com arquiteturas edge modernas, layouts responsivos e sem excesso de dependências.",
-          "feat": {
-            "1": "Carregamento sub-segundo & Core Web Vitals 100/100",
-            "2": "Design acessível (WCAG 2.1 AA) e responsivo mobile-first",
-            "3": "Internacionalização (i18n) completa e otimização para SEO"
-          }
+          "feat": [
+            null,
+            "Carregamento sub-segundo & Core Web Vitals 100/100",
+            "Design acessível (WCAG 2.1 AA) e responsivo mobile-first",
+            "Internacionalização (i18n) completa e otimização para SEO"
+          ]
         },
-        "2": {
+        {
           "title": "Reforço de Segurança e Boas Práticas",
           "desc": "Integração proativa de postura de segurança para proteger seus sistemas contra vulnerabilidades comuns, vazamento de dados e bots.",
-          "feat": {
-            "1": "Cabeçalhos de segurança HTTP nota A+ no Mozilla Observatory & CSP estrita",
-            "2": "Proteção contra bots e limitação de taxa com Cloudflare Turnstile",
-            "3": "Higienização segura de dados, mitigação de CSRF e criptografia TLS/SSL"
-          }
+          "feat": [
+            null,
+            "Cabeçalhos de segurança HTTP nota A+ no Mozilla Observatory & CSP estrita",
+            "Proteção contra bots e limitação de taxa com Cloudflare Turnstile",
+            "Higienização segura de dados, mitigação de CSRF e criptografia TLS/SSL"
+          ]
         },
-        "3": {
+        {
           "title": "Arquitetura Edge e APIs Full-Stack",
           "desc": "APIs serverless e camadas de dados construídas em runtimes edge leves, garantindo baixa latência global e alta escalabilidade.",
-          "feat": {
-            "1": "APIs RESTful ultrarrápidas com Hono e Cloudflare Workers",
-            "2": "Bancos de dados serverless escaláveis com PlanetScale e drivers MySQL edge",
-            "3": "Integrações com CMS Headless, autenticação e serviços de terceiros"
-          }
+          "feat": [
+            null,
+            "APIs RESTful ultrarrápidas com Hono e Cloudflare Workers",
+            "Bancos de dados serverless escaláveis com PlanetScale e drivers MySQL edge",
+            "Integrações com CMS Headless, autenticação e serviços de terceiros"
+          ]
         },
-        "4": {
+        {
           "title": "Auditoria de Performance e Modernização",
           "desc": "Avaliação diagnóstica e refatoração sistemática de bases de código web lentas ou legadas para modernizar a stack e reduzir o peso das páginas.",
-          "feat": {
-            "1": "Diagnóstico aprofundado de gargalos e análise de código",
-            "2": "Otimização de assets (AVIF/WEBP, subconjuntos de fontes, tree-shaking)",
-            "3": "Migração de frameworks monolíticos pesados para stacks modernas e leves"
-          }
+          "feat": [
+            null,
+            "Diagnóstico aprofundado de gargalos e análise de código",
+            "Otimização de assets (AVIF/WEBP, subconjuntos de fontes, tree-shaking)",
+            "Migração de frameworks monolíticos pesados para stacks modernas e leves"
+          ]
         }
-      },
+      ],
       "process": {
         "headline": "Fluxo de Trabalho",
         "title": "Como Trabalhamos Juntos",
         "description": "Um processo de engenharia transparente e estruturado que prioriza clareza, marcos bem definidos e entregas de excelência."
       },
-      "step": {
-        "1": {
+      "step": [
+        null,
+        {
           "num": "01",
           "title": "Descoberta & Arquitetura",
           "desc": "Analisamos os objetivos do projeto, requisitos técnicos e definimos modelos de dados, estrutura de UX e a stack edge ideal."
         },
-        "2": {
+        {
           "num": "02",
           "title": "Implementação & Código Limpo",
           "desc": "Desenvolvimento iterativo usando TypeScript rigoroso, componentes modulares e visibilidade constante do progresso."
         },
-        "3": {
+        {
           "num": "03",
           "title": "Testes & Otimização",
           "desc": "Testes rigorosos de acessibilidade, visualização responsiva, métricas do Lighthouse e cabeçalhos de segurança."
         },
-        "4": {
+        {
           "num": "04",
           "title": "Implantação & Entrega",
           "desc": "Lançamento global com zero downtime, pipelines automatizados de CI/CD, documentação e transferência completa."
         }
-      },
+      ],
       "tech": {
         "headline": "Tecnologias",
         "title": "Ferramental Web & Edge Moderno",
@@ -165,6 +200,16 @@
         "a3": "Os projetos podem ser estruturados por marcos de escopo fechado ou em modelo flexível de sprints/retainer para desenvolvimento contínuo. Todos incluem escopo claro e prazos definidos.",
         "q4": "Como podemos começar?",
         "a4": "Basta entrar em contato pelo formulário com um resumo do seu projeto. Retornarei em 24 a 48 horas para alinharmos especificações, cronograma e próximos passos."
+      },
+      "http-observatory": {
+        "title": "Mozilla HTTP Observatory",
+        "verify": "Verificar análise no Mozilla Observatory",
+        "findings": "Zero achados críticos"
+      },
+      "lighthouse": {
+        "title": "Google Lighthouse",
+        "aria-label": "Pontuações do Lighthouse",
+        "viewports": "Verificado em viewports modernos de celular e desktop"
       }
     },
     "resume": {
@@ -223,29 +268,22 @@
         "description": "Desenvolvedor Web e de Jogos especializado em títulos Live-Service de grande porte.",
         "action": {
           "hire": "Contrate-me",
-          "download-cv": "Baixar CV",
-          "downloadCv": "Baixar CV"
+          "download-cv": "Baixar CV"
         }
       },
       "skills": {
         "heading": "Habilidades",
         "web-dev": {
-          "desc": "Construção de aplicações web rápidas, responsivas e seguras utilizando arquiteturas modernas, integração de frameworks e técnicas de otimização de performance."
+          "desc": "Construção de aplicações web rápidas, responsivas e seguras utilizando arquiteturas modernas, integração de frameworks e técnicas de otimização de performance.",
+          "title": "Desenvolvimento Web"
         },
         "game-dev": {
-          "desc": "Desenvolvimento de experiências virtuais em tempo real, lógica de jogo e gameplay loops em game engines com boas práticas de código limpo e estruturas performáticas."
+          "desc": "Desenvolvimento de experiências virtuais em tempo real, lógica de jogo e gameplay loops em game engines com boas práticas de código limpo e estruturas performáticas.",
+          "title": "Desenvolvimento de Jogos"
         },
         "design": {
           "desc": "Foco em experiências acessíveis, detalhamento de interface, ciclos suaves de feedback interativo e sistemas modulares visualmente consistentes.",
           "title": "Filosofias de Design"
-        },
-        "webDev": {
-          "title": "Desenvolvimento Web",
-          "desc": "Construção de aplicações web rápidas, responsivas e seguras utilizando arquiteturas modernas, integração de frameworks e técnicas de otimização de performance."
-        },
-        "gameDev": {
-          "title": "Desenvolvimento de Jogos",
-          "desc": "Desenvolvimento de experiências virtuais em tempo real, lógica de jogo e gameplay loops em game engines com boas práticas de código limpo e estruturas performáticas."
         }
       },
       "tech": {
@@ -262,9 +300,7 @@
         "group": {
           "web-dev": "Desenvolvimento Web",
           "game-dev": "Desenvolvimento de Jogos",
-          "shared": "Tecnologias Compartilhadas",
-          "webDev": "Desenvolvimento Web",
-          "gameDev": "Desenvolvimento de Jogos"
+          "shared": "Tecnologias Compartilhadas"
         }
       },
       "education": [
@@ -294,7 +330,7 @@
         {
           "role": "Programador de Jogos Estagiário",
           "company": "Compass.UOL",
-          "compan-rl": "https://compass.uol",
+          "company-url": "https://compass.uol",
           "period": "Fev 2021 - Jun 2021",
           "location": "Curitiba, Brasil · Remoto",
           "summary": "Participação em exercícios de treinamento e atividades de resolução de problemas no Unreal Engine e C++.",
@@ -306,19 +342,19 @@
         {
           "role": "Programador de Jogos Trainee",
           "company": "Compass.UOL",
-          "compan-rl": "https://compass.uol",
+          "company-url": "https://compass.uol",
           "period": "Jul 2021 - Out 2021",
           "location": "Curitiba, Brasil · Remoto",
           "summary": "Desenvolvimento de experiências virtuais 3D em tempo real para E-Commerce utilizando Unreal Engine e Blueprints.",
           "responsibilities": [
             "Desenvolvimento de experiências virtuais 3D em tempo real voltadas para E-Commerce no Unreal Engine."
           ],
-          "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce"]
+          "tags": ["Unreal Engine", "C++", "Blueprints", "E-commerce"]
         },
         {
           "role": "Programador de Jogos Júnior",
           "company": "Compass.UOL",
-          "compan-rl": "https://compass.uol",
+          "company-url": "https://compass.uol",
           "period": "Nov 2022 - Mar 2023",
           "location": "Curitiba, Brasil · Remoto",
           "summary": "Desenvolvimento de experiências virtuais 3D em tempo real e soluções de E-Commerce no Unreal Engine com mockups de interface e documentação técnica.",
@@ -327,12 +363,19 @@
             "Elaboração de mockups de interface de alta fidelidade.",
             "Documentação de projeto e análises comparativas para stakeholders."
           ],
-          "tags": ["Unreal Engine", "C++", "Blueprints", "E-Commerce", "UI Design", "Documentação"]
+          "tags": [
+            "Unreal Engine",
+            "C++",
+            "Blueprints",
+            "E-commerce",
+            "Design de UI",
+            "Documentação"
+          ]
         },
         {
           "role": "Agente de Atendimento ao Cliente",
           "company": "Concentrix - Copa Energia (SAC)",
-          "compan-rl": "https://concentrix.com",
+          "company-url": "https://concentrix.com",
           "period": "Jun 2026 - Set 2026",
           "location": "Curitiba, Brasil · Presencial",
           "summary": "Lorem Ipsum",
@@ -341,17 +384,17 @@
             "Lorem Ipsum",
             "Lorem Ipsum"
           ],
-          "tags": ["Customer Service", "Customer Experience"]
+          "tags": ["Atendimento ao cliente", "Experiência do cliente"]
         },
         {
           "role": "Agente de Atendimento ao Cliente",
           "company": "Concentrix - Copa Energia (RA)",
-          "compan-rl": "https://concentrix.com",
+          "company-url": "https://concentrix.com",
           "period": "Set 2026 - Atual",
           "location": "Curitiba, Brasil · Presencial",
           "summary": "Lorem Ipsum",
           "responsibilities": ["Lorem Ipsum do início ao fim.", "Lorem Ipsum", "Lorem Ipsum"],
-          "tags": ["Customer Service", "Customer Experience"]
+          "tags": ["Atendimento ao cliente", "Experiência do cliente"]
         }
       ],
       "projects": [
@@ -360,7 +403,7 @@
           "role": "Lorem Ipsum",
           "period": "2025",
           "href": "https://rimelight.com/franchises/grand-tale",
-          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "image-src": "https://cdn.idantity.me/images/placeholder.webp",
           "summary": "Lorem Ipsum",
           "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
           "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
@@ -370,7 +413,7 @@
           "role": "Lorem Ipsum",
           "period": "2025",
           "href": "https://rimelight.com",
-          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "image-src": "https://cdn.idantity.me/images/placeholder.webp",
           "summary": "Lorem Ipsum",
           "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
           "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
@@ -380,7 +423,7 @@
           "role": "Lorem Ipsum",
           "period": "2025",
           "href": "https://idantity.me",
-          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "image-src": "https://cdn.idantity.me/images/placeholder.webp",
           "summary": "Lorem Ipsum",
           "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
           "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
@@ -390,7 +433,7 @@
           "role": "Lorem Ipsum",
           "period": "2025",
           "href": "https://queerkit.com",
-          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "image-src": "https://cdn.idantity.me/images/placeholder.webp",
           "summary": "Lorem Ipsum",
           "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
           "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
@@ -400,7 +443,7 @@
           "role": "Lorem Ipsum",
           "period": "2025",
           "href": "https://marcelocfilho.com",
-          "imag-rc": "https://cdn.idantity.me/images/placeholder.webp",
+          "image-src": "https://cdn.idantity.me/images/placeholder.webp",
           "summary": "Lorem Ipsum",
           "highlights": ["Lorem Ipsum", "Lorem Ipsum"],
           "tags": ["Lorem Ipsum", "Lorem Ipsum", "Lorem Ipsum"]
@@ -418,32 +461,32 @@
         {
           "title": "Treinamento Essencial de HTML",
           "issuer": "LinkedIn Learning",
-          "credentialId": "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
+          "credential-id": "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
         },
         {
           "title": "Treinamento Essencial de CSS",
           "issuer": "LinkedIn Learning",
-          "credentialId": "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
+          "credential-id": "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
         },
         {
           "title": "Treinamento Essencial de TypeScript",
           "issuer": "LinkedIn Learning",
-          "credentialId": "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
+          "credential-id": "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
         },
         {
           "title": "Treinamento Essencial de PostgreSQL",
           "issuer": "LinkedIn Learning",
-          "credentialId": "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
+          "credential-id": "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
         },
         {
           "title": "Treinamento Essencial de Git",
           "issuer": "LinkedIn Learning",
-          "credentialId": "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
+          "credential-id": "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
         },
         {
           "title": "Treinamento Essencial de Unreal Engine 5",
           "issuer": "LinkedIn Learning",
-          "credentialId": "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
+          "credential-id": "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
         }
       ],
       "aria": {
@@ -461,12 +504,14 @@
         "certifications": "Certificações"
       },
       "labels": {
-        "credentialId": "ID do Certificado"
+        "credential-id": "ID do Certificado"
       }
     },
     "contact": {
-      "title": "Contato",
-      "description": "Entre em contato comigo diretamente.",
+      "meta": {
+        "title": "Contato",
+        "description": "Entre em contato comigo diretamente."
+      },
       "hero": {
         "title": "Entre em Contato",
         "description": "Tem uma dúvida, proposta ou quer colaborar? Envie-me uma mensagem diretamente."
@@ -497,8 +542,10 @@
       }
     },
     "music": {
-      "title": "Música",
-      "description": "Sets de DJ, playlists selecionadas, faixas originais e produções musicais.",
+      "meta": {
+        "title": "Música",
+        "description": "Sets de DJ, playlists selecionadas, faixas originais e produções musicais."
+      },
       "hero": {
         "headline": "Experiência Sonora",
         "title": "Música, Sets & Áudio",
@@ -543,7 +590,7 @@
           "ikari": {
             "title": "Bishu - Ikari",
             "artist": "Bishu / idantity rework",
-            "genre": "Electronic / Bass",
+            "genre": "Eletrônica / Bass",
             "category": "Produção"
           }
         },
@@ -578,66 +625,71 @@
         "title": "Documentos legais",
         "description": "Políticas e acordos."
       },
-      "empty": "Ainda não há documentos legais."
-    }
-  },
-  "blog": {
-    "title": "Blog",
-    "description": "Artigos, registros de desenvolvimento e mais.",
-    "categories": {
-      "development-log": "Registro de Desenvolvimento",
-      "other": "Outros"
+      "empty": "Ainda não há documentos legais.",
+      "heading": "Documentos Legais",
+      "last-updated": "Última atualização:",
+      "last-updated-on": "Última atualização em"
     },
-    "last-updated-on": "Ãšltima atualizaÃ§Ã£o em"
-  },
-  "legal": {
-    "title": "Legal",
-    "heading": "Documentos Legais",
-    "last-updated": "Ãšltima atualizaÃ§Ã£o:",
-    "last-updated-on": "Ãšltima atualizaÃ§Ã£o em"
-  },
-  "projects": {
-    "title": "Projetos",
-    "description": "Projetos pessoais e criações.",
-    "categories": {
-      "website": "Website",
-      "app": "Aplicativo",
-      "other": "Outros"
+    "blog": {
+      "meta": {
+        "title": "Blog",
+        "description": "Artigos, registros de desenvolvimento e mais."
+      },
+      "categories": {
+        "development-log": "Registro de Desenvolvimento",
+        "other": "Outros",
+        "aria-label": "Categorias"
+      },
+      "last-updated-on": "Última atualização em",
+      "empty": "Nenhuma publicação disponível ainda."
     },
-    "last-updated-on": "Ãšltima atualizaÃ§Ã£o em"
-  },
-  "cms": {
-    "nav": {
-      "dashboard": "Painel",
-      "templates": "Modelos",
-      "pages": "Páginas",
-      "categories": "Categorias",
-      "tags": "Tags",
-      "bylines": "Autores",
-      "versions": "Versões",
-      "settings": "Configurações"
+    "projects": {
+      "meta": {
+        "title": "Projetos",
+        "description": "Projetos pessoais e criações."
+      },
+      "categories": {
+        "website": "Site",
+        "app": "Aplicativo",
+        "other": "Outros",
+        "aria-label": "Categorias"
+      },
+      "last-updated-on": "Última atualização em",
+      "empty": "Nenhum projeto disponível ainda."
     },
-    "sidebar": {
-      "app": {
-        "name": "CMS Admin"
+    "home": {
+      "hero-title": "idantity.me",
+      "hero-desc": "Desenvolvimento web e de jogos, com foco em títulos live-service de grande porte.",
+      "hero-link": "Ler Blog",
+      "cta-title": "Explore Mais",
+      "cta-desc": "Explore meus projetos, leia o blog ou saiba mais sobre mim.",
+      "cta-start": "Ler Blog",
+      "cta-contribute": "Saiba Mais",
+      "posts-title": "Últimas Publicações",
+      "posts-desc": "Confira as atualizações recentes do blog.",
+      "view-all-posts": "Ver Todas as Publicações"
+    },
+    "branding": {
+      "meta": {
+        "title": "Identidade Visual",
+        "description": "Diretrizes de marca de idantity.me"
+      }
+    },
+    "about": {
+      "meta": {
+        "title": "Sobre",
+        "description": "Sobre o idantity.me"
+      },
+      "heading": "Sobre Mim",
+      "image-alt": "Daniel Marchi",
+      "sections": {
+        "name": {
+          "title": "Por trás do nome"
+        },
+        "pets": {
+          "title": "Animais de estimação"
+        }
       }
     }
-  },
-  "playground": {
-    "hero-title": "idantity.me",
-    "hero-subtitle": "",
-    "hero-desc": "",
-    "hero-link": "Ler Blog",
-    "cta-title": "Explore Mais",
-    "cta-desc": "",
-    "cta-start": "Ler Blog",
-    "cta-contribute": "Saiba Mais",
-    "posts-title": "Ãšltimas PublicaÃ§Ãµes",
-    "posts-desc": "Confira as atualizações recentes do blog.",
-    "view-all-posts": "Ver Todas as Publicações"
-  },
-  "branding": {
-    "title": "Identidade Visual",
-    "description": "Diretrizes de marca de idantity.me"
   }
 }

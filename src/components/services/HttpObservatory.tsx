@@ -1,4 +1,5 @@
 import { type Component, For } from "solid-js";
+import { t } from "@rimelight/i18n";
 
 export interface HttpObservatoryProps {
   grade?: string;
@@ -29,7 +30,9 @@ export const HttpObservatory: Component<HttpObservatoryProps> = (props) => {
         <div class="flex items-center justify-between gap-2 mb-2">
           <div class="flex items-center gap-2">
             <span class="i-lucide-shield-check size-5 text-emerald-500" aria-hidden="true" />
-            <h3 class="text-lg font-bold text-foreground">Mozilla HTTP Observatory</h3>
+            <h3 class="text-lg font-bold text-foreground">
+              {t("page.services.http-observatory.title")}
+            </h3>
           </div>
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
             Grade {grade()} Hardened
@@ -82,10 +85,12 @@ export const HttpObservatory: Component<HttpObservatoryProps> = (props) => {
           rel="noopener noreferrer"
           class="inline-flex items-center gap-1.5 text-primary-500 hover:text-primary-600 font-medium hover:underline transition"
         >
-          <span>Verify scan on Mozilla Observatory</span>
+          <span>{t("page.services.http-observatory.verify")}</span>
           <span class="i-lucide-external-link size-3" aria-hidden="true" />
         </a>
-        <span class="text-xs text-muted-foreground/80">Zero Critical Findings</span>
+        <span class="text-xs text-muted-foreground/80">
+          {t("page.services.http-observatory.findings")}
+        </span>
       </div>
     </div>
   );

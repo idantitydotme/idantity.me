@@ -39,7 +39,7 @@ export const ProjectDetailPage: Component = () => {
   return (
     <Show
       when={post()}
-      fallback={<div class="p-16 text-center text-neutral-400">Loading project...</div>}
+      fallback={<div class="p-16 text-center text-neutral-400">{t("app.loading.project")}</div>}
     >
       <article class="max-w-4xl mx-auto px-4 py-16">
         <header class="mb-12">

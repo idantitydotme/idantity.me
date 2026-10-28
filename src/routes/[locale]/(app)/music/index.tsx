@@ -80,8 +80,8 @@ export const MusicPage: Component = () => {
 
   useHead(() =>
     createSeoHead({
-      title: t("page.music.title"),
-      description: t("page.music.description"),
+      title: t("page.music.meta.title"),
+      description: t("page.music.meta.description"),
     }),
   );
 

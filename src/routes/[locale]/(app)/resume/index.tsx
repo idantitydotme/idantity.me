@@ -48,7 +48,7 @@ export interface TechGroup {
 export interface ExperienceItem {
   role: string;
   company: string;
-  companyUrl?: string;
+  "company-url"?: string;
   image?: string;
   period: string;
   location?: string;
@@ -66,7 +66,7 @@ export interface EducationItem {
 export interface CertificationItem {
   title: string;
   issuer: string;
-  credentialId?: string;
+  "credential-id"?: string;
 }
 
 export type DatePeriod = string | { start: string; end?: string };
@@ -76,7 +76,7 @@ export interface ResumeProject {
   role?: string;
   period: DatePeriod;
   href?: string;
-  imageSrc?: string;
+  "image-src"?: string;
   summary?: string;
   highlights?: string[];
   tags?: string[];
@@ -154,7 +154,7 @@ export const ResumePage: Component = () => {
     },
     {
       variant: "outline",
-      label: t("page.resume.hero.action.downloadCv") ?? "",
+      label: t("page.resume.hero.action.download-cv") ?? "",
       href: "https://cdn.idantity.me/Documents/Daniel_Marchi_CV.pdf",
       leadingIcon: "i-lucide-download",
     },
@@ -163,13 +163,13 @@ export const ResumePage: Component = () => {
   const skills = (): SkillItem[] => [
     {
       icon: "i-lucide-code-2",
-      title: t("page.resume.skills.webDev.title"),
-      description: t("page.resume.skills.webDev.desc"),
+      title: t("page.resume.skills.web-dev.title"),
+      description: t("page.resume.skills.web-dev.desc"),
     },
     {
       icon: "i-lucide-gamepad-2",
-      title: t("page.resume.skills.gameDev.title"),
-      description: t("page.resume.skills.gameDev.desc"),
+      title: t("page.resume.skills.game-dev.title"),
+      description: t("page.resume.skills.game-dev.desc"),
     },
     {
       icon: "i-lucide-palette",
@@ -180,31 +180,35 @@ export const ResumePage: Component = () => {
 
   const techGroups = (): TechGroup[] => [
     {
-      title: t("page.resume.tech.group.webDev"),
+      title: t("page.resume.tech.group.web-dev"),
       categories: [
         {
           title: t("page.resume.tech.cat.languages"),
           items: [
             {
-              label: "TypeScript",
+              label: t("app.text.typescript"),
               icon: "i-logos-typescript-icon",
               href: "https://www.typescriptlang.org/",
             },
             {
-              label: "Astro",
+              label: t("app.text.astro"),
               icon: "i-logos-astro-icon?mask text-white",
               href: "https://astro.build/",
             },
-            { label: "Vue", icon: "i-logos-vue", href: "https://vuejs.org/" },
-            { label: "SolidJS", icon: "i-logos-solidjs-icon", href: "https://www.solidjs.com/" },
-            { label: "UnoCSS", icon: "i-logos-unocss", href: "https://unocss.dev/" },
+            { label: t("app.text.vue"), icon: "i-logos-vue", href: "https://vuejs.org/" },
+            {
+              label: t("app.text.solidjs"),
+              icon: "i-logos-solidjs-icon",
+              href: "https://www.solidjs.com/",
+            },
+            { label: t("app.text.unocss"), icon: "i-logos-unocss", href: "https://unocss.dev/" },
           ],
         },
         {
           title: t("page.resume.tech.cat.environment"),
           items: [
             {
-              label: "WebStorm",
+              label: t("app.text.webstorm"),
               icon: "i-logos-webstorm",
               href: "https://www.jetbrains.com/webstorm/",
             },
@@ -214,7 +218,7 @@ export const ResumePage: Component = () => {
           title: t("page.resume.tech.cat.build"),
           items: [
             {
-              label: "Vite-plus",
+              label: t("app.text.vite-plus"),
               icon: "i-logos-vite-icon-dark",
               href: "https://viteplus.dev/",
             },
@@ -225,7 +229,7 @@ export const ResumePage: Component = () => {
           title: t("page.resume.tech.cat.deployment"),
           items: [
             {
-              label: "Cloudflare",
+              label: t("app.text.cloudflare"),
               icon: "i-logos-cloudflare-icon",
               href: "https://cloudflare.com/",
             },
@@ -234,14 +238,14 @@ export const ResumePage: Component = () => {
       ],
     },
     {
-      title: t("page.resume.tech.group.gameDev"),
+      title: t("page.resume.tech.group.game-dev"),
       categories: [
         {
           title: t("page.resume.tech.cat.languages"),
           items: [
-            { label: "C++", icon: "i-logos-c-plusplus", href: "https://isocpp.org/" },
+            { label: t("app.text.c"), icon: "i-logos-c-plusplus", href: "https://isocpp.org/" },
             {
-              label: "Verse",
+              label: t("app.text.verse"),
               icon: "i-simple-icons-fortnite",
               href: "https://dev.epicgames.com/documentation/en-us/uefn/verse-language-reference",
             },
@@ -251,11 +255,15 @@ export const ResumePage: Component = () => {
           title: t("page.resume.tech.cat.environment"),
           items: [
             {
-              label: "Unreal Engine",
+              label: t("app.text.unreal-engine"),
               icon: "i-logos-unrealengine-icon?mask text-white",
               href: "https://www.unrealengine.com/",
             },
-            { label: "Rider", icon: "i-logos-rider", href: "https://www.jetbrains.com/rider/" },
+            {
+              label: t("app.text.rider"),
+              icon: "i-logos-rider",
+              href: "https://www.jetbrains.com/rider/",
+            },
           ],
         },
       ],
@@ -267,12 +275,12 @@ export const ResumePage: Component = () => {
           title: t("page.resume.tech.cat.data"),
           items: [
             {
-              label: "PostgreSQL",
+              label: t("app.text.postgresql"),
               icon: "i-logos-postgresql",
               href: "https://www.postgresql.org/",
             },
             {
-              label: "Drizzle",
+              label: t("app.text.drizzle"),
               icon: "i-catppuccin-drizzle-orm",
               href: "https://orm.drizzle.team/",
             },
@@ -282,7 +290,7 @@ export const ResumePage: Component = () => {
           title: t("page.resume.tech.cat.auth"),
           items: [
             {
-              label: "Cloudflare Access",
+              label: t("app.text.cloudflare-access"),
               icon: "i-simple-icons-cloudflare",
               href: "https://cloudflare.com/",
             },
@@ -291,14 +299,14 @@ export const ResumePage: Component = () => {
         {
           title: t("page.resume.tech.cat.project"),
           items: [
-            { label: "Git", icon: "i-logos-git-icon", href: "https://git-scm.com/" },
+            { label: t("app.text.git"), icon: "i-logos-git-icon", href: "https://git-scm.com/" },
             {
-              label: "Lore",
+              label: t("app.text.lore"),
               icon: "i-simple-icons-epicgames?mask text-white",
               href: "https://dev.epicgames.com/documentation/en-us/uefn/unreal-revision-control-in-unreal-editor-for-fortnite",
             },
             {
-              label: "YouTrack",
+              label: t("app.text.youtrack"),
               icon: "i-logos-youtrack",
               href: "https://www.jetbrains.com/youtrack/",
             },
@@ -684,7 +692,7 @@ export const ResumePage: Component = () => {
                         </div>
                       </Show>
 
-                      <Show when={project.imageSrc}>
+                      <Show when={project["image-src"]}>
                         {(imageSrc) => (
                           <RLImage
                             src={imageSrc()}
@@ -735,14 +743,14 @@ export const ResumePage: Component = () => {
                             </strong>
                             <span class="text-sm text-neutral-500">{cert.issuer}</span>
                           </span>
-                          <Show when={cert.credentialId}>
+                          <Show when={cert["credential-id"]}>
                             <span class="i-lucide-chevron-down text-neutral-500 transition-transform duration-200 group-open:rotate-180" />
                           </Show>
                         </summary>
-                        <Show when={cert.credentialId}>
+                        <Show when={cert["credential-id"]}>
                           <div class="flex flex-col gap-1.5 pt-1">
                             <code class="block text-xs text-neutral-500 break-all">
-                              {t("page.resume.labels.credentialId")}: {cert.credentialId}
+                              {t("page.resume.labels.credential-id")}: {cert["credential-id"]}
                             </code>
                           </div>
                         </Show>

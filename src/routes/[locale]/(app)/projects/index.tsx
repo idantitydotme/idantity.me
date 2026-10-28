@@ -38,8 +38,8 @@ export const ProjectsIndexPage: Component = () => {
 
   useHead(() =>
     createSeoHead({
-      title: t("projects.title"),
-      description: t("projects.description"),
+      title: t("page.projects.meta.title"),
+      description: t("page.projects.meta.description"),
     }),
   );
 
@@ -63,13 +63,16 @@ export const ProjectsIndexPage: Component = () => {
 
   return (
     <RLPageSection
-      title={t("projects.title")}
-      description={t("projects.description")}
+      title={t("page.projects.meta.title")}
+      description={t("page.projects.meta.description")}
       class="py-16"
     >
       <div class="max-w-7xl mx-auto w-full px-4 mt-8">
         <Show when={categories().length > 0}>
-          <nav aria-label="Categories" class="mb-10 flex flex-wrap justify-center gap-2">
+          <nav
+            aria-label={t("page.projects.categories.aria-label")}
+            class="mb-10 flex flex-wrap justify-center gap-2"
+          >
             {chip("", "All")}
             <For each={categories()}>{(c) => chip(c.slug, label(c.label), c.count)}</For>
           </nav>
@@ -80,7 +83,7 @@ export const ProjectsIndexPage: Component = () => {
         </RLGrid>
 
         <Show when={!posts() || posts()!.length === 0}>
-          <p class="text-center text-neutral-500 py-12">No projects available yet.</p>
+          <p class="text-center text-neutral-500 py-12">{t("page.projects.empty")}</p>
         </Show>
       </div>
     </RLPageSection>

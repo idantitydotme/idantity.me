@@ -69,7 +69,7 @@ export const AppFooter: Component = () => {
         <div class="flex flex-col justify-between h-full gap-xs lg:items-start">
           <RLLogo variant="logotype" class="h-6 w-auto" />
           <div>
-            <p class="text-sm text-white">Accessing me.</p>
+            <p class="text-sm text-white">{t("app.footer.accessing")}</p>
             <span class="text-sm text-white">© {new Date().getFullYear()} idantity.me</span>
           </div>
         </div>

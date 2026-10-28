@@ -14,7 +14,7 @@ export const HomePage: Component = () => {
 
   const heroLinks = (): RLButtonProps[] => [
     {
-      label: t("playground.hero-link"),
+      label: t("page.home.hero-link"),
       href: "/blog",
       color: "primary",
       variant: "solid",
@@ -23,13 +23,13 @@ export const HomePage: Component = () => {
 
   const ctaLinks = (): RLButtonProps[] => [
     {
-      label: t("playground.cta-start"),
+      label: t("page.home.cta-start"),
       href: "/blog",
       color: "primary",
       variant: "solid",
     },
     {
-      label: t("playground.cta-contribute"),
+      label: t("page.home.cta-contribute"),
       href: "/",
       color: "primary",
       variant: "outline",
@@ -40,7 +40,7 @@ export const HomePage: Component = () => {
   useHead(() =>
     createSeoHead({
       title: "idantity",
-      description: "Welcome to my website!",
+      description: t("app.text.welcome-to-my-website"),
     }),
   );
 
@@ -49,8 +49,8 @@ export const HomePage: Component = () => {
       <RLPageSection
         variant="hero"
         reverse={true}
-        title={t("playground.hero-title")}
-        description={t("playground.hero-desc")}
+        title={t("page.home.hero-title")}
+        description={t("page.home.hero-desc")}
         links={heroLinks()}
       >
         <RLLogo class="pointer-events-none h-64 w-auto" variant="logomark" />
@@ -58,8 +58,8 @@ export const HomePage: Component = () => {
 
       <RLPageSection
         orientation="vertical"
-        title={t("playground.posts-title")}
-        description={t("playground.posts-desc")}
+        title={t("page.home.posts-title")}
+        description={t("page.home.posts-desc")}
         body={
           <div class="flex flex-col gap-xl">
             <RLGrid>
@@ -68,7 +68,7 @@ export const HomePage: Component = () => {
 
             <Show when={(latestPosts() || []).length > 0}>
               <RLButton
-                label={t("playground.view-all-posts")}
+                label={t("page.home.view-all-posts")}
                 href="/blog"
                 color="primary"
                 variant="link"
@@ -82,8 +82,8 @@ export const HomePage: Component = () => {
       <RLPageSection
         variant="cta"
         ctaVariant="solid"
-        title={t("playground.cta-title")}
-        description={t("playground.cta-desc")}
+        title={t("page.home.cta-title")}
+        description={t("page.home.cta-desc")}
         links={ctaLinks()}
       />
     </>

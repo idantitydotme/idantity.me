@@ -143,8 +143,8 @@ export const ServicesPage: Component = () => {
 
   useHead(() =>
     createSeoHead({
-      title: t("page.services.title"),
-      description: t("page.services.description"),
+      title: t("page.services.meta.title"),
+      description: t("page.services.meta.description"),
     }),
   );
 

@@ -32,7 +32,7 @@ export const LegalDocumentPage: Component = () => {
   return (
     <Show
       when={pageData()}
-      fallback={<div class="p-16 text-center text-neutral-400">Loading document...</div>}
+      fallback={<div class="p-16 text-center text-neutral-400">{t("app.loading.document")}</div>}
     >
       <article class="max-w-4xl mx-auto px-4 py-16">
         <header class="mb-12">

@@ -1,4 +1,5 @@
 import { type Component, For, Show } from "solid-js";
+import { t } from "@rimelight/i18n";
 
 export interface LighthouseScoresProps {
   performance?: number;
@@ -17,22 +18,22 @@ export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
 
   const metrics = () => [
     {
-      label: "Performance",
+      label: t("app.text.performance"),
       value: performance(),
       desc: "Sub-second LCP & instantaneous edge delivery",
     },
     {
-      label: "Accessibility",
+      label: t("app.text.accessibility"),
       value: accessibility(),
       desc: "WCAG 2.1 AA compliant, screen-reader optimized",
     },
     {
-      label: "Best Practices",
+      label: t("app.text.best-practices"),
       value: bestPractices(),
       desc: "Modern web standards, HTTPS & zero console errors",
     },
     {
-      label: "SEO",
+      label: t("app.text.seo"),
       value: seo(),
       desc: "Semantic metadata, structured data & discoverability",
     },
@@ -48,7 +49,7 @@ export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
         <div class="flex items-center justify-between gap-2 mb-2">
           <div class="flex items-center gap-2">
             <span class="i-lucide-gauge size-5 text-emerald-500" aria-hidden="true" />
-            <h3 class="text-lg font-bold text-foreground">Google Lighthouse</h3>
+            <h3 class="text-lg font-bold text-foreground">{t("page.services.lighthouse.title")}</h3>
           </div>
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
             100/100 Perfect Score
@@ -64,7 +65,7 @@ export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
       <div
         class="grid grid-cols-2 sm:grid-cols-4 gap-4 py-2"
         role="list"
-        aria-label="Lighthouse scores"
+        aria-label={t("page.services.lighthouse.aria-label")}
       >
         <For each={metrics()}>
           {(metric) => {
@@ -120,7 +121,7 @@ export const LighthouseScores: Component<LighthouseScoresProps> = (props) => {
 
       {/* Footnote */}
       <div class="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs text-muted-foreground">
-        <span>Verified on modern mobile & desktop viewports</span>
+        <span>{t("page.services.lighthouse.viewports")}</span>
         <span class="flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-medium">
           <span class="i-lucide-check-circle-2 size-3.5" aria-hidden="true" /> Live Standard
         </span>
