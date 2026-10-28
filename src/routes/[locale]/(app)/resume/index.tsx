@@ -523,11 +523,6 @@ export const ResumePage: Component = () => {
                                   <li class="w-full">
                                     <RLButton
                                       justify="start"
-                                      // Resume-only: the base root always sets justify-center, so swap it for start.
-                                      ui={{
-                                        root: (base: string) =>
-                                          base.replace("justify-center", "justify-start"),
-                                      }}
                                       variant="ghost"
                                       color="neutral"
                                       leadingIcon={item.icon}
