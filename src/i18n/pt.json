@@ -53,12 +53,12 @@
       "page": "Carregando."
     },
     "text": {
-      "performance": "Performance",
-      "accessibility": "Accessibility",
-      "best-practices": "Best Practices",
+      "performance": "Desempenho",
+      "accessibility": "Acessibilidade",
+      "best-practices": "Boas Práticas",
       "seo": "SEO",
-      "welcome-to-my-website": "Welcome to my website!",
-      "verse": "Verse",
+      "welcome-to-my-website": "Bem-vindo ao meu site!",
+      "verse": "Universo",
       "lore": "Lore",
       "typescript": "TypeScript",
       "astro": "Astro",
@@ -589,7 +589,7 @@
         "bishu": {
           "ikari": {
             "title": "Bishu - Ikari",
-            "artist": "Bishu / idantity rework",
+            "artist": "Bishu / retrabalho de idantity",
             "genre": "Eletrônica / Bass",
             "category": "Produção"
           }
