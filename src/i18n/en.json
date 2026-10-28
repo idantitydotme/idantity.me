@@ -1,4 +1,4 @@
-﻿{
+{
   "app": {
     "header": {
       "links": {
@@ -105,7 +105,7 @@
       "description": "High-performance web development, security hardening, full-stack edge engineering, and architectural audits.",
       "hero": {
         "headline": "Engineering Standards",
-        "title": "Fast, Secure \u0026 Resilient Web Solutions",
+        "title": "Fast, Secure & Resilient Web Solutions",
         "description": "I build modern web applications, scalable edge backends, and performance-first architectures tailored for reliability, accessibility, and speed."
       },
       "cta": {
@@ -117,13 +117,13 @@
         },
         "final": {
           "title": "Ready to bring your web project to life?",
-          "desc": "Let\u0027s build something fast, secure, and built to last. Reach out and let\u0027s discuss your requirements.",
+          "desc": "Let's build something fast, secure, and built to last. Reach out and let's discuss your requirements.",
           "button": "Get in Touch"
         }
       },
       "benchmarks": {
         "headline": "Proven Quality",
-        "title": "Verified Performance \u0026 Security",
+        "title": "Verified Performance & Security",
         "description": "Every project is engineered to meet strict web standards, guaranteeing perfect Lighthouse metrics and hardened HTTP security headers out of the box."
       },
       "services-section": {
@@ -133,34 +133,34 @@
       },
       "service": {
         "1": {
-          "title": "Modern Web Applications \u0026 Sites",
+          "title": "Modern Web Applications & Sites",
           "desc": "Custom-built, lightning-fast web applications designed with modern edge architectures, responsive layouts, and zero unnecessary bloat.",
           "feat": {
-            "1": "Sub-second load times \u0026 100/100 Core Web Vitals",
+            "1": "Sub-second load times & 100/100 Core Web Vitals",
             "2": "Accessible (WCAG 2.1 AA) and mobile-first responsive design",
             "3": "Seamless internationalization (i18n) and SEO optimization"
           }
         },
         "2": {
-          "title": "Security Hardening \u0026 Best Practices",
+          "title": "Security Hardening & Best Practices",
           "desc": "Proactive security posture integration to safeguard your web assets against common vulnerabilities, data leakage, and bot spam.",
           "feat": {
-            "1": "Mozilla Observatory A+ grade HTTP security headers \u0026 strict CSP",
-            "2": "Cloudflare Turnstile bot deterrence \u0026 rate-limiting",
+            "1": "Mozilla Observatory A+ grade HTTP security headers & strict CSP",
+            "2": "Cloudflare Turnstile bot deterrence & rate-limiting",
             "3": "Safe input sanitization, CSRF mitigation, and TLS/SSL hardening"
           }
         },
         "3": {
-          "title": "Full-Stack Edge \u0026 API Architecture",
+          "title": "Full-Stack Edge & API Architecture",
           "desc": "Serverless APIs and database layers built on lightweight edge runtimes, ensuring global low latency and rock-solid scalability.",
           "feat": {
-            "1": "Ultra-fast RESTful APIs with Hono \u0026 Cloudflare Workers",
-            "2": "Scalable serverless databases with PlanetScale \u0026 MySQL edge drivers",
-            "3": "Headless CMS, authentication \u0026 third-party integrations"
+            "1": "Ultra-fast RESTful APIs with Hono & Cloudflare Workers",
+            "2": "Scalable serverless databases with PlanetScale & MySQL edge drivers",
+            "3": "Headless CMS, authentication & third-party integrations"
           }
         },
         "4": {
-          "title": "Performance Auditing \u0026 Modernization",
+          "title": "Performance Auditing & Modernization",
           "desc": "Diagnostic evaluation and systematic refactoring of slow or legacy web codebases to modernize their stack and slash page weight.",
           "feat": {
             "1": "Comprehensive bottleneck diagnosis and code teardown",
@@ -177,28 +177,28 @@
       "step": {
         "1": {
           "num": "01",
-          "title": "Discovery \u0026 Architecture",
+          "title": "Discovery & Architecture",
           "desc": "We analyze your project goals, technical requirements, and define the data models, UX structure, and edge stack."
         },
         "2": {
           "num": "02",
-          "title": "Implementation \u0026 Clean Code",
+          "title": "Implementation & Clean Code",
           "desc": "Iterative development using strict TypeScript, modular components, and constant progress visibility."
         },
         "3": {
           "num": "03",
-          "title": "Benchmarking \u0026 Hardening",
+          "title": "Benchmarking & Hardening",
           "desc": "Rigorous automated testing for accessibility, responsive viewports, Lighthouse metrics, and security headers."
         },
         "4": {
           "num": "04",
-          "title": "Deployment \u0026 Handover",
+          "title": "Deployment & Handover",
           "desc": "Zero-downtime global rollout, automated CI/CD pipelines, documentation, and seamless handover."
         }
       },
       "tech": {
         "headline": "Technologies",
-        "title": "Modern Edge \u0026 Web Tooling",
+        "title": "Modern Edge & Web Tooling",
         "description": "Built on top of modern, battle-tested web technologies."
       },
       "faq": {
@@ -212,7 +212,7 @@
         "q3": "How are projects scoped and priced?",
         "a3": "Engagements can be structured as fixed-scope project milestones for well-defined builds, or on a flexible sprint/retainer basis for ongoing development and advisory. Every project includes clear deliverables and timelines upfront.",
         "q4": "How do we get started?",
-        "a4": "Reach out through the contact form with a brief summary of your project or requirements. I\u0027ll get back to you within 24â€“48 hours to discuss specifications, timeline, and next steps."
+        "a4": "Reach out through the contact form with a brief summary of your project or requirements. I'll get back to you within 24â€“48 hours to discuss specifications, timeline, and next steps."
       }
     },
     "resume": {
@@ -267,11 +267,12 @@
         "basic": "Basic"
       },
       "hero": {
-        "title": "Hey! I\u0027m Daniel Marchi",
-        "description": "I\u0027m a Web and Game Developer specializing in large-scale Live-Service titles.",
+        "title": "Hey! I'm Daniel Marchi",
+        "description": "I'm a Web and Game Developer specializing in large-scale Live-Service titles.",
         "action": {
           "hire": "Hire Me",
-          "download-cv": "Download CV"
+          "download-cv": "Download CV",
+          "downloadCv": "Download CV"
         }
       },
       "skills": {
@@ -283,15 +284,24 @@
           "desc": "Developing real-time virtual experiences, game logic, and gameplay loops in game engines with standard clean coding practices and performant structures."
         },
         "design": {
-          "desc": "Focusing on accessible user experiences, interface detail, smooth interactive feedback loops, and visually consistent modular systems."
+          "desc": "Focusing on accessible user experiences, interface detail, smooth interactive feedback loops, and visually consistent modular systems.",
+          "title": "Design Philosophies"
+        },
+        "webDev": {
+          "title": "Web Development",
+          "desc": "Building fast, responsive, and secure web applications using modern standard architectures, framework integration, and performance optimization techniques."
+        },
+        "gameDev": {
+          "title": "Game Development",
+          "desc": "Developing real-time virtual experiences, game logic, and gameplay loops in game engines with standard clean coding practices and performant structures."
         }
       },
       "tech": {
-        "heading": "Technologies \u0026 Tools",
+        "heading": "Technologies & Tools",
         "cat": {
-          "languages": "Languages \u0026 Frameworks",
+          "languages": "Languages & Frameworks",
           "environment": "Development Environment",
-          "build": "Build \u0026 Package",
+          "build": "Build & Package",
           "deployment": "Deployment",
           "data": "Data Management",
           "auth": "Authentication",
@@ -300,18 +310,20 @@
         "group": {
           "web-dev": "Web Development",
           "game-dev": "Game Development",
-          "shared": "Shared Technologies"
+          "shared": "Shared Technologies",
+          "webDev": "Web Development",
+          "gameDev": "Game Development"
         }
       },
       "education": [
         {
           "degree": "Bachelor of Music",
-          "school": "UFPR - Universidade Federal do ParanÃ¡",
+          "school": "UFPR - Universidade Federal do Paraná",
           "period": "2018 - 2022"
         },
         {
           "degree": "Technologist of Digital Games",
-          "school": "PUCPR - PontifÃ­cia Universidade CatÃ³lica do ParanÃ¡",
+          "school": "PUCPR - Pontifícia Universidade Católica do Paraná",
           "period": "2020 - 2022"
         }
       ],
@@ -332,7 +344,7 @@
           "company": "Compass.UOL",
           "compan-rl": "https://compass.uol",
           "period": "Feb 2022 - Jun 2022",
-          "location": "Curitiba, Brazil Â· Remote",
+          "location": "Curitiba, Brazil · Remote",
           "summary": "Engaged in training exercises and problem-solving activities using Unreal Engine and C++.",
           "responsibilities": [
             "Training exercises and problem solving activities in Unreal Engine."
@@ -344,7 +356,7 @@
           "company": "Compass.UOL",
           "compan-rl": "https://compass.uol",
           "period": "Jun 2022 - Oct 2022",
-          "location": "Curitiba, Brazil Â· Remote",
+          "location": "Curitiba, Brazil · Remote",
           "summary": "Developed real-time 3D virtual experiences for E-Commerce using Unreal Engine and Blueprints.",
           "responsibilities": [
             "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine."
@@ -356,7 +368,7 @@
           "company": "Compass.UOL",
           "compan-rl": "https://compass.uol",
           "period": "Oct 2022 - Mar 2023",
-          "location": "Curitiba, Brazil Â· Remote",
+          "location": "Curitiba, Brazil · Remote",
           "summary": "Developed real-time 3D virtual experiences and E-Commerce solutions in Unreal Engine with UI mockups and technical documentation.",
           "responsibilities": [
             "Development of real-time 3D virtual experiences related to E-Commerce in Unreal Engine.",
@@ -370,7 +382,7 @@
           "company": "Concentrix - Copa Energia (SAC)",
           "compan-rl": "https://concentrix.com",
           "period": "Jun 2026 - Sep 2026",
-          "location": "Curitiba, Brazil Â· On Site",
+          "location": "Curitiba, Brazil · On Site",
           "summary": "Lorem Ipsum",
           "responsibilities": [
             "Provided support for supervision and general technological support.",
@@ -384,8 +396,8 @@
           "company": "Concentrix - Copa Energia (RA)",
           "compan-rl": "https://concentrix.com",
           "period": "Sep 2026 - Current",
-          "location": "Curitiba, Brazil Â· On Site",
-          "summary": "Processed and resolved consumer complaints via Brazil\u0027s leading consumer advocacy platform.",
+          "location": "Curitiba, Brazil · On Site",
+          "summary": "Processed and resolved consumer complaints via Brazil's leading consumer advocacy platform.",
           "responsibilities": ["Lorem Ipsum from start to finish.", "Lorem Ipsum", "Lorem Ipsum"],
           "tags": ["Customer Service", "Customer Experience"]
         }
@@ -454,32 +466,32 @@
         {
           "title": "HTML Essential Training",
           "issuer": "LinkedIn Learning",
-          "credentia-d": "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
+          "credentialId": "d9e4078228ebbdb4def6e76b7920e52d10faa00f26f243028ed899965520c5b9"
         },
         {
           "title": "CSS Essential Training",
           "issuer": "LinkedIn Learning",
-          "credentia-d": "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
+          "credentialId": "39bbac502a6eb3234012f41377b0ef184f472af2c60cd01818700a4cb3043328"
         },
         {
           "title": "TypeScript Essential Training",
           "issuer": "LinkedIn Learning",
-          "credentia-d": "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
+          "credentialId": "b9bbfd92aed3215801a32b67dd509d93d435582908129025b29fb233460eb0d7"
         },
         {
           "title": "PostgreSQL Essential Training",
           "issuer": "LinkedIn Learning",
-          "credentia-d": "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
+          "credentialId": "f1debffcb0dce6fb5e583570c50932b55a16b55bd66c8b285677546553d0c733"
         },
         {
           "title": "Git Essential Training",
           "issuer": "LinkedIn Learning",
-          "credentia-d": "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
+          "credentialId": "0f4be14114c8a49d3554f670afab6ea33616c21e056991ad9478cb87345eaa34"
         },
         {
           "title": "Unreal Engine 5 Essential Training",
           "issuer": "LinkedIn Learning",
-          "credentia-d": "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
+          "credentialId": "d1cb7ca7162be843536829874461164f5fc317707e0c3bbeae167dc7c9038630"
         }
       ],
       "aria": {
@@ -490,6 +502,14 @@
           "linkedin": "LinkedIn profile",
           "github": "GitHub profile"
         }
+      },
+      "headings": {
+        "education": "Education",
+        "projects": "Projects",
+        "certifications": "Certifications"
+      },
+      "labels": {
+        "credentialId": "Certificate ID"
       }
     },
     "contact": {
@@ -529,13 +549,13 @@
       "description": "DJ mixes, curated playlists, and musical productions.",
       "hero": {
         "headline": "Sonic Experience",
-        "title": "Music, Mixes \u0026 Audio",
+        "title": "Music, Mixes & Audio",
         "description": "Original bass and electronic productions, DJ mixes with timestamped tracklists, and hand-curated Spotify selections."
       },
       "tab": {
         "all": "All Audio",
-        "mixes": "Mixes \u0026 Sets",
-        "productions": "Originals \u0026 Tracks",
+        "mixes": "Mixes & Sets",
+        "productions": "Originals & Tracks",
         "playlists": "Curated Playlists"
       },
       "section": {
@@ -544,7 +564,7 @@
           "desc": "High-energy electronic and bass production."
         },
         "mixes": {
-          "title": "Featured Mixes \u0026 Sets",
+          "title": "Featured Mixes & Sets",
           "desc": "Full-length mixes with interactive chapter timestamps."
         },
         "playlists": {
@@ -558,7 +578,7 @@
         "mute": "Mute",
         "unmute": "Unmute",
         "download": "Download Audio",
-        "tracklist": "Chapters \u0026 Tracklist",
+        "tracklist": "Chapters & Tracklist",
         "speed": "Speed"
       },
       "spotify": {
@@ -576,7 +596,7 @@
           }
         },
         "cue": {
-          "intro": "Intro \u0026 Lead Synth Build",
+          "intro": "Intro & Lead Synth Build",
           "drop1": "First Drop (Heavy Bass)",
           "break": "Melodic Breakdown",
           "drop2": "Second Drop (Polyrhythm Outro)"
@@ -584,19 +604,19 @@
       },
       "playlists": {
         "pl1": {
-          "title": "Bass \u0026 Electronic Pulse",
+          "title": "Bass & Electronic Pulse",
           "desc": "Heavy basslines, trap rhythms, and high-octane sound design for focus and energy."
         },
         "pl2": {
-          "title": "Melodic \u0026 Future Waves",
+          "title": "Melodic & Future Waves",
           "desc": "Lush melodic chords, wave synths, and emotive vocal chops."
         },
         "pl3": {
-          "title": "Late Night Coding \u0026 Drive",
+          "title": "Late Night Coding & Drive",
           "desc": "Deep house, downtempo, and atmospheric beats crafted for deep work."
         },
         "pl4": {
-          "title": "Peak Energy \u0026 Club Anthems",
+          "title": "Peak Energy & Club Anthems",
           "desc": "Fast-paced dance floor bangers and festival-ready electronic tracks."
         }
       }
