@@ -1,6 +1,6 @@
 import { type Component, createSignal, Show } from "solid-js";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { RLPageSection, RLCard, RLButton } from "@rimelight/ui";
 import Turnstile from "#components/app/Turnstile";
 import { t } from "@rimelight/i18n";
@@ -52,7 +52,7 @@ export default function ContactPage() {
   };
 
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("page.contact.meta.title"),
       description: t("page.contact.meta.description"),
     }),

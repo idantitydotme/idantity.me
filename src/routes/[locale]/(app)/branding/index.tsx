@@ -1,10 +1,10 @@
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
 
 export default function BrandingPage() {
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("page.branding.meta.title"),
       description: t("page.branding.meta.description"),
     }),

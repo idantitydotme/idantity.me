@@ -1,6 +1,6 @@
 import { For } from "solid-js";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
 import { RLPageSection, RLAccordion } from "@rimelight/ui";
 import LighthouseScores from "#components/services/LighthouseScores.tsx";
@@ -142,7 +142,7 @@ export default function ServicesPage() {
   ];
 
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("page.services.meta.title"),
       description: t("page.services.meta.description"),
     }),

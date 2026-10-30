@@ -1,6 +1,6 @@
 import { For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t, getLocaleUrl, getCurrentLocale } from "@rimelight/i18n";
 import { RLPageSection, RLGrid, RLPost } from "@rimelight/ui";
 import { content } from "@rimelight/cms/solid";
@@ -23,7 +23,7 @@ export default function LegalIndexPage() {
   );
 
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("page.legal.meta.title"),
       description: t("page.legal.meta.description"),
     }),

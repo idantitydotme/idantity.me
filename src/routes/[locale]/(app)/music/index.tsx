@@ -1,6 +1,6 @@
 import { For, createSignal } from "solid-js";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { RLPageSection, RLTabs } from "@rimelight/ui";
 import MusicPlayer from "#components/music/MusicPlayer.tsx";
 import SpotifyFacade from "#components/music/SpotifyFacade.tsx";
@@ -79,7 +79,7 @@ export default function MusicPage() {
   });
 
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("page.music.meta.title"),
       description: t("page.music.meta.description"),
     }),

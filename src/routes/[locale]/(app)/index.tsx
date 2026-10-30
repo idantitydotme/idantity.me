@@ -1,6 +1,6 @@
 import { For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t, getCurrentLocale } from "@rimelight/i18n";
 import { RLPageSection, RLLogo, RLButton, RLGrid, type RLButtonProps } from "@rimelight/ui";
 import { content, type PublicEntry } from "@rimelight/cms/solid";
@@ -38,7 +38,7 @@ export default function HomePage() {
   ];
 
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: "idantity",
       description: t("app.text.welcome-to-my-website"),
     }),

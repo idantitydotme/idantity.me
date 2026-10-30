@@ -1,7 +1,7 @@
 import { Show, createMemo } from "solid-js";
 import { useParams, useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { PageRenderer, content, type PublicEntry } from "@rimelight/cms/solid";
 import { RLDate } from "@rimelight/ui";
 import { t, getCurrentLocale } from "@rimelight/i18n";
@@ -34,7 +34,7 @@ export default function ProjectDetailPage() {
     return p ? t.localize(p.description ?? {}) || p.properties?.["excerpt"] || "" : "";
   };
 
-  useHead(() => createSeoHead({ title: title(), description: description() }));
+  useHead(() => createPageHead({ title: title(), description: description() }));
 
   return (
     <Show

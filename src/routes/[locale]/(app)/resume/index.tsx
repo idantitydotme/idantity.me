@@ -1,6 +1,6 @@
 import { For, Show } from "solid-js";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
 import {
   RLContainer,
@@ -322,7 +322,7 @@ export default function ResumePage() {
   const projects = () => t.raw<ResumeProject[]>("page.resume.projects", []);
 
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("page.resume.meta.title"),
       description: t("page.resume.meta.description"),
     }),

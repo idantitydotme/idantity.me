@@ -1,7 +1,7 @@
 import { For, Show, createMemo } from "solid-js";
 import { useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
-import { createSeoHead } from "@rimelight/seo/head";
+import { createPageHead } from "@rimelight/seo/head";
 import { t, getCurrentLocale } from "@rimelight/i18n";
 import { RLPageSection, RLGrid } from "@rimelight/ui";
 import { content, type PublicEntry, type PublicTerm } from "@rimelight/cms/solid";
@@ -37,7 +37,7 @@ export default function BlogIndexPage() {
   );
 
   useHead(() =>
-    createSeoHead({
+    createPageHead({
       title: t("page.blog.meta.title"),
       description: t("page.blog.meta.description"),
     }),
