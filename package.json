@@ -1,6 +1,6 @@
 {
   "name": "idantity-dot-me",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "private": true,
   "description": "Accessing me.",
   "keywords": [
@@ -13,7 +13,9 @@
   },
   "license": "MIT",
   "author": {
-    "name": "Daniel Marchi"
+    "name": "idantity.me",
+    "email": "contact@idantity.me",
+    "url": "https://idantity.me"
   },
   "repository": {
     "type": "git",
