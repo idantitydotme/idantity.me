@@ -1,4 +1,4 @@
-import { bindings, defineConfig, triggers } from "cf/config";
+import { bindings, defineConfig } from "cf/config";
 
 export default defineConfig({
   worker: {
@@ -17,10 +17,6 @@ export default defineConfig({
     cache: {
       enabled: true,
     },
-    triggers: [
-      triggers.fetch({ pattern: "idantity.me/*", zone: "idantity.me" }),
-      triggers.fetch({ pattern: "www.idantity.me/*", zone: "idantity.me" }),
-    ],
     env: {
       ASSETS: bindings.assets(),
       IMAGES: bindings.images(),
