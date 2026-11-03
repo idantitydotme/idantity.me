@@ -1,6 +1,6 @@
 import { type Component, Show } from "solid-js";
 import { t, getLocaleUrl } from "@rimelight/i18n";
-import { RLPost } from "@rimelight/ui";
+import { RLPost } from "@rimelight/ui/components/post/RLPost.tsx";
 import type { PublicEntry } from "@rimelight/cms/solid";
 
 /** One post as a card. Used by the blog index and the homepage's latest posts. */

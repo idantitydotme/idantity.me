@@ -2,7 +2,11 @@ import { For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
 import { t, getCurrentLocale } from "@rimelight/i18n";
-import { RLPageSection, RLLogo, RLButton, RLGrid, type RLButtonProps } from "@rimelight/ui";
+import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
+import { RLLogo } from "@rimelight/ui/components/logo/RLLogo.tsx";
+import { RLButton } from "@rimelight/ui/components/button/RLButton.tsx";
+import { RLGrid } from "@rimelight/ui/components/grid/RLGrid.tsx";
+import type { RLButtonProps } from "@rimelight/ui/components/button/button.types.ts";
 import { content, type PublicEntry } from "@rimelight/cms/solid";
 import { BlogPostCard } from "#components/blog/BlogPostCard";
 

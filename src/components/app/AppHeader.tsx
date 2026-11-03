@@ -1,12 +1,10 @@
 import { type Component, For } from "solid-js";
-import {
-  RLHeader,
-  RLLogo,
-  RLNavigationMenu,
-  RLButton,
-  RLSlideover,
-  type RLButtonProps,
-} from "@rimelight/ui";
+import { RLHeader } from "@rimelight/ui/components/header/RLHeader.tsx";
+import { RLLogo } from "@rimelight/ui/components/logo/RLLogo.tsx";
+import { RLNavigationMenu } from "@rimelight/ui/components/navigation-menu/RLNavigationMenu.tsx";
+import { RLButton } from "@rimelight/ui/components/button/RLButton.tsx";
+import { RLSlideover } from "@rimelight/ui/components/slideover/RLSlideover.tsx";
+import type { RLButtonProps } from "@rimelight/ui/components/button/button.types.ts";
 import { t } from "@rimelight/i18n";
 
 export interface AppHeaderProps {

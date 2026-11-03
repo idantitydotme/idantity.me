@@ -1,7 +1,8 @@
 import { For, createSignal } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
-import { RLPageSection, RLTabs } from "@rimelight/ui";
+import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
+import { RLTabs } from "@rimelight/ui/components/tabs/RLTabs.tsx";
 import MusicPlayer from "#components/music/MusicPlayer.tsx";
 import SpotifyFacade from "#components/music/SpotifyFacade.tsx";
 import { t } from "@rimelight/i18n";

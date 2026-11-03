@@ -2,20 +2,18 @@ import { For, Show } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
-import {
-  RLContainer,
-  RLPage,
-  RLPageSection,
-  RLAvatar,
-  RLImage,
-  RLButton,
-  RLBadge,
-  RLIcon,
-  RLProgress,
-  RLTimeline,
-  RLLink,
-  type RLButtonProps,
-} from "@rimelight/ui";
+import { RLContainer } from "@rimelight/ui/components/container/RLContainer.tsx";
+import { RLPage } from "@rimelight/ui/components/page/RLPage.tsx";
+import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
+import { RLAvatar } from "@rimelight/ui/components/avatar/RLAvatar.tsx";
+import { RLImage } from "@rimelight/ui/components/image/RLImage.tsx";
+import { RLButton } from "@rimelight/ui/components/button/RLButton.tsx";
+import { RLBadge } from "@rimelight/ui/components/badge/RLBadge.tsx";
+import { RLIcon } from "@rimelight/ui/components/icon/RLIcon.tsx";
+import { RLProgress } from "@rimelight/ui/components/progress/RLProgress.tsx";
+import { RLTimeline } from "@rimelight/ui/components/timeline/RLTimeline.tsx";
+import { RLLink } from "@rimelight/ui/components/link/RLLink.tsx";
+import type { RLButtonProps } from "@rimelight/ui/components/button/button.types.ts";
 
 export interface LanguageSkill {
   nameKey: string;

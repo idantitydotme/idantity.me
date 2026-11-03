@@ -1,14 +1,12 @@
 import { type Component, For } from "solid-js";
-import {
-  RLFooter,
-  RLLogo,
-  RLButton,
-  RLLinkGroup,
-  RLThemeSelector,
-  RLLocaleSelector,
-  type RLButtonProps,
-  type RLLinkGroupProps,
-} from "@rimelight/ui";
+import { RLFooter } from "@rimelight/ui/components/footer/RLFooter.tsx";
+import { RLLogo } from "@rimelight/ui/components/logo/RLLogo.tsx";
+import { RLButton } from "@rimelight/ui/components/button/RLButton.tsx";
+import { RLLinkGroup } from "@rimelight/ui/components/link-group/RLLinkGroup.tsx";
+import { RLThemeSelector } from "@rimelight/ui/components/theme-selector/RLThemeSelector.tsx";
+import { RLLocaleSelector } from "@rimelight/ui/components/locale-selector/RLLocaleSelector.tsx";
+import type { RLButtonProps } from "@rimelight/ui/components/button/button.types.ts";
+import type { RLLinkGroupProps } from "@rimelight/ui/components/link-group/link-group.types.ts";
 import { t } from "@rimelight/i18n";
 
 export const AppFooter: Component = () => {

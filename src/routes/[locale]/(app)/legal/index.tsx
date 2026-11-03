@@ -2,7 +2,9 @@ import { For, Show, createMemo } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
 import { t, getLocaleUrl, getCurrentLocale } from "@rimelight/i18n";
-import { RLPageSection, RLGrid, RLPost } from "@rimelight/ui";
+import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
+import { RLGrid } from "@rimelight/ui/components/grid/RLGrid.tsx";
+import { RLPost } from "@rimelight/ui/components/post/RLPost.tsx";
 import { content } from "@rimelight/cms/solid";
 
 /** Legal documents from the CMS `legal` collection, for the current locale. */

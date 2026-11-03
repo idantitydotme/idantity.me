@@ -2,7 +2,8 @@ import { For } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
 import { t } from "@rimelight/i18n";
-import { RLPageSection, RLAccordion } from "@rimelight/ui";
+import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
+import { RLAccordion } from "@rimelight/ui/components/accordion/RLAccordion.tsx";
 import LighthouseScores from "#components/services/LighthouseScores.tsx";
 import HttpObservatory from "#components/services/HttpObservatory.tsx";
 

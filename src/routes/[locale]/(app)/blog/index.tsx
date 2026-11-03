@@ -3,7 +3,8 @@ import { useSearchParams } from "@solidjs/router";
 import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
 import { t, getCurrentLocale } from "@rimelight/i18n";
-import { RLPageSection, RLGrid } from "@rimelight/ui";
+import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
+import { RLGrid } from "@rimelight/ui/components/grid/RLGrid.tsx";
 import { content, type PublicEntry, type PublicTerm } from "@rimelight/cms/solid";
 import { BlogPostCard } from "#components/blog/BlogPostCard";
 

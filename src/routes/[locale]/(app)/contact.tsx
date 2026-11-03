@@ -1,7 +1,9 @@
 import { type Component, createSignal, Show } from "solid-js";
 import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
-import { RLPageSection, RLCard, RLButton } from "@rimelight/ui";
+import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
+import { RLCard } from "@rimelight/ui/components/card/RLCard.tsx";
+import { RLButton } from "@rimelight/ui/components/button/RLButton.tsx";
 import Turnstile from "#components/app/Turnstile";
 import { t } from "@rimelight/i18n";
 import { api } from "#api/client";
