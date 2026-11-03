@@ -29,7 +29,7 @@ export const BlogPostCard: Component<{ post: PublicEntry }> = (props) => {
           return d ? new Date(d) : undefined;
         })()}
         image={typeof cover() === "string" ? cover() : (cover()?.src ?? cover()?.url)}
-        to={getLocaleUrl(`/blog/${props.post.slug}/`)}
+        href={getLocaleUrl(`/blog/${props.post.slug}/`)}
         variant="ghost"
       />
     </div>

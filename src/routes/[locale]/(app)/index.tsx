@@ -51,7 +51,7 @@ export default function HomePage() {
   return (
     <>
       <RLPageSection
-        variant="hero"
+        layout="hero"
         reverse={true}
         title={t("page.home.hero-title")}
         description={t("page.home.hero-desc")}
@@ -64,7 +64,7 @@ export default function HomePage() {
         orientation="vertical"
         title={t("page.home.posts-title")}
         description={t("page.home.posts-desc")}
-        body={
+        bodySlot={
           <div class="flex flex-col gap-xl">
             <RLGrid>
               <For each={latestPosts() || []}>{(post) => <BlogPostCard post={post} />}</For>
@@ -84,7 +84,7 @@ export default function HomePage() {
       />
 
       <RLPageSection
-        variant="cta"
+        layout="cta"
         ctaVariant="solid"
         title={t("page.home.cta-title")}
         description={t("page.home.cta-desc")}

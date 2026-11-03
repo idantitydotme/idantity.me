@@ -64,14 +64,12 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
       stackIndex={props.stackIndex ?? 1}
       data-theme="dark"
       class="bg-black"
-      left={
+      leadingSlot={
         <div class="flex items-center gap-md">
           <div class="hidden md:flex flex-row gap-md items-center">
             <RLLogo variant="logomark" class="h-10 w-auto" mode="white" />
             <RLNavigationMenu
               items={leftLinks()}
-              variant="link"
-              theme="flat"
               ui={{
                 link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
               }}
@@ -82,7 +80,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
             <RLSlideover
               side="left"
               title={t("app.header.menu.title")}
-              trigger={
+              triggerSlot={
                 <RLButton
                   color="neutral"
                   variant="ghost"
@@ -93,32 +91,31 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
                 />
               }
             >
-              <RLNavigationMenu
-                items={allMobileLinks()}
-                orientation="vertical"
-                variant="link"
-                ui={{
-                  link: "text-black dark:text-white flex justify-start items-center w-full text-left py-2 text-lg transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
-                }}
-              />
+              {() => (
+                <RLNavigationMenu
+                  items={allMobileLinks()}
+                  orientation="vertical"
+                  ui={{
+                    link: "text-black dark:text-white flex justify-start items-center w-full text-left py-2 text-lg transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
+                  }}
+                />
+              )}
             </RLSlideover>
           </div>
         </div>
       }
-      center={
+      centerSlot={
         <div class="flex items-center gap-md">
           <div class="block md:hidden">
             <RLLogo variant="logomark" class="h-10 w-auto" mode="white" />
           </div>
         </div>
       }
-      right={
+      trailingSlot={
         <div class="flex items-center gap-md">
           <div class="hidden md:flex flex-row gap-md items-center">
             <RLNavigationMenu
               items={rightLinks()}
-              variant="link"
-              theme="flat"
               ui={{
                 link: "text-white transition-colors duration-200 hover:text-primary-400 data-[state=open]:text-primary-400 aria-[current]:text-primary-400",
               }}
@@ -130,7 +127,7 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
             <RLSlideover
               side="right"
               title={t("app.header.actions.title")}
-              trigger={
+              triggerSlot={
                 <RLButton
                   color="neutral"
                   variant="ghost"
@@ -141,11 +138,13 @@ export const AppHeader: Component<AppHeaderProps> = (props) => {
                 />
               }
             >
-              <div class="flex flex-col gap-md">
-                <For each={socials()}>
-                  {(buttonProps) => <RLButton {...buttonProps} block={true} />}
-                </For>
-              </div>
+              {() => (
+                <div class="flex flex-col gap-md">
+                  <For each={socials()}>
+                    {(buttonProps) => <RLButton {...buttonProps} block={true} />}
+                  </For>
+                </div>
+              )}
             </RLSlideover>
           </div>
         </div>

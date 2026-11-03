@@ -29,7 +29,7 @@ export const ProjectCard: Component<{ post: PublicEntry }> = (props) => {
           return d ? new Date(d) : undefined;
         })()}
         image={typeof cover() === "string" ? cover() : (cover()?.src ?? cover()?.url)}
-        to={getLocaleUrl(`/projects/${props.post.slug}/`)}
+        href={getLocaleUrl(`/projects/${props.post.slug}/`)}
         variant="ghost"
       />
     </div>

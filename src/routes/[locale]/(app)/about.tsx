@@ -14,7 +14,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <RLPageSection variant="hero" title={t("page.about.heading")} orientation="horizontal">
+      <RLPageSection layout="hero" title={t("page.about.heading")} orientation="horizontal">
         <RLImage
           src="https://cdn.idantity.me/images/placeholder.webp"
           alt={t("page.about.image-alt")}
@@ -25,7 +25,7 @@ export default function AboutPage() {
         title={t("page.about.sections.name.title")}
         orientation="horizontal"
         reverse
-        body={
+        bodySlot={
           <p class="text-sm sm:text-base text-muted-foreground leading-relaxed">
             In many programming languages,{" "}
             <a
@@ -50,7 +50,7 @@ export default function AboutPage() {
         title={t("page.about.sections.pets.title")}
         description="Who keeps me company throughout my day."
         orientation="horizontal"
-        footer={
+        footerSlot={
           <div>
             <p class="text-sm text-muted-foreground">
               I've had cats my entire life, and currently live with two beautiful companions.

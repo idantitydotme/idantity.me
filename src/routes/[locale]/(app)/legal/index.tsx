@@ -49,7 +49,7 @@ export default function LegalIndexPage() {
                   title={title}
                   description={description}
                   {...(postDate ? { date: postDate } : {})}
-                  to={getLocaleUrl(`/legal/${post.slug}/`)}
+                  href={getLocaleUrl(`/legal/${post.slug}/`)}
                   variant="ghost"
                 />
               );

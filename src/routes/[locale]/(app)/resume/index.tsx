@@ -315,6 +315,7 @@ export default function ResumePage() {
   ];
 
   const experiences = () => t.raw<ExperienceItem[]>("page.resume.experiences", []);
+  const timelineEntries = () => [...experiences()].reverse();
   const education = () => t.raw<EducationItem[]>("page.resume.education", []);
   const certifications = () => t.raw<CertificationItem[]>("page.resume.certifications", []);
   const projects = () => t.raw<ResumeProject[]>("page.resume.projects", []);
@@ -334,13 +335,13 @@ export default function ResumePage() {
             // Resume-only: the sidebar stays after the body in source order (h1 before h2),
             // but is shown first on every breakpoint, so it sits above the body on mobile
             // and on the left on large screens.
-            right: (base) =>
+            trailing: (base) =>
               `${base
                 .split(" ")
                 .filter((cls) => !/(^|:)order-/.test(cls))
                 .join(" ")} order-first`,
           }}
-          right={
+          trailingSlot={
             <aside
               aria-label={t("page.resume.aria.sidebar.profile")}
               class="order-first flex flex-col w-full gap-xl py-8 md:py-16 border-b md:border-b-0 md:border-r border-primary-500 md:pr-8"
@@ -459,7 +460,7 @@ export default function ResumePage() {
           {/* Page Body */}
           <div class="flex flex-col gap-xl py-8 md:py-16">
             <RLPageSection
-              variant="hero"
+              layout="hero"
               orientation="horizontal"
               title={t("page.resume.hero.title")}
               description={t("page.resume.hero.description")}
@@ -561,18 +562,16 @@ export default function ResumePage() {
                 orientation="vertical"
                 size="xl"
                 class="w-full"
-                items={[...experiences()].reverse().map((exp) => ({
+                items={timelineEntries().map((exp) => ({
                   date: exp.period,
                   title: `${exp.role} @ ${exp.company}`,
                   ...(exp.image
                     ? { avatar: { src: exp.image, alt: exp.company } }
                     : { icon: "i-lucide-briefcase" }),
-                  exp,
                 }))}
-              >
-                {(ctx) => {
-                  const exp =
-                    (ctx as { exp?: ExperienceItem }).exp ?? (ctx as unknown as ExperienceItem);
+                descriptionSlot={(ctx) => {
+                  const exp = timelineEntries()[ctx.index];
+                  if (!exp) return null;
                   return (
                     <div class="flex flex-col gap-2">
                       <Show when={exp.location}>
@@ -606,7 +605,7 @@ export default function ResumePage() {
                     </div>
                   );
                 }}
-              </RLTimeline>
+              />
             </section>
 
             {/* Education Section */}

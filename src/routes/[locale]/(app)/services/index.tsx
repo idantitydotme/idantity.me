@@ -153,7 +153,7 @@ export default function ServicesPage() {
     <>
       {/* 1. Hero Section */}
       <RLPageSection
-        variant="hero"
+        layout="hero"
         headline={t("page.services.hero.headline")}
         title={t("page.services.hero.title")}
         description={t("page.services.hero.description")}
@@ -166,7 +166,7 @@ export default function ServicesPage() {
         headline={t("page.services.benchmarks.headline")}
         title={t("page.services.benchmarks.title")}
         description={t("page.services.benchmarks.description")}
-        body={
+        bodySlot={
           <div class="mx-auto w-full max-w-5xl">
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 items-stretch">
               <div class="p-6 md:p-8 rounded-2xl bg-neutral-500/5 hover:bg-neutral-500/10 transition-colors flex flex-col justify-between">
@@ -186,7 +186,7 @@ export default function ServicesPage() {
         headline={t("page.services.services-section.headline")}
         title={t("page.services.services-section.title")}
         description={t("page.services.services-section.description")}
-        body={
+        bodySlot={
           <div class="mx-auto w-full max-w-5xl">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <For each={services()}>
@@ -244,7 +244,7 @@ export default function ServicesPage() {
         headline={t("page.services.process.headline")}
         title={t("page.services.process.title")}
         description={t("page.services.process.description")}
-        body={
+        bodySlot={
           <div class="mx-auto w-full max-w-5xl">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <For each={workflowSteps()}>
@@ -276,7 +276,7 @@ export default function ServicesPage() {
         headline={t("page.services.tech.headline")}
         title={t("page.services.tech.title")}
         description={t("page.services.tech.description")}
-        body={
+        bodySlot={
           <div class="mx-auto w-full max-w-5xl">
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
               <For each={techStack}>
@@ -303,16 +303,16 @@ export default function ServicesPage() {
         headline={t("page.services.faq.headline")}
         title={t("page.services.faq.title")}
         description={t("page.services.faq.description")}
-        body={
+        bodySlot={
           <div class="mx-auto w-full max-w-3xl">
-            <RLAccordion items={faqItems()} multiple={false} />
+            <RLAccordion items={faqItems()} type="single" />
           </div>
         }
       />
 
       {/* 7. Final Call to Action */}
       <RLPageSection
-        variant="cta"
+        layout="cta"
         ctaVariant="solid"
         title={t("page.services.cta.final.title")}
         description={t("page.services.cta.final.desc")}

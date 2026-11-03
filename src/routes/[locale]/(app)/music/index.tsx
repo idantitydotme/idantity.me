@@ -90,7 +90,7 @@ export default function MusicPage() {
     <>
       {/* Hero Section */}
       <RLPageSection
-        variant="hero"
+        layout="hero"
         headline={t("page.music.hero.headline")}
         title={t("page.music.hero.title")}
         description={t("page.music.hero.description")}
@@ -100,13 +100,13 @@ export default function MusicPage() {
       {/* Main Tabs Section */}
       <RLPageSection
         orientation="vertical"
-        body={
+        bodySlot={
           <div class="max-w-6xl mx-auto w-full">
             <RLTabs
               items={tabItems()}
-              variant="underline"
+              variant="link"
               value={activeTab()}
-              onChange={(val: string) => setActiveTab(val)}
+              onValueChange={(val: string) => setActiveTab(val)}
             />
 
             <div class="mt-8">

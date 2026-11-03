@@ -63,7 +63,7 @@ export default function ContactPage() {
   return (
     <>
       <RLPageSection
-        variant="hero"
+        layout="hero"
         reverse={true}
         orientation="horizontal"
         title={t("page.contact.hero.title")}
