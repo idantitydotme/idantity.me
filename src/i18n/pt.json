@@ -3,24 +3,24 @@
     "header": {
       "left-links": {
         "projects": {
-          "label": "Projetos"
+          "label": "me.projects"
         },
         "music": {
-          "label": "Música"
+          "label": "me.music"
         },
         "blog": {
-          "label": "Blog"
+          "label": "me.blog"
         },
         "about": {
-          "label": "Sobre"
+          "label": "me.about"
         }
       },
       "right-links": {
         "services": {
-          "label": "Serviços"
+          "label": "me.services"
         },
         "resume": {
-          "label": "Currículo"
+          "label": "me.resume"
         }
       },
       "menu": {
@@ -677,17 +677,22 @@
     },
     "about": {
       "meta": {
-        "title": "Sobre",
+        "title": "me.about",
         "description": "Sobre o idantity.me"
       },
-      "heading": "Sobre Mim",
+      "heading": "me.about",
       "image-alt": "Daniel Marchi",
+      "intro": {
+        "before": "Em muitas linguagens de programação, ",
+        "link": "notação de ponto",
+        "after": " é o conceito de usar pontos ('.') como forma de acessar propriedades internas ou funcionalidades de uma entidade. Ele simboliza as dificuldades que tive ao longo dos anos com a identidade própria e com o acesso às minhas emoções."
+      },
       "sections": {
-        "name": {
-          "title": "Por trás do nome"
-        },
         "pets": {
-          "title": "Animais de estimação"
+          "title": "me.pets",
+          "footer": "Tenho gatos a vida inteira e atualmente convivo com dois companheiros maravilhosos.",
+          "toya-alt": "Toya, meu gato",
+          "goldy-alt": "Goldy, meu gato"
         }
       }
     }

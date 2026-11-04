@@ -3,24 +3,24 @@
     "header": {
       "left-links": {
         "projects": {
-          "label": "Projects"
+          "label": "me.projects"
         },
         "music": {
-          "label": "Music"
+          "label": "me.music"
         },
         "blog": {
-          "label": "Blog"
+          "label": "me.blog"
         },
         "about": {
-          "label": "About"
+          "label": "me.about"
         }
       },
       "right-links": {
         "services": {
-          "label": "Services"
+          "label": "me.services"
         },
         "resume": {
-          "label": "Resume"
+          "label": "me.resume"
         }
       },
       "menu": {
@@ -81,17 +81,22 @@
   "page": {
     "about": {
       "meta": {
-        "title": "About",
+        "title": "me.about",
         "description": "About idantity.me"
       },
-      "heading": "About Me",
+      "heading": "me.about",
       "image-alt": "Daniel Marchi",
+      "intro": {
+        "before": "In many programming languages, ",
+        "link": "dot notation",
+        "after": " is the concept of using dots ('.') as a way to access internal properties or functionality of an entity. It symbolizes struggles I've had throughout the years with self identity, and in accessing emotions."
+      },
       "sections": {
-        "name": {
-          "title": "Behind the name"
-        },
         "pets": {
-          "title": "Pets"
+          "title": "me.pets",
+          "footer": "I've had cats my entire life, and currently live with two beautiful companions.",
+          "toya-alt": "Toya, my cat",
+          "goldy-alt": "Goldy, my cat"
         }
       }
     },

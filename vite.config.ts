@@ -62,6 +62,17 @@ export default defineConfig({
     i18n(),
 
     ui({
+      fonts: {
+        fonts: {
+          sans: [
+            {
+              name: "Chakra Petch",
+              weights: [400, 500, 600, 700],
+              subsets: ["latin", "latin-ext"],
+            },
+          ],
+        },
+      },
       logos: {
         logomark: {
           color: "https://cdn.idantity.me/logos/logomark_color.svg",
