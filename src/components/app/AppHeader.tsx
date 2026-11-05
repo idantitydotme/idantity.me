@@ -63,7 +63,7 @@ export const AppHeader: Component = () => {
         <div class="flex items-center gap-md">
           <div class="hidden md:flex flex-row gap-md items-center">
             <RLLogo variant="logomark" class="h-8 w-auto" mode="white" />
-            <RLNavigationMenu accent="secondary" items={leftLinks()} />
+            <RLNavigationMenu items={leftLinks()} />
           </div>
 
           <div class="block md:hidden">
@@ -83,11 +83,7 @@ export const AppHeader: Component = () => {
             >
               {() => (
                 <div class="flex flex-col gap-sm">
-                  <RLNavigationMenu
-                    accent="secondary"
-                    items={mobileLinks()}
-                    orientation="vertical"
-                  />
+                  <RLNavigationMenu items={mobileLinks()} orientation="vertical" />
                   <div class="flex flex-row flex-wrap justify-start gap-md">
                     <For each={socials()}>{(buttonProps) => <RLButton {...buttonProps} />}</For>
                   </div>
@@ -107,7 +103,7 @@ export const AppHeader: Component = () => {
       trailingSlot={
         <div class="flex items-center gap-md">
           <div class="hidden md:flex flex-row gap-md items-center">
-            <RLNavigationMenu accent="secondary" items={rightLinks()} />
+            <RLNavigationMenu items={rightLinks()} />
             <For each={socials()}>
               {(buttonProps) => <RLButton {...buttonProps} class="group" />}
             </For>

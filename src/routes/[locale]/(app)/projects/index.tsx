@@ -119,7 +119,7 @@ export default function ProjectsIndexPage() {
                   <RLPost
                     title={t.localize(post.title)}
                     description={t.localize(post.description ?? {})}
-                    date={post.publishedAt}
+                    date={post.publishedAt ?? undefined}
                     image={post.properties?.["cover"]}
                     href={`/projects/${post.slug}/`}
                     variant="ghost"
