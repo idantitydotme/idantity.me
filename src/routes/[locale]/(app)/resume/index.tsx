@@ -350,7 +350,7 @@ export default function ResumePage() {
               <section aria-labelledby="resume-sidebar-name" class="flex flex-col items-center">
                 <header class="flex flex-col gap-xs items-center">
                   <RLAvatar
-                    src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
+                    src="https://cdn.idantity.me/images/users/avatars/idantity.me_0000_00.webp"
                     alt={t("page.resume.sidebar.name")}
                     class="!size-40 border-4 border-primary-500 shadow-xl"
                   />
@@ -467,7 +467,7 @@ export default function ResumePage() {
               links={heroLinks()}
             >
               <RLImage
-                src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
+                src="https://cdn.idantity.me/images/users/avatars/idantity.me_0000_00.webp"
                 alt={t("page.resume.sidebar.name")}
                 width={800}
                 height={800}
