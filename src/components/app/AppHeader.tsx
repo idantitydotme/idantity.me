@@ -63,12 +63,7 @@ export const AppHeader: Component = () => {
         <div class="flex items-center gap-md">
           <div class="hidden md:flex flex-row gap-md items-center">
             <RLLogo variant="logomark" class="h-8 w-auto" mode="white" />
-            <RLNavigationMenu
-              items={leftLinks()}
-              ui={{
-                link: "text-white hover:text-[#ffbe76] aria-[current]:text-[#ffbe76] data-[state=open]:text-[#ffbe76] transition-colors duration-200",
-              }}
-            />
+            <RLNavigationMenu accent="secondary" items={leftLinks()} />
           </div>
 
           <div class="block md:hidden">
@@ -89,11 +84,9 @@ export const AppHeader: Component = () => {
               {() => (
                 <div class="flex flex-col gap-sm">
                   <RLNavigationMenu
+                    accent="secondary"
                     items={mobileLinks()}
                     orientation="vertical"
-                    ui={{
-                      link: "flex justify-start items-center w-full text-left text-lg text-white hover:text-[#ffbe76] aria-[current]:text-[#ffbe76] transition-colors duration-200",
-                    }}
                   />
                   <div class="flex flex-row flex-wrap justify-start gap-md">
                     <For each={socials()}>{(buttonProps) => <RLButton {...buttonProps} />}</For>
@@ -114,12 +107,7 @@ export const AppHeader: Component = () => {
       trailingSlot={
         <div class="flex items-center gap-md">
           <div class="hidden md:flex flex-row gap-md items-center">
-            <RLNavigationMenu
-              items={rightLinks()}
-              ui={{
-                link: "text-white hover:text-[#ffbe76] aria-[current]:text-[#ffbe76] data-[state=open]:text-[#ffbe76] transition-colors duration-200",
-              }}
-            />
+            <RLNavigationMenu accent="secondary" items={rightLinks()} />
             <For each={socials()}>
               {(buttonProps) => <RLButton {...buttonProps} class="group" />}
             </For>
