@@ -4,6 +4,7 @@ import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSecti
 import { RLImage } from "@rimelight/ui/components/image/RLImage.tsx";
 import { RLLink } from "@rimelight/ui/components/link/RLLink.tsx";
 import { t } from "@rimelight/i18n";
+import { MosaicBackdrop } from "#components/app/MosaicBackdrop";
 
 export default function AboutPage() {
   useHead(() =>
@@ -20,6 +21,7 @@ export default function AboutPage() {
     <>
       <RLPageSection
         layout="hero"
+        data-theme="light"
         titleSlot={
           <>
             {heroName}
@@ -28,6 +30,7 @@ export default function AboutPage() {
           </>
         }
         description={t("page.resume.hero.description")}
+        backgroundSlot={<MosaicBackdrop tone="mixed" seed={5} class="opacity-100" />}
         ui={{
           title: (base) => base.replace("text-center", "text-left"),
           description: (base) => base.replace("text-center", "text-left"),
@@ -43,9 +46,9 @@ export default function AboutPage() {
               {t("page.about.intro.after")}
             </p>
             <div class="relative pr-8 pb-6">
-              <div aria-hidden="true" class="absolute inset-0 mt-4 ml-4 bg-primary-500" />
+              <div aria-hidden="true" class="absolute inset-0 mt-4 ml-4 bg-secondary-400" />
               <RLImage
-                src="https://cdn.idantity.me/Images/Users/Avatars/idantity.me_0000_00.webp"
+                src="https://cdn.idantity.me/images/users/avatars/idantity.me_0000_00.webp"
                 alt={t("page.about.image-alt")}
                 width={800}
                 height={800}
@@ -65,8 +68,13 @@ export default function AboutPage() {
           </>
         }
         orientation="horizontal"
+        data-theme="light"
+        backgroundSlot={<MosaicBackdrop tone="blue" seed={11} class="opacity-100" />}
         reverse
-        ui={{ container: (base) => base.replace("lg:items-center", "lg:items-start") }}
+        ui={{
+          root: (base) => `${base} text-neutral-950`,
+          container: (base) => base.replace("lg:items-center", "lg:items-start"),
+        }}
         footerSlot={<p>{t("page.about.sections.pets.footer")}</p>}
       >
         <div class="relative aspect-square">
@@ -87,7 +95,7 @@ export default function AboutPage() {
           <div class="absolute bottom-0 right-0 w-3/5 p-8">
             <div
               aria-hidden="true"
-              class="absolute inset-0 bg-primary-500 [clip-path:polygon(0_0,72%_0,100%_28%,100%_100%,28%_100%,0_72%)]"
+              class="absolute inset-0 bg-secondary-400 [clip-path:polygon(0_0,72%_0,100%_28%,100%_100%,28%_100%,0_72%)]"
             />
             <div class="relative flex [clip-path:polygon(0_0,72%_0,100%_28%,100%_100%,28%_100%,0_72%)]">
               <RLImage

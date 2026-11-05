@@ -3,6 +3,7 @@ import { useHead } from "@solidjs/web";
 import { createPageHead } from "@rimelight/seo/head";
 import { RLPageSection } from "@rimelight/ui/components/page-section/RLPageSection.tsx";
 import { RLTabs } from "@rimelight/ui/components/tabs/RLTabs.tsx";
+import { MosaicBackdrop } from "#components/app/MosaicBackdrop";
 import MusicPlayer from "#components/music/MusicPlayer.tsx";
 import SpotifyFacade from "#components/music/SpotifyFacade.tsx";
 import { t } from "@rimelight/i18n";
@@ -91,10 +92,21 @@ export default function MusicPage() {
       {/* Hero Section */}
       <RLPageSection
         layout="hero"
-        headline={t("page.music.hero.headline")}
-        title={t("page.music.hero.title")}
+        data-theme="light"
+        titleSlot={
+          <>
+            {t("page.music.hero.title").split(".")[0]}
+            <span class="text-primary">.</span>
+            {t("page.music.hero.title").split(".")[1]}
+          </>
+        }
         description={t("page.music.hero.description")}
-        orientation="horizontal"
+        backgroundSlot={<MosaicBackdrop tone="tan" seed={19} class="opacity-100" />}
+        ui={{
+          title: (base: string) => base.replace("text-center", "text-left"),
+          description: (base: string) => base.replace("text-center", "text-left"),
+          root: (base: string) => `${base} text-neutral-950`,
+        }}
       />
 
       {/* Main Tabs Section */}
