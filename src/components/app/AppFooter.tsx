@@ -2,11 +2,11 @@ import { type Component, For } from "solid-js";
 import { RLFooter } from "@rimelight/ui/components/footer/RLFooter.tsx";
 import { RLLogo } from "@rimelight/ui/components/logo/RLLogo.tsx";
 import { RLButton } from "@rimelight/ui/components/button/RLButton.tsx";
+import type { RLButtonProps } from "@rimelight/ui/components/button/button.types.ts";
 import { RLLinkGroup } from "@rimelight/ui/components/link-group/RLLinkGroup.tsx";
+import type { RLLinkGroupProps } from "@rimelight/ui/components/link-group/link-group.types.ts";
 import { RLThemeSelector } from "@rimelight/ui/components/theme-selector/RLThemeSelector.tsx";
 import { RLLocaleSelector } from "@rimelight/ui/components/locale-selector/RLLocaleSelector.tsx";
-import type { RLButtonProps } from "@rimelight/ui/components/button/button.types.ts";
-import type { RLLinkGroupProps } from "@rimelight/ui/components/link-group/link-group.types.ts";
 import { t } from "@rimelight/i18n";
 
 export const AppFooter: Component = () => {
@@ -37,35 +37,34 @@ export const AppFooter: Component = () => {
 
   const socials = (): RLButtonProps[] => [
     {
-      leadingIcon: "i-logos-instagram-icon?mask text-white group-hover:text-primary-500",
+      leadingIcon: "i-logos-instagram-icon?mask text-white group-hover:text-[#ffbe76]",
       href: "https://www.instagram.com/idantity.me",
     },
     {
-      leadingIcon: "i-logos-discord-icon?mask text-white group-hover:text-primary-500",
+      leadingIcon: "i-logos-discord-icon?mask text-white group-hover:text-[#ffbe76]",
       href: "https://discord.com/users/682049695173836979",
     },
     {
-      leadingIcon: "i-logos-spotify-icon?mask text-white group-hover:text-primary-500",
+      leadingIcon: "i-logos-spotify-icon?mask text-white group-hover:text-[#ffbe76]",
       href: "https://open.spotify.com/user/v5m4qoc9j35ccc6nbzqcookvj?si=d795f9bc1cb34222",
     },
     {
-      leadingIcon: "i-logos-github-icon?mask text-white group-hover:text-primary-500",
+      leadingIcon: "i-logos-github-icon?mask text-white group-hover:text-[#ffbe76]",
       href: "https://www.github.com/idantitydotme",
     },
     {
-      leadingIcon: "i-logos-linkedin-icon?mask text-white group-hover:text-primary-500",
+      leadingIcon: "i-logos-linkedin-icon?mask text-white group-hover:text-[#ffbe76]",
       href: "https://www.linkedin.com/daniel-marchi",
     },
   ];
 
   return (
     <RLFooter
-      contain={false}
       data-theme="dark"
-      class="bg-black z-50"
+      class="bg-primary text-white [&_h4]:text-white [&_a]:text-white [&_a:hover]:text-[#ffbe76] [&_select]:text-white [&_select:hover]:!bg-transparent [&_select:hover]:text-[#ffbe76]"
       leadingSlot={
-        <div class="flex flex-col justify-between h-full gap-xs lg:items-start">
-          <RLLogo variant="logotype" class="h-6 w-auto" />
+        <div class="flex flex-col justify-between h-full gap-xs items-center text-center lg:items-start lg:text-left">
+          <RLLogo variant="logotype" class="h-6 w-auto" mode="white" />
           <div>
             <p class="text-sm text-white">{t("app.footer.accessing")}</p>
             <span class="text-sm text-white">© {new Date().getFullYear()} idantity.me</span>
@@ -73,19 +72,19 @@ export const AppFooter: Component = () => {
         </div>
       }
       centerSlot={
-        <div class="flex flex-col md:flex-row gap-12">
+        <div class="flex flex-col md:flex-row gap-xl">
           <For each={columns()}>{(column) => <RLLinkGroup {...column} />}</For>
         </div>
       }
       trailingSlot={
         <div class="flex flex-col justify-between h-full gap-sm lg:items-end">
-          <div class="flex flex-col gap-sm items-center lg:items-end">
-            <RLThemeSelector class="min-w-44" />
-            <RLLocaleSelector class="min-w-44" />
+          <div class="flex flex-row gap-sm items-center justify-center lg:justify-end">
+            <RLThemeSelector mode={"icon"} size={"xl"} />
+            <RLLocaleSelector mode={"icon"} size={"xl"} />
           </div>
           <div class="flex flex-row flex-wrap gap-sm justify-center lg:justify-end items-center lg:items-end">
             <For each={socials()}>
-              {(social) => <RLButton variant="ghost" size="xl" {...social} />}
+              {(social) => <RLButton variant="ghost" size="xl" class="group" {...social} />}
             </For>
           </div>
         </div>
