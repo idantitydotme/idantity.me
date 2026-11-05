@@ -562,7 +562,7 @@
       },
       "hero": {
         "headline": "Sonic Experience",
-        "title": "Music, Mixes & Audio",
+        "title": "me.music",
         "description": "Original bass and electronic productions, DJ mixes with timestamped tracklists, and hand-curated Spotify selections."
       },
       "tab": {
@@ -649,6 +649,7 @@
         "title": "Blog",
         "description": "Articles, development logs, and more."
       },
+      "heading": "me.blog",
       "categories": {
         "development-log": "Development Log",
         "other": "Other",
@@ -662,6 +663,7 @@
         "title": "Projects",
         "description": "Personal projects and creations."
       },
+      "heading": "me.projects",
       "categories": {
         "website": "Website",
         "app": "App",

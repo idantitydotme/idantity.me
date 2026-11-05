@@ -548,7 +548,7 @@
       },
       "hero": {
         "headline": "Experiência Sonora",
-        "title": "Música, Sets & Áudio",
+        "title": "me.music",
         "description": "Produções originais de bass e música eletrônica, sets de DJ com faixas e capítulos interativos, e seleções selecionadas no Spotify."
       },
       "tab": {
@@ -635,6 +635,7 @@
         "title": "Blog",
         "description": "Artigos, registros de desenvolvimento e mais."
       },
+      "heading": "me.blog",
       "categories": {
         "development-log": "Registro de Desenvolvimento",
         "other": "Outros",
@@ -648,6 +649,7 @@
         "title": "Projetos",
         "description": "Projetos pessoais e criações."
       },
+      "heading": "me.projects",
       "categories": {
         "website": "Site",
         "app": "Aplicativo",
