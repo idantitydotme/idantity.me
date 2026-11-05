@@ -81,14 +81,12 @@ export const AppHeader: Component = () => {
                 />
               }
             >
-              {() => (
-                <div class="flex flex-col gap-sm">
-                  <RLNavigationMenu items={mobileLinks()} orientation="vertical" />
-                  <div class="flex flex-row flex-wrap justify-start gap-md">
-                    <For each={socials()}>{(buttonProps) => <RLButton {...buttonProps} />}</For>
-                  </div>
+              <div class="flex flex-col gap-sm">
+                <RLNavigationMenu items={mobileLinks()} orientation="vertical" />
+                <div class="flex flex-row flex-wrap justify-start gap-md">
+                  <For each={socials()}>{(buttonProps) => <RLButton {...buttonProps} />}</For>
                 </div>
-              )}
+              </div>
             </RLSlideover>
           </div>
         </div>
