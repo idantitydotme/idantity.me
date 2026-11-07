@@ -17,6 +17,7 @@ export default defineConfig({
     cache: {
       enabled: true,
     },
+    domains: ["idantity.me", "www.idantity.me"],
     env: {
       ASSETS: bindings.assets(),
       IMAGES: bindings.images(),
