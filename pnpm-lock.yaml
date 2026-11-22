@@ -180,8 +180,8 @@ importers:
         specifier: 0.0.36
         version: 0.0.36(hono@5.0.0-rc.1)(vite-plus@1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/cms':
-        specifier: 0.0.50
-        version: 0.0.50(8ed9df726773543693f58d2ce21e6131)
+        specifier: 0.0.54
+        version: 0.0.54(8ed9df726773543693f58d2ce21e6131)
       '@rimelight/i18n':
         specifier: 0.1.22
         version: 0.1.22(@solidjs/web@2.0.0-rc.21(solid-js@2.0.0-rc.21))(hono@5.0.0-rc.1)(solid-js@2.0.0-rc.21)(vite-plus@1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
@@ -205,7 +205,7 @@ importers:
         version: 2.0.0-rc.21(solid-js@2.0.0-rc.21)
       drizzle-orm:
         specifier: 1.0.0-rc.5
-        version: 1.0.0-rc.5(@neondatabase/serverless@1.2.0)(postgres@4.0.0)(zod@4.6.7)
+        version: 1.0.0-rc.5(@neondatabase/serverless@1.2.1)(postgres@4.1.1)(zod@4.6.7)
       hono:
         specifier: 5.0.0-rc.1
         version: 5.0.0-rc.1
@@ -230,7 +230,7 @@ importers:
         version: 1.0.0-beta.27
       drizzle-kit:
         specifier: 1.0.0-rc.5
-        version: 1.0.0-rc.5(drizzle-orm@1.0.0-rc.5(@neondatabase/serverless@1.2.0)(postgres@4.0.0)(zod@4.6.7))
+        version: 1.0.0-rc.5(drizzle-orm@1.0.0-rc.5(@neondatabase/serverless@1.2.1)(postgres@4.1.1)(zod@4.6.7))
       filesystem-routing:
         specifier: 0.4.2
         version: 0.4.2(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta)
@@ -812,8 +812,8 @@ packages:
       '@emnapi/core': ^1.7.1 || ^2.0.0-alpha.4
       '@emnapi/runtime': ^1.7.1 || ^2.0.0-alpha.4
 
-  '@neondatabase/serverless@1.2.0':
-    resolution: {integrity: sha512-tnaqgixUengZQNd9ZrS3ytQfamJzLKY8QxgqWQTNHHtB+KrFQWk77JTbbpg4RD+J3qE4eO2lVytvGDX5Kj6FdQ==}
+  '@neondatabase/serverless@1.2.1':
+    resolution: {integrity: sha512-PI2JjuyEFE7oZDTkV/s6WP4KEceCwnjQHClfunhysuIATtvcVTBLdA4UgHTnJo7C0mkK+OZ6U7SV1NDnYa0HgA==}
     engines: {node: '>=19.0.0'}
 
   '@nodelib/fs.scandir@2.1.5':
@@ -1393,14 +1393,14 @@ packages:
       hono: ^5.0.0-rc.1
       vite-plus: ^1.0.0
 
-  '@rimelight/cms@0.0.50':
-    resolution: {integrity: sha512-ducxAROl3a2jkV8yfF2WDDgaFuvPCOiLeQBYoJIRubG5flJkcpUIL5dIpC+cgrdgvX/ihw8m0NLgj1tNrpkv3w==}
+  '@rimelight/cms@0.0.54':
+    resolution: {integrity: sha512-xOTOYGb30Ab8qCYFWce1JOu3h4GlYiHdwrgSCy9kVtNRLiYcYdz+MMhWe18BPuWn4Xp+HiF81rvtsbTGywcFtA==}
     engines: {node: '>=26.10.0'}
     hasBin: true
     peerDependencies:
-      '@rimelight/auth': ^0.0.35
+      '@rimelight/auth': ^0.0.35 || ^0.0.36
       '@rimelight/i18n': ^0.1.20
-      '@rimelight/ui': ^0.0.96
+      '@rimelight/ui': ^0.0.96 || ^0.0.97
       '@solidjs/router': '>=2.0.0-next.42'
       solid-js: '>=2.0.0-rc.18'
       vite-plus: ^1.0.0
@@ -1630,6 +1630,12 @@ packages:
     engines: {node: '>=22.12.0'}
     peerDependencies:
       solid-js: ^2.0.0-rc.21
+
+  '@solidjs/web@2.0.0-rc.23':
+    resolution: {integrity: sha512-8OtRNh7p6hYy6Zhoi4WWVKN9UB3bWbtDLrmITVOcO0GGnB5r7nthAoM/7/xPS5Qa0rTC3AymlUap3ZVdPJhbVw==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      solid-js: ^2.0.0-rc.23
 
   '@speed-highlight/core@1.2.24':
     resolution: {integrity: sha512-qeW2e1l78afw8VhRPfPQ1Gjj+KU5XFQ/OFV5ti6eTa9bruO7mJyZtA4vw0ofqmA3tKCkROE9xLk3VZoeRc98nw==}
@@ -2765,9 +2771,9 @@ packages:
     resolution: {integrity: sha512-YUbWYCgErwnMAVkjUnYa+KlMBzGpHwiIt/DE7f0G33AuX2LH9UcTk6KgWxd3zRU+pN3u/C+Xl3EnMLM4Hea7Sg==}
     engines: {node: ^10 || ^12 || >=14}
 
-  postgres@4.0.0:
-    resolution: {integrity: sha512-kBh8qXtcvvIAc00DftQyOxz7M/3Zxww1tRMXZPLzipNXXl5PIzHml+9zB3Mrge2U8ldc0WF1ZdLp1iYQi7Kh3A==}
-    engines: {node: '>=20'}
+  postgres@4.1.1:
+    resolution: {integrity: sha512-1kJDojqNZC+iTHHXh6eif0J98LUtyLAePe/qkW1GK35eh2JixlsAiIKq3FGI+xqI+SUGTNodzf7TScVeIIyUug==}
+    engines: {node: '>=18'}
 
   pretty-format@27.5.1:
     resolution: {integrity: sha512-Qb1gy5OrP5+zDf2Bvnzdl3jsTf1qXVMazbvCoKhtKqVs4/YK4ozX4gKQJJVyNe+cajNPn0KoC0MC3FUmaHWEmQ==}
@@ -2820,8 +2826,18 @@ packages:
     peerDependencies:
       seroval: ^1.0
 
+  seroval-plugins@1.8.0:
+    resolution: {integrity: sha512-96vBb12rDvPPwdKUgWw1op3fGq8AVBFOr0IllbnM72yR5J9WWXF18cQ4g1XfDO7HCyh2dt70P3XdtyRayP8FWg==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      seroval: ^1.8.0
+
   seroval@1.7.0:
     resolution: {integrity: sha512-FU+LUkmDzWNsJ6oubZFN3dGPKny53DRhPJG6nftEaXDL8MIn19+kEE1Gvc+63Go+qPOwVUlKIdKhsu2HN6tksw==}
+    engines: {node: '>=20'}
+
+  seroval@1.8.2:
+    resolution: {integrity: sha512-zmMxi/9MdLK1MKazLmIP6Rk39RuK0Xydd+QHeOYntS37olJeTjB3+nwVj4ce/ZWiZJeRhcO5htfxt0mUzQBscQ==}
     engines: {node: '>=20'}
 
   sharp@0.35.5:
@@ -3550,7 +3566,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.4
     optional: true
 
-  '@neondatabase/serverless@1.2.0': {}
+  '@neondatabase/serverless@1.2.1': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -3853,17 +3869,17 @@ snapshots:
       hono: 5.0.0-rc.1
       vite-plus: 1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
 
-  '@rimelight/cms@0.0.50(8ed9df726773543693f58d2ce21e6131)':
+  '@rimelight/cms@0.0.54(8ed9df726773543693f58d2ce21e6131)':
     dependencies:
-      '@neondatabase/serverless': 1.2.0
+      '@neondatabase/serverless': 1.2.1
       '@rimelight/auth': 0.0.36(hono@5.0.0-rc.1)(vite-plus@1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/i18n': 0.1.22(@solidjs/web@2.0.0-rc.21(solid-js@2.0.0-rc.21))(hono@5.0.0-rc.1)(solid-js@2.0.0-rc.21)(vite-plus@1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@rimelight/ui': 0.0.97(@oxc-project/types@0.157.0)(@rimelight/i18n@0.1.22(@solidjs/web@2.0.0-rc.21(solid-js@2.0.0-rc.21))(hono@5.0.0-rc.1)(solid-js@2.0.0-rc.21)(vite-plus@1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)))(@solidjs/router@2.0.0-next.44(@solidjs/web@2.0.0-rc.21(solid-js@2.0.0-rc.21))(filesystem-routing@0.4.2(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.21))(@solidjs/web@2.0.0-rc.21(solid-js@2.0.0-rc.21))(@voidzero-dev/vite-plus-core@1.5.0(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))(cac@7.1.0)(rolldown@1.2.16)(solid-js@2.0.0-rc.21)(srvx@1.0.5)(vite-plus@1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta))
       '@solidjs/router': 2.0.0-next.44(@solidjs/web@2.0.0-rc.21(solid-js@2.0.0-rc.21))(filesystem-routing@0.4.2(esbuild@0.28.2)(jiti@2.7.0)(supports-color@10.2.2)(typescript@7.1.0-beta))(solid-js@2.0.0-rc.21)
-      '@solidjs/web': 2.0.0-rc.21(solid-js@2.0.0-rc.21)
-      drizzle-orm: 1.0.0-rc.5(@neondatabase/serverless@1.2.0)(postgres@4.0.0)(zod@4.6.7)
+      '@solidjs/web': 2.0.0-rc.23(solid-js@2.0.0-rc.21)
+      drizzle-orm: 1.0.0-rc.5(@neondatabase/serverless@1.2.1)(postgres@4.1.1)(zod@4.6.7)
       hono: 5.0.0-rc.1
-      postgres: 4.0.0
+      postgres: 4.1.1
       solid-js: 2.0.0-rc.21
       sortablejs: 1.15.7
       vite-plus: 1.5.0(@vitest/ui@5.1.0)(esbuild@0.28.2)(jiti@2.7.0)(typescript@7.1.0-beta)
@@ -4105,6 +4121,13 @@ snapshots:
     dependencies:
       seroval: 1.7.0
       seroval-plugins: 1.7.0(seroval@1.7.0)
+      solid-js: 2.0.0-rc.21
+
+  '@solidjs/web@2.0.0-rc.23(solid-js@2.0.0-rc.21)':
+    dependencies:
+      csstype: 3.2.3
+      seroval: 1.8.2
+      seroval-plugins: 1.8.0(seroval@1.8.2)
       solid-js: 2.0.0-rc.21
 
   '@speed-highlight/core@1.2.24': {}
@@ -4699,14 +4722,14 @@ snapshots:
 
   dom-accessibility-api@0.5.16: {}
 
-  drizzle-kit@1.0.0-rc.5(drizzle-orm@1.0.0-rc.5(@neondatabase/serverless@1.2.0)(postgres@4.0.0)(zod@4.6.7)):
+  drizzle-kit@1.0.0-rc.5(drizzle-orm@1.0.0-rc.5(@neondatabase/serverless@1.2.1)(postgres@4.1.1)(zod@4.6.7)):
     optionalDependencies:
-      drizzle-orm: 1.0.0-rc.5(@neondatabase/serverless@1.2.0)(postgres@4.0.0)(zod@4.6.7)
+      drizzle-orm: 1.0.0-rc.5(@neondatabase/serverless@1.2.1)(postgres@4.1.1)(zod@4.6.7)
 
-  drizzle-orm@1.0.0-rc.5(@neondatabase/serverless@1.2.0)(postgres@4.0.0)(zod@4.6.7):
+  drizzle-orm@1.0.0-rc.5(@neondatabase/serverless@1.2.1)(postgres@4.1.1)(zod@4.6.7):
     optionalDependencies:
-      '@neondatabase/serverless': 1.2.0
-      postgres: 4.0.0
+      '@neondatabase/serverless': 1.2.1
+      postgres: 4.1.1
       zod: 4.6.7
 
   electron-to-chromium@1.5.447: {}
@@ -5119,7 +5142,7 @@ snapshots:
       picocolors: 1.1.1
       source-map-js: 1.2.2
 
-  postgres@4.0.0: {}
+  postgres@4.1.1: {}
 
   pretty-format@27.5.1:
     dependencies:
@@ -5175,7 +5198,13 @@ snapshots:
     dependencies:
       seroval: 1.7.0
 
+  seroval-plugins@1.8.0(seroval@1.8.2):
+    dependencies:
+      seroval: 1.8.2
+
   seroval@1.7.0: {}
+
+  seroval@1.8.2: {}
 
   sharp@0.35.5:
     dependencies:
