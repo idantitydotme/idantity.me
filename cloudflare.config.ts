@@ -40,6 +40,10 @@ export default defineConfig({
       CONSTRUCTION_MODE: bindings.secret(),
       CONSTRUCTION_PASSPHRASE: bindings.secret(),
       CONTACT_OWNER_EMAIL: bindings.text("owner@idantity.me"),
+      CF_ACCESS_TEAM_DOMAIN: bindings.text("idantitydotme.cloudflareaccess.com"),
+      CF_ACCESS_AUD: bindings.text(
+        "15fa0c11f4af04c11c877e5b2f81dac9721f7860db4174c6f1d6f2e402991742",
+      ),
     },
   },
 });

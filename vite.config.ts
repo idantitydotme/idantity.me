@@ -61,7 +61,7 @@ export default defineConfig({
       domain: "idantity.me",
     }),
 
-    auth(),
+    auth({ provider: "cf-access" }),
 
     i18n(),
 
