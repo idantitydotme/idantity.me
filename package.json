@@ -45,31 +45,30 @@
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "2.0.0-beta.v.11",
-    "@rimelight/auth": "0.0.36",
     "@rimelight/cms": "0.0.54",
-    "@rimelight/i18n": "0.1.22",
-    "@rimelight/security": "0.0.54",
+    "@rimelight/i18n": "0.1.23",
+    "@rimelight/security": "0.0.55",
     "@rimelight/seo": "0.0.42",
     "@rimelight/ui": "0.0.97",
-    "@solidjs/router": "2.0.0-next.44",
-    "@solidjs/vite-plugin": "3.0.0-next.56",
-    "@solidjs/web": "2.0.0-rc.21",
+    "@solidjs/router": "2.0.1",
+    "@solidjs/vite-plugin": "3.0.1",
+    "@solidjs/web": "2.0.3",
     "drizzle-orm": "1.0.0-rc.5",
     "hono": "5.0.0-rc.1",
-    "postal-mime": "4.2.0",
-    "solid-js": "2.0.0-rc.21",
+    "postal-mime": "4.2.1",
+    "solid-js": "2.0.3",
     "zod": "4.6.7"
   },
   "devDependencies": {
-    "@iconify-json/logos": "1.2.19",
-    "@iconify-json/lucide": "1.2.151",
-    "@rimelight/config": "0.0.48",
-    "cf": "1.0.0-beta.27",
+    "@iconify-json/logos": "1.2.20",
+    "@iconify-json/lucide": "1.2.158",
+    "@rimelight/config": "0.0.49",
+    "cf": "1.0.0-rc.2",
     "drizzle-kit": "1.0.0-rc.5",
-    "filesystem-routing": "0.4.2",
+    "filesystem-routing": "0.5.0",
     "typescript": "7.1.0-beta",
-    "unocss": "66.12.0",
-    "vite-plus": "1.5.0"
+    "unocss": "66.13.0",
+    "vite-plus": "1.7.0"
   },
-  "packageManager": "pnpm@12.16.1"
+  "packageManager": "pnpm@12.21.0"
 }
