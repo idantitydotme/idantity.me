@@ -40,7 +40,7 @@
     "deploy": "cf deploy",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "cf d1 migrations apply idantity-dot-me --dir ./drizzle --local",
-    "db:migrate:remote": "cf d1 migrations apply idantity-dot-me --dir ./drizzle",
+    "db:migrate:remote": "cf d1 migrations apply 51076606-e3ee-4e09-bf45-04db8b0737f9 --dir ./drizzle",
     "check": "pnpm audit && cf workers types && vp check --fix"
   },
   "dependencies": {

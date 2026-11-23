@@ -56,10 +56,9 @@ export default defineConfig({
       PERSONAL_OWNER_ID: bindings.secret(),
       // Worker-side Cloudflare Access check for /api/personal/* (src/api/lib/auth.ts).
       // TEAM_DOMAIN is the team domain. POLICY_AUD is the AUD of the Access application for
-      // idantity.me/api/personal/*. PLACEHOLDER: replace before deploy. Until then every
-      // personal request fails closed (401).
+      // idantity.me/api/personal/*. Access app id 2bcdcedd-7674-4462-88dd-5b9a4c08d842.
       TEAM_DOMAIN: bindings.text("https://idantitydotme.cloudflareaccess.com"),
-      POLICY_AUD: bindings.text("REPLACE_WITH_ACCESS_APP_AUD_FOR_IDANTITY_ME_API_PERSONAL"),
+      POLICY_AUD: bindings.text("f55835872c87ed965c6f06fa02bed51bb36fa5b714ea7f3c20205d89624d6391"),
       CONTACT_OWNER_EMAIL: bindings.text("owner@idantity.me"),
       DOMAINS: bindings.text("idantity.me"),
       EMAIL_ADDRESSES: bindings.json([
