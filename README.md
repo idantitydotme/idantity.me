@@ -18,7 +18,7 @@ The personal website of Daniel Marchi (idantity): portfolio, blog, projects, mus
 - Vite+ (`vp`) and Vite, with `@cloudflare/vite-plugin`
 - Hono on Cloudflare Workers
 - Cloudflare D1 (SQLite) with Drizzle ORM, R2 for media, Images, Email, and Rate Limiting
-- Rimelight packages: `@rimelight/auth`, `@rimelight/cms`, `@rimelight/i18n`, `@rimelight/security`, `@rimelight/seo`, `@rimelight/ui`
+- Rimelight packages: `@rimelight/cms`, `@rimelight/i18n`, `@rimelight/security`, `@rimelight/seo`, `@rimelight/ui`
 
 ## Project Structure
 

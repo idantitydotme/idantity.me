@@ -1,1 +1,7 @@
-pnpm-*
+# pnpm
+/drizzle
+/reactivity-diagnostics
+/server-components
+/solid-2.0
+/solid-2.0-cheatsheet
+# pnpm end

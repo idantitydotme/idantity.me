@@ -5,7 +5,6 @@ import { r2 } from "@rimelight/cms/storage";
 import { fileRoutes } from "filesystem-routing/vite";
 import { seo } from "@rimelight/seo/plugin";
 import { security } from "@rimelight/security/plugin";
-import { auth } from "@rimelight/auth/plugin";
 import { i18n } from "@rimelight/i18n/plugin";
 import { ui } from "@rimelight/ui/plugin";
 import { cms } from "@rimelight/cms/plugin";
@@ -60,8 +59,6 @@ export default defineConfig({
     security({
       domain: "idantity.me",
     }),
-
-    auth({ provider: "cf-access" }),
 
     i18n(),
 

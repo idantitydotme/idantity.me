@@ -1,5 +1,5 @@
 import { createMiddleware } from "hono/factory";
-import { cfAccessIdentifier } from "@rimelight/auth/cf-access";
+import { cfAccessIdentifier } from "@rimelight/cms/identity";
 import { env } from "cloudflare:workers";
 import { decideAccess } from "./auth.logic";
 
