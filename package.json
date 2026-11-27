@@ -38,9 +38,6 @@
     "build": "vp build",
     "preview": "vp preview",
     "deploy": "cf deploy",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "cf d1 migrations apply idantity-dot-me --dir ./drizzle --local",
-    "db:migrate:remote": "cf d1 migrations apply 51076606-e3ee-4e09-bf45-04db8b0737f9 --dir ./drizzle",
     "check": "pnpm audit && cf workers types && vp check --fix"
   },
   "dependencies": {
@@ -53,9 +50,7 @@
     "@solidjs/router": "2.0.1",
     "@solidjs/vite-plugin": "3.0.1",
     "@solidjs/web": "2.0.3",
-    "drizzle-orm": "1.0.0-rc.5",
     "hono": "5.0.0-rc.1",
-    "postal-mime": "4.2.1",
     "solid-js": "2.0.3",
     "zod": "4.6.7"
   },
@@ -64,7 +59,6 @@
     "@iconify-json/lucide": "1.2.158",
     "@rimelight/config": "0.0.49",
     "cf": "1.0.0-rc.2",
-    "drizzle-kit": "1.0.0-rc.5",
     "filesystem-routing": "0.5.0",
     "typescript": "7.1.0-beta",
     "unocss": "66.13.0",
